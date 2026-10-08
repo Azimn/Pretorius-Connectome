@@ -1,0 +1,54 @@
+name: Shared Pretorius L1 data contract
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/shared_memory.py'
+      - 'src/pretorius_connectome/imprinting.py'
+      - 'scripts/export_shared_memory_l1.py'
+      - 'scripts/publish_shared_memory_l1.py'
+      - 'tests/test_shared_memory.py'
+      - '.github/workflows/shared-memory-l1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify-export-and-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original FlyWire baseline dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Complete pinned corpus and normalization tests
+        run: python -m unittest discover -s tests -p 'test_shared_memory.py' -v
+      - name: Export complete source-verified L1 once
+        run: python scripts/export_shared_memory_l1.py --output-dir artifacts/shared_memory/v1
+      - name: Identical unmodified retrieval from L0 and shared L1
+        run: |
+          OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py \
+            --synthetic-test --query 'millstream map and turned glove' \
+            --output /tmp/l0-retrieval.json
+          OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py \
+            --synthetic-test --query 'millstream map and turned glove' \
+            --shared-l1 artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz \
+            --shared-manifest artifacts/shared_memory/v1/manifest.json \
+            --output /tmp/l1-retrieval.json
+          cmp /tmp/l0-retrieval.json /tmp/l1-retrieval.json
+      - name: Commit both immutable shared artifact files to canonical main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/publish_shared_memory_l1.py
+      - name: Preserve comparison evidence for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: shared-l1-l0-equal-retrieval
+          path: |
+            /tmp/l0-retrieval.json
+            /tmp/l1-retrieval.json
+          retention-days: 30

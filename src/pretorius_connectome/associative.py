@@ -129,7 +129,8 @@ class AssociativeMemory:
 
     def __init__(self, memories, topology: Topology | None = None, *,
                  steps: int = 2, activity_cap: int = 256,
-                 diffusion: float = 0.4, hybrid_fraction: float = 0.25):
+                 diffusion: float = 0.4, hybrid_fraction: float = 0.25,
+                 shared_cache=None):
         if not memories or len({m.event_id for m in memories}) != len(memories):
             raise ValueError("nonempty memories with unique IDs required")
         if steps < 0 or activity_cap < 1 or not (0 <= diffusion <= 1):
@@ -147,9 +148,19 @@ class AssociativeMemory:
             max_features=8192, sublinear_tf=True, norm="l2",
             dtype=np.float64,
         )
-        self.docs = self.encoder.fit_transform(
-            [m.memory_text for m in self.memories]
-        )
+        if shared_cache is None:
+            self.docs = self.encoder.fit_transform(
+                [m.memory_text for m in self.memories]
+            )
+        else:
+            shared_cache.require_training_set([m.event_id for m in self.memories])
+            for memory in self.memories:
+                canonical = shared_cache.records[shared_cache.positions[memory.event_id]]
+                if (memory.episode_id != canonical["episode_id"]
+                        or memory.memory_text != canonical["memory_text"]):
+                    raise ValueError("Shared feature cache source mismatch")
+            self.encoder = shared_cache.encoder
+            self.docs = shared_cache.subset([m.event_id for m in self.memories])
         self.ids = [m.event_id for m in self.memories]
         self.graph_docs = None
         self.projection = None
