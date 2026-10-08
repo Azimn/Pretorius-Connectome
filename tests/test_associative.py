@@ -9,7 +9,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from pretorius_connectome.associative import (
-    AssociativeMemory, Topology, summarize_challenge
+    AssociativeMemory, Topology, summarize_challenge, paired_case_diagnostics
 )
 from pretorius_connectome.imprinting import Memory, Cue
 from pretorius_connectome.pilot04 import ChallengeCase
@@ -105,6 +105,41 @@ class AssociativeTests(unittest.TestCase):
         self.assertEqual(result["contradiction_n"], 1)
         self.assertEqual(result["absent_n"], 1)
         self.assertEqual(result["mode"], "hybrid")
+
+
+    def test_paired_diagnostics_identity_and_label_integrity(self):
+        def group(case_id, target, predicted, accepted):
+            return {"case_id": case_id, "target": target,
+                    "predicted": predicted, "accepted": accepted, "score": 0.4}
+        reference = {"case_results": {
+            "positive": [
+                group("p1", "A", "A", True),
+                group("p2", "B", "A", True),
+            ],
+            "contradiction": [group("c1", "A", "A", True)],
+            "absent": [group("u1", "X", "B", False)],
+        }}
+        challenger = {"case_results": {
+            "positive": [
+                group("p1", "A", "B", True),
+                group("p2", "B", "B", True),
+            ],
+            "contradiction": [group("c1", "A", "A", False)],
+            "absent": [group("u1", "X", "C", False)],
+        }}
+        result = paired_case_diagnostics(reference, challenger)
+        self.assertEqual(result["positive"]["prediction_changes"], 2)
+        self.assertEqual(result["positive"]["correct_and_accepted_gains"], 1)
+        self.assertEqual(result["positive"]["correct_and_accepted_losses"], 1)
+        self.assertEqual(result["contradiction"]["acceptance_changes"], 1)
+        self.assertEqual(result["absent"]["prediction_changes"], 1)
+        altered = {"case_results": {
+            **challenger["case_results"],
+            "positive": [group("p1", "X", "B", True),
+                         group("p2", "B", "B", True)],
+        }}
+        with self.assertRaises(ValueError):
+            paired_case_diagnostics(reference, altered)
 
 
 if __name__ == "__main__":
