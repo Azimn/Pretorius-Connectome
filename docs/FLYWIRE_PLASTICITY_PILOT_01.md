@@ -14,7 +14,7 @@ This is a minimal computational plasticity probe, **not** a model of dopamine, l
 
 * Original 450 reconstructed narrative events / 27 episodes, v12, source Git blob 718dcc2d5ba4feccdef1690d447edfcebaa9bfb5, and v12 sidecars remain untouched.
 * The already published canonical L1 gzip and manifest at artifacts/shared_memory/v1 are consumed and verified using existing load_v12 guards. L1 is a **17-field projection** and does not replace original L0 narrative/causal records.
-* Reuse the *existing* train-only source-pinned TF-IDF L2 via scripts/build_shared_memory_l2.py, one cache per seeded train-episode partition; its read path rejects different fitted splits. The original uncached vectorizer is compared with the shared-cache consumer for exact case-level decisions, IDs, edge counts and numerically equivalent scores. Distinct valid floating-operation orders can yield different raw learned-weight SHA-256 values, which are retained in each run but are not treated as semantic inequality.
+* Reuse the *existing* train-only source-pinned TF-IDF L2 via scripts/build_shared_memory_l2.py, one cache per seeded train-episode partition. Following PR #15, the real assay requires **shared TF-IDF L2 v2**, with explicit frequency and lexical tie-breaking. Each cache rejects different fitted splits and carries a pinned encoder hash. The historic uncached max_features=8192 vectorizer is a DIFFERENT feature-selection baseline and must never be assumed equivalent to v2. Two independently built v2 caches with different PYTHONHASHSEED values must produce identical feature shards and full case/weight audit results.
 * BioCircuit's **independently versioned 450 x 256 BC01 lexical sensory cache added in PR #12 is retained**, but not used as a substitute for TF-IDF in this particular graph assay. It is signed, lexical, and not a drop-in nonnegative graph input. The BioCircuit recurrent weights are not transplanted.
 * The original FlyWire v783 root IDs, original converted CSR indptr, edge indices, and integer synapse counts remain unchanged. A *separate float64 transition operator* is created in RAM for each condition. No trained overlay is serialized over the biological source.
 
@@ -39,7 +39,7 @@ The challenge is still experiments/pilot04/challenge_v1.jsonl, 68 previously ins
 
 Positive and contradiction acceptance scores come from source-decision calibration, **not entailment**. This cannot establish that recalled facts are true, that Pretorius has a stable identity or that a biological connectome has experienced autobiographical memories. If the rewired learning control is equal or superior, state that explicitly, including raw paired cases. Biological specificity requires later annotated neuron classes and degree/class-preserving randomized controls.
 
-The implementation computes SHA-256 of baseline and learned transition weight arrays and records the count of coactivity-touched edges. Tests reject changes to original synaptic CSR arrays, new edges, invalid gains, nondeterminism and unexpected changes to the lexical fallback. CI compares the original uncached and cached L2 paths end-to-end with exact non-numeric records and 1e-8 absolute / 1e-10 relative numerical tolerance, rather than asserting identical raw float-array hashes.
+The implementation computes SHA-256 of baseline and learned transition weight arrays and records the count of coactivity-touched edges. Tests reject changes to original synaptic CSR arrays, new edges, invalid gains, nondeterminism and unexpected changes to the lexical fallback. CI requires byte-identical v2 source cache fingerprints and exact whole-result reproducibility, including raw float-array learning fingerprints, across independent Python processes. The historical uncached encoder runs only as a separately labeled synthetic diagnostic. This test does not imply v1 and v2 encoding parity.
 
 ## Reproduce
 
@@ -47,8 +47,11 @@ Python 3.11. Install numpy>=1.26,<3 scipy>=1.11,<2 scikit-learn>=1.5,<2 rank-bm2
 
 ~~~bash
 python -m unittest discover -s tests -p test_flywire_plasticity.py -v
-python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/plasticity-l2/seed31
-python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --shared-cache-root data/derived/plasticity-l2 --output results/associative/plasticity-synthetic-cached.json
+PYTHONHASHSEED=13 python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/plasticity-l2-a/seed31
+PYTHONHASHSEED=941 python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/plasticity-l2-b/seed31
+PYTHONHASHSEED=13 python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --shared-cache-root data/derived/plasticity-l2-a --output results/associative/plasticity-synthetic-v2-a.json
+PYTHONHASHSEED=941 python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --shared-cache-root data/derived/plasticity-l2-b --output results/associative/plasticity-synthetic-v2-b.json
+python scripts/verify_flywire_plasticity_cache_parity.py results/associative/plasticity-synthetic-v2-a.json results/associative/plasticity-synthetic-v2-b.json
 ~~~
 
 For the real MB topology, first run the repository's official SHA-validated acquisition and original neuropil converter. Build seeds 31/37/43 under data/derived/plasticity-l2/seedSEED, then:
@@ -61,7 +64,7 @@ OPENBLAS_NUM_THREADS=1 python scripts/run_flywire_plasticity_pilot01.py \
   --output results/associative/flywire-mb-plasticity-pilot01-full.json
 ~~~
 
-Workflow .github/workflows/flywire-plasticity-pilot-01.yml first runs synthetic tests and original/cache parity, then fetches the original FlyWire data, rebuilds the MB subgraph and runs the **real** three-seed experiment. Synthetic results must **never** be reported as real biological evidence. Before marking this phase complete, record the CI run, archive the **full per-case real JSON** permanently under results/associative/runs/, add a human-readable result report and link both from results/associative/README.md and docs/RESEARCH_HANDOFF.md.
+Workflow .github/workflows/flywire-plasticity-pilot-01.yml first runs synthetic tests and independent v2-build parity, then fetches the original FlyWire data, rebuilds the MB subgraph and runs the **real** three-seed experiment. Synthetic results must **never** be reported as real biological evidence. Before marking this phase complete, record the CI run, archive the **full per-case real JSON** permanently under results/associative/runs/, add a human-readable result report and link both from results/associative/README.md and docs/RESEARCH_HANDOFF.md.
 
 ## Next gated experiment
 
