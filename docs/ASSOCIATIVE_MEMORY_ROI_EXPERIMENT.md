@@ -46,3 +46,12 @@ A within-MB improvement over its own rewired control would support the hypothesi
 Comparing MB against full FlyWire is confounded by node count, edge count and feature collision rates. A persuasive later experiment needs size- and budget-matched controls, independently reviewed novel probes, and perhaps mappings aligned with mushroom-body cell classes. Do not select positive examples after looking at the previous Pilot 04 challenge.
 
 If the MB-based graph also matches or underperforms its rewired control, stop adding topology variations blindly. Prefer evidence-aware conventional memory retrieval until a specific anatomical encoding and plasticity hypothesis can be tested.
+
+
+## Follow-on neuron-class encoder, distinct from ROI filtering
+
+The official FlyWire annotation repository also contains a separate neuron-level table with \`root_id\`, \`cell_class\`, \`cell_sub_class\`, \`cell_type\`, \`top_nt\`, \`top_nt_conf\` and \`side\`. We should use this only after examining the ROI results: https://github.com/flyconnectome/flywire_annotations/blob/main/supplemental_files/Supplemental_file1_neuron_annotations.tsv .
+
+That table changes independently of the original v783 publication, so pin an exact tagged annotation version and content checksum before mixing its neuron classes with the original connectivity. For reproducibility, the annotation blob observed at planning time was \`02e72f6c8161d3465f77fec0edf96c5d98027a9e\` on the annotations repository's main branch, which is not a fixed publication tag.
+
+A subsequent, independently assessed experiment could restrict or steer cue encoding into labeled Kenyon-cell or mushroom-body input populations and constrain plasticity by documented cell class. Merely assigning text features randomly to neurons in an MB-labeled ROI remains anatomical borrowing rather than biologically faithful learning.
