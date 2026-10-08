@@ -130,7 +130,7 @@ class AssociativeMemory:
     def __init__(self, memories, topology: Topology | None = None, *,
                  steps: int = 2, activity_cap: int = 256,
                  diffusion: float = 0.4, hybrid_fraction: float = 0.25,
-                 shared_cache=None):
+                 shared_cache=None, anchor_pool=None):
         if not memories or len({m.event_id for m in memories}) != len(memories):
             raise ValueError("nonempty memories with unique IDs required")
         if steps < 0 or activity_cap < 1 or not (0 <= diffusion <= 1):
@@ -165,14 +165,31 @@ class AssociativeMemory:
         self.graph_docs = None
         self.projection = None
         self.propagator = None
+        if topology is None and anchor_pool is not None:
+            raise ValueError("anchor_pool requires a topology")
         if topology is not None:
             n = len(topology.root_ids)
             features = self.encoder.get_feature_names_out()
+            if anchor_pool is None:
+                pool = None  # Preserve the frozen historical full-neuron mapping.
+            else:
+                selected = np.asarray(anchor_pool)
+                if (selected.ndim != 1 or not selected.size
+                        or not np.issubdtype(selected.dtype, np.integer)):
+                    raise ValueError("anchor_pool must be a nonempty integer neuron index vector")
+                pool = selected.astype(np.int64, copy=True)
+                if (np.any(pool < 0) or np.any(pool >= n)
+                        or len(np.unique(pool)) != len(pool)):
+                    raise ValueError("anchor_pool must contain unique valid neuron indices")
+                pool.sort()  # Input-order-independent source-to-neuron mapping.
             anchors = np.asarray([
                 int.from_bytes(blake2b(f.encode("utf-8"), digest_size=8,
-                                      person=b"pt-graph-v1").digest(), "little") % n
+                                      person=b"pt-graph-v1").digest(), "little")
+                % (n if pool is None else len(pool))
                 for f in features
             ], dtype=np.int64)
+            if pool is not None:
+                anchors = pool[anchors]
             self.projection = sparse.csr_matrix(
                 (np.ones(len(features), dtype=np.float64),
                  (np.arange(len(features)), anchors)),

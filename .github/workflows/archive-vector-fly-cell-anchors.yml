@@ -1,0 +1,58 @@
+name: Archive Vector Fly biological neuron-class evidence
+
+on:
+  workflow_run:
+    workflows: ['Vector Fly neuron-class anchors Pilot 02']
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  archive-real-main-run:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download verified completed original real-data artifact
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: vector-fly-cellclass-pilot02-original
+          path: captured
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Verify source/class/split evidence and generate permanent report
+        run: |
+          set -euo pipefail
+          FILE="$(find captured -name vector-fly-cell-class-pilot02.json -type f | head -n 1)"
+          test -n "$FILE" && test -f "$FILE"
+          python scripts/archive_vector_fly_pilot02.py --input "$FILE" --run-id "$SOURCE_RUN_ID"
+      - name: Commit immutable source cases, report and canonical handoff
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/associative/runs/ \
+                  results/associative/VECTOR_FLY_CELLCLASS_PILOT02_RESULTS.md \
+                  results/associative/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "Permanent result already exists, nothing to overwrite"
+            exit 0
+          fi
+          git commit -m "Archive verified Vector Fly class-anchored result $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
