@@ -3,6 +3,11 @@ on:
   push:
     paths:
       - "src/pretorius_connectome/shared_memory_l2.py"
+      - "src/pretorius_connectome/shared_features_bc01.py"
+      - "tests/test_shared_features_bc01.py"
+      - "scripts/export_shared_memory.py"
+      - "scripts/benchmark_shared_memory.py"
+      - "docs/SHARED_MEMORY_INTERFACE_V1.md"
       - "src/pretorius_connectome/associative.py"
       - "scripts/build_shared_memory_l2.py"
       - "scripts/run_associative_memory.py"
@@ -11,6 +16,11 @@ on:
   pull_request:
     paths:
       - "src/pretorius_connectome/shared_memory_l2.py"
+      - "src/pretorius_connectome/shared_features_bc01.py"
+      - "tests/test_shared_features_bc01.py"
+      - "scripts/export_shared_memory.py"
+      - "scripts/benchmark_shared_memory.py"
+      - "docs/SHARED_MEMORY_INTERFACE_V1.md"
       - "src/pretorius_connectome/associative.py"
       - "scripts/build_shared_memory_l2.py"
       - "scripts/run_associative_memory.py"
@@ -34,10 +44,16 @@ jobs:
         run: |
           OPENBLAS_NUM_THREADS=1 python -m unittest discover -s tests -p test_shared_memory.py -v
           OPENBLAS_NUM_THREADS=1 python -m unittest discover -s tests -p test_shared_memory_l2.py -v
+          OPENBLAS_NUM_THREADS=1 python -m unittest discover -s tests -p test_shared_features_bc01.py -v
       - name: Build split-specific L2
         run: |
           OPENBLAS_NUM_THREADS=1 python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/shared-memory-l2-seed31 --report results/shared-memory/seed31-l2.json
           OPENBLAS_NUM_THREADS=1 python scripts/build_shared_memory_l2.py --seed 37 --output-dir data/derived/shared-memory-l2-seed37 --report results/shared-memory/seed37-l2.json
+      - name: Build and verify separately versioned BC01 lexical L2
+        run: |
+          OPENBLAS_NUM_THREADS=1 python scripts/export_shared_memory.py --output artifacts/shared_memory/v1
+          OPENBLAS_NUM_THREADS=1 python scripts/export_shared_memory.py --output artifacts/shared_memory/v1 --validate-only
+          OPENBLAS_NUM_THREADS=1 python scripts/benchmark_shared_memory.py --bundle artifacts/shared_memory/v1 --output results/shared-memory/bc01-cache-measured.json
       - name: Compare existing FlyWire retrieval control with cached L2
         run: |
           OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py --synthetic-test --benchmark --seeds 31 --output results/shared-memory/legacy.json
@@ -51,4 +67,6 @@ jobs:
             data/derived/shared-memory-l2-seed31/
             data/derived/shared-memory-l2-seed37/
             results/shared-memory/
+            artifacts/shared_memory/v1/bc01_sensory_256.npy
+            artifacts/shared_memory/v1/bc01_l2_manifest.json
           retention-days: 30
