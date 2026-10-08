@@ -46,3 +46,10 @@ The planned FlyWire adapter should consume L1/L2 records, apply a separately ver
 ## Version pins already used by BC01
 
 BioCircuit `biocircuit/bc01.py` currently pins the full corpus at Pretorius-Connectome commit `597fb23473a60eecf2e1b50f79c22bfbea816be5` with the L0 Git blob listed above and also supports a bundled 3-record smoke fixture with blob `6e9404d8568b5e3431cdecce0ebd94a73248d6c8`. These pins describe the BC01 source as implemented, not a new FlyWire topology experiment.
+
+
+## Operational L1 milestone, verified 2026-10-08
+
+The previously planned **portable L1 artifact is now implemented**, exported and committed. The exact [source-pinned compressed archive](../artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz) and [manifest](../artifacts/shared_memory/v1/manifest.json) are the cross-project data interface. Full original corpus coverage, deterministic byte-identical export, strict corruption rejection, and unchanged source-derived FlyWire loader behavior were verified by [canonical workflow 37839291647](https://github.com/Azimn/Pretorius-Connectome/actions/runs/37839291647). [BioCircuit workflow 37839516626](https://github.com/Azimn/Pretorius-Neural-Network/actions/runs/37839516626) verified 450-record source parity, equal signed-hash input vectors and equal BC01 result arrays. The measured details and archive checksums are in [the permanent L1 report](../results/shared_memory/L1_INTERFACE_RESULTS.md).
+
+This revises only the earlier **L1-not-yet-built** status; the previously planned **L2 shared vector cache is still not built**. The two architectures use incompatible feature spaces and cannot share their trained weights directly. The previous prospective text is preserved as planning history. Keep that distinction explicit in Issue #10 and subsequent development.
