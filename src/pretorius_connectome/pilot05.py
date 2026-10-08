@@ -111,6 +111,8 @@ class NarrativeModels:
             ("hebb_word_shuffled", self.doc_word, self.targets[swapped]),
         ):
             dense = x.toarray().astype(np.float32, copy=False)
+            if dense.shape[1] < self.cue_units:
+                dense = np.pad(dense, ((0, 0), (0, self.cue_units - dense.shape[1])))
             # Matrix product is the same sum of outer products as per-event
             # masked additive Hebbian learning. The mask never changes.
             trained = self.overlays[name]
@@ -186,23 +188,6 @@ class NarrativeModels:
         query_words = set(words(query))
         selected = max(sentences, key=lambda sentence: len(query_words & set(words(sentence))))
         return selected[:240]
-
-
-def _calibration(model: NarrativeModels, method: str,
-                 train: list[Memory], validation: list[Memory]) -> float:
-    # Decision summaries are metadata from training/validation archives. They
-    # are NOT the assistant-authored Pilot 04 challenge or its case labels.
-    # Unlike original recall cues, they contain contextual action information.
-    def action_text(memory: Memory) -> str:
-        return memory.decision_text  # constructed from source JSONL by runner
-
-    positive = model.score_batch([action_text(m) for m in train], method)
-    negative = model.score_batch([action_text(m) for m in validation], method)
-    pos = [{"known": True, "top_cosine": r["score"]} for r in positive]
-    neg = [{"known": False, "top_cosine": r["score"]} for r in negative]
-    if all(not np.isfinite(r["score"]) for r in positive + negative):
-        return float("inf")
-    return calibrate(pos, neg)
 
 
 def evaluate_seed(memories: list[Memory], decision_text: dict[str, str],
