@@ -1,0 +1,54 @@
+name: Shared memory interface v1
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/pretorius_connectome/shared_memory.py'
+      - 'scripts/export_shared_memory.py'
+      - 'scripts/run_associative_memory.py'
+      - 'tests/test_shared_memory.py'
+      - 'docs/SHARED_MEMORY_INTERFACE_V1.md'
+      - '.github/workflows/shared-memory-v1.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/shared_memory.py'
+      - 'scripts/export_shared_memory.py'
+      - 'scripts/run_associative_memory.py'
+      - 'tests/test_shared_memory.py'
+      - 'docs/SHARED_MEMORY_INTERFACE_V1.md'
+      - '.github/workflows/shared-memory-v1.yml'
+  workflow_dispatch:
+
+jobs:
+  shared-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install compatible research dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'pyarrow>=17,<24' 'rank-bm25>=0.2,<1'
+      - name: Validate original memories
+        run: python scripts/validate_autobiographical_corpus_v12.py
+      - name: Full test suite and integrity checks
+        run: python -m unittest discover -s tests -v
+      - name: Generate canonical L1 and BC01 L2
+        run: python scripts/export_shared_memory.py --output results/shared_memory/v1
+      - name: Verify exact replay from disk
+        run: python scripts/export_shared_memory.py --output results/shared_memory/v1 --validate-only
+      - name: Test synthetic shared-path execution
+        run: |
+          python scripts/run_associative_memory.py --synthetic-test --query "laboratory maps and specimens" --shared-dir results/shared_memory/v1 --output results/shared_memory/shared_query.json
+          python scripts/run_associative_memory.py --synthetic-test --query "laboratory maps and specimens" --output results/shared_memory/original_query.json
+      - name: Archive reusable files and evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pretorius-shared-memory-l1-bc256-v1
+          path: results/shared_memory/
+          if-no-files-found: error
