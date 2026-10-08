@@ -42,7 +42,7 @@ def lexical_vector(text: str) -> np.ndarray:
     for term in terms:
         value = int.from_bytes(blake2b(term.encode("utf-8"), digest_size=8).digest(),
                                "little", signed=False)
-        x[value % DIM] += 1.0 if (value >> 8) & 1 == 0 else -1.0
+        x[value % DIM] += 1.0 if ((value >> 8) & 1) else -1.0
     if terms:
         norm = float(np.linalg.norm(x))
         if norm > 1e-8:
