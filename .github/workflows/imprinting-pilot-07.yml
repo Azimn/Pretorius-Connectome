@@ -1,0 +1,83 @@
+name: Imprinting pilot 07
+
+on:
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/pilot07.py'
+      - 'src/pretorius_connectome/pilot07_review.py'
+      - 'scripts/run_imprinting_pilot07.py'
+      - 'tests/test_imprinting_pilot07.py'
+      - 'docs/PILOT07_LOCAL_NLI.md'
+      - 'docs/RESEARCH_HANDOFF.md'
+      - 'docs/PILOT07_REVIEW_PROTOCOL.md'
+      - 'results/imprinting/PILOT07_RESULTS.md'
+      - 'README.md'
+      - '.github/workflows/imprinting-pilot-07.yml'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  infrastructure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install baseline dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'pyarrow>=17,<24' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Validate original frozen autobiography
+        run: python scripts/validate_autobiographical_corpus_v12.py
+      - name: Run all regressions (NLI test double is NOT real inference)
+        run: python -m unittest discover -s tests -v
+      - name: Generate unreviewed authoring packet
+        run: python scripts/run_imprinting_pilot07.py --mode packet --directory results/pilot07/review_packet_v1 --output results/pilot07/review_packet_status.json > /dev/null
+      - name: Preserve blank review packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: pilot07-unreviewed-authoring-packet
+          path: results/pilot07/
+          if-no-files-found: error
+
+  real-local-nli:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      TOKENIZERS_PARALLELISM: 'false'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install scientific and Hugging Face dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'pyarrow>=17,<24' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'transformers>=4.46,<5' 'safetensors>=0.4,<1'
+      - name: Install CPU-only PyTorch
+        run: python -m pip install 'torch==2.5.1' --index-url https://download.pytorch.org/whl/cpu
+      - name: Validate original frozen autobiography
+        run: python scripts/validate_autobiographical_corpus_v12.py
+      - name: Run REAL pinned local NLI on one seed
+        run: python scripts/run_imprinting_pilot07.py --mode diagnostic --seeds 31,37,43 --threads 2 --max-tokens 384 --output results/imprinting/pilot07.json > /dev/null
+      - name: Print actual model results or blocked status
+        if: always()
+        run: |
+          if [ -f results/imprinting/pilot07.json ]; then
+            python -c "import json; r=json.load(open('results/imprinting/pilot07.json')); print('PINNED_MODEL',r['model']['revision']); print('MEASURED_BY_SEED',json.dumps({str(t['seed']):t['summaries'] for t in r['trials']},indent=2))"
+          else
+            echo 'BLOCKED: NO REAL NLI MODEL OUTPUT. Unit mocks are not substitutes.'
+          fi
+      - name: Archive real NLI outputs and every prediction
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pilot07-real-local-nli-results
+          path: results/imprinting/pilot07.json
+          if-no-files-found: warn

@@ -43,3 +43,11 @@ The original 450-record source archive and existing test challenge remain frozen
 ## Connectome-constrained associative retrieval v1
 
 The [associative memory runner](scripts/run_associative_memory.py) reads the unchanged 450-record archive and compares narrative TF-IDF, directed graph diffusion, a hybrid ranker, and a target-stub-permuted connectivity control. The [protocol and limitations](docs/ASSOCIATIVE_MEMORY_V1.md) explain how to run the explicit synthetic fixture or verified full FlyWire v783 topology. Retrieved passages are evidence pointers, not proof of their entailment or evidence of learned synaptic autobiographical memory. The benchmark reuses the post-hoc Pilot 04 challenge and does not constitute independent validation.
+
+## Persistent research handoff and continuation
+
+**Start every new chat/session at [RESEARCH_HANDOFF.md](docs/RESEARCH_HANDOFF.md) and [tracked Issue #7](https://github.com/Azimn/Pretorius-Connectome/issues/7).** They contain the immutable dataset versions, completed pilot results and limitations, exact rerun commands, current implementation state, parallel FlyWire research lines, open blockers and next independent-validation work. Github is the source of truth; conversation history alone is not.
+
+## Pilot 07A — pinned local CPU NLI: measured negative result
+
+[Pilot07A protocol](docs/PILOT07_LOCAL_NLI.md) and [real three-seed results](results/imprinting/PILOT07_RESULTS.md) document the first **actual pinned pretrained CPU entailment model** layered over BM25 narrative retrieval. Across the previously studied, assistant-authored (not human-reviewed) challenge, NLI verification over BM25 top three achieved **1.67% true correct-and-accepted recall** and 0% false acceptance of contradictions, compared with BM25 alone's 16.35% correct-and-accepted recall and 62.69% false contradiction acceptance. This is primarily abstention rather than useful verified recollection. [Source-level summary JSON](results/imprinting/PILOT07_SUMMARY.json), downloadable full-case GitHub Actions artifact and [external human-review protocol](docs/PILOT07_REVIEW_PROTOCOL.md) are recorded. The review packet contains blank forms only: genuine independent authoring and adjudication are still pending. This is a separate language model verifier, **not** direct biological FlyWire memory imprinting.

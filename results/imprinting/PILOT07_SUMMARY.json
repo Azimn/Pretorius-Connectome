@@ -1,0 +1,98 @@
+{
+  "experiment": "pilot07a_posthoc_nli",
+  "recorded_date": "2026-10-08",
+  "source": "GitHub Actions run 37837161852, artifact pilot07-real-local-nli-results id 11575997202",
+  "raw_json_sha256": "7065ed30afee5701e354799ee76cde4b8c7484859ef80d0de94cba449584b29c",
+  "model": {
+    "id": "cross-encoder/nli-MiniLM2-L6-H768",
+    "revision": "c847a3c0e1cad93a5343183ef183f3044e3fc7c2",
+    "runtime": "torch 2.5.1+cpu; transformers 4.57.6; numpy 2.4.6"
+  },
+  "status": "previously_seen_AI_authored_unreviewed_challenge_posthoc_only",
+  "seeds": [
+    {
+      "seed": 31,
+      "train": 317,
+      "positive_n": 23,
+      "negative_n": 23,
+      "absent_n": 6,
+      "bm25": {
+        "correct_accepted": 0.173913,
+        "contra_fpr": 0.73913,
+        "absent_fpr": 0.833333
+      },
+      "nli_top1": {
+        "correct_accepted": 0,
+        "contra_fpr": 0,
+        "absent_fpr": 0
+      },
+      "nli_top3": {
+        "correct_accepted": 0,
+        "contra_fpr": 0,
+        "absent_fpr": 0
+      }
+    },
+    {
+      "seed": 37,
+      "train": 316,
+      "positive_n": 20,
+      "negative_n": 20,
+      "absent_n": 9,
+      "bm25": {
+        "correct_accepted": 0.15,
+        "contra_fpr": 0.6,
+        "absent_fpr": 0.555556
+      },
+      "nli_top1": {
+        "correct_accepted": 0,
+        "contra_fpr": 0,
+        "absent_fpr": 0
+      },
+      "nli_top3": {
+        "correct_accepted": 0.05,
+        "contra_fpr": 0,
+        "absent_fpr": 0
+      }
+    },
+    {
+      "seed": 43,
+      "train": 310,
+      "positive_n": 24,
+      "negative_n": 24,
+      "absent_n": 5,
+      "bm25": {
+        "correct_accepted": 0.166667,
+        "contra_fpr": 0.541667,
+        "absent_fpr": 0.2
+      },
+      "nli_top1": {
+        "correct_accepted": 0,
+        "contra_fpr": 0,
+        "absent_fpr": 0
+      },
+      "nli_top3": {
+        "correct_accepted": 0,
+        "contra_fpr": 0,
+        "absent_fpr": 0
+      }
+    }
+  ],
+  "mean_unweighted": {
+    "bm25": {
+      "correct_accepted": 0.163527,
+      "contra_fpr": 0.626932,
+      "absent_fpr": 0.52963
+    },
+    "nli_top1": {
+      "correct_accepted": 0,
+      "contra_fpr": 0,
+      "absent_fpr": 0
+    },
+    "nli_top3": {
+      "correct_accepted": 0.016667,
+      "contra_fpr": 0,
+      "absent_fpr": 0
+    }
+  },
+  "human_review_completed": false
+}
