@@ -31,7 +31,7 @@ jobs:
       - name: Dependencies
         run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
       - name: Unit tests
-        run: python -m unittest tests/test_associative.py -v
+        run: python -m unittest discover -s tests -p 'test_associative.py' -v
       - name: Synthetic end-to-end comparison (never labeled FlyWire)
         run: |
           OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py \
@@ -45,7 +45,7 @@ jobs:
           retention-days: 30
 
   real-flywire:
-    if: github.event_name == 'workflow_dispatch' && inputs.real_flywire == 'true'
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.real_flywire == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
