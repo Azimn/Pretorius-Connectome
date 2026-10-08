@@ -65,12 +65,12 @@ jobs:
       - name: Validate original frozen autobiography
         run: python scripts/validate_autobiographical_corpus_v12.py
       - name: Run REAL pinned local NLI on one seed
-        run: python scripts/run_imprinting_pilot07.py --mode diagnostic --seeds 31 --threads 2 --max-tokens 384 --output results/imprinting/pilot07.json > /dev/null
+        run: python scripts/run_imprinting_pilot07.py --mode diagnostic --seeds 31,37,43 --threads 2 --max-tokens 384 --output results/imprinting/pilot07.json > /dev/null
       - name: Print actual model results or blocked status
         if: always()
         run: |
           if [ -f results/imprinting/pilot07.json ]; then
-            python -c "import json; r=json.load(open('results/imprinting/pilot07.json')); print('PINNED_MODEL',r['model']['revision']); print('MEASURED',json.dumps(r['trials'][0]['summaries'],indent=2))"
+            python -c "import json; r=json.load(open('results/imprinting/pilot07.json')); print('PINNED_MODEL',r['model']['revision']); print('MEASURED_BY_SEED',json.dumps({str(t['seed']):t['summaries'] for t in r['trials']},indent=2))"
           else
             echo 'BLOCKED: NO REAL NLI MODEL OUTPUT. Unit mocks are not substitutes.'
           fi
