@@ -1,0 +1,47 @@
+name: FlyWire autobiographical recall three-seed diagnostic
+
+on:
+  push:
+    paths:
+      - '.github/workflows/associative-flywire-three-seed.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-flywire-three-seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen-compatible research tools
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Verify memory archive and associative analysis tests
+        run: |
+          python -m unittest discover -s tests -p 'test_associative.py' -v
+          python scripts/validate_autobiographical_corpus_v12.py
+      - name: Download and checksum-verify official FlyWire v783 data
+        run: python scripts/download_flywire_v783.py --destination data/flywire_v783
+      - name: Convert original connectivity to a non-mutating sparse CSR
+        run: |
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Execute three-seed real-vs-rewired-vs-lexical study
+        run: |
+          OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --benchmark --seeds 31,37,43 \
+            --output results/associative/flywire-v783-three-seed.json
+      - name: Preserve full per-case machine-readable measurements
+        uses: actions/upload-artifact@v4
+        with:
+          name: flywire-associative-three-seed-posthoc
+          path: results/associative/flywire-v783-three-seed.json
+          retention-days: 90
+          if-no-files-found: error
