@@ -42,3 +42,7 @@ The structural validator will refuse unfilled case rows, missing source quotes f
 ## Next decision gate
 
 Read the actual workflow model run, download the JSON evidence, and write results/imprinting/PILOT07_RESULTS.md with correct-and-accepted true memories versus contradiction false acceptance and absent-event false acceptance. Compare BM25 to the two NLI policies and always-reject. Record failures, model version, source hashes and limitations. Then update docs/RESEARCH_HANDOFF.md and Issue #7. Never silently adjust threshold after inspecting the old benchmark and claim unbiased confirmation.
+
+## Observed first full execution
+
+The exact frozen model has now run for all three seeds. See the measured findings in [Pilot 07A result report](../results/imprinting/PILOT07_RESULTS.md). The real NLI verifier produced almost no correct-and-accepted true-event identification at the chosen thresholds, even though its false acceptance of the examined counterfactuals was zero. This is a negative result for useful verified recall; it is not a confirmatory study or a successful semantic-memory demonstration.

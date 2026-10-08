@@ -66,3 +66,13 @@ The FlyWire-enabled run **requires verified original converted connectivity** (`
 - Every experimental milestone should have protocol, runner, tests, workflow, machine-readable results artifact, human-readable honest result report, and README/handoff updates.
 - Prefer a small *complete* tested increment over a long sequence of unmerged branches.
 - At every major handoff, update this document's date, current outcome and next exact command. If a chat ends, work must still be reproducible from the repository without relying on conversation history.
+
+## Completed Pilot 07A local NLI checkpoint (2026-10-08)
+
+**Implementation:** src/pretorius_connectome/pilot07.py and scripts/run_imprinting_pilot07.py, with tests/test_imprinting_pilot07.py and workflow .github/workflows/imprinting-pilot-07.yml. The actual CPU NLI model was downloaded and inferred successfully. The checkpoint is Hugging Face cross-encoder/nli-MiniLM2-L6-H768 at pinned revision c847a3c0e1cad93a5343183ef183f3044e3fc7c2; CPU torch 2.5.1, transformers 4.57.6. Full measured report: results/imprinting/PILOT07_RESULTS.md, with tracked compact JSON results/imprinting/PILOT07_SUMMARY.json and all case-level results in GitHub Actions run 37837161852 (artifact ID 11575997202; SHA-256 documented in report). **No human-reviewed benchmark exists**; these are prior inspected assistant-written Pilot04 cases.
+
+**Actual three-seed result:** BM25 correct-and-accepted recall 16.35% but contradiction false acceptance 62.69%; local NLI at BM25 top-1 produced 0% correct-and-accepted recall, and NLI reranking top-3 produced only 1.67%, with zero contradiction false acceptance. This mainly reflects abstention and is NOT verified autobiographical recall.
+
+**Next technical experiment after Pilot07A:** inspect retriever candidate coverage (gold memory among top 1/3/10); compare relevant source passage/window extraction rather than whole-event text as NLI premise, without silently tuning against known benchmark labels. Preserve true recall / false-acceptance tradeoff and all source citations. **Next confirmatory human step:** recruit genuinely separate prompt author + two independent reviewers, adjudicate and freeze new prompts under docs/PILOT07_REVIEW_PROTOCOL.md. The generated 16-event / 64-slot reviewer packet is deliberately blank and available as GitHub Actions artifact. Do not assert its completion until verified.
+
+**Concurrent main-line work:** other active commits published real FlyWire v783 three-seed and mushroom-body/neuropil experiments in the associative-memory track. These findings are independent of Pilot07A and MUST be preserved on merge; inspect current main docs and results before drawing conclusions.
