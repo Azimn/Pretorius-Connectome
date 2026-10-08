@@ -165,6 +165,12 @@ class SharedCache:
                 or [x["chronological_order"] for x in self.records] != list(range(1, 451))
                 or any(x["provenance"] != "reconstructed" for x in self.records)):
             raise ValueError("L1 records or order invalid")
+        # A bundle's own checksums are not a trusted source of truth. Compare
+        # every projected field to the separately pinned, immutable L1 bytes.
+        canonical_rows = read_l1(L1_ARCHIVE, L1_MANIFEST)
+        if list(self.records) != canonical_rows:
+            raise ValueError("Shared cache records differ from canonical pinned L1")
+
         splits = manifest["split_event_ids"]
         if set(splits) != {"train", "validation", "test"}:
             raise ValueError("Invalid split names")
@@ -183,6 +189,17 @@ class SharedCache:
             group_sets.append(ep)
         if any(group_sets[i] & group_sets[j] for i in range(3) for j in range(i+1,3)):
             raise ValueError("Episode leakage")
+        # Split labels must agree with the actual fixed episode-partition
+        # algorithm. A changed manifest cannot move validation into training.
+        expected_train, expected_validation, expected_test = episode_split(
+            load_v12(SOURCE, SIDECARS), int(manifest["random_seed"])
+        )
+        for split_name, expected in (
+            ("train", expected_train), ("validation", expected_validation),
+            ("test", expected_test)
+        ):
+            if splits[split_name] != [x.event_id for x in expected]:
+                raise ValueError("Declared training split differs from seeded episode partition")
         vocab = json.loads((self.path / SHARDS[1]).read_text(encoding="utf-8"))
         with (self.path / SHARDS[2]).open("rb") as handle:
             idf = np.load(handle, allow_pickle=False)
@@ -196,6 +213,15 @@ class SharedCache:
                 or not np.isfinite(self.docs.data).all()
                 or self.docs.nnz != manifest["nonzero_features"]):
             raise ValueError("Invalid feature shape or statistics")
+        # Refit from the independently verified, DECLARED TRAINING records.
+        # Verifying only self-consistent shard hashes allows a malicious cache
+        # fitted on held-out narratives to pass all existing checks.
+        canonical = {row["event_id"]: row["memory_text"] for row in canonical_rows}
+        trained = _vectorizer()
+        trained.fit([canonical[event_id] for event_id in splits["train"]])
+        if (vocab != trained.vocabulary_
+                or not np.array_equal(idf, trained.idf_)):
+            raise ValueError("Cached vocabulary/IDF was not fitted from train-only narratives")
         self.encoder = _vectorizer(vocabulary=vocab)
         # Restore the fitted transformation WITHOUT refitting on held-out text.
         self.encoder._tfidf = TfidfTransformer(norm="l2", use_idf=True,
