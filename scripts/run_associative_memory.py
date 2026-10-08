@@ -16,7 +16,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT))
 
 from pretorius_connectome.associative import (
-    AssociativeMemory, Topology, summarize_challenge,
+    AssociativeMemory, Topology, summarize_challenge, paired_case_diagnostics,
 )
 from pretorius_connectome.imprinting import load_v12
 from pretorius_connectome.pilot02 import episode_split, calibrate
@@ -79,22 +79,34 @@ def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
             "target_stub_null_graph": (randomized, "graph"),
             "target_stub_null_hybrid": (randomized, "hybrid"),
         }
+        method_results = {
+            label: summarize_challenge(
+                engine, cases, known_ids, absent_ids,
+                _threshold(engine, mode, positives, negatives),
+                mode,
+            )
+            for label, (engine, mode) in methods.items()
+        }
+        pairings = {
+            "graph_vs_lexical": ("tfidf_word_narrative", "topology_graph_only"),
+            "hybrid_vs_lexical": ("tfidf_word_narrative", "topology_hybrid"),
+            "graph_vs_rewired": ("target_stub_null_graph", "topology_graph_only"),
+            "hybrid_vs_rewired": ("target_stub_null_hybrid", "topology_hybrid"),
+        }
         trials.append({
             "seed": seed,
             "training_events": len(train),
             "validation_events": len(validation),
             "test_events": len(test),
-            "methods": {
-                label: summarize_challenge(
-                    engine, cases, known_ids, absent_ids,
-                    _threshold(engine, mode, positives, negatives),
-                    mode,
-                )
-                for label, (engine, mode) in methods.items()
+            "methods": method_results,
+            "paired_diagnostics": {
+                name: paired_case_diagnostics(
+                    method_results[reference], method_results[challenger])
+                for name, (reference, challenger) in pairings.items()
             },
         })
     return {
-        "study": "connectome-constrained autobiographical retrieval v1",
+        "study": "connectome-constrained autobiographical retrieval v1.1",
         "topology": topology.provenance,
         "neuron_count": len(topology.root_ids),
         "raw_connection_entries": len(topology.indices),
@@ -185,7 +197,8 @@ def main():
                     name: {k: value for k, value in stats.items()
                            if k != "case_results"}
                     for name, stats in trial["methods"].items()
-                }} for trial in result["trials"]
+                }, "paired_diagnostics": trial["paired_diagnostics"]}
+                for trial in result["trials"]
             ],
         }
         print(json.dumps(compact, indent=2))
