@@ -107,7 +107,16 @@ class CueEncoder:
             value[position] += occurrences * weight * sign
         magnitude = float(np.linalg.norm(value))
         if magnitude <= 1e-12:
-            raise ValueError("all hashed features cancelled")
+            # Rare signed-hash collision: deterministic canonical bag fallback.
+            # Neither the cue's ID nor its word order is allowed in this key.
+            canonical = "|".join(sorted(
+                token for cue in literal for token in words(cue.surface)
+            ))
+            digest = _digest("fallback-token-bag:" + canonical)
+            value[int.from_bytes(digest[:8], "little") % self.units] = (
+                1.0 if digest[8] & 1 else -1.0
+            )
+            magnitude = float(np.linalg.norm(value))
         return value / magnitude
 
 
