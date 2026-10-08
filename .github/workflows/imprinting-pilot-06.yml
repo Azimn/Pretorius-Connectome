@@ -7,6 +7,7 @@ on:
       - 'scripts/run_imprinting_pilot06.py'
       - 'tests/test_imprinting_pilot06.py'
       - 'docs/IMPRINTING_PILOT_06.md'
+      - 'docs/PILOT07_REVIEW_PROTOCOL.md'
       - 'results/imprinting/PILOT06_RESULTS.md'
       - 'README.md'
       - '.github/workflows/imprinting-pilot-06.yml'
