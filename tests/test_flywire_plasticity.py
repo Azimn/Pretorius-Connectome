@@ -1,5 +1,10 @@
 """Deterministic safeguards for train-only FlyWire trace-plasticity Pilot 01."""
 import sys
+import io
+import json
+import tempfile
+from contextlib import redirect_stderr, redirect_stdout
+from unittest.mock import patch
 import unittest
 from pathlib import Path
 
@@ -115,6 +120,31 @@ class PlasticityTests(unittest.TestCase):
         np.testing.assert_array_equal(learned_a.data, learned_b.data)
         self.assertEqual(audit_a, audit_b)
         self.assertNotIn("violet", model_a.encoder.vocabulary_)
+
+    def test_runner_compact_stdout_is_machine_readable_json(self):
+        from scripts import run_flywire_plasticity_pilot01 as runner
+        with tempfile.TemporaryDirectory() as folder:
+            full = Path(folder) / "full.json"
+            stdout, stderr = io.StringIO(), io.StringIO()
+            fake_result = {
+                "topology": "explicit synthetic fixture",
+                "neuron_count": 128,
+                "trials": [],
+            }
+            with patch.object(runner, "benchmark", return_value=fake_result):
+                with patch.object(sys, "argv", [
+                    "run_flywire_plasticity_pilot01.py",
+                    "--synthetic-test", "--seeds", "31",
+                    "--output", str(full),
+                ]):
+                    with redirect_stdout(stdout), redirect_stderr(stderr):
+                        runner.main()
+            compact = json.loads(stdout.getvalue())
+            self.assertEqual(compact["topology"], fake_result["topology"])
+            self.assertEqual(compact["trials"], [])
+            self.assertIn("Complete source-identified case records:", stderr.getvalue())
+            self.assertEqual(json.loads(full.read_text(encoding="utf-8")), fake_result)
+
 
 
 if __name__ == "__main__":
