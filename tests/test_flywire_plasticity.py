@@ -44,8 +44,10 @@ class PlasticityTests(unittest.TestCase):
         self.assertEqual(evidence["edge_parameters"], frozen.nnz)
         self.assertFalse(np.array_equal(trained.data, frozen.data))
         np.testing.assert_array_equal(trained.data, repeat.data)
-        np.testing.assert_array_equal(trained.indices, frozen.indices)
-        np.testing.assert_array_equal(trained.indptr, frozen.indptr)
+        expected_structure = frozen.copy()
+        expected_structure.sort_indices()
+        np.testing.assert_array_equal(trained.indices, expected_structure.indices)
+        np.testing.assert_array_equal(trained.indptr, expected_structure.indptr)
         for actual, old in zip((graph.root_ids, graph.indptr, graph.indices,
                                 graph.synapse_counts), snapshots):
             np.testing.assert_array_equal(actual, old)
@@ -57,7 +59,7 @@ class PlasticityTests(unittest.TestCase):
         model = AssociativeMemory(sample(), Topology.synthetic(n=64, degree=5))
         frozen = model.propagator.copy()
         unchanged, report = fit_trace_overlay(model, gain=0)
-        np.testing.assert_array_equal(unchanged.data, frozen.data)
+        self.assertEqual((unchanged - frozen).nnz, 0)
         self.assertEqual(report["gain"], 0)
         for gain in (-1.0, float("nan"), float("inf")):
             with self.assertRaises(ValueError):
