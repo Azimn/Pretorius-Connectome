@@ -37,3 +37,7 @@ Read [repository research handoff](../../docs/RESEARCH_HANDOFF.md), [anatomical 
 ## Historical plasticity v1 diagnostic (superseded)
 
 [The completed real MB v1 plasticity run](FLYWIRE_MB_PLASTICITY_V1_PROVISIONAL.md) reported 6/67 correct-and-accepted positive prompts using learned original MB connectivity versus 7/67 learned rewired and 7/67 frozen original, with 10/67 contradictions falsely accepted in each. The model used the subsequently superseded cross-process-unstable lexical feature selector. These numbers are archived as **provisional negative diagnostics**, not as independently repeatable v2 evidence. A fresh v2 run is required before a definitive comparison.
+
+## Archived real MB plasticity Pilot 01 result
+
+[Measured result report](FLYWIRE_MB_PLASTICITY_PILOT01_RESULTS.md) and [permanent original case-level JSON](runs/flywire-mb-plasticity-pilot01-run37847801158.json) are archived from [successful verified main-branch run 37847801158](https://github.com/Azimn/Pretorius-Connectome/actions/runs/37847801158). All observed outcomes remain exploratory on previously inspected prompts.
