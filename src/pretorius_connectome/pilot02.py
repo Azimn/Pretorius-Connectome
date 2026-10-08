@@ -109,7 +109,7 @@ def _oracle_scores(model: SynapticOverlay, candidates: list[Memory],
             "predicted": candidate_ids[int(top[row])] if active else None,
             "top_cosine": float(top_scores[row]) if active else 0.0,
             "margin": float(top_scores[row] - second[row]) if active else 0.0,
-            "target_cosine": float(sims[row, index]) if index is not None and active else None,
+            "target_cosine": (float(sims[row, index]) if active else 0.0) if index is not None else None,
             "correct": bool(active and int(top[row]) == index) if index is not None else None,
         })
     return scored
