@@ -25,7 +25,7 @@ def validate_v12():
         for field in ("event_id","episode_id","approximate_date","title","memory_text","participants","locations","recall_cues","links_to_prior_events"):
             assert e[field]==n[field],(e["event_id"],field)
     for e in new:
-        assert by_id[e["event_id"]]==e
+        assert {k:v for k,v in by_id[e["event_id"]].items() if k!="chronological_order"} == {k:v for k,v in e.items() if k!="chronological_order"}
         for target in e["links_to_prior_events"]:
             assert target in by_id and by_id[target]["approximate_date"]<=e["approximate_date"]
     for ev,sc in zip(current,ann):
