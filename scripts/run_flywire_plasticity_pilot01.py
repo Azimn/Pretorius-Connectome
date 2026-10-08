@@ -201,7 +201,7 @@ def main():
     }
     print(json.dumps(compact, indent=2))
     if args.output:
-        print("Complete source-identified case records: " + str(args.output))
+        print("Complete source-identified case records: " + str(args.output), file=sys.stderr)
 
 
 if __name__ == "__main__":
