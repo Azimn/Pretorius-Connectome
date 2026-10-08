@@ -27,11 +27,12 @@ from scripts.run_imprinting_pilot05 import _decisions
 from scripts.run_imprinting_pilot import git_blob_sha
 
 
-def _locked_inputs():
+def _locked_inputs(shared_l1=None, shared_manifest=None):
     verify_sources(EVENTS, SIDECARS)
     if git_blob_sha(CHALLENGE) != CHALLENGE_BLOB:
         raise ValueError("published post-hoc challenge checksum changed")
-    memories = load_v12(EVENTS, SIDECARS)
+    memories = load_v12(shared_l1 if shared_l1 is not None else EVENTS,
+                        SIDECARS, shared_manifest=shared_manifest)
     cases = load_challenge(CHALLENGE, memories)
     return memories, cases
 
@@ -49,8 +50,9 @@ def _threshold(engine, method, positives, negatives):
 
 
 def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
-              diffusion=0.4, hybrid_fraction=0.25) -> dict:
-    memories, cases = _locked_inputs()
+              diffusion=0.4, hybrid_fraction=0.25,
+              shared_l1=None, shared_manifest=None) -> dict:
+    memories, cases = _locked_inputs(shared_l1, shared_manifest)
     decisions = _decisions()
     trials = []
     for seed in seeds:
@@ -156,8 +158,14 @@ def main():
     parser.add_argument("--activity-cap", type=int, default=256)
     parser.add_argument("--diffusion", type=float, default=0.4)
     parser.add_argument("--hybrid-fraction", type=float, default=0.25)
+    parser.add_argument("--shared-l1", type=Path,
+                        help="Optional portable L1 gzip of pinned original autobiography")
+    parser.add_argument("--shared-manifest", type=Path,
+                        help="Required with --shared-l1; pins source and order")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    if (args.shared_l1 is None) != (args.shared_manifest is None):
+        parser.error("--shared-l1 and --shared-manifest must be supplied together")
     topology = (Topology.synthetic() if args.synthetic_test
                 else Topology.read(args.topology))
     if args.benchmark:
@@ -168,9 +176,10 @@ def main():
             topology, seeds=seeds, steps=args.steps,
             activity_cap=args.activity_cap,
             diffusion=args.diffusion, hybrid_fraction=args.hybrid_fraction,
+            shared_l1=args.shared_l1, shared_manifest=args.shared_manifest,
         )
     else:
-        records, _ = _locked_inputs()
+        records, _ = _locked_inputs(args.shared_l1, args.shared_manifest)
         engine = AssociativeMemory(
             records, topology, steps=args.steps,
             activity_cap=args.activity_cap, diffusion=args.diffusion,
