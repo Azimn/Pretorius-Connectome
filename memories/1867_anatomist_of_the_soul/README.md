@@ -6,11 +6,12 @@
 
 These are **fictional, alternate-history period artifacts**, not verified historical newspaper reports or experimental observations. They belong beside the subject's memory source materials, but **are not yet imported into the authoritative first-person memory JSONL**. Preserve the distinction between an external document, Pretorius's subjective recollection, and a future experimentally observed runtime experience.
 
-## Existing artifacts
+## Committed source artifacts
 
-- `Pretorius_Jolivet_1867_French_Original.txt`: French text of Jolivet's attributed 28 August 1867 newspaper article, `À qui appartient une âme ?`.
-- `Pretorius_Jolivet_1867_French_Newspaper.pdf`: typeset period-inspired French newspaper edition.
-- `Pretorius_Jolivet_1867_Bilingual_Edition.docx`: editable French and English reading edition, including continuity and reference notes.
+- [`Pretorius_Jolivet_1867_French_Original.txt`](Pretorius_Jolivet_1867_French_Original.txt): full original French newspaper feature attributed to Jolivet, 28 August 1867, *À qui appartient une âme ?*.
+- [`Pretorius_Jolivet_1867_English_Translation_and_Notes.md`](Pretorius_Jolivet_1867_English_Translation_and_Notes.md): English translation and external continuity/historical editorial notes transcribed from the bilingual Word edition.
+
+**Binary edition status:** A separate three-page period-layout PDF (`Pretorius_Jolivet_1867_French_Newspaper.pdf`) and an editable bilingual Word edition (`Pretorius_Jolivet_1867_Bilingual_Edition.docx`) were prepared in the conversation. Their **original binary files are not present in this GitHub folder**. The GitHub connector currently accepts text or inline base64 blob content, but does not support direct upload from a local artifact path. Do not interpret these filenames as links to committed files. The French source and English translation/notes have been archived here in Git-friendly text formats.
 
 ## Continuity and chronology
 
