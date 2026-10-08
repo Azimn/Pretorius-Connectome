@@ -1,23 +1,24 @@
-name: Imprinting pilot 03
+name: Imprinting pilot 05
 
 on:
   pull_request:
     paths:
-      - 'src/pretorius_connectome/pilot03.py'
-      - 'scripts/run_imprinting_pilot03.py'
-      - 'tests/test_imprinting_pilot03.py'
-      - 'docs/IMPRINTING_PILOT_03.md'
-      - 'results/imprinting/PILOT03_RESULTS.md'
+      - 'src/pretorius_connectome/pilot05.py'
+      - 'scripts/run_imprinting_pilot05.py'
+      - 'tests/test_imprinting_pilot05.py'
+      - 'docs/IMPRINTING_PILOT_05.md'
+      - 'results/imprinting/PILOT05_RESULTS.md'
       - 'README.md'
-      - '.github/workflows/imprinting-pilot-03.yml'
+      - '.github/workflows/imprinting-pilot-05.yml'
       - 'memories/current/Pretorius_v12_450_Events_Complete.jsonl'
       - 'memories/annotations/v12_450_sidecars.jsonl'
+      - 'experiments/pilot04/challenge_v1.jsonl'
   push:
     branches: [main]
   workflow_dispatch:
 
 jobs:
-  pilot03:
+  narrative:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
@@ -29,18 +30,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install NumPy
+      - name: Install existing and narrative dependencies
         run: python -m pip install 'numpy>=1.26,<3' 'pyarrow>=17,<24' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
-      - name: Confirm unchanged v12 memory archive
+      - name: Validate unchanged autobiography
         run: python scripts/validate_autobiographical_corpus_v12.py
-      - name: Run all existing and Pilot 03 tests
+      - name: Run full unit and leakage suite
         run: python -m unittest discover -s tests -v
-      - name: Execute prespecified Pilot 03
-        run: python scripts/run_imprinting_pilot03.py --seeds 31,37,43 --output results/imprinting/pilot03.json > /dev/null
-      - name: Upload full seed-level metrics
+      - name: Execute Pilot 05A three-seed posthoc diagnostic
+        run: python scripts/run_imprinting_pilot05.py --seeds 31,37,43 --output results/imprinting/pilot05.json > /dev/null
+      - name: Preserve per-case results and provenance
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pilot03-imprinting-results
-          path: results/imprinting/pilot03.json
+          name: pilot05-narrative-results
+          path: results/imprinting/pilot05.json
           if-no-files-found: warn

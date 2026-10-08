@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install existing test dependencies
-        run: python -m pip install 'numpy>=1.26,<3' 'pyarrow>=17,<24'
+        run: python -m pip install 'numpy>=1.26,<3' 'pyarrow>=17,<24' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
       - name: Verify immutable memory corpus
         run: python scripts/validate_autobiographical_corpus_v12.py
       - name: Full regression and challenge-lock tests
