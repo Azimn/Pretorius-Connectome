@@ -13,6 +13,8 @@ on:
     paths:
       - 'src/pretorius_connectome/plasticity.py'
       - 'scripts/run_flywire_plasticity_pilot01.py'
+      - 'scripts/verify_flywire_plasticity_cache_parity.py'
+      - 'scripts/archive_flywire_plasticity.py'
       - 'tests/test_flywire_plasticity.py'
       - '.github/workflows/flywire-plasticity-pilot-01.yml'
       - 'docs/FLYWIRE_PLASTICITY_PILOT_01.md'
@@ -40,13 +42,18 @@ jobs:
           python scripts/validate_autobiographical_corpus_v12.py
           python -m unittest discover -s tests -p test_associative.py -v
           python -m unittest discover -s tests -p test_flywire_plasticity.py -v
-      - name: Build canonical train-only TF-IDF shared feature cache
-        run: python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/plasticity-l2/seed31
-      - name: Compare uncached original fit with pinned shared L2
+      - name: Build deterministic v2 TF-IDF in independent Python hash processes
         run: |
-          python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --output results/associative/plasticity-synthetic-uncached.json
-          python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --shared-cache-root data/derived/plasticity-l2 --output results/associative/plasticity-synthetic-cached.json
-          python scripts/verify_flywire_plasticity_cache_parity.py results/associative/plasticity-synthetic-uncached.json results/associative/plasticity-synthetic-cached.json
+          PYTHONHASHSEED=13 python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/plasticity-l2-a/seed31
+          PYTHONHASHSEED=941 python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/plasticity-l2-b/seed31
+      - name: Require exact independently rebuilt v2 cache and learned topology reproducibility
+        run: |
+          PYTHONHASHSEED=13 python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --shared-cache-root data/derived/plasticity-l2-a --output results/associative/plasticity-synthetic-v2-a.json
+          PYTHONHASHSEED=941 python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --shared-cache-root data/derived/plasticity-l2-b --output results/associative/plasticity-synthetic-v2-b.json
+          python scripts/verify_flywire_plasticity_cache_parity.py results/associative/plasticity-synthetic-v2-a.json results/associative/plasticity-synthetic-v2-b.json
+      - name: Preserve the old uncached feature selector as a separate historical diagnostic
+        run: |
+          python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --output results/associative/plasticity-synthetic-historical-uncached.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
