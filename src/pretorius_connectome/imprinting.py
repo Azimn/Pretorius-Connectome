@@ -30,13 +30,22 @@ class Memory:
     cues: tuple[Cue, ...]
 
 
-def load_v12(events_path: str | Path, sidecars_path: str | Path) -> list[Memory]:
-    """Load and align the frozen v12 archive with its candidate cue sidecars."""
+def load_v12(events_path: str | Path, sidecars_path: str | Path, *,
+             shared_manifest: str | Path | None = None) -> list[Memory]:
+    """Load verified L0 or portable L1 with identical existing cue handling.
+
+    shared_manifest=None leaves every historical experiment unchanged.
+    """
     def lines(path: str | Path) -> list[dict]:
         with Path(path).open(encoding="utf-8") as handle:
             return [json.loads(line) for line in handle if line.strip()]
 
-    events, sidecars = lines(events_path), lines(sidecars_path)
+    if shared_manifest is None:
+        events = lines(events_path)
+    else:
+        from pretorius_connectome.shared_memory import read_l1
+        events = read_l1(events_path, shared_manifest)
+    sidecars = lines(sidecars_path)
     if len(events) != len(sidecars) or len(events) != 450:
         raise ValueError("Pilot 01 requires exactly 450 aligned v12 records")
     output: list[Memory] = []
