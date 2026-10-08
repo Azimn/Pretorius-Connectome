@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT))
 from pretorius_connectome.associative import (
     AssociativeMemory, Topology, summarize_challenge, paired_case_diagnostics,
 )
+from pretorius_connectome.shared_memory_l2 import SharedCache
 from pretorius_connectome.imprinting import load_v12
 from pretorius_connectome.pilot02 import episode_split, calibrate
 from pretorius_connectome.pilot04 import load_challenge
@@ -51,20 +52,26 @@ def _threshold(engine, method, positives, negatives):
 
 def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
               diffusion=0.4, hybrid_fraction=0.25,
-              shared_l1=None, shared_manifest=None) -> dict:
+              shared_l1=None, shared_manifest=None, shared_cache=None) -> dict:
     memories, cases = _locked_inputs(shared_l1, shared_manifest)
     decisions = _decisions()
     trials = []
     for seed in seeds:
         train, validation, test = episode_split(memories, seed)
+        if shared_cache is not None:
+            if shared_cache.manifest["random_seed"] != seed:
+                raise ValueError("Shared L2 fit seed and active benchmark seed differ")
+            shared_cache.require_training_set([m.event_id for m in train])
         original = AssociativeMemory(
             train, topology, steps=steps, activity_cap=activity_cap,
             diffusion=diffusion, hybrid_fraction=hybrid_fraction,
+            shared_cache=shared_cache,
         )
         randomized = AssociativeMemory(
             train, topology.permuted_null(seed + 900),
             steps=steps, activity_cap=activity_cap,
             diffusion=diffusion, hybrid_fraction=hybrid_fraction,
+            shared_cache=shared_cache,
         )
         known_ids = {m.event_id for m in train}
         absent_ids = {m.event_id for m in test}
@@ -113,6 +120,8 @@ def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
         "neuron_count": len(topology.root_ids),
         "raw_connection_entries": len(topology.indices),
         "source_events": len(memories),
+        "shared_l2_encoder": (shared_cache.manifest["encoder_name"] if shared_cache else None),
+        "shared_l2_fit_seed": (shared_cache.manifest["random_seed"] if shared_cache else None),
         "source_challenge_cases": len(cases),
         "challenge_status": (
             "POST-HOC REUSED assistant-authored unreviewed Pilot04. "
@@ -162,12 +171,19 @@ def main():
                         help="Optional portable L1 gzip of pinned original autobiography")
     parser.add_argument("--shared-manifest", type=Path,
                         help="Required with --shared-l1; pins source and order")
+    parser.add_argument("--shared-cache", type=Path,
+                        help="Optional L2 cache; fit split must match episode train IDs")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     if (args.shared_l1 is None) != (args.shared_manifest is None):
         parser.error("--shared-l1 and --shared-manifest must be supplied together")
     topology = (Topology.synthetic() if args.synthetic_test
                 else Topology.read(args.topology))
+    shared_cache = SharedCache(args.shared_cache) if args.shared_cache else None
+    if shared_cache is not None:
+        shared_cache.assert_original(EVENTS, SIDECARS)
+        if not args.benchmark:
+            parser.error("Shared L2 requires an episode-split benchmark")
     if args.benchmark:
         seeds = tuple(int(x) for x in args.seeds.split(","))
         if not seeds or len(seeds) != len(set(seeds)):
@@ -177,6 +193,7 @@ def main():
             activity_cap=args.activity_cap,
             diffusion=args.diffusion, hybrid_fraction=args.hybrid_fraction,
             shared_l1=args.shared_l1, shared_manifest=args.shared_manifest,
+            shared_cache=shared_cache,
         )
     else:
         records, _ = _locked_inputs(args.shared_l1, args.shared_manifest)
