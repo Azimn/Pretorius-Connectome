@@ -1,0 +1,77 @@
+name: Connectome associative memory v1
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/associative.py'
+      - 'scripts/run_associative_memory.py'
+      - 'tests/test_associative.py'
+      - '.github/workflows/associative-memory.yml'
+  workflow_dispatch:
+    inputs:
+      real_flywire:
+        description: 'Download and test verified FlyWire v783 graph (large input)'
+        required: true
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+
+permissions:
+  contents: read
+
+jobs:
+  local-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Unit tests
+        run: python -m unittest tests/test_associative.py -v
+      - name: Synthetic end-to-end comparison (never labeled FlyWire)
+        run: |
+          OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py \
+            --synthetic-test --benchmark --seeds 31 \
+            --output results/associative/synthetic-posthoc.json
+      - name: Upload executed control report
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-synthetic-diagnostic
+          path: results/associative/synthetic-posthoc.json
+          retention-days: 30
+
+  real-flywire:
+    if: github.event_name == 'workflow_dispatch' && inputs.real_flywire == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Download verified FlyWire biological connectivity
+        run: python scripts/download_flywire_v783.py --destination data/flywire_v783
+      - name: Convert to sparse CSR (preserving observed counts)
+        run: |
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Full measured topology and shuffled null
+        run: |
+          OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --benchmark --seeds 31 \
+            --output results/associative/flywire-v783-posthoc.json
+      - name: Upload biological comparison metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-flywire-v783-diagnostic
+          path: results/associative/flywire-v783-posthoc.json
+          retention-days: 30
