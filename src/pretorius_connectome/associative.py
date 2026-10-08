@@ -263,3 +263,52 @@ def summarize_challenge(engine: AssociativeMemory, cases, train_ids: set[str],
         "absent_false_acceptance": rate(r["accepted"] for r in a),
         "case_results": groups,
     }
+
+
+def paired_case_diagnostics(reference: dict, challenger: dict) -> dict:
+    """Paired, case-identical comparison with no assumption about truth checking.
+
+    The real, null and lexical conditions must receive the same authored
+    probes under exactly the same episode split. Candidate predictions can
+    agree even when their raw similarity scores differ.
+    """
+    output = {}
+    for category in ("positive", "contradiction", "absent"):
+        lhs = reference["case_results"][category]
+        rhs = challenger["case_results"][category]
+        left = {row["case_id"]: row for row in lhs}
+        right = {row["case_id"]: row for row in rhs}
+        if (len(left) != len(lhs) or len(right) != len(rhs)
+                or not left or left.keys() != right.keys()):
+            raise ValueError("paired comparison requires identical unique case IDs")
+        changed_predictions = 0
+        changed_acceptances = 0
+        improved = 0
+        regressed = 0
+        for case_id in left:
+            a = left[case_id]
+            b = right[case_id]
+            if a["target"] != b["target"]:
+                raise ValueError("evaluation labels differ across paired methods")
+            changed_predictions += a["predicted"] != b["predicted"]
+            changed_acceptances += bool(a["accepted"]) != bool(b["accepted"])
+            if category == "positive":
+                was_good = a["predicted"] == a["target"] and bool(a["accepted"])
+                now_good = b["predicted"] == b["target"] and bool(b["accepted"])
+                improved += now_good and not was_good
+                regressed += was_good and not now_good
+        n = len(left)
+        stats = {
+            "n": n,
+            "prediction_changes": int(changed_predictions),
+            "prediction_change_rate": round(changed_predictions / n, 6),
+            "acceptance_changes": int(changed_acceptances),
+            "acceptance_change_rate": round(changed_acceptances / n, 6),
+        }
+        if category == "positive":
+            stats.update({
+                "correct_and_accepted_gains": int(improved),
+                "correct_and_accepted_losses": int(regressed),
+            })
+        output[category] = stats
+    return output
