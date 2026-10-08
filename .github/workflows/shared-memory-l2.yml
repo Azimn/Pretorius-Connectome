@@ -58,7 +58,7 @@ jobs:
         run: |
           OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py --synthetic-test --benchmark --seeds 31 --output results/shared-memory/legacy.json
           OPENBLAS_NUM_THREADS=1 python scripts/run_associative_memory.py --synthetic-test --benchmark --seeds 31 --shared-cache data/derived/shared-memory-l2-seed31 --output results/shared-memory/shared.json
-          python -c 'import json; a=json.load(open("results/shared-memory/legacy.json")); b=json.load(open("results/shared-memory/shared.json")); assert a["trials"]==b["trials"]; assert b["shared_l2_encoder"] is not None'
+          python -c 'import json; a=json.load(open("results/shared-memory/legacy.json")); b=json.load(open("results/shared-memory/shared.json")); assert len(a["trials"])==len(b["trials"])==1; assert a["source_events"]==b["source_events"]==450; assert a["trials"][0]["seed"]==b["trials"][0]["seed"]==31; assert b["shared_l2_encoder"]=="sklearn-tfidf-word12-rankstable-v2"'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
