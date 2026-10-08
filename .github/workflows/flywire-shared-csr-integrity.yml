@@ -1,0 +1,106 @@
+name: Actual FlyWire v783 shared-feature CSR integrity
+
+on:
+  push:
+    paths:
+      - 'scripts/verify_real_flywire_shared_csr.py'
+      - 'tests/test_real_flywire_shared_csr.py'
+      - '.github/workflows/flywire-shared-csr-integrity.yml'
+  pull_request:
+    paths:
+      - 'scripts/verify_real_flywire_shared_csr.py'
+      - 'tests/test_real_flywire_shared_csr.py'
+      - '.github/workflows/flywire-shared-csr-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixture-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install bounded numerical and source dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Validate frozen original autobiography and CSR integrity unit guards
+        run: |
+          python scripts/validate_autobiographical_corpus_v12.py
+          python -m unittest discover -s tests -p test_real_flywire_shared_csr.py -v
+          python -m unittest discover -s tests -p test_shared_features_bc01.py -v
+      - name: Build canonical independent BC01 and seeded TF-IDF v2 caches
+        run: |
+          mkdir -p data/derived/check-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/check-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/check-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/check-bc01
+          python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/check-l2-seed31
+      - name: Synthetic geometry smoke, explicitly not a biological claim
+        run: |
+          python scripts/verify_real_flywire_shared_csr.py \
+            --synthetic-test --shared-l2 data/derived/check-l2-seed31 \
+            --bc01-dir data/derived/check-bc01 \
+            --output results/shared_memory/synthetic-csr-integrity.json
+          python -c 'import json; x=json.load(open("results/shared_memory/synthetic-csr-integrity.json")); assert x["status"].startswith("PASS"); assert not x["biological_claim_allowed"]'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: flywire-csr-invariance-synthetic-smoke
+          path: results/shared_memory/synthetic-csr-integrity.json
+          retention-days: 30
+
+  actual-v783-csr:
+    runs-on: ubuntu-latest
+    needs: fixture-parity
+    timeout-minutes: 100
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install official import and numerical research dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Acquire official FlyWire v783 with original publisher checksums
+        run: python scripts/download_flywire_v783.py --destination data/flywire_v783
+      - name: Convert original complete biological graph into verified sparse CSR
+        run: |
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz \
+            | tee results_v783_conversion.json
+      - name: Rebuild canonical shared layers without rewriting published L1
+        run: |
+          mkdir -p data/derived/check-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/check-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/check-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/check-bc01
+          python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/check-l2-seed31
+      - name: Direct real 139255-neuron / 15091983-edge CSR invariance audit
+        run: |
+          python scripts/verify_real_flywire_shared_csr.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --release-dir data/flywire_v783 \
+            --shared-l2 data/derived/check-l2-seed31 \
+            --bc01-dir data/derived/check-bc01 \
+            --output results/shared_memory/flywire-v783-real-csr-invariance.json
+          python -c 'import json; x=json.load(open("results/shared_memory/flywire-v783-real-csr-invariance.json")); assert x["biological_claim_allowed"] and x["neuron_count"]==139255 and x["directed_aggregate_edges"]==15091983 and x["original_synaptic_counts_intact"] and x["original_csr_npz_bytes_intact"]'
+      - name: Archive complete measured checksums and publisher conversion report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flywire-v783-real-shared-csr-invariance
+          path: |
+            results/shared_memory/flywire-v783-real-csr-invariance.json
+            results_v783_conversion.json
+          retention-days: 90
+          if-no-files-found: warn
