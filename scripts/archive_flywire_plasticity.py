@@ -82,7 +82,7 @@ def verify(report):
                 or not null.get("target_stub_degree_preserved")
                 or not null.get("source_degree_and_support_preserved")
                 or not null.get("synapse_counts_preserved")
-                or null.get("weighted_in_degree_preserved", False)):
+                or null.get("weight_in_degree_preserved", False)):
             raise ValueError("Biological vs rewired graph effective capacity mismatched")
         expected_ids = None
         for method in REQUIRED:
