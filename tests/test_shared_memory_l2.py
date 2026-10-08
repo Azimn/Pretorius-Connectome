@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 import shutil
 import tempfile
@@ -96,6 +97,50 @@ class SharedMemoryL2Tests(unittest.TestCase):
                                       topo.permuted_null().synapse_counts)
         with self.assertRaises(ValueError):
             AssociativeMemory(train[:-1], topo, shared_cache=self.cache)
+
+    def test_self_consistent_noncanonical_record_rejected(self):
+        # Attack: change content and update the checksum in the same cache
+        # manifest; both shards appear internally valid but L1 is immutable.
+        destination = self.root / "forged-narrative"
+        shutil.copytree(self.root / "seed31", destination)
+        rows = (destination / "records.jsonl").read_text(encoding="utf-8").splitlines()
+        changed = json.loads(rows[0])
+        changed["memory_text"] += " Invented autobiography."
+        rows[0] = json.dumps(changed, sort_keys=True, ensure_ascii=False)
+        file = destination / "records.jsonl"
+        file.write_text("\n".join(rows) + "\n", encoding="utf-8")
+        meta_path = destination / "manifest.json"
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        meta["shard_sha256"]["records.jsonl"] = hashlib.sha256(file.read_bytes()).hexdigest()
+        meta_path.write_text(json.dumps(meta), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "canonical pinned L1"):
+            SharedCache(destination)
+
+    def test_forged_idf_with_updated_manifest_hash_rejected(self):
+        # Attack: the IDF and checksum are both replaced, while the declared
+        # training split remains unchanged.
+        destination = self.root / "forged-idf"
+        shutil.copytree(self.root / "seed31", destination)
+        idf_path = destination / "idf.npy"
+        idf = np.load(idf_path, allow_pickle=False)
+        idf[0] += 0.1
+        np.save(idf_path, idf, allow_pickle=False)
+        meta_path = destination / "manifest.json"
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        meta["shard_sha256"]["idf.npy"] = hashlib.sha256(idf_path.read_bytes()).hexdigest()
+        meta_path.write_text(json.dumps(meta), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "train-only narratives"):
+            SharedCache(destination)
+
+    def test_forged_split_seed_and_labels_rejected(self):
+        destination = self.root / "forged-seed"
+        shutil.copytree(self.root / "seed31", destination)
+        meta_path = destination / "manifest.json"
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        meta["random_seed"] = 37
+        meta_path.write_text(json.dumps(meta), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "seeded episode partition"):
+            SharedCache(destination)
 
     def test_source_bytes_or_cache_split_change_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
