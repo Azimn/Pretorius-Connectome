@@ -1,0 +1,498 @@
+{
+  "topology": "FlyWire-derived user-supplied CSR: data/derived/flywire_v783_csr.npz",
+  "neuron_count": 139255,
+  "raw_connection_entries": 15091983,
+  "trials": [
+    {
+      "seed": 31,
+      "metrics": {
+        "tfidf_word_narrative": {
+          "mode": "lexical",
+          "threshold": 0.113828,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "positive_correct_and_accepted": 0.130435,
+          "contradiction_n": 23,
+          "contradiction_false_acceptance": 0.608696,
+          "absent_n": 6,
+          "absent_false_acceptance": 0.166667
+        },
+        "topology_graph_only": {
+          "mode": "graph",
+          "threshold": 0.110406,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "positive_correct_and_accepted": 0.130435,
+          "contradiction_n": 23,
+          "contradiction_false_acceptance": 0.695652,
+          "absent_n": 6,
+          "absent_false_acceptance": 0.166667
+        },
+        "topology_hybrid": {
+          "mode": "hybrid",
+          "threshold": 0.111297,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "positive_correct_and_accepted": 0.130435,
+          "contradiction_n": 23,
+          "contradiction_false_acceptance": 0.695652,
+          "absent_n": 6,
+          "absent_false_acceptance": 0.166667
+        },
+        "target_stub_null_graph": {
+          "mode": "graph",
+          "threshold": 0.11061,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "positive_correct_and_accepted": 0.130435,
+          "contradiction_n": 23,
+          "contradiction_false_acceptance": 0.652174,
+          "absent_n": 6,
+          "absent_false_acceptance": 0.166667
+        },
+        "target_stub_null_hybrid": {
+          "mode": "hybrid",
+          "threshold": 0.111253,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "positive_correct_and_accepted": 0.130435,
+          "contradiction_n": 23,
+          "contradiction_false_acceptance": 0.695652,
+          "absent_n": 6,
+          "absent_false_acceptance": 0.166667
+        }
+      },
+      "paired_diagnostics": {
+        "graph_vs_lexical": {
+          "positive": {
+            "n": 23,
+            "prediction_changes": 2,
+            "prediction_change_rate": 0.086957,
+            "acceptance_changes": 1,
+            "acceptance_change_rate": 0.043478,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 23,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 2,
+            "acceptance_change_rate": 0.086957
+          },
+          "absent": {
+            "n": 6,
+            "prediction_changes": 1,
+            "prediction_change_rate": 0.166667,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        },
+        "hybrid_vs_lexical": {
+          "positive": {
+            "n": 23,
+            "prediction_changes": 1,
+            "prediction_change_rate": 0.043478,
+            "acceptance_changes": 1,
+            "acceptance_change_rate": 0.043478,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 23,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 2,
+            "acceptance_change_rate": 0.086957
+          },
+          "absent": {
+            "n": 6,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        },
+        "graph_vs_rewired": {
+          "positive": {
+            "n": 23,
+            "prediction_changes": 1,
+            "prediction_change_rate": 0.043478,
+            "acceptance_changes": 1,
+            "acceptance_change_rate": 0.043478,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 23,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 1,
+            "acceptance_change_rate": 0.043478
+          },
+          "absent": {
+            "n": 6,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        },
+        "hybrid_vs_rewired": {
+          "positive": {
+            "n": 23,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 23,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          },
+          "absent": {
+            "n": 6,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        }
+      }
+    },
+    {
+      "seed": 37,
+      "metrics": {
+        "tfidf_word_narrative": {
+          "mode": "lexical",
+          "threshold": 0.152524,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "positive_correct_and_accepted": 0.05,
+          "contradiction_n": 20,
+          "contradiction_false_acceptance": 0.1,
+          "absent_n": 9,
+          "absent_false_acceptance": 0
+        },
+        "topology_graph_only": {
+          "mode": "graph",
+          "threshold": 0.128337,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "positive_correct_and_accepted": 0.1,
+          "contradiction_n": 20,
+          "contradiction_false_acceptance": 0.15,
+          "absent_n": 9,
+          "absent_false_acceptance": 0.222222
+        },
+        "topology_hybrid": {
+          "mode": "hybrid",
+          "threshold": 0.148538,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "positive_correct_and_accepted": 0.05,
+          "contradiction_n": 20,
+          "contradiction_false_acceptance": 0.1,
+          "absent_n": 9,
+          "absent_false_acceptance": 0.111111
+        },
+        "target_stub_null_graph": {
+          "mode": "graph",
+          "threshold": 0.128701,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "positive_correct_and_accepted": 0.1,
+          "contradiction_n": 20,
+          "contradiction_false_acceptance": 0.15,
+          "absent_n": 9,
+          "absent_false_acceptance": 0.222222
+        },
+        "target_stub_null_hybrid": {
+          "mode": "hybrid",
+          "threshold": 0.150641,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "positive_correct_and_accepted": 0.05,
+          "contradiction_n": 20,
+          "contradiction_false_acceptance": 0.1,
+          "absent_n": 9,
+          "absent_false_acceptance": 0
+        }
+      },
+      "paired_diagnostics": {
+        "graph_vs_lexical": {
+          "positive": {
+            "n": 20,
+            "prediction_changes": 2,
+            "prediction_change_rate": 0.1,
+            "acceptance_changes": 2,
+            "acceptance_change_rate": 0.1,
+            "correct_and_accepted_gains": 1,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 20,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 1,
+            "acceptance_change_rate": 0.05
+          },
+          "absent": {
+            "n": 9,
+            "prediction_changes": 1,
+            "prediction_change_rate": 0.111111,
+            "acceptance_changes": 2,
+            "acceptance_change_rate": 0.222222
+          }
+        },
+        "hybrid_vs_lexical": {
+          "positive": {
+            "n": 20,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 20,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          },
+          "absent": {
+            "n": 9,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 1,
+            "acceptance_change_rate": 0.111111
+          }
+        },
+        "graph_vs_rewired": {
+          "positive": {
+            "n": 20,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 20,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          },
+          "absent": {
+            "n": 9,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        },
+        "hybrid_vs_rewired": {
+          "positive": {
+            "n": 20,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 20,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          },
+          "absent": {
+            "n": 9,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 1,
+            "acceptance_change_rate": 0.111111
+          }
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "metrics": {
+        "tfidf_word_narrative": {
+          "mode": "lexical",
+          "threshold": 0.19786,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "positive_correct_and_accepted": 0.041667,
+          "contradiction_n": 24,
+          "contradiction_false_acceptance": 0,
+          "absent_n": 5,
+          "absent_false_acceptance": 0
+        },
+        "topology_graph_only": {
+          "mode": "graph",
+          "threshold": 0.138753,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "positive_correct_and_accepted": 0.041667,
+          "contradiction_n": 24,
+          "contradiction_false_acceptance": 0.166667,
+          "absent_n": 5,
+          "absent_false_acceptance": 0
+        },
+        "topology_hybrid": {
+          "mode": "hybrid",
+          "threshold": 0.197391,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "positive_correct_and_accepted": 0.041667,
+          "contradiction_n": 24,
+          "contradiction_false_acceptance": 0,
+          "absent_n": 5,
+          "absent_false_acceptance": 0
+        },
+        "target_stub_null_graph": {
+          "mode": "graph",
+          "threshold": 0.195995,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "positive_correct_and_accepted": 0.041667,
+          "contradiction_n": 24,
+          "contradiction_false_acceptance": 0,
+          "absent_n": 5,
+          "absent_false_acceptance": 0
+        },
+        "target_stub_null_hybrid": {
+          "mode": "hybrid",
+          "threshold": 0.197394,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "positive_correct_and_accepted": 0.041667,
+          "contradiction_n": 24,
+          "contradiction_false_acceptance": 0,
+          "absent_n": 5,
+          "absent_false_acceptance": 0
+        }
+      },
+      "paired_diagnostics": {
+        "graph_vs_lexical": {
+          "positive": {
+            "n": 24,
+            "prediction_changes": 3,
+            "prediction_change_rate": 0.125,
+            "acceptance_changes": 3,
+            "acceptance_change_rate": 0.125,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 24,
+            "prediction_changes": 1,
+            "prediction_change_rate": 0.041667,
+            "acceptance_changes": 4,
+            "acceptance_change_rate": 0.166667
+          },
+          "absent": {
+            "n": 5,
+            "prediction_changes": 1,
+            "prediction_change_rate": 0.2,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        },
+        "hybrid_vs_lexical": {
+          "positive": {
+            "n": 24,
+            "prediction_changes": 2,
+            "prediction_change_rate": 0.083333,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 24,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          },
+          "absent": {
+            "n": 5,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        },
+        "graph_vs_rewired": {
+          "positive": {
+            "n": 24,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 3,
+            "acceptance_change_rate": 0.125,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 24,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 4,
+            "acceptance_change_rate": 0.166667
+          },
+          "absent": {
+            "n": 5,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        },
+        "hybrid_vs_rewired": {
+          "positive": {
+            "n": 24,
+            "prediction_changes": 1,
+            "prediction_change_rate": 0.041667,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0
+          },
+          "contradiction": {
+            "n": 24,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          },
+          "absent": {
+            "n": 5,
+            "prediction_changes": 0,
+            "prediction_change_rate": 0,
+            "acceptance_changes": 0,
+            "acceptance_change_rate": 0
+          }
+        }
+      }
+    }
+  ],
+  "evidence": {
+    "workflow_run": "https://github.com/Azimn/Pretorius-Connectome/actions/runs/37836107318",
+    "artifact": "https://github.com/Azimn/Pretorius-Connectome/actions/runs/37836107318/artifacts/11574989379",
+    "capture": "Exact compact runner stdout from successful workflow; full per-case JSON remains in its Actions artifact"
+  }
+}
