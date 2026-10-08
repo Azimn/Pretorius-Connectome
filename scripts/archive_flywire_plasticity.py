@@ -169,6 +169,23 @@ def make_report(report, raw_name, checksum, run_id):
         f"rewired {null['cfalse']}/{null['c']}; absent episode acceptances: "
         f"real {real['afalse']}/{real['a']}, rewired {null['afalse']}/{null['a']}."
     )
+    frozen_real = pooled["real_frozen_graph"]
+    frozen_null = pooled["rewired_frozen_graph"]
+    delta_learning = real["right"] - frozen_real["right"]
+    delta_control_learning = null["right"] - frozen_null["right"]
+    lines.append(
+        f"Isolated plasticity effect: original MB trained {real['right']} "
+        f"versus original MB frozen {frozen_real['right']} correct-and-accepted "
+        f"(change {delta_learning:+d}); matched rewired trained {null['right']} "
+        f"versus rewired frozen {frozen_null['right']} "
+        f"(change {delta_control_learning:+d})."
+    )
+    if delta_learning <= 0:
+        lines.append(
+            "**No benefit of training the real MB graph has been demonstrated** "
+            "on the correct-and-accepted metric; any advantage over the rewired "
+            "graph must not be misattributed to plasticity when also present before training."
+        )
     lines.extend([
         "",
         "Per-seed paired improvements/losses (source IDs and predictions in permanent JSON):",
@@ -190,8 +207,8 @@ def make_report(report, raw_name, checksum, run_id):
         "",
         "The prior 68 prompt cases were assistant-authored, human-unreviewed and repeatedly examined. "
         "Pooled observations overlap across seeds; percentages are descriptive. The graph "
-        "uses lexical input hashing, a train-only coactivity heuristic and a target-stub "
-        "permutation, not experimentally established anatomical cell-class assignments. "
+        "uses lexical input hashing, a train-only coactivity heuristic and a degree/support-matched "
+        "directed edge-swap null, not experimentally established anatomical cell-class assignments. "
         "Accepted lexical retrieval is not entailment, and learned numerical weights are "
         "not evidence of experienced memories, consciousness or a stable Pretorius identity. The new matched null preserves unique edge support and stub degrees, but does not preserve weighted in-degree or biological motifs.",
         "",
