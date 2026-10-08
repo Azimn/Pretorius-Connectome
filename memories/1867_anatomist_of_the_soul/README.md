@@ -1,29 +1,15 @@
-# The Anatomist of the Soul (1867): Jolivet interview arc
+# The Anatomist of the Soul, 1865-1898
 
-**Status:** Source-artifact staging. This directory collects the fictional documents prepared for the 1867 Paris interview between Doctor Septimus Pretorius and Alcide Jolivet, with the 1868 university dismissal remaining a later, multifactorial consequence.
+**Status:** Historical-fiction source documents completed, thirty connected first-person autobiographical memories integrated in v11, and their sensory and longitudinal association records indexed.
 
-## Purpose
+## Primary artifacts
 
-These are **fictional, alternate-history period artifacts**, not verified historical newspaper reports or experimental observations. They belong beside the subject's memory source materials, but **are not yet imported into the authoritative first-person memory JSONL**. Preserve the distinction between an external document, Pretorius's subjective recollection, and a future experimentally observed runtime experience.
+The [complete English 1867 physiological memoir](Pretorius_1867_On_the_Seat_of_the_Soul.md) describes local nervous excitability, reflex actions, the limits of bodily observations and an explicitly speculative possibility of producing living organisation. The [period research and continuity dossier](Pretorius_1867_Research_and_Continuity_Dossier.md) identifies actual nineteenth-century science and labels every invented experiment and datum. The fictional [French *Le Figaro* interview of August 28, 1867](Pretorius_Jolivet_1867_French_Original.txt) and its [English translation with notes](Pretorius_Jolivet_1867_English_Translation_and_Notes.md) preserve the press reaction. The original formatted PDF and bilingual Word editions are not stored in this folder; their textual content is archived here.
 
-## Committed source artifacts
+## Connected memory edition
 
-- [Pretorius's complete 1867 scientific memoir](Pretorius_1867_On_the_Seat_of_the_Soul.md): 4,200-word period-informed English reconstruction, with three observational series, cautious conclusions, and contemporary scientific authorities.
-- [Research and continuity dossier](Pretorius_1867_Research_and_Continuity_Dossier.md): real 1867-era publication references, explicitly fictional observations, chronology, and integration constraints.
+The [thirty first-person E25 memories](../batches/v11/Pretorius_v11_E25_30_Events.jsonl) run from October 1865 to October 1898 and are interleaved once into the [authoritative 430-event v11 corpus](../current/Pretorius_v11_430_Events_Complete.jsonl). The [E25 sidecar](../batches/v11/Pretorius_v11_E25_30_Sensory_Associations.jsonl), [full 430-event sidecar](../annotations/v11_430_sidecars.jsonl), [cue registry](../annotations/v11_cue_registry.json), [causal and interpretation graph](ARC_GRAPH_AND_INTERPRETATION.md), [continuity audit](../logs/v11/CONTINUITY_AND_PROVENANCE.md), and [validation report](../logs/v11/VALIDATION.json) document the data, continuity and uncertainty.
 
-- [`Pretorius_Jolivet_1867_French_Original.txt`](Pretorius_Jolivet_1867_French_Original.txt): full original French newspaper feature attributed to Jolivet, 28 August 1867, *À qui appartient une âme ?*.
-- [`Pretorius_Jolivet_1867_English_Translation_and_Notes.md`](Pretorius_Jolivet_1867_English_Translation_and_Notes.md): English translation and external continuity/historical editorial notes transcribed from the bilingual Word edition.
+The new records are fictional autobiography, not archival evidence or observed cognition. At the time Pretorius experiences both genuine recognition and dangerous confidence; the Paris journalist remains professionally interested and possibly personally appealing to him, without established reciprocal attraction. The newspaper helps change the climate of reception without alone producing the 1868 dismissal. Later meetings, letters, laboratory safeguards and the persistent clipping change what Pretorius thinks he remembers.
 
-**Binary edition status:** A separate three-page period-layout PDF (`Pretorius_Jolivet_1867_French_Newspaper.pdf`) and an editable bilingual Word edition (`Pretorius_Jolivet_1867_Bilingual_Edition.docx`) were prepared in the conversation. Their **original binary files are not present in this GitHub folder**. The GitHub connector currently accepts text or inline base64 blob content, but does not support direct upload from a local artifact path. Do not interpret these filenames as links to committed files. The French source and English translation/notes have been archived here in Git-friendly text formats.
-
-## Continuity and chronology
-
-The proposed interview takes place while Pretorius is still a young faculty member, after early 1867 experimental work and before his dismissal in July 1868. Treat the 1867 Paris exchange as a reconstructed narrative addition. It must not imply that he publicly disclosed the secret homunculus experiments, nor replace the already established causes and uncertain details of the dismissal.
-
-Alcide Jolivet is a literary crossover from Jules Verne's *Michel Strogoff* (published 1876). The 1867 interview is invented for this shared fictional setting and precedes his appearance in that novel. The attribution to *Le Figaro* is likewise fictional, not a claim of an archival discovery. Historical organizations, thinkers and period events serve only as contextual anchors.
-
-## Next stages
-
-Pretorius's fictional physiological article has now been drafted and committed in English, with its separate research dossier. A later stage can generate distinct first-person scenes or memory records, with unique identifiers, temporal anchors, conflicting interpretations, recall cues and provenance metadata. Integrate those into `memories/current/` only after continuity review and deduplication against the currently authoritative corpus.
-
-See `../RECONSTRUCTION_POLICY.md` and `../README.md` for the repo's established memory/integration rules.
+The source universe deliberately retains the functioning fictional Ingolstadt university after the actual university's historical move. The secret homunculus work remains separate from the printed scientific research, as established in prior autobiography. All 400 earlier v10 records, including E26, are preserved; no future Bride or Henry reunion event is added. Association and sensory metadata are unreviewed candidates for experimental encoding, not evidence of neural plasticity or validated recall.
