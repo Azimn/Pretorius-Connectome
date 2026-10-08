@@ -116,7 +116,7 @@ def build_cache(destination: str | Path, seed: int = 31,
     encoder.fit([x.memory_text for x in train])  # IDF fit ONLY on train
     docs = encoder.transform([x["memory_text"] for x in rows]).tocsr()
     docs.sort_indices()
-    vocab = encoder.vocabulary_
+    vocab = {str(term): int(index) for term, index in encoder.vocabulary_.items()}
     records_path = dest / SHARDS[0]
     records_path.write_text("".join(canon_json(x)+"\n" for x in rows), encoding="utf-8")
     (dest / SHARDS[1]).write_text(canon_json(vocab)+"\n", encoding="utf-8")
