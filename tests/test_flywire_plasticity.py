@@ -10,7 +10,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from pretorius_connectome.associative import AssociativeMemory, Topology
 from pretorius_connectome.imprinting import Cue, Memory
-from pretorius_connectome.plasticity import fit_trace_overlay, apply_trace_overlay
+from pretorius_connectome.plasticity import fit_trace_overlay, apply_trace_overlay, support_matched_null
 
 
 def sample():
@@ -28,6 +28,33 @@ def sample():
 
 
 class PlasticityTests(unittest.TestCase):
+
+    def test_rewired_control_preserves_exact_directed_support_and_degrees(self):
+        topology = Topology.synthetic(n=128, degree=7, seed=14)
+        raw_indices = topology.indices.copy()
+        raw_counts = topology.synapse_counts.copy()
+        rewired, audit = support_matched_null(topology, seed=941)
+        repeat, other_audit = support_matched_null(topology, seed=941)
+        self.assertEqual(audit, other_audit)
+        np.testing.assert_array_equal(rewired.indices, repeat.indices)
+        np.testing.assert_array_equal(topology.indices, raw_indices)
+        np.testing.assert_array_equal(topology.synapse_counts, raw_counts)
+        np.testing.assert_array_equal(topology.indptr, rewired.indptr)
+        np.testing.assert_array_equal(topology.synapse_counts, rewired.synapse_counts)
+        np.testing.assert_array_equal(np.sort(topology.indices), np.sort(rewired.indices))
+        self.assertEqual(topology.transition().nnz, rewired.transition().nnz)
+        self.assertEqual(audit["original_unique_edges"], audit["rewired_unique_edges"])
+        self.assertGreater(audit["accepted_swaps"], 0)
+        self.assertFalse(np.array_equal(raw_indices, rewired.indices))
+        for row in range(len(topology.root_ids)):
+            first, last = int(topology.indptr[row]), int(topology.indptr[row + 1])
+            self.assertEqual(
+                len(set(raw_indices[first:last])),
+                len(set(rewired.indices[first:last]))
+            )
+        with self.assertRaises(ValueError):
+            support_matched_null(topology, seed=941, attempts_per_edge=0)
+
     def test_train_only_overlay_is_deterministic_and_structurally_safe(self):
         graph = Topology.synthetic(n=64, degree=8, seed=5)
         snapshots = [x.copy() for x in
