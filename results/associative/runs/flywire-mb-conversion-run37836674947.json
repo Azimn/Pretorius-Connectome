@@ -1,0 +1,11 @@
+{
+  "neurons": 14025,
+  "directed_pairs": 574660,
+  "synaptic_contacts": 1535281,
+  "source_rows": 638841,
+  "original_release_rows": 16847997,
+  "unfiltered_release_neurons": 139255,
+  "neuropil_prefix": "MB_",
+  "pruned_to_incident_neurons": true,
+  "output": "data/derived/flywire_v783_mb_csr.npz"
+}
