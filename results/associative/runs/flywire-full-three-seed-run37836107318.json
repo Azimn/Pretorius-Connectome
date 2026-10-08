@@ -1,0 +1,6025 @@
+{
+  "challenge_status": "POST-HOC REUSED assistant-authored unreviewed Pilot04. Not independent validation. Labels are evaluation-only.",
+  "graph_semantics": "Directed log1p contact-count graph diffusion, positive-only, not biophysical dynamics and no learned biological plasticity.",
+  "memory_semantics": "Original full narratives remain authoritative searchable documents; event IDs are only evaluator targets, not encoded features. Scores never establish truth of an assertion.",
+  "neuron_count": 139255,
+  "null_semantics": "Permutation of target stubs retains source outdegree and destination stub counts, but not weighted indegree or simple-graph uniqueness.",
+  "parameters": {
+    "activity_cap": 256,
+    "diffusion": 0.4,
+    "hybrid_fraction": 0.25,
+    "steps": 2
+  },
+  "raw_connection_entries": 15091983,
+  "source_challenge_cases": 68,
+  "source_events": 450,
+  "study": "connectome-constrained autobiographical retrieval v1.1",
+  "topology": "FlyWire-derived user-supplied CSR: data/derived/flywire_v783_csr.npz",
+  "trials": [
+    {
+      "methods": {
+        "target_stub_null_graph": {
+          "absent_false_acceptance": 0.166667,
+          "absent_n": 6,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E24-003",
+                "score": 0.090619,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E18-008",
+                "score": 0.085395,
+                "target": "E04-016"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.132933,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-P",
+                "predicted": "E23-001",
+                "score": 0.101311,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E15-016",
+                "score": 0.088233,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E25-012",
+                "score": 0.087699,
+                "target": "E04-009"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.088435,
+                "target": "E09-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-002-N",
+                "predicted": "E22-014",
+                "score": 0.126131,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.091044,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E27-001",
+                "score": 0.09975,
+                "target": "E27-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.221998,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.128624,
+                "target": "E11-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.141726,
+                "target": "E15-003"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-011-N",
+                "predicted": "E25-005",
+                "score": 0.119342,
+                "target": "E20-017"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-013-N",
+                "predicted": "E21-001",
+                "score": 0.112094,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E25-026",
+                "score": 0.093744,
+                "target": "E07-014"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.118522,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E20-017",
+                "score": 0.108161,
+                "target": "E09-008"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.12743,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-N",
+                "predicted": "E25-019",
+                "score": 0.110436,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.189499,
+                "target": "E27-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-025-N",
+                "predicted": "E17-004",
+                "score": 0.1318,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E27-006",
+                "score": 0.060758,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.112833,
+                "target": "E27-012"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.140243,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.132833,
+                "target": "E08-006"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.140693,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.163752,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.094768,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": true,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.118319,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.099841,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.081817,
+                "target": "E01-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E08-005",
+                "score": 0.116025,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.101443,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.128262,
+                "target": "E11-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.110744,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-011-P",
+                "predicted": "E11-006",
+                "score": 0.090065,
+                "target": "E20-017"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-013-P",
+                "predicted": "E24-005",
+                "score": 0.085471,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.08427,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E24-010",
+                "score": 0.096614,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.103072,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.072419,
+                "target": "E25-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.121236,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.117821,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E11-006",
+                "score": 0.098945,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E27-006",
+                "score": 0.092814,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.120192,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.087056,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.188179,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E24-002",
+                "score": 0.086681,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.181597,
+                "target": "E05-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-034-P",
+                "predicted": "E11-007",
+                "score": 0.111576,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.652174,
+          "contradiction_n": 23,
+          "mode": "graph",
+          "positive_correct_and_accepted": 0.130435,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "threshold": 0.11061
+        },
+        "target_stub_null_hybrid": {
+          "absent_false_acceptance": 0.166667,
+          "absent_n": 6,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E24-003",
+                "score": 0.091256,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E15-015",
+                "score": 0.077706,
+                "target": "E04-016"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.134634,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-P",
+                "predicted": "E23-001",
+                "score": 0.10278,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E15-016",
+                "score": 0.088965,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E25-012",
+                "score": 0.080362,
+                "target": "E04-009"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.089887,
+                "target": "E09-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-002-N",
+                "predicted": "E22-014",
+                "score": 0.127725,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.091659,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E27-001",
+                "score": 0.100704,
+                "target": "E27-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.222552,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.126182,
+                "target": "E11-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.143734,
+                "target": "E15-003"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-011-N",
+                "predicted": "E25-005",
+                "score": 0.119772,
+                "target": "E20-017"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-013-N",
+                "predicted": "E21-001",
+                "score": 0.112144,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E25-026",
+                "score": 0.094619,
+                "target": "E07-014"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.119841,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E20-017",
+                "score": 0.108733,
+                "target": "E09-008"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.125709,
+                "target": "E25-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-021-N",
+                "predicted": "E25-019",
+                "score": 0.111549,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.189581,
+                "target": "E27-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-025-N",
+                "predicted": "E17-004",
+                "score": 0.130387,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E27-006",
+                "score": 0.061431,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.114872,
+                "target": "E27-012"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.141015,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.134327,
+                "target": "E08-006"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.143453,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.162385,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.096007,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": true,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.12001,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.099936,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.082375,
+                "target": "E01-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E08-005",
+                "score": 0.116109,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.102066,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.128899,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.110883,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-011-P",
+                "predicted": "E11-006",
+                "score": 0.091153,
+                "target": "E20-017"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-013-P",
+                "predicted": "E24-005",
+                "score": 0.081877,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.08402,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E08-002",
+                "score": 0.096138,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.103485,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.073161,
+                "target": "E25-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.122336,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.118281,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E11-006",
+                "score": 0.097205,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E08-002",
+                "score": 0.090985,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.122011,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.088995,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.190472,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E24-002",
+                "score": 0.087107,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.183443,
+                "target": "E05-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-034-P",
+                "predicted": "E11-007",
+                "score": 0.112067,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.695652,
+          "contradiction_n": 23,
+          "mode": "hybrid",
+          "positive_correct_and_accepted": 0.130435,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "threshold": 0.111253
+        },
+        "tfidf_word_narrative": {
+          "absent_false_acceptance": 0.166667,
+          "absent_n": 6,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E24-003",
+                "score": 0.091468,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E15-015",
+                "score": 0.077908,
+                "target": "E04-016"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.135201,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-P",
+                "predicted": "E23-001",
+                "score": 0.10327,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E15-016",
+                "score": 0.089209,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E25-012",
+                "score": 0.077917,
+                "target": "E04-009"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.090372,
+                "target": "E09-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-002-N",
+                "predicted": "E22-014",
+                "score": 0.128256,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.091863,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E27-001",
+                "score": 0.101021,
+                "target": "E27-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.222737,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.125369,
+                "target": "E11-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.144403,
+                "target": "E15-003"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-011-N",
+                "predicted": "E25-005",
+                "score": 0.119915,
+                "target": "E20-017"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-013-N",
+                "predicted": "E21-001",
+                "score": 0.11216,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E25-026",
+                "score": 0.094911,
+                "target": "E07-014"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.120281,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E20-017",
+                "score": 0.108924,
+                "target": "E09-008"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.125135,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-N",
+                "predicted": "E25-019",
+                "score": 0.111921,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.189608,
+                "target": "E27-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-025-N",
+                "predicted": "E17-004",
+                "score": 0.129916,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E27-006",
+                "score": 0.061655,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.115552,
+                "target": "E27-012"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.141273,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.134825,
+                "target": "E08-006"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.144373,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.161929,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.09642,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": true,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.120574,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.099968,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.082562,
+                "target": "E01-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E08-005",
+                "score": 0.116136,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.102274,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.129111,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.110929,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-011-P",
+                "predicted": "E11-006",
+                "score": 0.091516,
+                "target": "E20-017"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-013-P",
+                "predicted": "E24-005",
+                "score": 0.08068,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E27-006",
+                "score": 0.083951,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E08-002",
+                "score": 0.096061,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.103623,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.073408,
+                "target": "E25-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.122702,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.118434,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E11-006",
+                "score": 0.096625,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E08-002",
+                "score": 0.091459,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.122617,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.089642,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.191236,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E24-002",
+                "score": 0.08725,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.184058,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E11-007",
+                "score": 0.112231,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.608696,
+          "contradiction_n": 23,
+          "mode": "lexical",
+          "positive_correct_and_accepted": 0.130435,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "threshold": 0.113828
+        },
+        "topology_graph_only": {
+          "absent_false_acceptance": 0.166667,
+          "absent_n": 6,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E24-003",
+                "score": 0.090219,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E18-008",
+                "score": 0.085484,
+                "target": "E04-016"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.132094,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-P",
+                "predicted": "E23-001",
+                "score": 0.100675,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E15-016",
+                "score": 0.088311,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E25-012",
+                "score": 0.102496,
+                "target": "E04-009"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.088029,
+                "target": "E09-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-002-N",
+                "predicted": "E22-014",
+                "score": 0.12611,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.090851,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E27-001",
+                "score": 0.099495,
+                "target": "E27-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.221925,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.12845,
+                "target": "E11-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.141031,
+                "target": "E15-003"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-011-N",
+                "predicted": "E25-005",
+                "score": 0.119179,
+                "target": "E20-017"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-013-N",
+                "predicted": "E21-001",
+                "score": 0.110961,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E25-026",
+                "score": 0.093607,
+                "target": "E07-014"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.117953,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E20-017",
+                "score": 0.108204,
+                "target": "E09-008"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.126435,
+                "target": "E25-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-021-N",
+                "predicted": "E25-019",
+                "score": 0.110612,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.19058,
+                "target": "E27-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-025-N",
+                "predicted": "E17-004",
+                "score": 0.131792,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E27-006",
+                "score": 0.060379,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.11274,
+                "target": "E27-012"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.139891,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.133252,
+                "target": "E08-006"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.140052,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.165254,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.094921,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": true,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.118262,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.099142,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.082551,
+                "target": "E01-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E08-005",
+                "score": 0.115868,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.101187,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.128983,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.109829,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-011-P",
+                "predicted": "E11-006",
+                "score": 0.089605,
+                "target": "E20-017"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-013-P",
+                "predicted": "E24-005",
+                "score": 0.087074,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.084574,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E08-002",
+                "score": 0.096208,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.10399,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.072307,
+                "target": "E25-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.121606,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.117841,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E11-006",
+                "score": 0.100502,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E27-006",
+                "score": 0.100415,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.120269,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.086938,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.188482,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E24-002",
+                "score": 0.086939,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.183148,
+                "target": "E05-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-034-P",
+                "predicted": "E11-007",
+                "score": 0.11175,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.695652,
+          "contradiction_n": 23,
+          "mode": "graph",
+          "positive_correct_and_accepted": 0.130435,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "threshold": 0.110406
+        },
+        "topology_hybrid": {
+          "absent_false_acceptance": 0.166667,
+          "absent_n": 6,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E24-003",
+                "score": 0.091156,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E15-015",
+                "score": 0.077787,
+                "target": "E04-016"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.134424,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-P",
+                "predicted": "E23-001",
+                "score": 0.102621,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E15-016",
+                "score": 0.088985,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E25-012",
+                "score": 0.084062,
+                "target": "E04-009"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.089786,
+                "target": "E09-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-002-N",
+                "predicted": "E22-014",
+                "score": 0.12772,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.09161,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E27-001",
+                "score": 0.10064,
+                "target": "E27-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.222534,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.126139,
+                "target": "E11-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.14356,
+                "target": "E15-003"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-011-N",
+                "predicted": "E25-005",
+                "score": 0.119731,
+                "target": "E20-017"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-013-N",
+                "predicted": "E21-001",
+                "score": 0.11186,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E25-026",
+                "score": 0.094585,
+                "target": "E07-014"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.119699,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E20-017",
+                "score": 0.108744,
+                "target": "E09-008"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.12546,
+                "target": "E25-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-021-N",
+                "predicted": "E25-019",
+                "score": 0.111593,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.189851,
+                "target": "E27-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-025-N",
+                "predicted": "E17-004",
+                "score": 0.130385,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E27-006",
+                "score": 0.061336,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.114849,
+                "target": "E27-012"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.140927,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.134431,
+                "target": "E08-006"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.143293,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.162761,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.096045,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": true,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.119996,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.099762,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.082559,
+                "target": "E01-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E08-005",
+                "score": 0.116069,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.102002,
+                "target": "E22-005"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.129079,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.110654,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-011-P",
+                "predicted": "E11-006",
+                "score": 0.091038,
+                "target": "E20-017"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-013-P",
+                "predicted": "E24-005",
+                "score": 0.082278,
+                "target": "E21-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.084096,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E08-002",
+                "score": 0.096098,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.103715,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.073133,
+                "target": "E25-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.122428,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.118286,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E11-006",
+                "score": 0.097594,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E08-002",
+                "score": 0.090903,
+                "target": "E23-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.12203,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.088966,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.190548,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E24-002",
+                "score": 0.087172,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.183831,
+                "target": "E05-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-034-P",
+                "predicted": "E11-007",
+                "score": 0.112111,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.695652,
+          "contradiction_n": 23,
+          "mode": "hybrid",
+          "positive_correct_and_accepted": 0.130435,
+          "positive_n": 23,
+          "positive_top1": 0.173913,
+          "threshold": 0.111297
+        }
+      },
+      "paired_diagnostics": {
+        "graph_vs_lexical": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 6,
+            "prediction_change_rate": 0.166667,
+            "prediction_changes": 1
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.086957,
+            "acceptance_changes": 2,
+            "n": 23,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.043478,
+            "acceptance_changes": 1,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 23,
+            "prediction_change_rate": 0.086957,
+            "prediction_changes": 2
+          }
+        },
+        "graph_vs_rewired": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 6,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.043478,
+            "acceptance_changes": 1,
+            "n": 23,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.043478,
+            "acceptance_changes": 1,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 23,
+            "prediction_change_rate": 0.043478,
+            "prediction_changes": 1
+          }
+        },
+        "hybrid_vs_lexical": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 6,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.086957,
+            "acceptance_changes": 2,
+            "n": 23,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.043478,
+            "acceptance_changes": 1,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 23,
+            "prediction_change_rate": 0.043478,
+            "prediction_changes": 1
+          }
+        },
+        "hybrid_vs_rewired": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 6,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 23,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 23,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          }
+        }
+      },
+      "seed": 31,
+      "test_events": 71,
+      "training_events": 317,
+      "validation_events": 62
+    },
+    {
+      "methods": {
+        "target_stub_null_graph": {
+          "absent_false_acceptance": 0.222222,
+          "absent_n": 9,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E25-014",
+                "score": 0.085184,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.106563,
+                "target": "E09-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E22-015",
+                "score": 0.148149,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E18-008",
+                "score": 0.091813,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E01-008",
+                "score": 0.084848,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E06-006",
+                "score": 0.113315,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E22-002",
+                "score": 0.072455,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.118409,
+                "target": "E04-009"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.14489,
+                "target": "E27-012"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.092453,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E25-001",
+                "score": 0.107168,
+                "target": "E03-009"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.225492,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.109091,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.09744,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.115784,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.083888,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E26-001",
+                "score": 0.071983,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.081808,
+                "target": "E10-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.132018,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.126229,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-N",
+                "predicted": "E03-010",
+                "score": 0.10208,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-N",
+                "predicted": "E10-009",
+                "score": 0.093757,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-N",
+                "predicted": "E11-008",
+                "score": 0.107072,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.074939,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E12-012",
+                "score": 0.093901,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.121327,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.118275,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.176498,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.098696,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.076566,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.108445,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.115933,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E25-015",
+                "score": 0.128129,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E14-011",
+                "score": 0.071754,
+                "target": "E13-016"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.131756,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.0775,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E24-010",
+                "score": 0.09984,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.128517,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E16-006",
+                "score": 0.088673,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.076376,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.121948,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-024-P",
+                "predicted": "E06-006",
+                "score": 0.134033,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E25-029",
+                "score": 0.09794,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E08-002",
+                "score": 0.086014,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E03-010",
+                "score": 0.071395,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.201927,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.110555,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.17662,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.119479,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.15,
+          "contradiction_n": 20,
+          "mode": "graph",
+          "positive_correct_and_accepted": 0.1,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "threshold": 0.128701
+        },
+        "target_stub_null_hybrid": {
+          "absent_false_acceptance": 0.0,
+          "absent_n": 9,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E25-014",
+                "score": 0.083665,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.106759,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-P",
+                "predicted": "E22-015",
+                "score": 0.149007,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E01-003",
+                "score": 0.062749,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E01-008",
+                "score": 0.084783,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E06-006",
+                "score": 0.114067,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E22-002",
+                "score": 0.072983,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.119929,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.146966,
+                "target": "E27-012"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.092975,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E25-001",
+                "score": 0.108558,
+                "target": "E03-009"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.22613,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.108167,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.097693,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.113327,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.084694,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E26-001",
+                "score": 0.072434,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.082201,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.133631,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.123857,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-N",
+                "predicted": "E03-010",
+                "score": 0.102463,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-N",
+                "predicted": "E10-009",
+                "score": 0.094145,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-N",
+                "predicted": "E11-008",
+                "score": 0.105263,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.070037,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E12-012",
+                "score": 0.09438,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.122821,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.120327,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.17527,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.09988,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.077024,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.108969,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.116446,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E25-015",
+                "score": 0.128917,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E14-011",
+                "score": 0.072317,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.132068,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.077225,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E08-002",
+                "score": 0.096213,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.128547,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E16-006",
+                "score": 0.089262,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.077075,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.122911,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-P",
+                "predicted": "E06-006",
+                "score": 0.131477,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E11-006",
+                "score": 0.088944,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E08-002",
+                "score": 0.086927,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E03-010",
+                "score": 0.07287,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.205145,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.111592,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.17801,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.119923,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.1,
+          "contradiction_n": 20,
+          "mode": "hybrid",
+          "positive_correct_and_accepted": 0.05,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "threshold": 0.150641
+        },
+        "tfidf_word_narrative": {
+          "absent_false_acceptance": 0.0,
+          "absent_n": 9,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E25-014",
+                "score": 0.083159,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.106824,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-P",
+                "predicted": "E22-015",
+                "score": 0.149294,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E01-003",
+                "score": 0.06284,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E01-008",
+                "score": 0.084761,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E06-006",
+                "score": 0.114317,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E22-002",
+                "score": 0.073158,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.120436,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.147657,
+                "target": "E27-012"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.09315,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E25-001",
+                "score": 0.109021,
+                "target": "E03-009"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.226343,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.10786,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.097778,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.112507,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.084963,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E26-001",
+                "score": 0.072585,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.082333,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.134169,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.123066,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-N",
+                "predicted": "E03-010",
+                "score": 0.102591,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-N",
+                "predicted": "E10-009",
+                "score": 0.094274,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-N",
+                "predicted": "E11-008",
+                "score": 0.10466,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.068403,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E12-012",
+                "score": 0.09454,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.12332,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.12101,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.174861,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.100275,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.077177,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.109144,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.116617,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E25-015",
+                "score": 0.12918,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E14-011",
+                "score": 0.072505,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.132172,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.077134,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E08-002",
+                "score": 0.096321,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.128557,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E16-006",
+                "score": 0.089458,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.077307,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.123232,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-P",
+                "predicted": "E06-006",
+                "score": 0.130625,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E11-006",
+                "score": 0.088408,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E08-002",
+                "score": 0.087231,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E03-010",
+                "score": 0.073361,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.206218,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.111938,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.178473,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.120071,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.1,
+          "contradiction_n": 20,
+          "mode": "lexical",
+          "positive_correct_and_accepted": 0.05,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "threshold": 0.152524
+        },
+        "topology_graph_only": {
+          "absent_false_acceptance": 0.222222,
+          "absent_n": 9,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E25-014",
+                "score": 0.084824,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.105991,
+                "target": "E09-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E22-015",
+                "score": 0.148243,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E18-008",
+                "score": 0.091669,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E01-008",
+                "score": 0.085785,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E06-006",
+                "score": 0.113712,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E22-002",
+                "score": 0.071781,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.116058,
+                "target": "E04-009"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.144965,
+                "target": "E27-012"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.092253,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E25-001",
+                "score": 0.107158,
+                "target": "E03-009"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.225676,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.11025,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.097043,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.115589,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.084021,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E26-001",
+                "score": 0.071492,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.081066,
+                "target": "E10-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.132152,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.124772,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-N",
+                "predicted": "E03-010",
+                "score": 0.101989,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-N",
+                "predicted": "E10-009",
+                "score": 0.093098,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-N",
+                "predicted": "E11-008",
+                "score": 0.10603,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.074532,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E12-012",
+                "score": 0.094206,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.1214,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.118262,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.177993,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.098859,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.077176,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.108372,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.115772,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E25-015",
+                "score": 0.127581,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E14-011",
+                "score": 0.071763,
+                "target": "E13-016"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.131963,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.077798,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E24-010",
+                "score": 0.099213,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.127972,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E16-006",
+                "score": 0.088815,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.076187,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.122128,
+                "target": "E25-019"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-024-P",
+                "predicted": "E06-006",
+                "score": 0.135177,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E25-029",
+                "score": 0.09757,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E08-002",
+                "score": 0.085394,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E03-010",
+                "score": 0.071475,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.202289,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.111192,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.178006,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.118458,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.15,
+          "contradiction_n": 20,
+          "mode": "graph",
+          "positive_correct_and_accepted": 0.1,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "threshold": 0.128337
+        },
+        "topology_hybrid": {
+          "absent_false_acceptance": 0.111111,
+          "absent_n": 9,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E25-014",
+                "score": 0.083575,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E25-025",
+                "score": 0.106616,
+                "target": "E09-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E22-015",
+                "score": 0.149031,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E01-003",
+                "score": 0.062848,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E01-008",
+                "score": 0.085017,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E06-006",
+                "score": 0.114166,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E22-002",
+                "score": 0.072814,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.119342,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.146984,
+                "target": "E27-012"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E08-012",
+                "score": 0.092925,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E25-001",
+                "score": 0.108555,
+                "target": "E03-009"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-006-N",
+                "predicted": "E22-005",
+                "score": 0.226176,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.108457,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.097594,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-N",
+                "predicted": "E01-019",
+                "score": 0.113278,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.084727,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E26-001",
+                "score": 0.072312,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.082016,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.133665,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-N",
+                "predicted": "E05-001",
+                "score": 0.123493,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-N",
+                "predicted": "E03-010",
+                "score": 0.102441,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-N",
+                "predicted": "E10-009",
+                "score": 0.09398,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-N",
+                "predicted": "E11-008",
+                "score": 0.105002,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.069935,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E12-012",
+                "score": 0.094457,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.12284,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.120323,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.175644,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.099921,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E11-007",
+                "score": 0.077177,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.108951,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.116406,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E25-015",
+                "score": 0.12878,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E14-011",
+                "score": 0.07232,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.13212,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.0773,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E08-002",
+                "score": 0.096283,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.12841,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E16-006",
+                "score": 0.089297,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.077027,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.122956,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-024-P",
+                "predicted": "E06-006",
+                "score": 0.131763,
+                "target": "E06-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E11-006",
+                "score": 0.089318,
+                "target": "E22-015"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E08-002",
+                "score": 0.086772,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E03-010",
+                "score": 0.07289,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.205235,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.111751,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.178356,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.119668,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.1,
+          "contradiction_n": 20,
+          "mode": "hybrid",
+          "positive_correct_and_accepted": 0.05,
+          "positive_n": 20,
+          "positive_top1": 0.2,
+          "threshold": 0.148538
+        }
+      },
+      "paired_diagnostics": {
+        "graph_vs_lexical": {
+          "absent": {
+            "acceptance_change_rate": 0.222222,
+            "acceptance_changes": 2,
+            "n": 9,
+            "prediction_change_rate": 0.111111,
+            "prediction_changes": 1
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.05,
+            "acceptance_changes": 1,
+            "n": 20,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.1,
+            "acceptance_changes": 2,
+            "correct_and_accepted_gains": 1,
+            "correct_and_accepted_losses": 0,
+            "n": 20,
+            "prediction_change_rate": 0.1,
+            "prediction_changes": 2
+          }
+        },
+        "graph_vs_rewired": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 9,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 20,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 20,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          }
+        },
+        "hybrid_vs_lexical": {
+          "absent": {
+            "acceptance_change_rate": 0.111111,
+            "acceptance_changes": 1,
+            "n": 9,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 20,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 20,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          }
+        },
+        "hybrid_vs_rewired": {
+          "absent": {
+            "acceptance_change_rate": 0.111111,
+            "acceptance_changes": 1,
+            "n": 9,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 20,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 20,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          }
+        }
+      },
+      "seed": 37,
+      "test_events": 62,
+      "training_events": 316,
+      "validation_events": 72
+    },
+    {
+      "methods": {
+        "target_stub_null_graph": {
+          "absent_false_acceptance": 0.0,
+          "absent_n": 5,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.115959,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.124314,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.067911,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.132366,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E08-009",
+                "score": 0.062017,
+                "target": "E22-015"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.086011,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-N",
+                "predicted": "E14-012",
+                "score": 0.10882,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E04-008",
+                "score": 0.107341,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E19-009",
+                "score": 0.093178,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E10-009",
+                "score": 0.109707,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.096897,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.091844,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.128175,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-N",
+                "predicted": "E15-015",
+                "score": 0.168549,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.082778,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.120959,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E08-004",
+                "score": 0.081749,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.08355,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.124479,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.156194,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-N",
+                "predicted": "E07-004",
+                "score": 0.173296,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-N",
+                "predicted": "E26-009",
+                "score": 0.114487,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.070605,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.127888,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.133187,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.128783,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.116978,
+                "target": "E18-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.170122,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.096795,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.130725,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E14-003",
+                "score": 0.067761,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E27-020",
+                "score": 0.066048,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-P",
+                "predicted": "E04-010",
+                "score": 0.158725,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.110885,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E12-002",
+                "score": 0.094343,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E27-018",
+                "score": 0.096634,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.10228,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E18-008",
+                "score": 0.084957,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.075564,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E24-010",
+                "score": 0.102098,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.112195,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.159732,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.108113,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.118502,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E04-002",
+                "score": 0.113395,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.127625,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E27-006",
+                "score": 0.08801,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.137418,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.088238,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.198488,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.110456,
+                "target": "E18-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.183157,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.124273,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.0,
+          "contradiction_n": 24,
+          "mode": "graph",
+          "positive_correct_and_accepted": 0.041667,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "threshold": 0.195995
+        },
+        "target_stub_null_hybrid": {
+          "absent_false_acceptance": 0.0,
+          "absent_n": 5,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.116666,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.12479,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.068592,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.133302,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E07-003",
+                "score": 0.061365,
+                "target": "E22-015"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.087541,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-N",
+                "predicted": "E14-012",
+                "score": 0.108857,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E04-008",
+                "score": 0.107515,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E19-009",
+                "score": 0.086823,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E10-009",
+                "score": 0.111374,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.096201,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.092553,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.129897,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-N",
+                "predicted": "E15-015",
+                "score": 0.169502,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.083598,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.122303,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E08-004",
+                "score": 0.082173,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.084392,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.126149,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.15664,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-N",
+                "predicted": "E07-004",
+                "score": 0.174715,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-N",
+                "predicted": "E10-003",
+                "score": 0.108975,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.065898,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.129952,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.133993,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.130086,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.118692,
+                "target": "E18-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.168783,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.098436,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.132119,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E14-003",
+                "score": 0.067654,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E27-020",
+                "score": 0.066573,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-P",
+                "predicted": "E04-010",
+                "score": 0.159423,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.110897,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E12-002",
+                "score": 0.095159,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E27-018",
+                "score": 0.097445,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.10249,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E15-015",
+                "score": 0.07883,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.075484,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E24-010",
+                "score": 0.097378,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.112712,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.160171,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.109293,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.118974,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E04-002",
+                "score": 0.11429,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.128116,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E26-008",
+                "score": 0.08445,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.13913,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.090043,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.201033,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.11152,
+                "target": "E18-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.183833,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.12523,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.0,
+          "contradiction_n": 24,
+          "mode": "hybrid",
+          "positive_correct_and_accepted": 0.041667,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "threshold": 0.197394
+        },
+        "tfidf_word_narrative": {
+          "absent_false_acceptance": 0.0,
+          "absent_n": 5,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.116901,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.124949,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.068819,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.133614,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E07-003",
+                "score": 0.061167,
+                "target": "E22-015"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.088052,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-N",
+                "predicted": "E14-012",
+                "score": 0.108869,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E04-008",
+                "score": 0.107573,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E19-009",
+                "score": 0.084705,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E10-009",
+                "score": 0.11193,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.095968,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.09279,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.130471,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-N",
+                "predicted": "E15-015",
+                "score": 0.16982,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.083871,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.122751,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E08-004",
+                "score": 0.082315,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.084673,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.126706,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.156789,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-N",
+                "predicted": "E07-004",
+                "score": 0.175188,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-N",
+                "predicted": "E10-003",
+                "score": 0.109319,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.06433,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.13064,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.134261,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.13052,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.119263,
+                "target": "E18-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.168336,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.098983,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.132583,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E14-003",
+                "score": 0.067618,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E27-020",
+                "score": 0.066748,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-P",
+                "predicted": "E04-010",
+                "score": 0.159656,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.110901,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E12-002",
+                "score": 0.095431,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E27-018",
+                "score": 0.097716,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.10256,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E15-015",
+                "score": 0.079014,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.075457,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E08-002",
+                "score": 0.096013,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.112884,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.160317,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.109686,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.119131,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E04-002",
+                "score": 0.114588,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.12828,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E26-008",
+                "score": 0.084826,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.1397,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.090644,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.201882,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.111875,
+                "target": "E18-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.184058,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.125549,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.0,
+          "contradiction_n": 24,
+          "mode": "lexical",
+          "positive_correct_and_accepted": 0.041667,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "threshold": 0.19786
+        },
+        "topology_graph_only": {
+          "absent_false_acceptance": 0.0,
+          "absent_n": 5,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.115278,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.12485,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.067844,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.132588,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E08-009",
+                "score": 0.062724,
+                "target": "E22-015"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.085624,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-N",
+                "predicted": "E14-012",
+                "score": 0.108029,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E04-008",
+                "score": 0.107144,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E19-009",
+                "score": 0.098445,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E10-009",
+                "score": 0.108725,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.098069,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.092191,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.127875,
+                "target": "E15-003"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-012-N",
+                "predicted": "E15-015",
+                "score": 0.168389,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.082915,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.120444,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E08-004",
+                "score": 0.081685,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.083365,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.124604,
+                "target": "E19-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.157734,
+                "target": "E27-002"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-026-N",
+                "predicted": "E07-004",
+                "score": 0.172143,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-N",
+                "predicted": "E26-009",
+                "score": 0.114663,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.070225,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.127629,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.13293,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.128657,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.11639,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.171848,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.097569,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.130638,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E14-003",
+                "score": 0.068187,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E27-020",
+                "score": 0.066097,
+                "target": "E01-001"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-004-P",
+                "predicted": "E04-010",
+                "score": 0.158158,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.110094,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E12-002",
+                "score": 0.094264,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E27-018",
+                "score": 0.096331,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.101344,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E18-008",
+                "score": 0.08485,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.076122,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E24-010",
+                "score": 0.101428,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.113442,
+                "target": "E09-008"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.159445,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.107262,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.118495,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E04-002",
+                "score": 0.113244,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.127349,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E27-006",
+                "score": 0.095858,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.13716,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.087976,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.198824,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.111078,
+                "target": "E18-007"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.184696,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.123636,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.166667,
+          "contradiction_n": 24,
+          "mode": "graph",
+          "positive_correct_and_accepted": 0.041667,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "threshold": 0.138753
+        },
+        "topology_hybrid": {
+          "absent_false_acceptance": 0.0,
+          "absent_n": 5,
+          "case_results": {
+            "absent": [
+              {
+                "accepted": false,
+                "case_id": "P04-006-P",
+                "predicted": "E23-005",
+                "score": 0.116495,
+                "target": "E22-005"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-009-P",
+                "predicted": "E12-006",
+                "score": 0.124924,
+                "target": "E11-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-020-P",
+                "predicted": "E18-009",
+                "score": 0.068575,
+                "target": "E25-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-021-P",
+                "predicted": "E05-014",
+                "score": 0.133357,
+                "target": "E25-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-025-P",
+                "predicted": "E07-003",
+                "score": 0.061516,
+                "target": "E22-015"
+              }
+            ],
+            "contradiction": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-N",
+                "predicted": "E09-001",
+                "score": 0.087445,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-N",
+                "predicted": "E14-012",
+                "score": 0.108659,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-N",
+                "predicted": "E04-008",
+                "score": 0.107466,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-N",
+                "predicted": "E19-009",
+                "score": 0.08814,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-N",
+                "predicted": "E10-009",
+                "score": 0.111128,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-N",
+                "predicted": "E12-004",
+                "score": 0.096494,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-N",
+                "predicted": "E16-006",
+                "score": 0.09264,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-N",
+                "predicted": "E24-011",
+                "score": 0.129822,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-N",
+                "predicted": "E15-015",
+                "score": 0.169462,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-N",
+                "predicted": "E19-006",
+                "score": 0.083632,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-N",
+                "predicted": "E01-009",
+                "score": 0.122174,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-N",
+                "predicted": "E08-004",
+                "score": 0.082157,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-N",
+                "predicted": "E19-008",
+                "score": 0.084346,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-N",
+                "predicted": "E19-007",
+                "score": 0.12618,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-N",
+                "predicted": "E27-002",
+                "score": 0.157025,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-N",
+                "predicted": "E07-004",
+                "score": 0.174427,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-N",
+                "predicted": "E10-003",
+                "score": 0.109035,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-N",
+                "predicted": "E13-013",
+                "score": 0.065804,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-N",
+                "predicted": "E26-009",
+                "score": 0.129887,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-N",
+                "predicted": "E09-009",
+                "score": 0.133929,
+                "target": "E24-004"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-031-N",
+                "predicted": "E08-006",
+                "score": 0.130054,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-N",
+                "predicted": "E08-001",
+                "score": 0.118545,
+                "target": "E18-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-033-N",
+                "predicted": "E05-019",
+                "score": 0.169214,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-N",
+                "predicted": "E26-014",
+                "score": 0.098629,
+                "target": "E24-016"
+              }
+            ],
+            "positive": [
+              {
+                "accepted": false,
+                "case_id": "P04-001-P",
+                "predicted": "E09-001",
+                "score": 0.132097,
+                "target": "E09-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-002-P",
+                "predicted": "E14-003",
+                "score": 0.06776,
+                "target": "E09-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-003-P",
+                "predicted": "E27-020",
+                "score": 0.066585,
+                "target": "E01-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-004-P",
+                "predicted": "E04-010",
+                "score": 0.159282,
+                "target": "E27-001"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-005-P",
+                "predicted": "E03-009",
+                "score": 0.110699,
+                "target": "E03-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-007-P",
+                "predicted": "E12-002",
+                "score": 0.095139,
+                "target": "E16-010"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-008-P",
+                "predicted": "E27-018",
+                "score": 0.09737,
+                "target": "E13-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-010-P",
+                "predicted": "E15-009",
+                "score": 0.102256,
+                "target": "E15-003"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-012-P",
+                "predicted": "E15-015",
+                "score": 0.078887,
+                "target": "E04-016"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-014-P",
+                "predicted": "E26-004",
+                "score": 0.075623,
+                "target": "E07-014"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-015-P",
+                "predicted": "E24-010",
+                "score": 0.097211,
+                "target": "E01-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-016-P",
+                "predicted": "E09-008",
+                "score": 0.113024,
+                "target": "E09-008"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-017-P",
+                "predicted": "E10-007",
+                "score": 0.160099,
+                "target": "E10-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-019-P",
+                "predicted": "E27-015",
+                "score": 0.10908,
+                "target": "E19-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-023-P",
+                "predicted": "E27-002",
+                "score": 0.118972,
+                "target": "E27-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-026-P",
+                "predicted": "E04-002",
+                "score": 0.114252,
+                "target": "E04-002"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-027-P",
+                "predicted": "E03-004",
+                "score": 0.128047,
+                "target": "E04-009"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-028-P",
+                "predicted": "E27-006",
+                "score": 0.085255,
+                "target": "E23-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-029-P",
+                "predicted": "E26-009",
+                "score": 0.139065,
+                "target": "E27-012"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-030-P",
+                "predicted": "E27-020",
+                "score": 0.089977,
+                "target": "E24-004"
+              },
+              {
+                "accepted": true,
+                "case_id": "P04-031-P",
+                "predicted": "E08-006",
+                "score": 0.201117,
+                "target": "E08-006"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-032-P",
+                "predicted": "E18-007",
+                "score": 0.111676,
+                "target": "E18-007"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-033-P",
+                "predicted": "E08-016",
+                "score": 0.184218,
+                "target": "E05-019"
+              },
+              {
+                "accepted": false,
+                "case_id": "P04-034-P",
+                "predicted": "E13-002",
+                "score": 0.12507,
+                "target": "E24-016"
+              }
+            ]
+          },
+          "contradiction_false_acceptance": 0.0,
+          "contradiction_n": 24,
+          "mode": "hybrid",
+          "positive_correct_and_accepted": 0.041667,
+          "positive_n": 24,
+          "positive_top1": 0.291667,
+          "threshold": 0.197391
+        }
+      },
+      "paired_diagnostics": {
+        "graph_vs_lexical": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 5,
+            "prediction_change_rate": 0.2,
+            "prediction_changes": 1
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.166667,
+            "acceptance_changes": 4,
+            "n": 24,
+            "prediction_change_rate": 0.041667,
+            "prediction_changes": 1
+          },
+          "positive": {
+            "acceptance_change_rate": 0.125,
+            "acceptance_changes": 3,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 24,
+            "prediction_change_rate": 0.125,
+            "prediction_changes": 3
+          }
+        },
+        "graph_vs_rewired": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 5,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.166667,
+            "acceptance_changes": 4,
+            "n": 24,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.125,
+            "acceptance_changes": 3,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 24,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          }
+        },
+        "hybrid_vs_lexical": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 5,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 24,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 24,
+            "prediction_change_rate": 0.083333,
+            "prediction_changes": 2
+          }
+        },
+        "hybrid_vs_rewired": {
+          "absent": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 5,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "contradiction": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "n": 24,
+            "prediction_change_rate": 0.0,
+            "prediction_changes": 0
+          },
+          "positive": {
+            "acceptance_change_rate": 0.0,
+            "acceptance_changes": 0,
+            "correct_and_accepted_gains": 0,
+            "correct_and_accepted_losses": 0,
+            "n": 24,
+            "prediction_change_rate": 0.041667,
+            "prediction_changes": 1
+          }
+        }
+      },
+      "seed": 43,
+      "test_events": 68,
+      "training_events": 310,
+      "validation_events": 72
+    }
+  ]
+}
