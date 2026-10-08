@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 import argparse
-from collections import Counter
-from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -57,7 +55,7 @@ def run(seeds: tuple[int, ...] = (0, 1, 2),
         shuffled = SynapticOverlay(cue_units, memory_units, density, seed)
         untouched = SynapticOverlay(cue_units, memory_units, density, seed)
         wrong_texts = shuffled_targets(ordered, seed + 17031)
-        early_learned = early_shuffled = None
+        early_learned = None
         for index, memory in enumerate(ordered, 1):
             learned.imprint(memory.cues, memory.memory_text)
             shuffled.imprint(memory.cues, wrong_texts[index - 1])
@@ -78,7 +76,6 @@ def run(seeds: tuple[int, ...] = (0, 1, 2),
                 controls["fixed50_shuffled"] = evaluate(shuffled, first_fifty)
                 if index == 50:
                     early_learned = controls["fixed50_learned"]["top1"]
-                    early_shuffled = controls["fixed50_shuffled"]["top1"]
                 controls["fixed50_change_from_50"] = (
                     round(controls["fixed50_learned"]["top1"] - early_learned, 6)
                     if early_learned is not None else None
@@ -100,7 +97,10 @@ def run(seeds: tuple[int, ...] = (0, 1, 2),
         "corpus_events": len(corpus),
         "corpus_episodes": len({m.episode_id for m in corpus}),
         "cue_annotation_status": "unreviewed_candidate",
-        "source_cue_count": sum(len(m.cues) for m in corpus),
+        "source_surface_cues": sum(sum(bool(c.surface) for c in m.cues) for m in corpus),
+        "source_candidate_associative_ids": sum(
+            sum(not c.surface for c in m.cues) for m in corpus
+        ),
         "seeds": list(seeds),
         "loads": list(loads),
         "topology": {

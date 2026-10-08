@@ -47,15 +47,22 @@ def load_v12(events_path: str | Path, sidecars_path: str | Path) -> list[Memory]
             raise ValueError("duplicate or misaligned v12 event IDs")
         seen.add(event_id)
         surfaces, cue_ids = sidecar["cue_surface_forms"], sidecar["cue_ids"]
-        if (not surfaces or len(surfaces) != len(cue_ids)
+        if (not surfaces or not cue_ids
                 or surfaces != event["recall_cues"]
                 or sidecar["annotation_status"] != "unreviewed_candidate"):
             raise ValueError(f"invalid cue sidecar for {event_id}")
         if not event["memory_text"].strip():
             raise ValueError(f"empty memory text for {event_id}")
+        # v12 sidecars may attach MORE associative registry IDs than surface cues.
+        # They are independent candidates, never zipped to literal phrases.
+        literal = tuple(
+            Cue("surface:" + " ".join(surface.casefold().split()), surface)
+            for surface in surfaces
+        )
+        candidates = tuple(Cue(identifier, "") for identifier in cue_ids)
         output.append(Memory(
             event_id, event["episode_id"], event["memory_text"],
-            tuple(Cue(identifier, surface) for identifier, surface in zip(cue_ids, surfaces)),
+            literal + candidates,
         ))
     return output
 
@@ -71,7 +78,9 @@ def cue_vector(cues: tuple[Cue, ...], units: int) -> np.ndarray:
     values = np.zeros(units, dtype=np.float32)
     for cue in cues:
         words = re.findall(r"[^\W_]+(?:['’][^\W_]+)?", cue.surface.casefold())
-        features = [f"id:{cue.cue_id}", f"phrase:{' '.join(words)}"]
+        features = [f"id:{cue.cue_id}"]
+        if words:
+            features.append(f"phrase:{' '.join(words)}")
         features.extend(f"token:{word}" for word in words)
         features.extend(f"pair:{a}:{b}" for a, b in zip(words, words[1:]))
         for feature in features:

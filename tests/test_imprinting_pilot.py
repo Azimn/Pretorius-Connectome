@@ -33,6 +33,9 @@ class ImprintingPilotTests(unittest.TestCase):
         self.assertEqual(len({m.event_id for m in items}), 450)
         self.assertEqual(len({m.episode_id for m in items}), 27)
         self.assertTrue(all(m.cues for m in items))
+        e25 = next(m for m in items if m.event_id == "E25-001")
+        self.assertEqual(sum(bool(c.surface) for c in e25.cues), 4)
+        self.assertEqual(sum(not c.surface for c in e25.cues), 5)
 
     def test_encoder_determinism_and_event_id_exclusion(self):
         one = (Cue("cue:one", "copper lamp"),)
@@ -79,7 +82,7 @@ class ImprintingPilotTests(unittest.TestCase):
         self.assertEqual(len(order_by_episode(items, 14)), 4)
         wrong = shuffled_targets(items, 14)
         self.assertEqual(sorted(wrong), sorted(m.memory_text for m in items))
-        self.assertNotEqual(wrong, [m.memory_text for m in items])
+        self.assertTrue(all(a != b.memory_text for a, b in zip(wrong, items)))
 
     def test_source_fingerprint_is_blob_sha(self):
         self.assertEqual(len(git_blob_sha(EVENTS)), 40)
