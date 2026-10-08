@@ -14,7 +14,7 @@ This is a minimal computational plasticity probe, **not** a model of dopamine, l
 
 * Original 450 reconstructed narrative events / 27 episodes, v12, source Git blob 718dcc2d5ba4feccdef1690d447edfcebaa9bfb5, and v12 sidecars remain untouched.
 * The already published canonical L1 gzip and manifest at artifacts/shared_memory/v1 are consumed and verified using existing load_v12 guards. L1 is a **17-field projection** and does not replace original L0 narrative/causal records.
-* Reuse the *existing* train-only source-pinned TF-IDF L2 via scripts/build_shared_memory_l2.py, one cache per seeded train-episode partition; its read path rejects different fitted splits. The original uncached vectorizer is compared byte-for-byte in the synthetic diagnostic.
+* Reuse the *existing* train-only source-pinned TF-IDF L2 via scripts/build_shared_memory_l2.py, one cache per seeded train-episode partition; its read path rejects different fitted splits. The original uncached vectorizer is compared with the shared-cache consumer for exact case-level decisions, IDs, edge counts and numerically equivalent scores. Distinct valid floating-operation orders can yield different raw learned-weight SHA-256 values, which are retained in each run but are not treated as semantic inequality.
 * BioCircuit's **independently versioned 450 x 256 BC01 lexical sensory cache added in PR #12 is retained**, but not used as a substitute for TF-IDF in this particular graph assay. It is signed, lexical, and not a drop-in nonnegative graph input. The BioCircuit recurrent weights are not transplanted.
 * The original FlyWire v783 root IDs, original converted CSR indptr, edge indices, and integer synapse counts remain unchanged. A *separate float64 transition operator* is created in RAM for each condition. No trained overlay is serialized over the biological source.
 
@@ -39,7 +39,7 @@ The challenge is still experiments/pilot04/challenge_v1.jsonl, 68 previously ins
 
 Positive and contradiction acceptance scores come from source-decision calibration, **not entailment**. This cannot establish that recalled facts are true, that Pretorius has a stable identity or that a biological connectome has experienced autobiographical memories. If the rewired learning control is equal or superior, state that explicitly, including raw paired cases. Biological specificity requires later annotated neuron classes and degree/class-preserving randomized controls.
 
-The implementation computes SHA-256 of baseline and learned transition weight arrays and records the count of coactivity-touched edges. Tests reject changes to original synaptic CSR arrays, new edges, invalid gains, nondeterminism and unexpected changes to the lexical fallback. CI compares the original uncached and cached L2 paths end-to-end.
+The implementation computes SHA-256 of baseline and learned transition weight arrays and records the count of coactivity-touched edges. Tests reject changes to original synaptic CSR arrays, new edges, invalid gains, nondeterminism and unexpected changes to the lexical fallback. CI compares the original uncached and cached L2 paths end-to-end with exact non-numeric records and 1e-8 absolute / 1e-10 relative numerical tolerance, rather than asserting identical raw float-array hashes.
 
 ## Reproduce
 
