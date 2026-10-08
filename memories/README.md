@@ -1,21 +1,21 @@
 # Pretorius autobiographical memory archive
 
-This directory holds the reconstructed adult-life corpus for the **Pretorius-Connectome** identity-imprinting research. Its current integrated edition is **v7**, covering **287 first-person event memories**, with the narrative boundary set before Pretorius reconnects with Henry Frankenstein in June 1899.
+This repository holds the reconstructed life history that will be considered part of the fictional Doctor Septimus Pretorius's available autobiography in the connectome-imprinting experiment.
 
-The content here is **creative reconstruction**, not independently verified personal history. Provenance distinguishes established autobiography, reconstructed events, and other material. Film and historical analyses are research context, not evidence that a particular fictional meeting or intimate relationship actually occurred. The original source text includes later and modern persona material, so **do not ingest the raw original as pre-1899 autobiographical events**.
+**Current edition: v8. 337 first-person event memories across 21 episodes, with the 1899 reunion still unwritten.** The v8 set adds 50 experimental and occult-related memories to the preserved 287-event v7 corpus. Research provenance is external metadata, not a reason to make reconstructed experiences less available during imprinting.
 
-## Directory guide
+## Current source of truth
 
-`current/` contains the complete **v7 Markdown manuscript**, Word reading edition, **287-event structured JSONL**, 27-event v7 increment, and separate prose for the new queer-life scenes. For memory experiments, begin with `current/Pretorius_v7_287_Events_Complete.jsonl`, not the cumulative source files or earlier archives.
+The authoritative **complete** data file is [`current/Pretorius_v8_337_Events_Complete.jsonl`](current/Pretorius_v8_337_Events_Complete.jsonl). The matching integrated Markdown manuscript is [`current/The_Autobiography_of_Doctor_Septimus_Pretorius_Master_v8.md`](current/The_Autobiography_of_Doctor_Septimus_Pretorius_Master_v8.md). A Word reading edition of the same manuscript is also in `current/`. Older v7 files in this folder are superseded comparison copies, not additional training records.
 
-`logs/v7/` contains the complete continuity ledger, 2026-10-08 production and validation reports, historical/film/queer research notes, and psychological-formation notes.
+The v8 increment is stored in [`batches/v8/`](batches/v8/): 50 event records, the new prose episodes, and the batch README. Do not concatenate the increment with the 337-event complete dataset, because those 50 are already included in it.
 
-`logs/reference/` contains particularly useful prior-v4 psychological and v6 film research material. `sources/` preserves raw user-supplied autobiography and previously merged training data, unedited. `archive/` contains all seven historical batch/edition ZIP snapshots (v1 through v7), for audit and rollback, **not** to be concatenated with v7.
+## Research and continuity
 
-`logs/INGESTION_LOG.md` documents repository import, `logs/file_manifest.json` records SHA-256 hashes and byte counts, and `logs/transfer_audit.json` reports validation checks from the preparation environment.
+[Laboratory memory design](docs/Pretorius_v8_Laboratory_Memory_Design.md) documents aesthetic perfectionism, long experimental failure series, sensory memories, recurring dreams, psychical inquiry, fictional ethics, and historical anchors. [Reconstruction policy](RECONSTRUCTION_POLICY.md) explains the imprinting and provenance distinction. [Roadmap to 1,000 memories](ROADMAP_1000.md) now tracks 663 remaining records.
 
-## Experimental precautions
+The `logs/v8/` folder contains the continuity addendum, editorial production report and validation summary. `logs/v7/` and `logs/reference/` retain earlier psychological, film and historical research. `sources/` stores raw user-supplied autobiography and earlier training data, which can include future events and modern persona material and must **not** be ingested wholesale as pre-1899 autobiographical memory. `archive/` holds historical release ZIP snapshots for rollback.
 
-Do not treat the persona prompt, later creative episodes, or film interpretations as observed runtime experiences. Separate source authority (`established`), reconstruction, and speculative crossover when evaluating. Keep biological connectome topology immutable and imprint memories into a separate training/plasticity layer according to [the repository integration plan](../../docs/PRETORIUS_CORPUS_INTEGRATION.md). The presence of source data here **does not** demonstrate synaptic imprinting or neural retention.
+## Imprinting and verification constraints
 
-The v7 corpus supersedes earlier editions for normal use. Historical ZIP snapshots are retained strictly for provenance, reproducibility, and comparison.
+All integrated reconstructed scenes are intended as coherent *fictional past* for the character. External provenance documents what was authored, inherited, researched, or observed after instantiation. The presence of this corpus does not establish neural learning, persistent imprinting, or autonomous identity. Existing connectome topology should remain unmodified; learned associations belong in a separately audited imprint/plasticity overlay. See [corpus integration plan](../docs/PRETORIUS_CORPUS_INTEGRATION.md). The story stops in June 1899, before Pretorius resumes contact with Henry Frankenstein. No Bride or Frankenstein Village events belong in the past.
