@@ -1,0 +1,26 @@
+{
+  "base_events": 260,
+  "new_events": 27,
+  "total_events": 287,
+  "episode_ids": 18,
+  "new_episode_ids": [
+    "E16",
+    "E17",
+    "E18"
+  ],
+  "narrative_words": 42506,
+  "new_narrative_words": 4741,
+  "stable_event_ids": 287,
+  "backlinks": 584,
+  "end_event_id": "E05-021",
+  "end_date": "1899-06",
+  "original_v6_texts_unchanged": true,
+  "original_v6_texts_sha256": "d0988644b3ba2d1de0580c4848b826742cab1c209d35a488a117afaf238c4a58",
+  "docx_headings_match_jsonl_order": true,
+  "new_memory_docx_text_matches_jsonl": true,
+  "original_status": "reconstructed fiction",
+  "new_status": "reconstructed fiction",
+  "rendered_docx_pages": 106,
+  "em_dash_count_in_manuscript": 0,
+  "document_footer_version": "v7"
+}

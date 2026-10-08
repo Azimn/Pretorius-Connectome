@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-08",
+  "current_event_count": 287,
+  "unique_event_ids": 287,
+  "master_contains_all_event_ids": true,
+  "archive_snapshots": 7,
+  "file_count_excluding_generated_manifests": 24,
+  "byte_counts": {
+    "current_jsonl": 574493
+  },
+  "repository_code_unchanged": true
+}

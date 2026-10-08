@@ -1,0 +1,155 @@
+{
+  "description": "SHA-256 content manifest for imported Pretorius archive; excludes this manifest",
+  "entries": [
+    {
+      "path": "memories/README.md",
+      "bytes": 2608,
+      "sha256": "d885e748673124a98eeb13b6fa5f61d6cb2e7bffe928d5355b34f79285897e4e",
+      "kind": "import_meta"
+    },
+    {
+      "path": "memories/archive/Pretorius_The_Lost_Years_Batch_1.zip",
+      "bytes": 90735,
+      "sha256": "2c0228f0286183790ea68dd7a90dadafcd0012c6fa426a1e3925cab21ed4dae0",
+      "kind": "snapshot_archive"
+    },
+    {
+      "path": "memories/archive/Pretorius_The_Lost_Years_Master_v5_Complete.zip",
+      "bytes": 444252,
+      "sha256": "aeef05755d35522a056abb6a49d0a486bf42c8d7b4d90847caa331bd1cd41b2b",
+      "kind": "snapshot_archive"
+    },
+    {
+      "path": "memories/archive/Pretorius_The_Lost_Years_Master_v6_Research_Expanded.zip",
+      "bytes": 504603,
+      "sha256": "53e4eaf13586db00fbe76f962f150bd251800dd220803267b47689b551739630",
+      "kind": "snapshot_archive"
+    },
+    {
+      "path": "memories/archive/Pretorius_The_Lost_Years_Master_v7_Queer_History.zip",
+      "bytes": 537179,
+      "sha256": "b7290c7e1f92fb8e7babadc8c3f41215ebaebd9daf27fb54b8b3dc9ec665b333",
+      "kind": "snapshot_archive"
+    },
+    {
+      "path": "memories/archive/Pretorius_The_Lost_Years_Voice_Reviewed_v2.zip",
+      "bytes": 95566,
+      "sha256": "fd74aa9fbc0a6d33c751bd01bffebad32f47db4c5fffeefba66096b5549eda82",
+      "kind": "snapshot_archive"
+    },
+    {
+      "path": "memories/archive/Pretorius_The_Lost_Years_v3_Expanded_Archive.zip",
+      "bytes": 182823,
+      "sha256": "88e3be8b914a37481738c1dfee4fd7b0b41e3fa1244bb6dfe4512f43f200b73c",
+      "kind": "snapshot_archive"
+    },
+    {
+      "path": "memories/archive/Pretorius_The_Lost_Years_v4_Formative_Archive.zip",
+      "bytes": 271520,
+      "sha256": "1b7fb8a40e0e66d625b3c562ea047149238bb3e503a6011bced0c3e441e0debd",
+      "kind": "snapshot_archive"
+    },
+    {
+      "path": "memories/current/Pretorius_v7_27_New_Events.jsonl",
+      "bytes": 64601,
+      "sha256": "fe0c4c43626fb84613fc9326bd25a948de5929f35ca0b30d33f2cc2bd5043313",
+      "kind": "current_reconstruction"
+    },
+    {
+      "path": "memories/current/Pretorius_v7_287_Events_Complete.jsonl",
+      "bytes": 574493,
+      "sha256": "7276fc7e14bc8d4eadca57fc02fed4928052f3e55ddfaea46b1b4f8854222fc7",
+      "kind": "current_reconstruction"
+    },
+    {
+      "path": "memories/current/Pretorius_v7_Queer_Life_New_Memories.md",
+      "bytes": 29373,
+      "sha256": "3ab06ee3953133a2dac97924349691193f70d64aa547b19fa2da1749fe3bc1dd",
+      "kind": "current_reconstruction"
+    },
+    {
+      "path": "memories/current/The_Autobiography_of_Doctor_Septimus_Pretorius_Master_v7.docx",
+      "bytes": 183907,
+      "sha256": "a3c5e548342569b1f291ce005ad08ccb2ed9a70ae841a7b7cccc48631bff5278",
+      "kind": "current_reconstruction"
+    },
+    {
+      "path": "memories/current/The_Autobiography_of_Doctor_Septimus_Pretorius_Master_v7.md",
+      "bytes": 381946,
+      "sha256": "fd7504aa33234ed2f5a71ba99355405d52ced76e522f18a4cd0e6eac02be1581",
+      "kind": "current_reconstruction"
+    },
+    {
+      "path": "memories/logs/INGESTION_LOG.md",
+      "bytes": 1413,
+      "sha256": "71805efd00cf6f3d4527d1ca4acce2b53cf55788a89a0d7191c38a7d08acdda4",
+      "kind": "import_meta"
+    },
+    {
+      "path": "memories/logs/reference/Pretorius_v4_Psychological_Formation_Profile.md",
+      "bytes": 24355,
+      "sha256": "2324df80ea4934992fa5975a4bc98ae19660565b33f3aa76e7e130f5ce7da1e2",
+      "kind": "research_log"
+    },
+    {
+      "path": "memories/logs/reference/Pretorius_v6_Film_Research_Dossier.md",
+      "bytes": 3622,
+      "sha256": "80efaa04b048b030279ca63ad60660451f85800555eaf6f07ceb2a113fc2942d",
+      "kind": "research_log"
+    },
+    {
+      "path": "memories/logs/transfer_audit.json",
+      "bytes": 290,
+      "sha256": "2f5da450fa46dd2a5cfe7ef86e81e1fceefa575eac7f03776e235525a23b6eda",
+      "kind": "import_meta"
+    },
+    {
+      "path": "memories/logs/v7/Pretorius_v7_Complete_Continuity_Ledger.md",
+      "bytes": 38066,
+      "sha256": "d683e10c8f513155c34f67943e6daf0f54641dff081365277b969b6905f4ee60",
+      "kind": "research_log"
+    },
+    {
+      "path": "memories/logs/v7/Pretorius_v7_Continuity_Addendum.md",
+      "bytes": 4022,
+      "sha256": "2a84b9bc8d4dc37aa66be875e60d21f91770b6d61f3f59fda3d696c1c9a4636a",
+      "kind": "research_log"
+    },
+    {
+      "path": "memories/logs/v7/Pretorius_v7_Production_Report.md",
+      "bytes": 2680,
+      "sha256": "9ffe060393c84c0591880f54a49ad3f9a6926a82ba250edc1f6d35e6ac262e12",
+      "kind": "research_log"
+    },
+    {
+      "path": "memories/logs/v7/Pretorius_v7_Psychological_Formation_Addendum.md",
+      "bytes": 3933,
+      "sha256": "289f61b2fc77a757c2ce45cb144225c0b4783e9bb3fd802ab09e084567878353",
+      "kind": "research_log"
+    },
+    {
+      "path": "memories/logs/v7/Pretorius_v7_Queer_History_Research_Dossier.md",
+      "bytes": 5615,
+      "sha256": "cb30f3d9c2ec2910419dc66eae9a0f25d481e0b800358ce60ed8611624171c7b",
+      "kind": "research_log"
+    },
+    {
+      "path": "memories/logs/v7/Pretorius_v7_Validation.json",
+      "bytes": 722,
+      "sha256": "3c76b15877edd757e3a2df2ab0dd5842e43b4461b6c12b0b5863ec18d64083ee",
+      "kind": "research_log"
+    },
+    {
+      "path": "memories/sources/The Autobiography of Doctor Septimus Pretorius(1).md",
+      "bytes": 556241,
+      "sha256": "9f6bda30fdaa7eaeb00f208db98e1caff66e00811aa4729791b732abbe0eb472",
+      "kind": "source"
+    },
+    {
+      "path": "memories/sources/pretorius_merged_deduplicated(2).jsonl",
+      "bytes": 757882,
+      "sha256": "37e124e77766ef4dbbabc1860f954b5fa4fd6d8bfeaddf444d1603de07d4a573",
+      "kind": "source"
+    }
+  ]
+}
