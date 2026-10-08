@@ -1,0 +1,27 @@
+{
+  "baseline_records": 337,
+  "added_records": 48,
+  "total_records": 385,
+  "new_episode_ids": [
+    "E22",
+    "E23",
+    "E24"
+  ],
+  "total_episode_ids": 24,
+  "new_date_range": [
+    "1869-03",
+    "1898-11"
+  ],
+  "original_end": [
+    "E05-021",
+    "1899-06"
+  ],
+  "new_memory_words": 6830,
+  "total_memory_words": 56119,
+  "new_prior_event_references": 74,
+  "suspicious_duplicate_pairs": [],
+  "all_old_event_texts_unchanged": true,
+  "no_new_pre_1869_scenes": true,
+  "all_new_links_backward": true,
+  "date_boundary_preserved": true
+}
