@@ -35,7 +35,10 @@ class AssociativeTests(unittest.TestCase):
         b = Topology.synthetic(n=128, degree=4, seed=4)
         self.assertIn("synthetic", a.provenance)
         np.testing.assert_array_equal(a.indices, b.indices)
+        saved_indices, saved_ptr = a.indices.copy(), a.indptr.copy()
         self.assertEqual(a.transition().shape, (128, 128))
+        np.testing.assert_array_equal(a.indices, saved_indices)
+        np.testing.assert_array_equal(a.indptr, saved_ptr)
         total = np.asarray(a.transition().sum(axis=1)).ravel()
         self.assertTrue(np.allclose(total, 1.0))
 
