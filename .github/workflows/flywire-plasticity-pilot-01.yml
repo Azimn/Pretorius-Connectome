@@ -98,6 +98,10 @@ jobs:
             --seeds 31,37,43 --gain 2.0 --trace-activity-cap 256 \
             --output results/associative/flywire-mb-plasticity-pilot01-full.json \
             | tee results/associative/flywire-mb-plasticity-pilot01-compact.json
+      - name: Assert complete and compact results are independently valid JSON
+        run: |
+          python -m json.tool results/associative/flywire-mb-plasticity-pilot01-full.json > /dev/null
+          python -m json.tool results/associative/flywire-mb-plasticity-pilot01-compact.json > /dev/null
       - name: Preserve every original case-level prediction and verification trace
         uses: actions/upload-artifact@v4
         if: always()
