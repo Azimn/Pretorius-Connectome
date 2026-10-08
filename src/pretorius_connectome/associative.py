@@ -86,7 +86,7 @@ class Topology:
         n = len(self.root_ids)
         weights = np.log1p(self.synapse_counts.astype(np.float64))
         operator = sparse.csr_matrix(
-            (weights, self.indices, self.indptr), shape=(n, n),
+            (weights, self.indices.copy(), self.indptr.copy()), shape=(n, n),
         )
         operator.sum_duplicates()
         row_sum = np.asarray(operator.sum(axis=1)).ravel()
