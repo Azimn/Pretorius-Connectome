@@ -74,8 +74,8 @@ def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
             raise ValueError("empty calibration split")
         methods = {
             "tfidf_word_narrative": (original, "lexical"),
-            "flywire_graph_only": (original, "graph"),
-            "flywire_hybrid": (original, "hybrid"),
+            "topology_graph_only": (original, "graph"),
+            "topology_hybrid": (original, "hybrid"),
             "target_stub_null_graph": (randomized, "graph"),
             "target_stub_null_hybrid": (randomized, "hybrid"),
         }
