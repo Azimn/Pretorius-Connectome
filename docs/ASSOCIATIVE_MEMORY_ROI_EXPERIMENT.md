@@ -55,3 +55,8 @@ The official FlyWire annotation repository also contains a separate neuron-level
 That table changes independently of the original v783 publication, so pin an exact tagged annotation version and content checksum before mixing its neuron classes with the original connectivity. For reproducibility, the annotation blob observed at planning time was \`02e72f6c8161d3465f77fec0edf96c5d98027a9e\` on the annotations repository's main branch, which is not a fixed publication tag.
 
 A subsequent, independently assessed experiment could restrict or steer cue encoding into labeled Kenyon-cell or mushroom-body input populations and constrain plasticity by documented cell class. Merely assigning text features randomly to neurons in an MB-labeled ROI remains anatomical borrowing rather than biologically faithful learning.
+
+
+## Actual executed ROI outcome (2026-10-08)
+
+The verified mushroom-body extraction and three-seed benchmark **have completed successfully**. The original description at the top of this document is a historical prospective protocol; the actual report supersedes its pending status. See [measured MB results](../results/associative/FLYWIRE_V783_MB_THREE_SEED_RESULTS.md) and [raw case-level JSON committed to Git](../results/associative/runs/flywire-mb-three-seed-run37836674947.json). Exact conversion metadata are [also committed](../results/associative/runs/flywire-mb-conversion-run37836674947.json). The biological MB topology did not improve correct-and-accepted recall over the rewired control under current hash encoding. Do not rerun solely to seek a more flattering post-hoc result.
