@@ -21,7 +21,7 @@ from pretorius_connectome.associative import (
 )
 from pretorius_connectome.plasticity import apply_trace_overlay
 from pretorius_connectome.pilot02 import episode_split
-from pretorius_connectome.shared_memory_l2 import SharedCache
+from pretorius_connectome.shared_memory_l2 import SharedCache, SCHEMA, ENCODER
 from scripts.run_associative_memory import _locked_inputs, _threshold
 from scripts.run_imprinting_pilot05 import _decisions
 
@@ -33,6 +33,8 @@ def benchmark(topology: Topology, *, seeds=(31, 37, 43),
               gain=2.0, activity_cap=256, cache_root: Path | None = None) -> dict:
     memories, cases = _locked_inputs(L1, L1_MANIFEST)
     decisions = _decisions()
+    if cache_root is None and "synthetic" not in topology.provenance:
+        raise ValueError("real FlyWire experiment requires source-pinned deterministic v2 L2")
     trials = []
     for seed in seeds:
         train, validation, test = episode_split(memories, seed)
@@ -43,6 +45,11 @@ def benchmark(topology: Topology, *, seeds=(31, 37, 43),
                                   ROOT / "memories/annotations/v12_450_sidecars.jsonl")
             if cache.manifest["random_seed"] != seed:
                 raise ValueError("episode-fit cache seed mismatch")
+            if (cache.manifest["schema_version"] != "pretorius.shared-features.v2"
+                    or cache.manifest["encoder_name"] != "sklearn-tfidf-word12-rankstable-v2"
+                    or SCHEMA != "pretorius.shared-features.v2"
+                    or ENCODER != "sklearn-tfidf-word12-rankstable-v2"):
+                raise ValueError("Real FlyWire study requires deterministic shared TF-IDF L2 v2")
             cache.require_training_set([m.event_id for m in train])
 
         real = AssociativeMemory(train, topology, shared_cache=cache)
@@ -97,6 +104,9 @@ def benchmark(topology: Topology, *, seeds=(31, 37, 43),
         }
         trials.append({
             "seed": seed,
+            "l2_encoder": cache.manifest["encoder_name"] if cache else "historical-uncached-v1",
+            "l2_encoder_hash": cache.manifest["encoder_code_hash"] if cache else None,
+            "l2_shard_sha256": cache.manifest["shard_sha256"] if cache else None,
             "train_events": len(train),
             "validation_events": len(validation),
             "test_events": len(test),
@@ -119,7 +129,9 @@ def benchmark(topology: Topology, *, seeds=(31, 37, 43),
         "source_events": len(memories),
         "source_archive": str(L1.relative_to(ROOT)),
         "source_manifest": str(L1_MANIFEST.relative_to(ROOT)),
-        "shared_l2": "train-only TF-IDF" if cache_root else "unshared train-only TF-IDF",
+        "shared_l2": "deterministic train-only TF-IDF v2" if cache_root else "historical-uncached-v1 (synthetic only)",
+        "shared_l2_schema": SCHEMA if cache_root else None,
+        "shared_l2_encoder": ENCODER if cache_root else "historical-uncached-v1",
         "seeds": list(seeds),
         "challenge_status": ("Previously examined assistant-authored Pilot04 cases; "
                              "NOT blind, independently reviewed, or confirmatory."),
@@ -153,6 +165,8 @@ def main():
     seeds = tuple(int(n) for n in args.seeds.split(","))
     if not seeds or len(seeds) != len(set(seeds)):
         ap.error("unique, nonempty seed list required")
+    if not args.synthetic_test and args.shared_cache_root is None:
+        ap.error("real FlyWire requires --shared-cache-root with pinned v2 features")
     graph = Topology.synthetic() if args.synthetic_test else Topology.read(args.topology)
     report = benchmark(
         graph, seeds=seeds, gain=args.gain,
