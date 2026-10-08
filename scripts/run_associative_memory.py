@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT))
 from pretorius_connectome.associative import (
     AssociativeMemory, Topology, summarize_challenge, paired_case_diagnostics,
 )
+from pretorius_connectome.shared_memory import SharedCache
 from pretorius_connectome.imprinting import load_v12
 from pretorius_connectome.pilot02 import episode_split, calibrate
 from pretorius_connectome.pilot04 import load_challenge
@@ -49,20 +50,26 @@ def _threshold(engine, method, positives, negatives):
 
 
 def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
-              diffusion=0.4, hybrid_fraction=0.25) -> dict:
+              diffusion=0.4, hybrid_fraction=0.25, shared_cache=None) -> dict:
     memories, cases = _locked_inputs()
     decisions = _decisions()
     trials = []
     for seed in seeds:
         train, validation, test = episode_split(memories, seed)
+        if shared_cache is not None:
+            if shared_cache.manifest["random_seed"] != seed:
+                raise ValueError("Cache fit seed differs from benchmark seed")
+            shared_cache.require_training_set([m.event_id for m in train])
         original = AssociativeMemory(
             train, topology, steps=steps, activity_cap=activity_cap,
             diffusion=diffusion, hybrid_fraction=hybrid_fraction,
+            shared_cache=shared_cache,
         )
         randomized = AssociativeMemory(
             train, topology.permuted_null(seed + 900),
             steps=steps, activity_cap=activity_cap,
             diffusion=diffusion, hybrid_fraction=hybrid_fraction,
+            shared_cache=shared_cache,
         )
         known_ids = {m.event_id for m in train}
         absent_ids = {m.event_id for m in test}
@@ -111,6 +118,11 @@ def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
         "neuron_count": len(topology.root_ids),
         "raw_connection_entries": len(topology.indices),
         "source_events": len(memories),
+        "shared_cache": ({"encoder": shared_cache.manifest["encoder_name"],
+                          "encoder_code_hash": shared_cache.manifest["encoder_code_hash"],
+                          "fit_seed": shared_cache.manifest["random_seed"],
+                          "source_blob": shared_cache.manifest["source_git_blob"]}
+                         if shared_cache is not None else None),
         "source_challenge_cases": len(cases),
         "challenge_status": (
             "POST-HOC REUSED assistant-authored unreviewed Pilot04. "
@@ -156,10 +168,17 @@ def main():
     parser.add_argument("--activity-cap", type=int, default=256)
     parser.add_argument("--diffusion", type=float, default=0.4)
     parser.add_argument("--hybrid-fraction", type=float, default=0.25)
+    parser.add_argument("--shared-cache", type=Path,
+                        help="Optional exact train-fit shared memory cache; benchmark only")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     topology = (Topology.synthetic() if args.synthetic_test
                 else Topology.read(args.topology))
+    shared_cache = SharedCache(args.shared_cache) if args.shared_cache else None
+    if shared_cache is not None:
+        shared_cache.assert_original(EVENTS, SIDECARS)
+        if not args.benchmark:
+            parser.error("Shared cache requires an episode-split benchmark")
     if args.benchmark:
         seeds = tuple(int(x) for x in args.seeds.split(","))
         if not seeds or len(seeds) != len(set(seeds)):
@@ -168,6 +187,7 @@ def main():
             topology, seeds=seeds, steps=args.steps,
             activity_cap=args.activity_cap,
             diffusion=args.diffusion, hybrid_fraction=args.hybrid_fraction,
+            shared_cache=shared_cache,
         )
     else:
         records, _ = _locked_inputs()
