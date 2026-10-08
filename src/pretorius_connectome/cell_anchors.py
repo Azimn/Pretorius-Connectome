@@ -124,7 +124,7 @@ def degree_stratified_control(topology, actual: np.ndarray, *,
     }
     control = []
     distances = []
-    for b in bins[selected]:
+    for b in bins[np.sort(selected.astype(np.int64))]:
         choice = min(
             (k for k, values in stacks.items() if values),
             key=lambda k: (abs(k - int(b)), k),
