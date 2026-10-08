@@ -1,22 +1,28 @@
-# Shared Pretorius memory interface v1 — operational artifact
+# Shared Pretorius Memory — canonical L1 plus BC01 lexical L2
 
-**Canonical owner:** Azimn/Pretorius-Connectome. **Consumers:** its FlyWire associative retrieval and Azimn/Pretorius-Neural-Network BioCircuit BC01. Tracker: https://github.com/Azimn/Pretorius-Connectome/issues/10
+**Source owner:** [Pretorius-Connectome](https://github.com/Azimn/Pretorius-Connectome). **Tracker:** [Issue #10](https://github.com/Azimn/Pretorius-Connectome/issues/10). **Consumers:** this repository's existing FlyWire associative runner and the companion BioCircuit BC01 adapter in Pretorius-Neural-Network.
 
-## Portable layers
+The repository **already publishes** a canonical, deterministic, gzip-compressed L1 archive in artifacts/shared_memory/v1. The existing L1 module, artifact, hashes and FlyWire consumer are preserved unchanged; this patch adds **only an L2 extension** required for exact reuse of BioCircuit's existing 256-dimensional lexical sensory representation.
 
-L0 is the unchanged 450-event, 27-episode v12 fictional autobiography (event Git blob 718dcc2d5ba4feccdef1690d447edfcebaa9bfb5; sidecar ad32025166c382caf13e07c7e3b0863eb89e1adb). L1 is 450 ordered exact full source JSON dictionaries plus original candidate cue IDs and status in l1_records.jsonl; preserves all original IDs, dates, relationships and source fields. L2-BC is bc01_lexical_256.npy: 450x256 float32 arrays from the **existing BC01 signed BLAKE2b unigram/bigram hashing**, not a semantic encoder. L2-BC has **no training fit** (fit_event_ids=[]); it can be safely reused on each episode split. FlyWire TF-IDF fits an entirely different 8,192-feature (up to) word-bigram vocabulary and IDF strictly on *train episodes per seed*, so cannot share that L2 without an explicitly split-pinned cache. Existing FlyWire topology, synapse counts and neural weights are unaltered.
+## What each architecture shares
 
-manifest.json includes schema version, immutable original blobs, canonical source commit, source field mapping version, encoder algorithm hash, source-ordered IDs, SHA256 of both artifacts, encoder name and dim, model revision null, fit scope, feature normalization, dtype and random seed. The loader verifies checksums, ordering, annotations, IDs, dimensions, finite values and recomputes cached lexical features; it fails closed rather than silently using a mismatched cache. Consumer implementations separately compare original pinned source or original encoder to the loaded artifact. Hashes detect corruption, but not a malicious party replacing an entire file plus unauthenticated manifest; pin repository revisions for untrusted distribution.
+- L0: unchanged reconstructed fictional original, 450 events/27 episodes, source Git blob 718dcc2d5ba4feccdef1690d447edfcebaa9bfb5. Sidecar cue provenance remains separately pinned and unreviewed; no artificial lived claims.
+- L1: existing artifacts/shared_memory/v1/manifest.json and pretorius_l1_v1.jsonl.gz. A deterministic, 17-field projection of original source records including event ID, episode, narrative, date, participants and relationships. Original source information is not regenerated or rewritten.
+- L2-BC: a **separate** bc01_sensory_256.npy float32 450×256 cache, plus bc01_l2_manifest.json with source and L1 SHA256 linkage, ordered record IDs, encoder algorithm hash, stateless fit_event_ids=[], vector shape, dtype, normalization and source provenance. The exact existing BioCircuit ExperienceEncoder hashes lowercased unigrams + adjacent bigrams using BLAKE2b, signed index modulo 256. Vectors are lexical, NOT learned semantics. The L1 manifest and its already-published compressed payload are not altered.
+- L2-FlyWire: scikit-learn's fitted word/bigram TF-IDF (up to 8192 dimensions) still fits **independently on each episode training split**. It is not compatible with BC01 hashed vectors, nor is it safe to share train-fitted IDF across holdouts. The existing FlyWire --shared-l1 and --shared-manifest flags consume the original L1, so no second source parser is needed.
+- L3: weights, plasticity, recurrent compartments, real FlyWire CSR v783 connectivity and biological synapse counts remain architectural concerns. No synaptic weights are transplanted or rewritten.
 
-## Reproduce
+## Reproduce offline
 
-    python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2'
-    python scripts/export_shared_memory.py --output results/shared_memory/v1
-    python scripts/export_shared_memory.py --output results/shared_memory/v1 --validate-only
-    python scripts/run_associative_memory.py --synthetic-test --query "millstream map" --shared-dir results/shared_memory/v1
-    python scripts/run_associative_memory.py --synthetic-test --benchmark --seeds 31 --shared-dir results/shared_memory/v1 --output results/shared_memory/associative.json
-    python -m unittest discover -s tests -p 'test_shared_memory.py' -v
+```sh
+python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2'
+python scripts/export_shared_memory.py --output results/shared_memory/v1
+python scripts/export_shared_memory.py --output results/shared_memory/v1 --validate-only
+python scripts/run_associative_memory.py --synthetic-test --query "millstream map" --shared-l1 results/shared_memory/v1/pretorius_l1_v1.jsonl.gz --shared-manifest results/shared_memory/v1/manifest.json
+python scripts/benchmark_shared_memory.py --bundle results/shared_memory/v1 --output results/shared_memory/MEASURED.json
+python -m unittest discover -s tests -p test_shared_features_bc01.py -v
+```
 
-The optional --shared-dir path changes only the input-record loader: all original BM25/TF-IDF, graph and held-out episode operations remain the same. Demonstration topology is **synthetic**, not FlyWire. BioCircuit companion CLI also supports --shared-dir and replaces source-side hashed training exposures with exact cached vectors while leaving query encoding and recurrent circuit architecture unchanged.
+For reuse of the already-published L1, point the exporter at artifacts/shared_memory/v1 instead of results/shared_memory/v1; its L1 manifest and archive will be validated but not regenerated or changed. BioCircuit's --shared-dir option consumes the exact same four files and validates every cached sensory row against its unchanged ExperienceEncoder. Live query vectors remain generated by that existing encoder; cached vectors only replace repeated source exposure preprocessing.
 
-Shared processing alone cannot establish semantic recall, entailment or superiority of a neural architecture. Existing test prompts and BC decision cards are exploratory and not an independent gold benchmark. Keep per-architecture weights, checkpoint and biological synapse arrays separate. GitHub Actions retains actual exported L1/L2 and measurement artifacts for reproducibility.
+Tests compare every event ID/order and original narrative, BC hashed feature bytes, three-seed episode withholding, TF-IDF/graph scores and graph synapse arrays under original and shared L1, and bad encoder/split/shard fingerprints. CI records source cache bytes, CPU loading, preprocessing and retrieval times. Cache verification intentionally re-hashes source data for reliability; do not claim unconditional speedup from timings. Native pretrained semantic embeddings have NOT been produced or validated. No independent human-reviewed benchmark is added by this interface.
