@@ -1,0 +1,53 @@
+name: FlyWire v783 acquisition probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check published Zenodo metadata
+        run: |
+          python - <<'PY'
+          import json
+          import urllib.request
+          from pathlib import Path
+
+          url = "https://zenodo.org/api/records/10676866"
+          req = urllib.request.Request(url, headers={"User-Agent": "Pretorius-Connectome/0.1"})
+          with urllib.request.urlopen(req, timeout=60) as response:
+              record = json.load(response)
+          expected = {
+              "proofread_root_ids_783.npy",
+              "proofread_connections_783.feather",
+          }
+          matches = {}
+          for file in record.get("files", []):
+              name = file.get("key", "").split("/")[-1]
+              if name in expected:
+                  matches[name] = {
+                      "size": file.get("size"),
+                      "checksum": file.get("checksum"),
+                      "links": file.get("links"),
+                  }
+          if set(matches) != expected:
+              raise SystemExit(f"Missing expected files: {sorted(expected - set(matches))}")
+          print(json.dumps(matches, indent=2))
+          Path("flywire-v783-metadata.json").write_text(
+              json.dumps({"record": url, "files": matches}, indent=2) + "\n"
+          )
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: flywire-v783-metadata
+          path: flywire-v783-metadata.json
+          retention-days: 30
