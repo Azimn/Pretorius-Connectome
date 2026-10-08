@@ -1,0 +1,39 @@
+{
+  "schema": "pretorius-shared-l2-measurements-v1",
+  "measurement_date": "2026-10-08",
+  "source_repo": "Azimn/Pretorius-Connectome",
+  "source_l0_blob": "718dcc2d5ba4feccdef1690d447edfcebaa9bfb5",
+  "source_l1": "artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz",
+  "source_implementation_commit": "06bece269459a43d9e4ed09e5baabbacbd2082f7",
+  "ci_run": "https://github.com/Azimn/Pretorius-Connectome/actions/runs/37839758698",
+  "tests": {
+    "l1_tests_passed": 2,
+    "l2_tests_passed": 6,
+    "cached_vs_uncached_synthetic_associative_results_exact": true,
+    "real_v783_topology_measured_in_this_run": false
+  },
+  "execution": {
+    "cpu": "GitHub Actions ubuntu-latest Python 3.11",
+    "encoder": "scikit-learn word/bigram TF-IDF float64 L2, max 8192",
+    "records": 450,
+    "runs": [
+      {
+        "seed": 31,
+        "fit_records": 317,
+        "vector_dim": 8192,
+        "build_seconds": 0.846379,
+        "build_verified_reload_seconds": 1.131895,
+        "tracemalloc_peak_bytes": 9986708
+      },
+      {
+        "seed": 37,
+        "fit_records": 316,
+        "vector_dim": 8192,
+        "build_seconds": 0.821823,
+        "build_verified_reload_seconds": 1.10346,
+        "tracemalloc_peak_bytes": 10007486
+      }
+    ]
+  },
+  "limits": "Timing excludes installation, graph inference and external FlyWire CSR. No end-to-end speedup or semantic improvement claim."
+}
