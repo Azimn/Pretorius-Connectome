@@ -74,6 +74,16 @@ def verify(report):
                     or a["train_narrative_count"] != trial["train_events"]
                     or a["gain"] != 2.0 or a["activity_cap"] != 256):
                 raise ValueError("Learning provenance does not match protocol")
+        null = trial.get("rewired_topology", {})
+        if (null.get("null_method") != "existing-edge target swaps without new duplicate support"
+                or null.get("original_unique_edges") != null.get("rewired_unique_edges")
+                or null.get("original_unique_edges") != trial["real_learning"]["edge_parameters"]
+                or null.get("rewired_unique_edges") != trial["rewired_learning"]["edge_parameters"]
+                or not null.get("target_stub_degree_preserved")
+                or not null.get("source_degree_and_support_preserved")
+                or not null.get("synapse_counts_preserved")
+                or null.get("weighted_in_degree_preserved", False)):
+            raise ValueError("Biological vs rewired graph effective capacity mismatched")
         expected_ids = None
         for method in REQUIRED:
             item = trial["methods"][method]
@@ -183,7 +193,7 @@ def make_report(report, raw_name, checksum, run_id):
         "uses lexical input hashing, a train-only coactivity heuristic and a target-stub "
         "permutation, not experimentally established anatomical cell-class assignments. "
         "Accepted lexical retrieval is not entailment, and learned numerical weights are "
-        "not evidence of experienced memories, consciousness or a stable Pretorius identity.",
+        "not evidence of experienced memories, consciousness or a stable Pretorius identity. The new matched null preserves unique edge support and stub degrees, but does not preserve weighted in-degree or biological motifs.",
         "",
         "A gain here would require independent human-reviewed queries, anatomical cell-type "
         "aligned input and stronger degree/class-preserving controls before claiming "
