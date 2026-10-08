@@ -27,6 +27,9 @@ SCHEMA = "pretorius.shared-features.v1"
 L1_DIR = ROOT / "artifacts/shared_memory/v1"
 L1_ARCHIVE = L1_DIR / "pretorius_l1_v1.jsonl.gz"
 L1_MANIFEST = L1_DIR / "manifest.json"
+# Immutable published L1 v1 Git blobs, independent of mutable L2 manifests.
+L1_ARCHIVE_BLOB = "5381c3c22ab224bb6ebf9f037489c1b9be564888"
+L1_MANIFEST_BLOB = "7a8d05b46b025b1bfe44339b3edbee040df22394"
 ENCODER = "sklearn-tfidf-word12-v1"
 NORMALIZATION = "canonical-pretorius-autobiography-l1/1"
 SHARDS = ("records.jsonl", "vocabulary.json", "idf.npy", "docs.npz")
@@ -44,12 +47,19 @@ def canon_json(data) -> str:
     return json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
 
 
+def _pinned_l1_records() -> list[dict]:
+    if (git_blob_sha(L1_ARCHIVE.read_bytes()) != L1_ARCHIVE_BLOB
+            or git_blob_sha(L1_MANIFEST.read_bytes()) != L1_MANIFEST_BLOB):
+        raise ValueError("Canonical L1 artifact differs from published Git blob")
+    return read_l1(L1_ARCHIVE, L1_MANIFEST)
+
+
 def _source_records(events_path: Path, sidecars_path: Path) -> list[dict]:
     """Consume the already committed immutable L1 artifact, never rebuild L1."""
     if (git_blob_sha(events_path.read_bytes()) != SOURCE_BLOB
             or git_blob_sha(sidecars_path.read_bytes()) != SIDECAR_BLOB):
         raise ValueError("Unpinned source or sidecar bytes")
-    rows = read_l1(L1_ARCHIVE, L1_MANIFEST)
+    rows = _pinned_l1_records()
     original = [json.loads(s) for s in events_path.read_text(encoding="utf-8").splitlines()]
     if len(rows) != 450 or any(
         row["event_id"] != original[i]["event_id"]
@@ -167,7 +177,7 @@ class SharedCache:
             raise ValueError("L1 records or order invalid")
         # A bundle's own checksums are not a trusted source of truth. Compare
         # every projected field to the separately pinned, immutable L1 bytes.
-        canonical_rows = read_l1(L1_ARCHIVE, L1_MANIFEST)
+        canonical_rows = _pinned_l1_records()
         if list(self.records) != canonical_rows:
             raise ValueError("Shared cache records differ from canonical pinned L1")
 
