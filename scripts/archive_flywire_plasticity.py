@@ -11,7 +11,6 @@ import argparse
 from hashlib import sha256
 import json
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = (
@@ -45,6 +44,8 @@ DISPLAY = {
 def verify(report):
     if (report.get("study") != "FlyWire sparse trace plasticity Pilot 01 (exploratory)"
             or report.get("source_events") != 450
+            or report.get("shared_l2_schema") != "pretorius.shared-features.v2"
+            or report.get("shared_l2_encoder") != "sklearn-tfidf-word12-rankstable-v2"
             or "flywire_v783_mb_csr.npz" not in report.get("topology", "")
             or report.get("seeds") != [31, 37, 43]
             or len(report.get("trials", [])) != 3
@@ -53,7 +54,9 @@ def verify(report):
             or "NOT blind" not in report.get("challenge_status", "")):
         raise ValueError("Missing original biological result/provenance")
     for trial, seed in zip(report["trials"], (31, 37, 43)):
-        if trial["seed"] != seed or set(trial["methods"]) != set(REQUIRED):
+        if (trial["seed"] != seed or set(trial["methods"]) != set(REQUIRED)
+                or trial.get("l2_encoder") != "sklearn-tfidf-word12-rankstable-v2"
+                or not trial.get("l2_shard_sha256")):
             raise ValueError("Wrong seed, missing treatment or mismatched methods")
         episodes = [set(trial[x]) for x in (
             "training_episode_ids", "validation_episode_ids", "test_episode_ids")]
@@ -123,7 +126,7 @@ def make_report(report, raw_name, checksum, run_id):
         "",
         f"Dataset: {report['source_events']} frozen reconstructed Pretorius memories across 27 episodes.",
         f"Anatomy: verified v783 MB-selected topology, {report['neuron_count']} nodes, {report['raw_connection_entries']} aggregate adjacency entries.",
-        "Training: identical source-pinned split-specific TF-IDF, gains 2.0, 256 cap, seeds 31, 37, 43.",
+        "Training: cross-process deterministic source-pinned shared TF-IDF L2 v2, gains 2.0, 256 cap, seeds 31, 37, 43. Historical uncached v1 is a separate representation, not an equivalent encoder.",
         "Biological synapse counts and original CSR edge targets: unchanged in both trained conditions.",
         "",
         "## Pooled descriptive observations (cases reused between seeds)",
