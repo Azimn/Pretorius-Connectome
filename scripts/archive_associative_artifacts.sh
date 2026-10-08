@@ -13,7 +13,10 @@ archive_file() {
   local directory="$workspace/$run/$artifact"
   mkdir -p "$directory"
   echo "::group::Archive $artifact ($run) -> $destination"
-  gh run download "$run" --repo "$GITHUB_REPOSITORY" --name "$artifact" --dir "$directory"
+  # Multiple source JSON files can share one artifact ZIP; reuse one extraction.
+  if ! find "$directory" -type f -print -quit | grep -q .; then
+    gh run download "$run" --repo "$GITHUB_REPOSITORY" --name "$artifact" --dir "$directory"
+  fi
   mapfile -t files < <(find "$directory" -type f -name "$filename" -print)
   if [[ "${#files[@]}" -ne 1 ]]; then
     printf 'Expected one %s file, got %s\n' "$filename" "${#files[@]}" >&2
