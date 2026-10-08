@@ -1,0 +1,56 @@
+name: Archive FlyWire plasticity evidence
+
+on:
+  workflow_run:
+    workflows: ['FlyWire train-only plasticity Pilot 01']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  archive-real-main-run:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download only verified main-branch source workflow artifact
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: flywire-mb-plasticity-pilot01-raw
+          path: captured
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Validate provenance and archive full original cases, report, index and handoff
+        run: |
+          set -euo pipefail
+          FILE="$(find captured -name flywire-mb-plasticity-pilot01-full.json -type f | head -n 1)"
+          test -n "$FILE" && test -f "$FILE"
+          python scripts/archive_flywire_plasticity.py --input "$FILE" --run-id "$SOURCE_RUN_ID"
+      - name: Publish permanent data, if not already archived
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/associative/runs/ results/associative/FLYWIRE_MB_PLASTICITY_PILOT01_RESULTS.md results/associative/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "No archival changes; verified run already recorded"
+            exit 0
+          fi
+          git commit -m "Archive real FlyWire MB trace-plasticity Pilot 01 run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
