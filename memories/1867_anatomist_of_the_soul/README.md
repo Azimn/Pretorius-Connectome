@@ -8,6 +8,9 @@ These are **fictional, alternate-history period artifacts**, not verified histor
 
 ## Committed source artifacts
 
+- [Pretorius's complete 1867 scientific memoir](Pretorius_1867_On_the_Seat_of_the_Soul.md): 4,200-word period-informed English reconstruction, with three observational series, cautious conclusions, and contemporary scientific authorities.
+- [Research and continuity dossier](Pretorius_1867_Research_and_Continuity_Dossier.md): real 1867-era publication references, explicitly fictional observations, chronology, and integration constraints.
+
 - [`Pretorius_Jolivet_1867_French_Original.txt`](Pretorius_Jolivet_1867_French_Original.txt): full original French newspaper feature attributed to Jolivet, 28 August 1867, *À qui appartient une âme ?*.
 - [`Pretorius_Jolivet_1867_English_Translation_and_Notes.md`](Pretorius_Jolivet_1867_English_Translation_and_Notes.md): English translation and external continuity/historical editorial notes transcribed from the bilingual Word edition.
 
@@ -21,6 +24,6 @@ Alcide Jolivet is a literary crossover from Jules Verne's *Michel Strogoff* (pub
 
 ## Next stages
 
-The fictional physiological article cited by Jolivet is still to be drafted and will be added here when available. A later stage can generate distinct first-person scenes or memory records, with unique identifiers, temporal anchors, conflicting interpretations, recall cues and provenance metadata. Integrate those into `memories/current/` only after continuity review and deduplication against the currently authoritative corpus.
+Pretorius's fictional physiological article has now been drafted and committed in English, with its separate research dossier. A later stage can generate distinct first-person scenes or memory records, with unique identifiers, temporal anchors, conflicting interpretations, recall cues and provenance metadata. Integrate those into `memories/current/` only after continuity review and deduplication against the currently authoritative corpus.
 
 See `../RECONSTRUCTION_POLICY.md` and `../README.md` for the repo's established memory/integration rules.
