@@ -1,0 +1,66 @@
+name: Acquire FlyWire v783 data
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download and verify official dataset
+        run: python scripts/download_flywire_v783.py --destination data/flywire_v783
+      - name: Inspect Feather schema and neuron IDs
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'pyarrow>=17,<24'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import numpy as np
+          import pyarrow.feather as feather
+
+          root = Path("data/flywire_v783")
+          ids = np.load(root / "proofread_root_ids_783.npy", allow_pickle=False)
+          table = feather.read_table(root / "proofread_connections_783.feather", memory_map=True)
+          required = {"pre_pt_root_id", "post_pt_root_id", "syn_count"}
+          missing = required - set(table.column_names)
+          if missing:
+              raise ValueError(f"Missing expected columns: {sorted(missing)}")
+          report = {
+              "release": "FlyWire v783",
+              "source": "https://doi.org/10.5281/zenodo.10676866",
+              "proofread_neuron_ids": int(ids.size),
+              "connection_rows": int(table.num_rows),
+              "columns": table.column_names,
+              "input_file_bytes": {
+                  p.name: p.stat().st_size for p in root.iterdir() if p.is_file()
+              },
+              "verification": "download script checked publisher MD5 and file size",
+          }
+          Path("flywire-v783-acquisition-report.json").write_text(
+              json.dumps(report, indent=2) + "\n"
+          )
+          print(json.dumps(report, indent=2))
+          PY
+      - name: Upload inspection report
+        uses: actions/upload-artifact@v4
+        with:
+          name: flywire-v783-acquisition-report
+          path: flywire-v783-acquisition-report.json
+          retention-days: 30
+      - name: Upload verified original inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: flywire-v783-original-inputs
+          path: |
+            data/flywire_v783/proofread_root_ids_783.npy
+            data/flywire_v783/proofread_connections_783.feather
+          compression-level: 0
+          retention-days: 1
