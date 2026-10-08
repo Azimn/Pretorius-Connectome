@@ -19,6 +19,10 @@ on:
       - '.github/workflows/vector-fly-cell-class-anchors.yml'
   workflow_dispatch:
 
+concurrency:
+  group: vector-fly-${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
