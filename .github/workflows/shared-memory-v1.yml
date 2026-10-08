@@ -4,19 +4,19 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/pretorius_connectome/shared_memory.py'
+      - 'src/pretorius_connectome/shared_features_bc01.py'
       - 'scripts/export_shared_memory.py'
       - 'scripts/benchmark_shared_memory.py'
-      - 'scripts/run_associative_memory.py'
-      - 'tests/test_shared_memory.py'
+      - 'scripts/export_shared_memory.py'
+      - 'tests/test_shared_features_bc01.py'
       - 'docs/SHARED_MEMORY_INTERFACE_V1.md'
       - '.github/workflows/shared-memory-v1.yml'
   pull_request:
     paths:
-      - 'src/pretorius_connectome/shared_memory.py'
+      - 'src/pretorius_connectome/shared_features_bc01.py'
       - 'scripts/export_shared_memory.py'
-      - 'scripts/run_associative_memory.py'
-      - 'tests/test_shared_memory.py'
+      - 'scripts/export_shared_memory.py'
+      - 'tests/test_shared_features_bc01.py'
       - 'docs/SHARED_MEMORY_INTERFACE_V1.md'
       - '.github/workflows/shared-memory-v1.yml'
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
         run: python scripts/export_shared_memory.py --output results/shared_memory/v1 --validate-only
       - name: Test synthetic shared-path execution
         run: |
-          python scripts/run_associative_memory.py --synthetic-test --query "laboratory maps and specimens" --shared-dir results/shared_memory/v1 --output results/shared_memory/shared_query.json
+          python scripts/run_associative_memory.py --synthetic-test --query "laboratory maps and specimens" --shared-l1 results/shared_memory/v1/pretorius_l1_v1.jsonl.gz --shared-manifest results/shared_memory/v1/manifest.json --output results/shared_memory/shared_query.json
           python scripts/run_associative_memory.py --synthetic-test --query "laboratory maps and specimens" --output results/shared_memory/original_query.json
       - name: Record CPU cost, memory size and retrieval parity
         run: python scripts/benchmark_shared_memory.py --bundle results/shared_memory/v1 --output results/shared_memory/MEASURED.json
