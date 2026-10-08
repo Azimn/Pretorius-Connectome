@@ -1,0 +1,22 @@
+name: Archive completed associative experiments
+
+on:
+  push:
+    paths:
+      - '.github/workflows/associative-archive-historical.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preserve completed experiment artifacts as permanent GitHub files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/archive_associative_artifacts.sh
