@@ -116,3 +116,93 @@ def apply_trace_overlay(engine: AssociativeMemory, *, gain: float = 2.0,
     engine.propagator = trained
     engine.graph_docs = engine._graph(engine.docs)
     return audit
+
+
+def support_matched_null(topology, *, seed: int, attempts_per_edge: int = 3):
+    """Rewire existing directed edges without changing effective graph capacity.
+
+    Two distinct-source target stubs are exchanged only when neither new edge
+    already exists, the old endpoints have multiplicity one, and neither swap
+    creates a new self-loop. Existing parallel edges, if any, stay untouched.
+    This preserves exactly: per-source raw outdegree and unique target count,
+    global target indegree stub counts, CSR edge count after deduplication,
+    row-wise synapse-count multisets and the original root-ID inventory.
+
+    Weighted target indegrees, motifs and neurotransmitter classes are NOT
+    preserved. This is a support/degree-matched computational null.
+    """
+    from collections import Counter
+
+    if attempts_per_edge < 1:
+        raise ValueError("attempts_per_edge must be positive")
+    original = topology.indices
+    pointers = topology.indptr
+    m = len(original)
+    n = len(topology.root_ids)
+    edges = original.copy()
+    sources = np.repeat(np.arange(n, dtype=np.int32), np.diff(pointers))
+    rows = [
+        Counter(map(int, edges[int(pointers[i]):int(pointers[i + 1])]))
+        for i in range(n)
+    ]
+    rng = np.random.default_rng(seed)
+    attempts = int(m * attempts_per_edge)
+    candidates = rng.integers(0, m, size=(attempts, 2), dtype=np.int32)
+    accepted = 0
+    for e0, e1 in candidates:
+        u, v = int(e0), int(e1)
+        if u == v:
+            continue
+        source_u, source_v = int(sources[u]), int(sources[v])
+        if source_u == source_v:
+            continue
+        target_u, target_v = int(edges[u]), int(edges[v])
+        if (target_u == target_v or target_v == source_u
+                or target_u == source_v):
+            continue
+        row_u, row_v = rows[source_u], rows[source_v]
+        if (row_u[target_u] != 1 or row_v[target_v] != 1
+                or target_v in row_u or target_u in row_v):
+            continue
+        del row_u[target_u]
+        del row_v[target_v]
+        row_u[target_v] = 1
+        row_v[target_u] = 1
+        edges[u], edges[v] = target_v, target_u
+        accepted += 1
+
+    # The old permutation stub null collapsed many CSR duplicates during
+    # transition construction. Prove the replacement never does so.
+    original_support = sum(
+        len(set(map(int, original[int(pointers[i]):int(pointers[i + 1])])))
+        for i in range(n)
+    )
+    changed_support = sum(len(row) for row in rows)
+    if (changed_support != original_support
+            or not np.array_equal(np.sort(original), np.sort(edges))
+            or not np.array_equal(topology.indices, original)
+            or accepted < max(1, m // 10)):
+        raise AssertionError("degree/capacity-matched rewiring invariant failed")
+
+    from pretorius_connectome.associative import Topology
+    rewired = Topology(
+        topology.root_ids.copy(), topology.indptr.copy(), edges,
+        topology.synapse_counts.copy(),
+        "unique-support and in/out-stub-preserving edge-swap null of "
+        + topology.provenance,
+    )
+    return rewired, {
+        "null_method": "existing-edge target swaps without new duplicate support",
+        "attempted_swaps": attempts,
+        "accepted_swaps": accepted,
+        "original_aggregate_edges": m,
+        "original_unique_edges": original_support,
+        "rewired_aggregate_edges": len(edges),
+        "rewired_unique_edges": changed_support,
+        "target_stub_degree_preserved": True,
+        "source_degree_and_support_preserved": True,
+        "synapse_counts_preserved": True,
+        "weight_in_degree_preserved": False,
+        "synapse_type_preserved": False,
+        "seed": int(seed),
+    }
