@@ -5,6 +5,7 @@ on:
     paths:
       - 'src/pretorius_connectome/plasticity.py'
       - 'scripts/run_flywire_plasticity_pilot01.py'
+      - 'scripts/verify_flywire_plasticity_cache_parity.py'
       - 'tests/test_flywire_plasticity.py'
       - '.github/workflows/flywire-plasticity-pilot-01.yml'
       - 'docs/FLYWIRE_PLASTICITY_PILOT_01.md'
@@ -45,7 +46,7 @@ jobs:
         run: |
           python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --output results/associative/plasticity-synthetic-uncached.json
           python scripts/run_flywire_plasticity_pilot01.py --synthetic-test --seeds 31 --shared-cache-root data/derived/plasticity-l2 --output results/associative/plasticity-synthetic-cached.json
-          python -c 'import json; a=json.load(open("results/associative/plasticity-synthetic-uncached.json")); b=json.load(open("results/associative/plasticity-synthetic-cached.json")); assert a["trials"] == b["trials"], "L2 changed training, learning or case-level retrieval"; print("PASS: exact shared L2 and original training parity")'
+          python scripts/verify_flywire_plasticity_cache_parity.py results/associative/plasticity-synthetic-uncached.json results/associative/plasticity-synthetic-cached.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
