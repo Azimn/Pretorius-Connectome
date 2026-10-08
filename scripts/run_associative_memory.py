@@ -19,6 +19,7 @@ from pretorius_connectome.associative import (
     AssociativeMemory, Topology, summarize_challenge, paired_case_diagnostics,
 )
 from pretorius_connectome.imprinting import load_v12
+from pretorius_connectome.shared_memory import load_bundle, bundle_to_memories
 from pretorius_connectome.pilot02 import episode_split, calibrate
 from pretorius_connectome.pilot04 import load_challenge
 from scripts.run_imprinting_pilot import EVENTS, SIDECARS, verify_sources
@@ -27,11 +28,19 @@ from scripts.run_imprinting_pilot05 import _decisions
 from scripts.run_imprinting_pilot import git_blob_sha
 
 
-def _locked_inputs():
+def _locked_inputs(shared_dir=None):
     verify_sources(EVENTS, SIDECARS)
     if git_blob_sha(CHALLENGE) != CHALLENGE_BLOB:
         raise ValueError("published post-hoc challenge checksum changed")
-    memories = load_v12(EVENTS, SIDECARS)
+    originals = load_v12(EVENTS, SIDECARS)
+    if shared_dir is None:
+        memories = originals
+    else:
+        _, rows, _ = load_bundle(Path(shared_dir))
+        memories = bundle_to_memories(rows)
+        if ([(m.event_id, m.episode_id, m.memory_text) for m in originals] !=
+            [(m.event_id, m.episode_id, m.memory_text) for m in memories]):
+            raise ValueError('shared L1 differs from frozen original corpus')
     cases = load_challenge(CHALLENGE, memories)
     return memories, cases
 
@@ -49,8 +58,9 @@ def _threshold(engine, method, positives, negatives):
 
 
 def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
-              diffusion=0.4, hybrid_fraction=0.25) -> dict:
-    memories, cases = _locked_inputs()
+              diffusion=0.4, hybrid_fraction=0.25,
+              shared_dir=None) -> dict:
+    memories, cases = _locked_inputs(shared_dir)
     decisions = _decisions()
     trials = []
     for seed in seeds:
@@ -111,6 +121,7 @@ def benchmark(topology, *, seeds=(31,), steps=2, activity_cap=256,
         "neuron_count": len(topology.root_ids),
         "raw_connection_entries": len(topology.indices),
         "source_events": len(memories),
+        "input_artifact": "shared-L1-validated" if shared_dir else "original-archive",
         "source_challenge_cases": len(cases),
         "challenge_status": (
             "POST-HOC REUSED assistant-authored unreviewed Pilot04. "
@@ -157,6 +168,8 @@ def main():
     parser.add_argument("--diffusion", type=float, default=0.4)
     parser.add_argument("--hybrid-fraction", type=float, default=0.25)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--shared-dir", type=Path,
+                        help="validated L1/BC01 L2 artifact from canonical exporter")
     args = parser.parse_args()
     topology = (Topology.synthetic() if args.synthetic_test
                 else Topology.read(args.topology))
@@ -168,9 +181,10 @@ def main():
             topology, seeds=seeds, steps=args.steps,
             activity_cap=args.activity_cap,
             diffusion=args.diffusion, hybrid_fraction=args.hybrid_fraction,
+            shared_dir=args.shared_dir,
         )
     else:
-        records, _ = _locked_inputs()
+        records, _ = _locked_inputs(args.shared_dir)
         engine = AssociativeMemory(
             records, topology, steps=args.steps,
             activity_cap=args.activity_cap, diffusion=args.diffusion,
@@ -178,6 +192,7 @@ def main():
         )
         result = {
             "query": args.query,
+            "input_artifact": "shared-L1-validated" if args.shared_dir else "original-archive",
             "topology": topology.provenance,
             "retrieval_mode": args.mode,
             "provenance_status": "source excerpt only, no truth verification",
