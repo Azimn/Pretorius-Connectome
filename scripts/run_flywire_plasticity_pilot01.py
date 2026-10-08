@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT))
 from pretorius_connectome.associative import (
     AssociativeMemory, Topology, paired_case_diagnostics, summarize_challenge,
 )
-from pretorius_connectome.plasticity import apply_trace_overlay
+from pretorius_connectome.plasticity import apply_trace_overlay, support_matched_null
 from pretorius_connectome.pilot02 import episode_split
 from pretorius_connectome.shared_memory_l2 import SharedCache, SCHEMA, ENCODER
 from scripts.run_associative_memory import _locked_inputs, _threshold
@@ -53,8 +53,11 @@ def benchmark(topology: Topology, *, seeds=(31, 37, 43),
             cache.require_training_set([m.event_id for m in train])
 
         real = AssociativeMemory(train, topology, shared_cache=cache)
+        null_topology, null_topology_audit = support_matched_null(
+            topology, seed=seed + 900, attempts_per_edge=3
+        )
         rewired = AssociativeMemory(
-            train, topology.permuted_null(seed + 900), shared_cache=cache
+            train, null_topology, shared_cache=cache
         )
         train_ids = {m.event_id for m in train}
         absent_ids = {m.event_id for m in test}
@@ -115,6 +118,7 @@ def benchmark(topology: Topology, *, seeds=(31, 37, 43),
             "test_episode_ids": sorted({m.episode_id for m in test}),
             "real_learning": real_audit,
             "rewired_learning": null_audit,
+            "rewired_topology": null_topology_audit,
             "methods": results,
             "paired_diagnostics": {
                 name: paired_case_diagnostics(results[control], results[treatment])
@@ -138,6 +142,11 @@ def benchmark(topology: Topology, *, seeds=(31, 37, 43),
         "hypothesis": ("real topology plastic > rewired topology plastic for "
                        "correct-and-accepted positives, without increased "
                        "contradiction and absent-event false acceptance"),
+        "null_semantics": ("3 attempts per original edge for no-duplicate directed "
+                           "target swaps; preserves exact pre/post stub degrees, "
+                           "effective unique CSR connection count, outgoing contact "
+                           "weight multisets. Weighted target indegree and motifs "
+                           "are not preserved."),
         "plasticity_semantics": ("Only reweights original directed edges from "
                                  "train-only lexical pre/post coactivation; "
                                  "not STDP, neuromodulation or learned semantics."),
