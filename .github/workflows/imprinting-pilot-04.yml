@@ -1,0 +1,45 @@
+name: Imprinting pilot 04
+
+on:
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/pilot04.py'
+      - 'scripts/run_imprinting_pilot04.py'
+      - 'tests/test_imprinting_pilot04.py'
+      - 'experiments/pilot04/challenge_v1.jsonl'
+      - 'docs/IMPRINTING_PILOT_04.md'
+      - 'results/imprinting/PILOT04_RESULTS.md'
+      - 'README.md'
+      - '.github/workflows/imprinting-pilot-04.yml'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  pilot04:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing test dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'pyarrow>=17,<24'
+      - name: Verify immutable memory corpus
+        run: python scripts/validate_autobiographical_corpus_v12.py
+      - name: Full regression and challenge-lock tests
+        run: python -m unittest discover -s tests -v
+      - name: Execute frozen Pilot 04 semantic challenge
+        run: python scripts/run_imprinting_pilot04.py --seeds 31,37,43 --output results/imprinting/pilot04.json > /dev/null
+      - name: Preserve per-case evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pilot04-semantic-results
+          path: results/imprinting/pilot04.json
+          if-no-files-found: warn
