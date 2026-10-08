@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Azimn/Pretorius-Connectome/blob/main/memories/docs/MEMORY_ASSOCIATION_SIDECAR_SCHEMA.json",
+  "title": "Pretorius autobiographical sensory and association sidecar v0.1",
+  "description": "Optional editorial annotations keyed to original stable event_id; no narrative overwrite. A valid sidecar is not proof of neural encoding.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "annotation_status"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^E[0-9]{2}-[0-9]{3}$"
+    },
+    "annotation_status": {
+      "enum": [
+        "unreviewed_candidate",
+        "editorially_reviewed",
+        "uncertain"
+      ]
+    },
+    "experience_mode": {
+      "enum": [
+        "waking",
+        "dream",
+        "reverie",
+        "reported_by_other",
+        "reading",
+        "mixed",
+        "unknown"
+      ]
+    },
+    "sensory_percepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "modality",
+          "description",
+          "basis"
+        ],
+        "properties": {
+          "modality": {
+            "enum": [
+              "vision",
+              "hearing",
+              "smell",
+              "taste",
+              "touch",
+              "temperature",
+              "pain",
+              "proprioception",
+              "interoception",
+              "other"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "basis": {
+            "enum": [
+              "explicit_first_person",
+              "direct_inference",
+              "reported",
+              "editorial_hypothesis"
+            ]
+          },
+          "evidence_excerpt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "intensity_ordinal_0_3": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 3
+          },
+          "pleasantness_ordinal_minus2_2": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -2,
+            "maximum": 2
+          }
+        }
+      }
+    },
+    "body_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sleep_state": {
+          "enum": [
+            "awake",
+            "sleeping",
+            "waking",
+            "unknown"
+          ]
+        },
+        "fatigue_ordinal_0_3": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 3
+        },
+        "hunger_ordinal_0_3": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 3
+        },
+        "pain_ordinal_0_3": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 3
+        },
+        "other_observed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "experiential_salience_ordinal_0_3": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 3
+    },
+    "dominant_affect_label": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affect_evidence_basis": {
+      "enum": [
+        "directly_expressed",
+        "behaviorally_inferred",
+        "unknown"
+      ]
+    },
+    "expectation_violation": {
+      "enum": [
+        "confirmed",
+        "violated",
+        "mixed",
+        "no_explicit_expectation",
+        "unknown"
+      ]
+    },
+    "cue_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^cue:[a-z0-9_-]+$"
+      }
+    },
+    "cue_surface_forms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "typed_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "target_event_id",
+          "relation"
+        ],
+        "properties": {
+          "target_event_id": {
+            "type": "string",
+            "pattern": "^E[0-9]{2}-[0-9]{3}$"
+          },
+          "relation": {
+            "enum": [
+              "triggered_recall",
+              "same_object",
+              "same_person",
+              "same_place",
+              "expectation_updated",
+              "contradiction",
+              "causal_consequence",
+              "habit_repetition",
+              "dream_echo",
+              "other"
+            ]
+          },
+          "editorial_confidence": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        }
+      }
+    },
+    "unresolved_conflict": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "annotator_notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
