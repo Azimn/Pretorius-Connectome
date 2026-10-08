@@ -11,7 +11,7 @@ from pathlib import Path
 
 import numpy as np
 from scipy import sparse
-from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer, CountVectorizer
 
 from pretorius_connectome.imprinting import load_v12
 from pretorius_connectome.pilot02 import episode_split
@@ -23,14 +23,14 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "memories/current/Pretorius_v12_450_Events_Complete.jsonl"
 SIDECARS = ROOT / "memories/annotations/v12_450_sidecars.jsonl"
 SIDECAR_BLOB = "ad32025166c382caf13e07c7e3b0863eb89e1adb"
-SCHEMA = "pretorius.shared-features.v1"
+SCHEMA = "pretorius.shared-features.v2"
 L1_DIR = ROOT / "artifacts/shared_memory/v1"
 L1_ARCHIVE = L1_DIR / "pretorius_l1_v1.jsonl.gz"
 L1_MANIFEST = L1_DIR / "manifest.json"
 # Immutable published L1 v1 Git blobs, independent of mutable L2 manifests.
 L1_ARCHIVE_BLOB = "5381c3c22ab224bb6ebf9f037489c1b9be564888"
 L1_MANIFEST_BLOB = "7a8d05b46b025b1bfe44339b3edbee040df22394"
-ENCODER = "sklearn-tfidf-word12-v1"
+ENCODER = "sklearn-tfidf-word12-rankstable-v2"
 NORMALIZATION = "canonical-pretorius-autobiography-l1/1"
 SHARDS = ("records.jsonl", "vocabulary.json", "idf.npy", "docs.npz")
 
@@ -74,9 +74,32 @@ def _source_records(events_path: Path, sidecars_path: Path) -> list[dict]:
 def _vectorizer(vocabulary=None):
     return TfidfVectorizer(
         stop_words="english", ngram_range=(1, 2),
-        max_features=8192, sublinear_tf=True, norm="l2",
+        max_features=None, sublinear_tf=True, norm="l2",
         dtype=np.float64, vocabulary=vocabulary,
     )
+
+
+def _fit_stable_vectorizer(texts: list[str]):
+    """Pin lexical tie-breaking to raw token frequency then lexical order.
+
+    The previous fitted max_features=8192 path produced different vocabularies
+    on fresh CI processes with identical source, packages and random seeds.
+    Count full training-only frequencies; explicitly break ties by term string.
+    This is a NEW v2 encoder, never mislabeled as the historical v1 baseline.
+    """
+    counter = CountVectorizer(stop_words="english", ngram_range=(1, 2),
+                              dtype=np.int64)
+    counts = counter.fit_transform(texts)
+    terms = counter.get_feature_names_out()
+    frequencies = np.asarray(counts.sum(axis=0)).ravel().astype(np.int64)
+    # Equal-frequency lexical terms choose lexicographically, independent
+    # of dict insertion order or quicksort's unspecified tie behavior.
+    selected = np.lexsort((terms, -frequencies))[:8192]
+    ranked_vocab = sorted(str(terms[index]) for index in selected)
+    vocabulary = {term: idx for idx, term in enumerate(ranked_vocab)}
+    fitted = _vectorizer(vocabulary=vocabulary)
+    fitted.fit(texts)
+    return fitted
 
 
 def _encoder_hash() -> str:
@@ -100,8 +123,7 @@ def build_cache(destination: str | Path, seed: int = 31,
     sets = [{group_map[k] for k in buckets[n]} for n in ("train", "validation", "test")]
     if not all(sets) or any(sets[a] & sets[b] for a in range(3) for b in range(a+1,3)):
         raise ValueError("Episode split contaminated")
-    encoder = _vectorizer()
-    encoder.fit([x.memory_text for x in train])  # IDF fit ONLY on train
+    encoder = _fit_stable_vectorizer([x.memory_text for x in train])  # train ONLY
     docs = encoder.transform([x["memory_text"] for x in rows]).tocsr()
     docs.sort_indices()
     vocab = {str(term): int(index) for term, index in encoder.vocabulary_.items()}
@@ -122,6 +144,7 @@ def build_cache(destination: str | Path, seed: int = 31,
         "record_ids_ordered": [x["event_id"] for x in rows],
         "normalization_version": NORMALIZATION,
         "encoder_name": ENCODER,
+        "feature_selection": "training-only frequency descending; lexical ascending tie break; 8192 cap",
         "encoder_code_hash": _encoder_hash(),
         "model_revision": None, "model_checksum": None,
         "fit_event_ids": buckets["train"],
@@ -156,6 +179,7 @@ class SharedCache:
                 or manifest.get("annotation_git_blob") != SIDECAR_BLOB
                 or manifest.get("normalization_version") != NORMALIZATION
                 or manifest.get("encoder_name") != ENCODER
+                or manifest.get("feature_selection") != "training-only frequency descending; lexical ascending tie break; 8192 cap"
                 or manifest.get("encoder_code_hash") != _encoder_hash()
                 or manifest.get("model_revision") is not None
                 or manifest.get("model_checksum") is not None
@@ -227,8 +251,9 @@ class SharedCache:
         # Verifying only self-consistent shard hashes allows a malicious cache
         # fitted on held-out narratives to pass all existing checks.
         canonical = {row["event_id"]: row["memory_text"] for row in canonical_rows}
-        trained = _vectorizer()
-        trained.fit([canonical[event_id] for event_id in splits["train"]])
+        trained = _fit_stable_vectorizer(
+            [canonical[event_id] for event_id in splits["train"]]
+        )
         if (vocab != trained.vocabulary_
                 or not np.array_equal(idf, trained.idf_)):
             raise ValueError("Cached vocabulary/IDF was not fitted from train-only narratives")
