@@ -8,6 +8,7 @@ on:
       - 'tests/test_imprinting_pilot03.py'
       - 'docs/IMPRINTING_PILOT_03.md'
       - 'results/imprinting/PILOT03_RESULTS.md'
+      - 'README.md'
       - '.github/workflows/imprinting-pilot-03.yml'
       - 'memories/current/Pretorius_v12_450_Events_Complete.jsonl'
       - 'memories/annotations/v12_450_sidecars.jsonl'
