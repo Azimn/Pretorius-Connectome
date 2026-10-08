@@ -43,3 +43,11 @@ The original 450-record source archive and existing test challenge remain frozen
 ## Connectome-constrained associative retrieval v1
 
 The [associative memory runner](scripts/run_associative_memory.py) reads the unchanged 450-record archive and compares narrative TF-IDF, directed graph diffusion, a hybrid ranker, and a target-stub-permuted connectivity control. The [protocol and limitations](docs/ASSOCIATIVE_MEMORY_V1.md) explain how to run the explicit synthetic fixture or verified full FlyWire v783 topology. Retrieved passages are evidence pointers, not proof of their entailment or evidence of learned synaptic autobiographical memory. The benchmark reuses the post-hoc Pilot 04 challenge and does not constitute independent validation.
+
+## Where to resume research after a chat ends
+
+**Start here: [Permanent research handoff](docs/RESEARCH_HANDOFF.md) and [Pilot 07 tracker, Issue #7](https://github.com/Azimn/Pretorius-Connectome/issues/7).** These identify immutable inputs, existing evidence, current verified experiments, commands, limitations, parallel FlyWire associative retrieval, and next work. This GitHub repository is the source of truth, not conversation history.
+
+## Pilot 07A — locally pinned NLI, human review pending
+
+[Pilot 07A protocol](docs/PILOT07_LOCAL_NLI.md) adds a version-pinned CPU NLI classifier atop BM25 retrieval, with top-one and top-three candidate comparison, probability/evidence records and explicit abstention. The prior 68 assistant-authored prompts are **post-hoc diagnostics only**; the new [reviewer workflow](docs/PILOT07_REVIEW_PROTOCOL.md) generates **blank** independent-human author/reviewer sheets, not invented validation data. Pilot 07A is a separate language-inference experiment, not an autonomous Pretorius or FlyWire neural synaptic imprint. Read [Pilot 07 results](results/imprinting/PILOT07_RESULTS.md) only if a measured, genuine model run and report exist; mocked tests are never performance claims.
