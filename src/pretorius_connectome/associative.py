@@ -247,7 +247,9 @@ def summarize_challenge(engine: AssociativeMemory, cases, train_ids: set[str],
     if any(not records for records in groups.values()):
         raise ValueError("no valid cases in one or more evaluation groups")
     p, c, a = (groups[key] for key in ("positive", "contradiction", "absent"))
-    rate = lambda items: round(sum(bool(x) for x in items) / len(items), 6)
+    def rate(items):
+        values = list(items)
+        return round(sum(bool(x) for x in values) / len(values), 6)
     return {
         "mode": mode, "threshold": round(float(threshold), 6),
         "positive_n": len(p),
