@@ -7,6 +7,10 @@ from pathlib import Path
 import threading
 import tempfile
 import unittest
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
 from pretorius_connectome.shared_memory_l2 import build_cache
 from pretorius_connectome.vector_store import build_store, VectorFlyStore
