@@ -185,7 +185,13 @@ class VectorFlyStore:
         p = Path(db_path).resolve()
         if not p.is_file():
             raise FileNotFoundError(str(p))
-        self.conn = sqlite3.connect(p.as_uri() + "?mode=ro", uri=True)
+        # The local read-only HTTPServer may be served on a separate thread
+        # from its startup/verification thread (including integration tests).
+        # Allow that handoff, while the API intentionally handles requests
+        # serially; no shared-connection concurrent writes are permitted.
+        self.conn = sqlite3.connect(
+            p.as_uri() + "?mode=ro", uri=True, check_same_thread=False
+        )
         self.conn.execute("PRAGMA query_only=ON")
         try:
             self.meta = {

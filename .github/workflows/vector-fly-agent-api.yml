@@ -1,0 +1,75 @@
+name: Vector Fly agent retrieval HTTP API
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/vector_api.py'
+      - 'src/pretorius_connectome/vector_store.py'
+      - 'scripts/serve_vector_fly.py'
+      - 'tests/test_vector_api.py'
+      - '.github/workflows/vector-fly-agent-api.yml'
+      - 'docs/VECTOR_FLY_AGENT_API_V1.md'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/vector_api.py'
+      - 'src/pretorius_connectome/vector_store.py'
+      - 'scripts/serve_vector_fly.py'
+      - 'tests/test_vector_api.py'
+      - '.github/workflows/vector-fly-agent-api.yml'
+      - 'docs/VECTOR_FLY_AGENT_API_V1.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verified-agent-api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install local CPU-only vector retrieval dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Validate canonical original autobiography
+        run: python scripts/validate_autobiographical_corpus_v12.py
+      - name: Exercise read-only HTTP contract with complete real memory corpus
+        run: |
+          python -m unittest discover -s tests -p test_vector_api.py -v
+          python -m unittest discover -s tests -p test_vector_store.py -v
+      - name: Independently build reproducible canonical source vector cache
+        run: |
+          python scripts/build_shared_memory_l2.py --seed 31 \
+            --output-dir data/derived/agent-api-l2 \
+            --report results/vector_fly/AGENT_API_L2_BUILD.json
+      - name: Independently build and inspect persistent 450-memory SQLite database
+        run: |
+          python scripts/vector_fly_db.py build \
+            --cache-dir data/derived/agent-api-l2 \
+            --database data/derived/agent-api-450.sqlite --scope all \
+            | tee results/vector_fly/AGENT_API_DATABASE_BUILD.json
+          python scripts/vector_fly_db.py verify \
+            --cache-dir data/derived/agent-api-l2 \
+            --database data/derived/agent-api-450.sqlite \
+            | tee results/vector_fly/AGENT_API_DATABASE_VERIFY.json
+      - name: CLI entrypoint and machine-readable example
+        run: |
+          python scripts/serve_vector_fly.py --help
+          python scripts/vector_fly_db.py query \
+            --cache-dir data/derived/agent-api-l2 \
+            --database data/derived/agent-api-450.sqlite \
+            --text "camphor beetle brass key" --top-k 3 \
+            | tee results/vector_fly/AGENT_API_REFERENCE_QUERY.json
+      - name: Preserve executed interface evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vector-fly-agent-api-v1-reproduction
+          path: |
+            results/vector_fly/AGENT_API_*.json
+          if-no-files-found: error
+          retention-days: 90
