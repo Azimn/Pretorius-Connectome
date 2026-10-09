@@ -1,0 +1,107 @@
+name: FlyWire direct imprint Pilot 10 multicue binding
+
+on:
+  push:
+    paths:
+      - 'scripts/run_direct_flywire_imprint10.py'
+      - 'tests/test_direct_flywire_imprint10.py'
+      - '.github/workflows/direct-flywire-imprint10.yml'
+  pull_request:
+    paths:
+      - 'scripts/run_direct_flywire_imprint10.py'
+      - 'tests/test_direct_flywire_imprint10.py'
+      - '.github/workflows/direct-flywire-imprint10.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Unit tests for source-only cues and original synapse immutability
+        run: |
+          python -m unittest discover -s tests -p test_direct_flywire_imprint10.py -v
+          python -m unittest discover -s tests -p test_direct_flywire_imprint08.py -v
+      - name: Build original canonical 450-event BC01 lexical cache
+        run: |
+          mkdir -p data/derived/direct10-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/direct10-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/direct10-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/direct10-bc01
+      - name: Synthetic original graph-mask four-condition experiment
+        run: |
+          python scripts/run_direct_flywire_imprint10.py \
+            --synthetic-test \
+            --bc01-dir data/derived/direct10-bc01 \
+            --checkpoint data/derived/direct10-synthetic-multicue.npz \
+            --output results/imprinting/direct10-synthetic.json
+          python -c 'import json; d=json.load(open("results/imprinting/direct10-synthetic.json")); assert d["topology_status"]=="synthetic computational fixture only" and d["split"]["imprinted_train"] == 317 and d["source"]["original_anatomy_unchanged"] and d["comparisons"]["multicue_source"]["imprint_presentations"] == 951'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: direct10-synthetic-four-conditions
+          path: |
+            results/imprinting/direct10-synthetic.json
+            data/derived/direct10-synthetic-multicue.npz
+          retention-days: 45
+
+  real-whole-brain-direct-synapse-binding:
+    needs: synthetic-controls
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical and source acquisition dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Acquire checksum-verified original complete FlyWire v783
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Reuse canonical unchanged original L1 and BC01 source features
+        run: |
+          mkdir -p data/derived/direct10-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/direct10-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/direct10-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/direct10-bc01
+      - name: Write 317 memories to original whole-brain synaptic overlay with four controls
+        run: |
+          python scripts/run_direct_flywire_imprint10.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --bc01-dir data/derived/direct10-bc01 \
+            --seed 31 --cells-per-feature 32 \
+            --checkpoint data/derived/direct10-real-multicue.npz \
+            --output results/imprinting/direct10-real-v783.json
+          python -c 'import json; d=json.load(open("results/imprinting/direct10-real-v783.json")); assert d["topology_status"]=="verified original full FlyWire v783" and d["source"]["neurons"]==139255 and d["source"]["aggregate_directed_edges"]==15091983 and d["source"]["original_anatomy_unchanged"] and d["comparisons"]["multicue_source"]["modified_original_synapses"]>0'
+      - name: Store original per-case evidence and learned synaptic overlay checkpoint
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: direct10-REAL-original-full-v783-cases-and-overlay
+          path: |
+            results/imprinting/direct10-real-v783.json
+            data/derived/direct10-real-multicue.npz
+          retention-days: 90
+          if-no-files-found: warn
