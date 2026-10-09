@@ -179,6 +179,30 @@ def archive(raw:Path,weights:Path,run_id:str):
                      str(wrong["groups"]["first16_anchors"].get("correct_top1",0))+"/16 | "+
                      str(original["learned_nonzero_synaptic_edges"])+" | "+
                      str(original["groups"]["episode_absent_71"]["absent_false_acceptances"])+"/71 |")
+    # Source-owned, same 16 event identities: distinguish genuinely lost
+    # retrieval from a fall in group-level totals where different items swap.
+    lines += [
+        "",
+        "### Matched early-event retention, 16 to 317 memory exposures",
+        "",
+        "| Source/wiring condition | Early correct at 16 | Retained correct | "
+        "Lost previously correct | Newly correct | Final correct | "
+        "Mean target margin at 16 | Mean target margin at 317 |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    for name in ARMS:
+        earlier=evidence["stages"][1]["original_case_rows_external_oracle_only"][name]["first16_anchors"]
+        later=evidence["stages"][-1]["original_case_rows_external_oracle_only"][name]["first16_anchors"]
+        if [r["event_id"] for r in earlier] != [r["event_id"] for r in later]:
+            raise ValueError("Anchor identity drift before reporting paired attrition")
+        keep=sum(a["correct_top1"] and b["correct_top1"] for a,b in zip(earlier,later))
+        lost=sum(a["correct_top1"] and not b["correct_top1"] for a,b in zip(earlier,later))
+        gained=sum(not a["correct_top1"] and b["correct_top1"] for a,b in zip(earlier,later))
+        mean_a=evidence["stages"][1]["measured"][name]["groups"]["first16_anchors"]["mean_target_margin"]
+        mean_b=evidence["stages"][-1]["measured"][name]["groups"]["first16_anchors"]["mean_target_margin"]
+        lines.append("| "+name+" | "+str(keep+lost)+"/16 | "+str(keep)+"/16 | "+
+                     str(lost)+"/16 | "+str(gained)+"/16 | "+
+                     str(keep+gained)+"/16 | "+str(mean_a)+" | "+str(mean_b)+" |")
     lines.extend([
         "",
         "**Causal boundary:** These are original signed lexical BC01 literal-source-cue "+
