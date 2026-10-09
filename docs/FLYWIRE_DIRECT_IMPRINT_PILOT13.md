@@ -1,0 +1,37 @@
+# Pilot 13 — Cumulative memory capacity and synaptic interference
+
+**2026-10-08. Predeclared before biological measurement.** Continues [Issue #17](https://github.com/Azimn/Pretorius-Connectome/issues/17) and the cumulative [Pilots 08–12 program scorecard](FLYWIRE_DIRECT_IMPRINT_PROGRAM_SCORECARD.md), keeping all prior outcomes and original synaptic checkpoint data immutable.
+
+## What we are testing
+
+Completed [original real FlyWire Pilot12](../results/imprinting/PILOT12_REAL_SEMANTIC_REWIRED_RESULTS.md) identified 20/159 familiar trained literal source cues with the original BC01 encoder versus 21/159 with binary degree-switched readout connectivity, and all six encoder/wiring conditions identified 0/31 genuinely untrained source fourth cues. Pretrained MiniLM increased feature overlap but not recall. The present question is **whether ongoing learning of further autobiographical source events destroys earlier numerically learned source-target associations or whether low selectivity is present from the outset**. Pilot13 is a capacity diagnostic, not a new semantic-encoder or decoder optimization.
+
+## Frozen evidence and learning parameters
+
+Exactly 450 reconstructed v12 Pretorius source events, 27 episodes, original verified L0/L1, original signed BC01 256D lexical input and narrative-content target code. Episode-disjoint seed31 split of 317 imprinted train, 62 validation-episode absent and 71 test-episode absent. Reuse original 159 source-positive probes selected with seed31+991. Source train order is the original Pilot10 deterministic order_by_episode, seed20261008.
+
+For real FlyWire require *all four original publisher CSR SHA-256 values*, **139,255 neurons, 15,091,983 aggregate directed neuron-pair edges and 54,492,922 integer synaptic contacts**, unchanged before and after training. Learned signed synaptic deltas exist separately on original directed edges; no original anatomy changes.
+
+Train exactly three source-authored literal first/middle/last cues per source event at 0.7/3 learning rate each with same seed31 feature-neuron mapping, top-8 signed lexical cue features, top-32 BC01 narrative content features, same synaptic update law, output readout and cap. No adaptation to observed results. The terminal original correct-pairing arm MUST reproduce the exact original Pilot10 full delta array, frozen original checkpoint SHA-256 fbc2f329993d414cde3ce3a1271a1083098c6513410373e124362045a427c86a and every original last-trained cue and absent source case decision from JSON SHA-256 ce2d463a72fa58a1e65265cf50f961f9e585610d058b9701d26791e033e7cea8.
+
+## Longitudinal stages and controls
+
+Record results at memory loads **0, 16, 32, 64, 128, 256, 317** in original fixed source training order. Train and compare four parallel, equal-budget conditions: original source real FlyWire correct cue-content pairing; binary-degree-preserving rewired original FlyWire correct pairing; original real FlyWire with explicitly deranged source cue-content targets; same rewired real FlyWire with deranged targets. Null wiring uses original Pilot12 deterministic seed73 double-edge switch, preserving each selected input neuron's trainable outgoing binary degree, each readout neuron's eligible incoming binary degree, total writable directed edges and overall anatomical contact counts but **not contact-weighted strength per output target or exactly equal nonzero learned deltas**. Shuffled/deranged targets use the exact Pilot12 317-event non-self rotation.
+
+At **every stage** candidate event-ID assessment occurs in a completely separate external oracle with the **same full 317 final training-event target vectors**; never shorten the candidate universe when fewer memories have been trained. The neural inference signature receives ONLY a literal cue and its current source-edge learned deltas and returns a 256D signed vector. It has no autobiography, candidate texts, source IDs, source labels or oracle codebook.
+
+Measure the exact first **16 events in training order** as lifelong anchors at all stages (not necessarily part of the old 159 heldout-probe set); latest up to 16 newly learned cases; intersect the original 159 familiar positive probes with events trained so far (denominator increases by stage, do not compare raw correct counts across stages); the next up to 16 genuinely **not-yet-trained** source events as leakage controls; the same 71 never-trained episode-absent cases at every stage.
+
+For each case retain source event ID **outside inference**, best matching event identity, correct top-1, source-target cosine, strongest competing source cosine, **own-target minus maximum competing-target margin**, nonzero output, and acceptance with the **unchanged historical 0.0082783 threshold**. Record absolute source-correct/accepted counts, absent false acceptance, mean source content margin and threshold-free source-known-vs-absent oracle AUROC (not an internal model truth classifier), number of actually changed eligible synapses, cumulative edge updates and imprint presentations. Save per-event longitudinal case rows to measure interference without losing original identities.
+
+## What constitutes a meaningful result
+
+A material paired decline in early-anchor correct identity and/or target margin as training advances would support interference within this exact sparse numerical learning substrate. Low margins already at the earliest learned stage would instead implicate initial source-to-content signal capacity/readout. A deranged association matching or beating genuine source pairing undermines identity attribution. A rewired condition performing as well as original does not establish a fly-specific topological advantage. External oracle use means none of these numerical outcomes alone establishes autonomous source-grounded autobiographical recall.
+
+This intentionally does NOT change MiniLM sparsification, increase input features to 16–64, train a readout, add an event-ID router, or claim a definitive Pretorius. Those are separately versioned future interventions after observing the capacity bottleneck. All original source cue surfaces are reconstructed/unreviewed literary artifacts, not independently validated semantic paraphrases. Single-seed repeated-source tests are exploratory.
+
+## Execution and archival
+
+Runner: [scripts/run_flywire_pilot13_capacity.py](../scripts/run_flywire_pilot13_capacity.py). Tests: [test_flywire_pilot13_capacity.py](../tests/test_flywire_pilot13_capacity.py). Workflow: [flywire-pilot13-capacity.yml](../.github/workflows/flywire-pilot13-capacity.yml). A synthetic aggregate-connectivity fixture serves software guards and is **never real biological evidence**. Real CI separately downloads publisher-checksum-verified original whole-brain v783 and must reproduce exactly the frozen original Pilot10 terminal learned state and 159 + 71 case decisions. After the real job passes, permanently preserve exact full original per-case JSON, learned checkpoint bytes and SHA-256 for all four conditions, measured report, and cross-project research journal handoff. Never replace the original failed experiment with a new tuned condition.
+
+Canonical cross-project [Artificial Life Research Journal](https://github.com/Azimn/Artificial-Life-Research-Journal) remains the intellectual chronology; the Pretorius-Connectome repository remains the original raw data and runnable implementation owner.

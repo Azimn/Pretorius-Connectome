@@ -1,0 +1,142 @@
+name: FlyWire Pilot13 staged memory capacity and interference
+
+on:
+  push:
+    paths:
+      - 'scripts/run_flywire_pilot13_capacity.py'
+      - 'tests/test_flywire_pilot13_capacity.py'
+      - '.github/workflows/flywire-pilot13-capacity.yml'
+  pull_request:
+    paths:
+      - 'scripts/run_flywire_pilot13_capacity.py'
+      - 'tests/test_flywire_pilot13_capacity.py'
+      - '.github/workflows/flywire-pilot13-capacity.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: flywire-pilot13-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-staged-capacity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reproducible numerical dependencies
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Test source-only inference, no oracle leakage and original anatomy
+        run: |
+          python -m unittest discover -s tests -p test_flywire_pilot13_capacity.py -v
+          python -m unittest discover -s tests -p test_flywire_pilot12.py -v
+      - name: Build exact source-pinned BC01 450-event memory cache
+        run: |
+          mkdir -p data/derived/pilot13-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot13-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot13-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot13-bc01
+      - name: Run seven capacity stages against four matched arms on SYNTHETIC graph only
+        run: |
+          python scripts/run_flywire_pilot13_capacity.py \
+            --synthetic-test --cells-per-feature 8 \
+            --bc01-dir data/derived/pilot13-bc01 \
+            --weights-dir data/derived/pilot13-synthetic-weights \
+            --output results/imprinting/pilot13-SYNTHETIC-staged-capacity.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot13-SYNTHETIC-staged-capacity.json'))
+          assert d['evidence_class'].startswith('synthetic')
+          assert [x['trained_source_memories'] for x in d['stages']]==[0,16,32,64,128,256,317]
+          assert d['source']['canonical_event_count']==450
+          assert d['source']['trained_event_count']==317
+          assert d['source']['original_anatomical_arrays_unchanged']
+          assert len(d['stages'][-1]['measured'])==4
+          assert all(x['imprint_presentations']==951
+                     for x in d['stages'][-1]['measured'].values())
+          assert d['rewired_null']['binary_outdegrees_equal'] and d['rewired_null']['binary_indegrees_equal']
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flywire-pilot13-SYNTHETIC-only-staged-capacity
+          path: |
+            results/imprinting/pilot13-SYNTHETIC-staged-capacity.json
+            data/derived/pilot13-synthetic-weights/
+          retention-days: 45
+          if-no-files-found: warn
+
+  real-source-verified-v783-memory-interference:
+    needs: synthetic-staged-capacity
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original publisher Feather importer and numerical dependencies
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Download and independently verify original complete FlyWire v783
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Preserve original L1 and source-aligned BC01 input vectors
+        run: |
+          mkdir -p data/derived/pilot13-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot13-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot13-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot13-bc01
+      - name: Test seven memory loads on ORIGINAL fly synaptic support and matched rewired controls
+        run: |
+          python scripts/run_flywire_pilot13_capacity.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --cells-per-feature 32 \
+            --bc01-dir data/derived/pilot13-bc01 \
+            --previous-real-cases results/imprinting/runs/direct-flywire-imprint-pilot10-run37869353939.json \
+            --previous-real-checkpoint artifacts/imprinting/checkpoints/pilot10-original-v783-run37869353939.npz \
+            --weights-dir data/derived/pilot13-real-weights \
+            --output results/imprinting/pilot13-REAL-staged-capacity.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot13-REAL-staged-capacity.json'))
+          assert d['evidence_class']=='verified original full FlyWire v783'
+          assert d['source']['original_neurons']==139255
+          assert d['source']['original_directed_pairs']==15091983
+          assert d['source']['original_integer_synapse_contacts']==54492922
+          assert d['source']['original_anatomical_arrays_unchanged']
+          assert d['frozen_original_pilot10_parity']['loaded_full_original_checkpoint_matches_weights_exactly']
+          assert d['frozen_original_pilot10_parity']['original_159_cases_identical']
+          assert d['frozen_original_pilot10_parity']['original_71_absent_cases_identical']
+          assert d['stages'][-1]['measured']['original_learned']['groups']['source_test_known_learned']['correct_top1']==20
+          assert len(d['learned_checkpoint_manifest'])==4
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flywire-pilot13-REAL-v783-original-stages-and-weights
+          path: |
+            results/imprinting/pilot13-REAL-staged-capacity.json
+            data/derived/pilot13-real-weights/
+          retention-days: 90
+          if-no-files-found: warn
