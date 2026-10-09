@@ -39,14 +39,16 @@ jobs:
           set -euo pipefail
           FILE="$(find captured -name direct10-real-v783.json -type f | head -n 1)"
           test -n "$FILE" && test -f "$FILE"
+          WEIGHTS="$(find captured -name direct10-real-multicue.npz -type f | head -n 1)"
+          test -n "$WEIGHTS" && test -f "$WEIGHTS"
           python scripts/archive_direct_flywire_imprint10.py \
-            --input "$FILE" --run-id "$SOURCE_RUN_ID"
+            --input "$FILE" --run-id "$SOURCE_RUN_ID" --checkpoint "$WEIGHTS"
       - name: Commit permanent case evidence, summary, index and handoff to main
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add results/imprinting/runs/ results/imprinting/PILOT10_REAL_MULTICUE_RESULTS.md \
+          git add artifacts/imprinting/checkpoints/ results/imprinting/runs/ results/imprinting/PILOT10_REAL_MULTICUE_RESULTS.md \
             results/imprinting/README.md docs/RESEARCH_HANDOFF.md
           if git diff --cached --quiet; then
             echo "Already archived: original evidence identical"
