@@ -1,0 +1,108 @@
+name: Pretorius direct FlyWire synaptic imprint Pilot 08
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/direct_flywire_imprint.py'
+      - 'scripts/run_direct_flywire_imprint08.py'
+      - 'tests/test_direct_flywire_imprint08.py'
+      - '.github/workflows/direct-flywire-imprint08.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/direct_flywire_imprint.py'
+      - 'scripts/run_direct_flywire_imprint08.py'
+      - 'tests/test_direct_flywire_imprint08.py'
+      - '.github/workflows/direct-flywire-imprint08.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-leakage-guards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Numerical dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Test independent neural data isolation and source mutation guards
+        run: |
+          python -m unittest discover -s tests -p test_direct_flywire_imprint08.py -v
+          python -m unittest discover -s tests -p test_shared_features_bc01.py -v
+      - name: Assemble source-pinned BC01 cache, unchanged L1
+        run: |
+          mkdir -p data/derived/direct08-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/direct08-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/direct08-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/direct08-bc01
+      - name: Synthetic structural-mask smoke (not biological evidence)
+        run: |
+          python scripts/run_direct_flywire_imprint08.py \
+            --synthetic-test --bc01-dir data/derived/direct08-bc01 \
+            --checkpoint data/derived/direct08-synthetic-learned.npz \
+            --output results/imprinting/direct08-synthetic-exploratory.json
+          python -c 'import json; x=json.load(open("results/imprinting/direct08-synthetic-exploratory.json")); assert x["training"]["imprinted_events"] > 250 and x["graph"]["original_anatomy_unchanged"] and "Synthetic" in x["evidence_status"]'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: direct-imprint08-synthetic-only
+          path: |
+            results/imprinting/direct08-synthetic-exploratory.json
+            data/derived/direct08-synthetic-learned.npz
+          retention-days: 45
+
+  actual-whole-brain-flywire:
+    runs-on: ubuntu-latest
+    needs: synthetic-leakage-guards
+    timeout-minutes: 110
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Numerical, source and biological importer dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Re-verify and convert publisher's complete FlyWire v783 source
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Source-pinned canonical BC01 consumer without rewriting published L1
+        run: |
+          mkdir -p data/derived/direct08-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/direct08-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/direct08-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/direct08-bc01
+      - name: Write and test actual real-FlyWire directed-edge synaptic overlay
+        run: |
+          python scripts/run_direct_flywire_imprint08.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --bc01-dir data/derived/direct08-bc01 \
+            --seed 31 --cells-per-feature 32 \
+            --checkpoint data/derived/direct08-real-checkpoint.npz \
+            --output results/imprinting/direct08-real-whole-brain.json
+          python -c 'import json; x=json.load(open("results/imprinting/direct08-real-whole-brain.json")); assert x["graph"]["original_anatomy_unchanged"] and x["graph"]["neurons"]==139255 and x["graph"]["raw_aggregated_directed_edges"]==15091983 and x["training"]["imprinted_events"] > 250 and x["methods"]["learned_real_or_synthetic_graph"]["nonzero_overlay_edges"] > 0'
+      - name: Archive raw per-case results and independent learned-state checkpoint
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: direct-imprint08-REAL-v783-original-whole-brain
+          path: |
+            results/imprinting/direct08-real-whole-brain.json
+            data/derived/direct08-real-checkpoint.npz
+          retention-days: 90
+          if-no-files-found: warn
