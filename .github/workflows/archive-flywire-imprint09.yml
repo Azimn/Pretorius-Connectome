@@ -1,0 +1,57 @@
+name: Archive FlyWire Pilot 09 frozen direct-imprint diagnostics
+
+on:
+  workflow_run:
+    workflows: ['FlyWire direct imprint Pilot 09 cue-transfer diagnostic']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish-verified-main-real-cases:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download exact complete original real diagnostic only
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: flywire-real-imprint09-frozen-cue-transfer
+          path: captured
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Validate original source and permanent record per-case data
+        run: |
+          set -euo pipefail
+          FILE="$(find captured -name direct09-real-v783-original-checkpoint.json -type f | head -n 1)"
+          test -n "$FILE" && test -f "$FILE"
+          python scripts/archive_flywire_imprint09.py --input "$FILE" --run-id "$SOURCE_RUN_ID"
+      - name: Commit raw evidence and complete results, retaining other lab commits
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/imprinting/runs/ results/imprinting/PILOT09_REAL_CUE_TRANSFER_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "Already permanently archived"
+            exit 0
+          fi
+          git commit -m "Archive Pilot09 real FlyWire cue-transfer cases run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
