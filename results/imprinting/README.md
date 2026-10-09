@@ -7,3 +7,5 @@
 [Pilot10 real v783 multi-cue results](PILOT10_REAL_MULTICUE_RESULTS.md)
 
 [Pilot11 frozen real FlyWire unseen cue and rejection](PILOT11_REAL_UNSEEN_CUE_REJECTION_RESULTS.md)
+
+[Pilot12 actual FlyWire semantic cue × degree-rewired null](PILOT12_REAL_SEMANTIC_REWIRED_RESULTS.md)

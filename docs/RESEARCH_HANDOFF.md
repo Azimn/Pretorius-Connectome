@@ -169,3 +169,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Frozen original FlyWire Pilot11 unseen cue and rejection run 37870758781
 
 [Full real Pilot11 paired case evidence](../results/imprinting/PILOT11_REAL_UNSEEN_CUE_REJECTION_RESULTS.md) uses the exact permanently archived Pilot10 real synaptic state without any new learning. It measures first originally untrained source cue among cases with four or more literal cue fields, paired to that same event's trained last cue, and validates a rejection threshold fit only to separate calibration episodes. Interpret the measured unseen-cue and test false acceptance together, not as autonomous semantic recall.
+
+## Original real FlyWire Pilot12 semantic versus rewired null run 37872284939
+
+[Full source-linked measured Pilot12 real result](../results/imprinting/PILOT12_REAL_SEMANTIC_REWIRED_RESULTS.md) compares original source FlyWire vs exact binary degree-switched trainable synaptic slots, frozen BC01 vs pretrained externally pinned local ONNX MiniLM input cues, source-matched and deranged content, same 317 train events and exact source test partitions. All six case-level JSON arrays, original anatomy SHA and two actual source-bound learned checkpoints are permanently committed. Only numerical cue associations are shown; the MiniLM contributes external semantics and the score decoder is an external oracle.
