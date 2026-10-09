@@ -209,19 +209,37 @@ def diagnose(topology: Topology, bc01_dir: Path, checkpoint: Path,
         "learned_real_or_synthetic_graph"]["known"]
     original_absent = original_report["external_evaluator_case_results"][
         "learned_real_or_synthetic_graph"]["absent"]
-    def same_original(a: list[dict], b: list[dict]) -> bool:
-        # Pilot09 adds cue-transfer diagnostics, absent in the frozen Pilot08.
-        # Compare every original field rather than extras introduced by Pilot09.
-        return len(a) == len(b) and all(
-            {key: row[key] for key in reference} == reference
-            for row, reference in zip(a, b)
-        )
+    def verify_original_rows(actual: list[dict], reference: list[dict],
+                             category: str) -> None:
+        # Preserve exact per-case identities, rankings, abstentions and labels.
+        # Float32/float64 reductions on independent CPU hosts can differ by
+        # last-place digits. Check score drift <= 2e-6 rather than rejecting
+        # numerically equivalent real-state replay.
+        if len(actual) != len(reference):
+            raise AssertionError(f"{category}: case count changed")
+        for i, (now, before) in enumerate(zip(actual, reference)):
+            for key, expected in before.items():
+                observed = now[key]
+                if isinstance(expected, float):
+                    if not np.isfinite(observed) or abs(observed - expected) > 2e-6:
+                        raise AssertionError(
+                            f"{category} row {i} {key}: numerical drift "
+                            f"{observed!r} != {expected!r}"
+                        )
+                elif observed != expected:
+                    raise AssertionError(
+                        f"{category} row {i} {key}: changed case decision "
+                        f"{observed!r} != {expected!r}"
+                    )
 
-    if (not same_original(
-            case_results["trained_source"]["withheld_last_cue"], original_positive)
-        or not same_original(
-            case_results["trained_source"]["absent_episode_last_cue"], original_absent)):
-        raise AssertionError("Saved biological state does not reproduce original cases")
+    verify_original_rows(
+        case_results["trained_source"]["withheld_last_cue"],
+        original_positive, "source-heldout-cue"
+    )
+    verify_original_rows(
+        case_results["trained_source"]["absent_episode_last_cue"],
+        original_absent, "source-absent-episode"
+    )
     if fingerprint(topology) != original:
         raise AssertionError("Diagnostic touched original source connectivity")
     cross_cos = summaries["trained_source"]["withheld_last_cue"][
