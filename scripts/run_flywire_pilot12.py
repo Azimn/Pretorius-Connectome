@@ -29,7 +29,7 @@ from pretorius_connectome.direct_flywire_imprint import (
 )
 from pretorius_connectome.imprinting import load_v12, order_by_episode
 from pretorius_connectome.pilot02 import episode_split
-from pretorius_connectome.rewire12 import rewire_effective_edges
+from pretorius_connectome.rewire12 import rewire_effective_edges, synthetic_aggregated_fixture
 from pretorius_connectome.semantic_cue12 import (
     CueOnlyOverlay, FrozenMiniLMCues, MODEL, REVISION, ONNX_NAME,
     PROJECTION_SEED, projection_sha256,
@@ -414,7 +414,7 @@ def main():
     p.add_argument("--output-weights", type=Path)
     p.add_argument("--output", type=Path, required=True)
     a = p.parse_args()
-    topo = (Topology.synthetic(n=8192, degree=16, seed=15)
+    topo = (synthetic_aggregated_fixture(n=8192, degree=16, seed=15)
             if a.synthetic_test else Topology.read(a.topology))
     result = run(
         topo, a.bc01_dir, real=not a.synthetic_test,
