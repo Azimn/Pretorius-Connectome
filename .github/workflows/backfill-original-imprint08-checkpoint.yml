@@ -1,0 +1,72 @@
+name: Preserve original real FlyWire Pilot08 learned synaptic checkpoint
+
+on:
+  push:
+    paths:
+      - '.github/workflows/backfill-original-imprint08-checkpoint.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  archive-verified-original-checkpoint:
+    if: "${{ github.ref == 'refs/heads/main' && github.repository == 'Azimn/Pretorius-Connectome' }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 37867357727
+          name: direct-imprint08-REAL-v783-original-whole-brain
+          path: original
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Verify exact original checkpoint sha256 against permanently committed real cases
+        run: |
+          set -euo pipefail
+          ORIGINAL="$(find original -name direct08-real-checkpoint.npz -type f | head -n 1)"
+          test -n "$ORIGINAL" && test -f "$ORIGINAL"
+          python - "$ORIGINAL" <<'PY'
+          from hashlib import sha256
+          import json
+          from pathlib import Path
+          import sys
+          src = Path(sys.argv[1])
+          b = src.read_bytes()
+          expected = 'e6edf8dd68e84540140612dbcbc42f827e00ce707d9f2947adf3342e215fcb6d'
+          raw = Path('results/imprinting/runs/direct-flywire-imprint-pilot08-run37867357727.json')
+          report = json.loads(raw.read_bytes())
+          assert report['experiment'] == 'Direct synaptic imprinting Pilot 08 (heteroassociative)'
+          assert report['evidence_status'] == 'Measured real FlyWire v783 original whole-brain topology'
+          assert report['graph']['neurons'] == 139255
+          assert report['graph']['raw_aggregated_directed_edges'] == 15091983
+          assert report['graph']['original_anatomy_unchanged'] is True
+          assert report['training']['checkpoint_sha256'] == expected
+          assert sha256(b).hexdigest() == expected
+          assert len(b) < 10_000_000
+          target = Path('artifacts/imprinting/checkpoints/pilot08-original-v783-run37867357727.npz')
+          target.parent.mkdir(parents=True, exist_ok=True)
+          if target.exists() and target.read_bytes() != b:
+              raise ValueError('Conflicting original biological synaptic state')
+          target.write_bytes(b)
+          print('SOURCE_PINNED_ORIGINAL_REAL_CHECKPOINT_ARCHIVED',target,len(b),expected)
+          PY
+      - name: Preserve actual synaptic parameters permanently in main Git history
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/imprinting/checkpoints/pilot08-original-v783-run37867357727.npz
+          if git diff --cached --quiet; then
+            echo "Original checkpoint already in main and byte-identical"
+            exit 0
+          fi
+          git commit -m 'Archive immutable original real FlyWire v783 Pilot08 synaptic state'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
