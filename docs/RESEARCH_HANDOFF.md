@@ -161,3 +161,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Frozen Pilot09 real synaptic recall diagnostic run 37868913430
 
 [Pilot09 real per-case results](../results/imprinting/PILOT09_REAL_CUE_TRANSFER_RESULTS.md) compare original source-trained 317-event synaptic overlay and same-graph shuffled/zero controls using 159 exact-trained-cue and separate literal cue tests plus 71 absent-episode tests. Learned checkpoint, original topology and calibration were frozen from Pilot08. See actual measured contrast before designing new feature encoding or neural plasticity.
+
+## Direct real FlyWire multi-cue Pilot10 archived 37869353939
+
+[Original full per-case direct synaptic imprint results](../results/imprinting/PILOT10_REAL_MULTICUE_RESULTS.md) were archived from successful real-v783 source-verified Actions. Compare multiple literal-source-cue bindings against equal-exposure old concatenation, deranged narrative association and zero controls. This is oracle-assisted numerical lexical association, not semantic or autonomous autobiographical memory.
