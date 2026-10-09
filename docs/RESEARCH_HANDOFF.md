@@ -165,3 +165,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Direct real FlyWire multi-cue Pilot10 archived 37869353939
 
 [Original full per-case direct synaptic imprint results](../results/imprinting/PILOT10_REAL_MULTICUE_RESULTS.md) were archived from successful real-v783 source-verified Actions. Compare multiple literal-source-cue bindings against equal-exposure old concatenation, deranged narrative association and zero controls. This is oracle-assisted numerical lexical association, not semantic or autonomous autobiographical memory.
+
+## Frozen original FlyWire Pilot11 unseen cue and rejection run 37870758781
+
+[Full real Pilot11 paired case evidence](../results/imprinting/PILOT11_REAL_UNSEEN_CUE_REJECTION_RESULTS.md) uses the exact permanently archived Pilot10 real synaptic state without any new learning. It measures first originally untrained source cue among cases with four or more literal cue fields, paired to that same event's trained last cue, and validates a rejection threshold fit only to separate calibration episodes. Interpret the measured unseen-cue and test false acceptance together, not as autonomous semantic recall.
