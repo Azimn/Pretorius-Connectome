@@ -1,5 +1,7 @@
 # Pretorius-Connectome
 
+> **Cross-project research coordination (2026-10-08):** This repository owns the canonical reconstructed memory archive, FlyWire and vector retrieval experiments within the [cumulative Character Continuity Program](https://github.com/Azimn/Artificial-Life-Research-Journal/blob/main/programs/CHARACTER_CONTINUITY_PROGRAM_V1.md). Measured retrieval, cue and plasticity findings are cross-indexed in the [shared evidence register](https://github.com/Azimn/Artificial-Life-Research-Journal/blob/main/programs/CHARACTER_CONTINUITY_EVIDENCE_REGISTER_V1.md). Preserve local raw evidence and existing negative findings; independently reviewed semantic probes are required before the [cross-architecture protocol](https://github.com/Azimn/Artificial-Life-Research-Journal/blob/main/programs/CHARACTER_CONTINUITY_COMPARISON_PROTOCOL_V1.md) can support confirmatory comparisons.
+
 An experimental biologically inspired neural substrate for Pretorius, investigating direct synaptic memory imprinting, persistent identity, neural plasticity, and behavioral continuity.
 
 ## Current experimental status
