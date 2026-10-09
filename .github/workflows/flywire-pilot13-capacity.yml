@@ -13,6 +13,10 @@ on:
       - '.github/workflows/flywire-pilot13-capacity.yml'
   workflow_dispatch:
 
+concurrency:
+  group: flywire-pilot13-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
