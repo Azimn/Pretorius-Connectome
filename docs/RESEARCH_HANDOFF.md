@@ -173,3 +173,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Original real FlyWire Pilot12 semantic versus rewired null run 37872284939
 
 [Full source-linked measured Pilot12 real result](../results/imprinting/PILOT12_REAL_SEMANTIC_REWIRED_RESULTS.md) compares original source FlyWire vs exact binary degree-switched trainable synaptic slots, frozen BC01 vs pretrained externally pinned local ONNX MiniLM input cues, source-matched and deranged content, same 317 train events and exact source test partitions. All six case-level JSON arrays, original anatomy SHA and two actual source-bound learned checkpoints are permanently committed. Only numerical cue associations are shown; the MiniLM contributes external semantics and the score decoder is an external oracle.
+
+## Whole-FlyWire Pilot14 synaptic stability source run 37883362633
+
+[Original measured Pilot14 cases and all seven source-bound synaptic states](../results/imprinting/PILOT14_REAL_SYNAPTIC_STABILITY_RESULTS.md) now compare original Hebbian numerical learning, local exposure-count protected writing, original-derived rewired controls, wrong-content negative control and a 50,920-scalar slot-count-matched non-neural linear comparator across the fixed 0–317 source-event memory loads. The original Pilot10 source baseline reproduces exact original 159-known and 71-absent classifications with separately reported numerical roundoff. There is no candidate event-ID codebook inside neural inference, only in the EXTERNAL scorer.
