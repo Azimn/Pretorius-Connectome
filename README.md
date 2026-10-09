@@ -62,3 +62,9 @@ Both verified full FlyWire v783 and mushroom-body neuropil experiments completed
 The canonical 450 reconstructed events are now searchable through a **local SQLite sparse-vector index**. It reuses the stable 8,192-dimensional, train-episode-fitted TF-IDF L2 v2 encoder and stores indexed vector postings, source record JSON, event IDs and provenance. Separate all-450 browsing and train-only scientific scopes prevent accidental conflation. No external API is needed.
 
 See [the database runbook](docs/VECTOR_FLY_DATABASE_V1.md), [measured green-build result](results/vector_fly/VECTOR_DATABASE_V1_RESULTS.md), [CLI](scripts/vector_fly_db.py), [integrity tests](tests/test_vector_store.py) and [build workflow](.github/workflows/vector-fly-database.yml). The full SQLite binaries are available in the linked CI artifact and are reproducible using the script. The database is lexical search, not a pretrained semantic embedding, evidence verifier or synaptic FlyWire neuron model.
+
+## Vector Fly read-only HTTP retrieval for AI agents (v1)
+
+A verified local-first HTTP/JSON API now exposes the existing persistent memory database for external AI players, assistants and research clients. It supports source-linked lexical search, whole-record lookup, provenance and episode filters, database/scope inspection and a health check. It is **read-only** and defaults to localhost; non-loopback binding requires a bearer token.
+
+[API runbook](docs/VECTOR_FLY_AGENT_API_V1.md) · [Executed 14-test findings](results/vector_fly/VECTOR_AGENT_API_V1_RESULTS.md) · [HTTP source](src/pretorius_connectome/vector_api.py) · [Server command](scripts/serve_vector_fly.py). This is agent-callable retrieval only, not a background process or semantic verification system.
