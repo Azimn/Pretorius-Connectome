@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'src/pretorius_connectome/vector_api.py'
+      - 'src/pretorius_connectome/vector_store.py'
       - 'scripts/serve_vector_fly.py'
       - 'tests/test_vector_api.py'
       - '.github/workflows/vector-fly-agent-api.yml'
@@ -11,6 +12,7 @@ on:
   pull_request:
     paths:
       - 'src/pretorius_connectome/vector_api.py'
+      - 'src/pretorius_connectome/vector_store.py'
       - 'scripts/serve_vector_fly.py'
       - 'tests/test_vector_api.py'
       - '.github/workflows/vector-fly-agent-api.yml'
