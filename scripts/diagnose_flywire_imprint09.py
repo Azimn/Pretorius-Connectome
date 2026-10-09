@@ -209,8 +209,18 @@ def diagnose(topology: Topology, bc01_dir: Path, checkpoint: Path,
         "learned_real_or_synthetic_graph"]["known"]
     original_absent = original_report["external_evaluator_case_results"][
         "learned_real_or_synthetic_graph"]["absent"]
-    if (case_results["trained_source"]["withheld_last_cue"] != original_positive
-        or case_results["trained_source"]["absent_episode_last_cue"] != original_absent):
+    def same_original(a: list[dict], b: list[dict]) -> bool:
+        # Pilot09 adds cue-transfer diagnostics, absent in the frozen Pilot08.
+        # Compare every original field rather than extras introduced by Pilot09.
+        return len(a) == len(b) and all(
+            {key: row[key] for key in reference} == reference
+            for row, reference in zip(a, b)
+        )
+
+    if (not same_original(
+            case_results["trained_source"]["withheld_last_cue"], original_positive)
+        or not same_original(
+            case_results["trained_source"]["absent_episode_last_cue"], original_absent)):
         raise AssertionError("Saved biological state does not reproduce original cases")
     if fingerprint(topology) != original:
         raise AssertionError("Diagnostic touched original source connectivity")
