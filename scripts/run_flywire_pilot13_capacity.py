@@ -328,7 +328,7 @@ def run(topology, bc01_dir, *, real=False, cells_per_feature=32,
         replay = DirectFlywireOverlay.load(topology, weight_file)
         if (learned.modified_edges != 28938
             or not np.array_equal(learned.delta, replay.delta)
-            or learned.imprints != replay.imprints == 951):
+            or learned.imprints != 951 or replay.imprints != 951):
             raise AssertionError("Progressive Pilot13 failed exact original Pilot10 weights")
         final_rows = rank_measured(
             learned, probes, ids, targets, learned_ids=set(ids)
