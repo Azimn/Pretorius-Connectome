@@ -41,8 +41,8 @@ jobs:
           expected = 'e6edf8dd68e84540140612dbcbc42f827e00ce707d9f2947adf3342e215fcb6d'
           raw = Path('results/imprinting/runs/direct-flywire-imprint-pilot08-run37867357727.json')
           report = json.loads(raw.read_bytes())
-          assert report['study'] if 'study' in report else report['experiment'] == 'Direct synaptic imprinting Pilot 08 (heteroassociative)'
-          assert report['topology_status'] if 'topology_status' in report else report['evidence_status'] == 'Measured real FlyWire v783 original whole-brain topology'
+          assert report['experiment'] == 'Direct synaptic imprinting Pilot 08 (heteroassociative)'
+          assert report['evidence_status'] == 'Measured real FlyWire v783 original whole-brain topology'
           assert report['graph']['neurons'] == 139255
           assert report['graph']['raw_aggregated_directed_edges'] == 15091983
           assert report['graph']['original_anatomy_unchanged'] is True
