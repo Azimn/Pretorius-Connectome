@@ -1,0 +1,134 @@
+{
+  "biological_claim_allowed": true,
+  "directed_aggregate_edges": 15091983,
+  "episodes": 27,
+  "experiment": "Pretorius 450-memory shared-feature direct CSR invariance",
+  "graph_probes": [
+    {
+      "mode": "lexical",
+      "query": "laboratory map and specimen",
+      "top_three_event_ids": [
+        "E15-006",
+        "E05-004",
+        "E25-018"
+      ],
+      "top_three_scores": [
+        0.156245,
+        0.085396,
+        0.081906
+      ]
+    },
+    {
+      "mode": "graph",
+      "query": "laboratory map and specimen",
+      "top_three_event_ids": [
+        "E15-006",
+        "E05-004",
+        "E25-018"
+      ],
+      "top_three_scores": [
+        0.154549,
+        0.086397,
+        0.081002
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "query": "laboratory map and specimen",
+      "top_three_event_ids": [
+        "E15-006",
+        "E05-004",
+        "E25-018"
+      ],
+      "top_three_scores": [
+        0.155821,
+        0.085646,
+        0.08168
+      ]
+    },
+    {
+      "mode": "lexical",
+      "query": "the cathedral and Clara",
+      "top_three_event_ids": [
+        "E09-004",
+        "E05-015",
+        "E01-015"
+      ],
+      "top_three_scores": [
+        0.133778,
+        0.044924,
+        0.042944
+      ]
+    },
+    {
+      "mode": "graph",
+      "query": "the cathedral and Clara",
+      "top_three_event_ids": [
+        "E09-004",
+        "E05-015",
+        "E09-013"
+      ],
+      "top_three_scores": [
+        0.130688,
+        0.044144,
+        0.042385
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "query": "the cathedral and Clara",
+      "top_three_event_ids": [
+        "E09-004",
+        "E05-015",
+        "E01-015"
+      ],
+      "top_three_scores": [
+        0.133005,
+        0.044729,
+        0.042799
+      ]
+    }
+  ],
+  "limitation": "This is a direct source-and-anatomical immutability check. It neither writes autobiographical content into biological synaptic weights nor establishes neural recall, semantics, consciousness or speedup.",
+  "neuron_count": 139255,
+  "original_csr_array_sha256": {
+    "indices": "3180cc427eb92389f22afde12d99b19d6676443aa3b9ffd25589c97013cd404b",
+    "indptr": "bb91b075324c5971600d3c1bc296dabdfc95a18d695c0293a7d09647cff61595",
+    "root_ids": "84bc9ec32c4f797e3f6e6557b30b5fc7f447b5852aeb9553f7dd18ed6bd3321d",
+    "synapse_counts": "ef00868a5a54e3c9bdf1c4d64966bdec6fe5946a6f6909937801afcbdc44385e"
+  },
+  "original_csr_npz_bytes_intact": true,
+  "original_edges_and_root_ids_intact": true,
+  "original_integer_synaptic_contacts": 54492922,
+  "original_synaptic_counts_intact": true,
+  "original_topology_sha256": "950cb14024fd0f38650d4bf0b75477a1bc52f803bdd90719745dba9ba03d7637",
+  "records": 450,
+  "shared_feature_conditions": {
+    "BC01": {
+      "artifact_sha256": "65ae81401a17ec68adc3900395f226734618be4ffb2bae24745d989bd2a17625",
+      "encoder": "persona-net-ExperienceEncoder-sensory256-v1",
+      "schema": "pretorius-bc01-lexical-l2/1",
+      "vectors": [
+        450,
+        256
+      ]
+    },
+    "FlyWire": {
+      "encoder": "sklearn-tfidf-word12-rankstable-v2",
+      "fit_seed": 31,
+      "schema": "pretorius.shared-features.v2",
+      "shard_sha256": {
+        "docs.npz": "eaa0e25b0bfd2941a4153372b0c559bd7d7d69956ed9354b7813b9e6350265eb",
+        "idf.npy": "af21ac9e5fdcdc5a586fb4d70bdf281df36471e2e791ded40491bc23641673ed",
+        "records.jsonl": "ce6a13d1608b10cebf64bd8208b5d7fef72ffb338ba18d1ad225f752fb0b7802",
+        "vocabulary.json": "76d3376ae6cfa4f237ea99062ada1c92090589123e8665148f7460a694e163dc"
+      },
+      "training_records": 317
+    }
+  },
+  "source_l0_sha256": "becdf4ca72b85365c35940ccd68f3b6a9bbb1093b7b3cc89c33b113bbe5608ec",
+  "source_l1_archive_sha256": "882b728f84fe8eb969ff924cecaebf6f229d8fe5063c6f7b4ff69687c2cede6c",
+  "source_l1_manifest_sha256": "ce23717b3950a772cc25e4bf60107eaddf4a0375122b6893c15417669ae033bb",
+  "status": "PASS: original CSR and original source bytes unchanged",
+  "topology_kind": "verified original FlyWire whole-brain v783"
+}
