@@ -1,0 +1,58 @@
+name: Archive original real FlyWire Pilot11 unseen cue evidence
+
+on:
+  workflow_run:
+    workflows: ['FlyWire Pilot11 frozen unseen-cue and rejection assay']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  permanently-publish-measured-frozen-real-v783-result:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recover only successful REAL whole-brain source-verified Pilot11 JSON
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: flywire-pilot11-REAL-v783-unchanged-checkpoint
+          path: captured
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Fail closed on original FlyWire ancestry and paired test integrity
+        run: |
+          set -euo pipefail
+          FILE="$(find captured -name pilot11-REAL-frozen-unseen-and-rejection.json -type f | head -n 1)"
+          test -n "$FILE" && test -f "$FILE"
+          python scripts/archive_flywire_imprint11.py \
+            --input "$FILE" --run-id "$SOURCE_RUN_ID"
+      - name: Commit exact source case JSON, measured report, results index and handoff
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/imprinting/runs/ results/imprinting/PILOT11_REAL_UNSEEN_CUE_REJECTION_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "Already preserved byte-identical source cases"
+            exit 0
+          fi
+          git commit -m "Archive measured original FlyWire v783 Pilot11 unseen-cue run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
