@@ -32,6 +32,22 @@ The fixed source-event oracle candidate pool (317 from stage0) means this early-
 
 **Absence problem:** False acceptance of source never-trained episode-absent queries grows from 37/71 at load16 to **56/71** at load317 on the unchanged historical acceptance threshold. The original classifier's external fixed target-codebook scores produce too many plausible but false memory matches. No threshold has been tuned in Pilot13, and absent rejection alone is not an independent measure of autobiographical meaning.
 
+## Synaptic resource-use diagnostic: increasing collision pressure
+
+The same real original-FlyWire per-stage JSON counts both **synaptic edge-update operations** and **distinct original edge slots with nonzero learned numerical delta**, providing a limited indicator of rising reuse of finite source/readout connections. This counts directed-pair numerical writes, not biological-contact physiology; new nonzero edge slots are a **net change** and may be influenced by cancellation to zero, rather than a monotonic historical union of ever-touched edges.
+
+| Total events trained | Cumulative source edge-update operations | Net nonzero eligible synaptic slots | Net newly active slots per added source event | Learned occupancy of 50,920 eligible synaptic slots |
+|---:|---:|---:|---:|---:|
+| 0 | 0 | 0 | n/a | 0.0% |
+| 16 | 3,782 | 3,382 | 211.4 | 6.6% |
+| 32 | 7,354 | 6,001 | 163.7 | 11.8% |
+| 64 | 14,697 | 10,361 | 136.3 | 20.4% |
+| 128 | 29,566 | 17,226 | 107.3 | 33.8% |
+| 256 | 58,817 | 26,023 | 68.7 | 51.1% |
+| 317 | **73,147** | **28,938** | **47.8** | **56.8%** |
+
+Across all stages, each new source memory continues to make approximately **223–236 individual edge-update operations** (on average, summed over its three trained source cues), while its incremental net number of previously inactive nonzero synaptic positions drops from approximately **211 per memory to 48 per memory**. This accompanies early-anchor recall margin deterioration. The pattern is consistent with increasing edge reuse, interference and competing content assignments. **But over 43% of source/readout eligible edges still have zero delta at full load**, so this is *not* proof that all available synaptic capacity has been exhausted; the fixed feature routing and content sparsification may concentrate learning into overlapping subsets. A subsequent experiment must distinguish selective allocation/routing, target-code separability and write interference.
+
 ## What this changes for the next intervention
 
 Pilot13 is evidence that initial source-specific literal-cue binding capacity is **higher at small load than at full autobiographical load** and degrades as interference accumulates. A potential future *separately preregistered* Pilot14 should compare interference-resistant synaptic write rules, sparse event-specific routing or a learned internal low-rank feature readout at controlled parameter and computation budgets, and should retain real vs rewired, source-matched vs shuffled and nonneural learned mapping baselines. It must independently test genuinely never-learned fourth cues and human-reviewed semantic paraphrases, while preserving fixed source-content target and evaluation oracle separation.
