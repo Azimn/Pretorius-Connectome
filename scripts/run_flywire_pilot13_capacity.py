@@ -326,10 +326,34 @@ def run(topology, bc01_dir, *, real=False, cells_per_feature=32,
         source_case = json.loads(case_file.read_text(encoding="utf-8"))
         learned = conditions["original_learned"]
         replay = DirectFlywireOverlay.load(topology, weight_file)
-        if (learned.modified_edges != 28938
-            or not np.array_equal(learned.delta, replay.delta)
+        difference = np.abs(learned.delta.astype(np.float64) -
+                            replay.delta.astype(np.float64))
+        exact = np.array_equal(learned.delta, replay.delta)
+        changed = int(np.count_nonzero(difference))
+        max_difference = float(np.max(difference))
+        support_identical = np.array_equal(
+            np.flatnonzero(learned.delta), np.flatnonzero(replay.delta)
+        )
+        print("FROZEN_REAL_SOURCE_DIAGNOSTIC", json.dumps({
+            "actual_nonzero": learned.modified_edges,
+            "expected_nonzero": replay.modified_edges,
+            "actual_imprints": learned.imprints,
+            "expected_imprints": replay.imprints,
+            "learned_state_exact": exact,
+            "different_float32_entries": changed,
+            "max_absolute_difference": max_difference,
+            "same_nonzero_edge_support": support_identical,
+        }), flush=True)
+        if (learned.modified_edges != 28938 or replay.modified_edges != 28938
+            or not exact
             or learned.imprints != 951 or replay.imprints != 951):
-            raise AssertionError("Progressive Pilot13 failed exact original Pilot10 weights")
+            raise AssertionError(
+                "Progressive Pilot13 failed exact original Pilot10 weights: "+
+                f"modified={learned.modified_edges}/{replay.modified_edges}, "
+                f"imprints={learned.imprints}/{replay.imprints}, "
+                f"diff_positions={changed}, max_float32_abs_diff={max_difference}, "
+                f"identical_nonzero_edge_support={support_identical}"
+            )
         final_rows = rank_measured(
             learned, probes, ids, targets, learned_ids=set(ids)
         )
