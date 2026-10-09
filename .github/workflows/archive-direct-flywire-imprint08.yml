@@ -1,0 +1,58 @@
+name: Archive real direct FlyWire imprint evidence
+
+on:
+  workflow_run:
+    workflows: ['Pretorius direct FlyWire synaptic imprint Pilot 08']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish-complete-main-branch-real-run:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Retrieve original successful publisher-verified REAL graph experiment
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: direct-imprint08-REAL-v783-original-whole-brain
+          path: original-run
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Fail closed on provenance and archive original case evidence and report
+        run: |
+          set -euo pipefail
+          FILE="$(find original-run -name direct08-real-whole-brain.json -type f | head -n 1)"
+          test -n "$FILE" && test -f "$FILE"
+          python scripts/archive_direct_flywire_imprint08.py \
+            --input "$FILE" --run-id "$SOURCE_RUN_ID"
+      - name: Commit measured result on main, preserving concurrent work
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/imprinting/runs/ results/imprinting/PILOT08_REAL_V783_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "Already archived; no changes"
+            exit 0
+          fi
+          git commit -m "Archive original FlyWire direct-synaptic imprint Pilot 08 run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
