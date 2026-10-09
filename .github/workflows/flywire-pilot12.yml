@@ -1,0 +1,121 @@
+name: FlyWire Pilot12 semantic cue versus degree-rewired anatomical null
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/semantic_cue12.py'
+      - 'src/pretorius_connectome/rewire12.py'
+      - 'scripts/run_flywire_pilot12.py'
+      - 'tests/test_flywire_pilot12.py'
+      - '.github/workflows/flywire-pilot12.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/semantic_cue12.py'
+      - 'src/pretorius_connectome/rewire12.py'
+      - 'scripts/run_flywire_pilot12.py'
+      - 'tests/test_flywire_pilot12.py'
+      - '.github/workflows/flywire-pilot12.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-architecture-and-local-semantic-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free CPU-only local pretrained inference and numerical backend
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' \
+            'rank-bm25>=0.2,<1' 'onnxruntime>=1.18,<2' 'transformers>=4.44,<5' \
+            'huggingface_hub>=0.26,<1'
+      - name: Test rewired original anatomical masks and pure source cue encoder
+        run: |
+          python -m unittest discover -s tests -p test_flywire_pilot12.py -v
+          python -m unittest discover -s tests -p test_direct_flywire_imprint10.py -v
+      - name: Rebuild the exact canonical original L1 BC01 representations
+        run: |
+          mkdir -p data/derived/pilot12-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot12-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot12-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot12-bc01
+      - name: Execute all 6 conditions with pinned free local sentence encoder on SYNTHETIC graph
+        run: |
+          python scripts/run_flywire_pilot12.py \
+            --synthetic-test --cells-per-feature 8 \
+            --bc01-dir data/derived/pilot12-bc01 \
+            --output-weights data/derived/pilot12-synthetic-weights \
+            --output results/imprinting/pilot12-SYNTHETIC-six-conditions.json
+          python -c 'import json; d=json.load(open("results/imprinting/pilot12-SYNTHETIC-six-conditions.json")); assert d["status"].startswith("synthetic") and d["source"]["train"]==317 and d["source"]["original_graph_unchanged"] and d["source"]["eligible_never_seen_cue_events"]==31 and d["rewired_degree_matched_control"]["binary_outdegrees_equal"] and d["rewired_degree_matched_control"]["binary_indegrees_equal"] and len(d["conditions"])==6'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot12-SYNTHETIC-only-six-conditions
+          path: |
+            results/imprinting/pilot12-SYNTHETIC-six-conditions.json
+            data/derived/pilot12-synthetic-weights/
+          retention-days: 45
+          if-no-files-found: warn
+
+  actual-original-v783-six-conditions:
+    needs: synthetic-architecture-and-local-semantic-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 140
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install local ONNX MiniLM and original publisher FlyWire Feather dependencies
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' \
+            'rank-bm25>=0.2,<1' 'onnxruntime>=1.18,<2' 'transformers>=4.44,<5' \
+            'huggingface_hub>=0.26,<1' 'pyarrow>=17,<24'
+      - name: Download and checksum original full FlyWire v783 publisher source
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Rebuild immutable source L1 and signed BC01 content representations
+        run: |
+          mkdir -p data/derived/pilot12-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot12-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot12-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot12-bc01
+      - name: Compare frozen cue encoders and fully degree-matched rewiring on actual whole-brain source
+        run: |
+          python scripts/run_flywire_pilot12.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --bc01-dir data/derived/pilot12-bc01 \
+            --cells-per-feature 32 \
+            --source-pilot10 results/imprinting/runs/direct-flywire-imprint-pilot10-run37869353939.json \
+            --output-weights data/derived/pilot12-real-weights \
+            --output results/imprinting/pilot12-REAL-original-v783-six-conditions.json
+          python -c 'import json; d=json.load(open("results/imprinting/pilot12-REAL-original-v783-six-conditions.json")); assert d["status"]=="original source-verified full FlyWire v783" and d["source"]["original_graph_neurons"]==139255 and d["source"]["original_directed_edges"]==15091983 and d["source"]["original_graph_unchanged"] and d["rewired_degree_matched_control"]["binary_outdegrees_equal"] and d["rewired_degree_matched_control"]["binary_indegrees_equal"] and d["source"]["eligible_never_seen_cue_events"]==31 and len(d["conditions"])==6'
+      - name: Preserve all source cases, pinned input-encoder SHA and two learned semantic synaptic weights
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot12-REAL-original-FlyWire-v783-semantic-rewired-evidence
+          path: |
+            results/imprinting/pilot12-REAL-original-v783-six-conditions.json
+            data/derived/pilot12-real-weights/
+          retention-days: 90
+          if-no-files-found: warn
