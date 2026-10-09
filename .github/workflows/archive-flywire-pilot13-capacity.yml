@@ -1,0 +1,65 @@
+name: Archive original real FlyWire Pilot13 capacity and interference
+
+on:
+  workflow_run:
+    workflows: ['FlyWire Pilot13 staged memory capacity and interference']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  archive-source-verified-real-whole-brain-stages:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Retrieve only successful original real v783 seven-stage evidence
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: flywire-pilot13-REAL-v783-original-stages-and-weights
+          path: captured
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Independently validate original source, all four arms and all synaptic weights
+        run: |
+          set -euo pipefail
+          JSON="$(find captured -name pilot13-REAL-staged-capacity.json -type f | head -n 1)"
+          test -n "$JSON" && test -f "$JSON"
+          WEIGHTS="$(find captured -name original_learned.npz -type f | head -n 1)"
+          test -n "$WEIGHTS" && test -f "$WEIGHTS"
+          WEIGHTS_DIR="$(dirname "$WEIGHTS")"
+          test -f "$WEIGHTS_DIR/rewired_learned.npz"
+          test -f "$WEIGHTS_DIR/original_deranged.npz"
+          test -f "$WEIGHTS_DIR/rewired_deranged.npz"
+          python scripts/archive_flywire_pilot13_capacity.py \
+            --input "$JSON" --weights "$WEIGHTS_DIR" --run-id "$SOURCE_RUN_ID"
+      - name: Commit complete original case JSON, four checkpoints and result report to main
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/imprinting/checkpoints/ results/imprinting/runs/ \
+            results/imprinting/PILOT13_REAL_CAPACITY_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "Exact source case evidence and learned weights are already archived"
+            exit 0
+          fi
+          git commit -m "Archive original FlyWire-v783 Pilot13 staged memory study $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
