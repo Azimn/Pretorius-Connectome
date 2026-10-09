@@ -1,0 +1,110 @@
+name: FlyWire direct imprint Pilot 09 cue-transfer diagnostic
+
+on:
+  push:
+    paths:
+      - 'scripts/diagnose_flywire_imprint09.py'
+      - 'tests/test_direct_flywire_imprint09.py'
+      - '.github/workflows/direct-flywire-imprint09.yml'
+  pull_request:
+    paths:
+      - 'scripts/diagnose_flywire_imprint09.py'
+      - 'tests/test_direct_flywire_imprint09.py'
+      - '.github/workflows/direct-flywire-imprint09.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  exact-cue-synthetic-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install experiment dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Test cue isolation and negative-event scoring
+        run: |
+          python -m unittest discover -s tests -p test_direct_flywire_imprint09.py -v
+          python -m unittest discover -s tests -p test_direct_flywire_imprint08.py -v
+      - name: Build pinned BC01 cache from immutable original L1
+        run: |
+          mkdir -p data/derived/direct09-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/direct09-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/direct09-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/direct09-bc01
+      - name: Synthetic rehearsal with frozen Pilot08 original case-score parity
+        run: |
+          python scripts/diagnose_flywire_imprint09.py \
+            --synthetic-test \
+            --bc01-dir data/derived/direct09-bc01 \
+            --output results/imprinting/direct09-synthetic-cue-diagnostic.json
+          python -c 'import json; d=json.load(open("results/imprinting/direct09-synthetic-cue-diagnostic.json")); assert d["status"] == "synthetic test only"; assert d["data_source"]["evaluation_trained_events"]==159'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: direct-imprint09-synthetic-replay
+          path: results/imprinting/direct09-synthetic-cue-diagnostic.json
+          retention-days: 45
+
+  exact-previous-checkpoint-real-v783:
+    runs-on: ubuntu-latest
+    needs: exact-cue-synthetic-smoke
+    timeout-minutes: 105
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact biological source importer and numerical dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Retrieve exact original real Pilot08 source and learned checkpoint
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 37863818653
+          name: direct-imprint08-REAL-v783-original-whole-brain
+          path: original-pilot08
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Reverify publisher FlyWire files and derive unchanged original whole-brain CSR
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Reuse original source-pinned BC01 lexical vectors
+        run: |
+          mkdir -p data/derived/direct09-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/direct09-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/direct09-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/direct09-bc01
+      - name: Audit exact trained-cue versus cross-cue transfer on previously trained real graph
+        run: |
+          python scripts/diagnose_flywire_imprint09.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --bc01-dir data/derived/direct09-bc01 \
+            --pilot08-checkpoint original-pilot08/data/derived/direct08-real-checkpoint.npz \
+            --pilot08-result original-pilot08/results/imprinting/direct08-real-whole-brain.json \
+            --output results/imprinting/direct09-real-v783-original-checkpoint.json
+          python -c 'import json; d=json.load(open("results/imprinting/direct09-real-v783-original-checkpoint.json")); assert d["status"] == "real v783 diagnostic" and d["data_source"]["original_workflow_run_id"] == 37863818653 and d["data_source"]["anatomical_synapse_counts_intact"]'
+      - name: Preserve full matched real cases and summary as workflow evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flywire-real-imprint09-frozen-cue-transfer
+          path: results/imprinting/direct09-real-v783-original-checkpoint.json
+          retention-days: 90
+          if-no-files-found: warn
