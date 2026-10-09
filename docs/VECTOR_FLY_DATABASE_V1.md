@@ -42,3 +42,8 @@ The [CI workflow](../.github/workflows/vector-fly-database.yml) builds both SQLi
 This is a fully functional lexical **vector database**, not an ANN/HNSW engine and not a demonstration of biological synaptic storage. For 450 memories, exact search is cheap, deterministic and auditable. It does not prove semantic understanding, contextual entailment or continuity of Pretorius's character.
 
 The natural next integration is optional graph reranking of identical database candidate lists, with explicit real-vs-rewired FlyWire conditions and latency tracking. Do not silently substitute graph scores for the lexical source baseline. Any semantic embedding backend must have a separate dimension, model identity/checksum, query encoder and held-out protocol.
+
+
+## Release validation
+
+The initial end-to-end database build passed [run 37863611161](https://github.com/Azimn/Pretorius-Connectome/actions/runs/37863611161). After a PR review identified a possible concurrent-build overwrite, publication was changed to an atomic create-if-absent hard link. A new regression explicitly simulated that race, and all **seven** tests plus the complete 450-memory and training-only database build and full vector verification passed [run 37864046037](https://github.com/Azimn/Pretorius-Connectome/actions/runs/37864046037). The [final SQLite artifact bundle](https://github.com/Azimn/Pretorius-Connectome/actions/runs/37864046037/artifacts/11587801011) includes both measured indices and JSON queries. This remains lexical, not semantic.
