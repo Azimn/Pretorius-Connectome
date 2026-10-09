@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import os
+from unittest.mock import patch
 from pathlib import Path
 import sqlite3
 import sys
@@ -111,6 +113,22 @@ class VectorFlyDatabaseTests(unittest.TestCase):
         build_cache(wrong_dir, seed=37)
         with self.assertRaisesRegex(ValueError, "provenance mismatch"):
             VectorFlyStore(self.all_db, wrong_dir)
+
+    def test_competing_builder_cannot_replace_freshly_published_file(self):
+        # Simulate a rival completing publication between the initial
+        # existence precheck and the final atomic no-replace operation.
+        destination = self.root / "raced.sqlite"
+        original_link = os.link
+
+        def publish_competitor(source, target):
+            Path(target).write_bytes(b"concurrent completed database")
+            return original_link(source, target)
+
+        with patch("pretorius_connectome.vector_store.os.link",
+                   side_effect=publish_competitor):
+            with self.assertRaises(FileExistsError):
+                build_store(destination, self.cache_dir, scope="train")
+        self.assertEqual(destination.read_bytes(), b"concurrent completed database")
 
     def test_tampered_postings_and_canonical_text_fail_closed(self):
         altered = self.root / "forged.sqlite"
