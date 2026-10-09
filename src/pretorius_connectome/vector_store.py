@@ -149,9 +149,11 @@ def build_store(db_path: str | Path, cache_dir: str | Path,
         # before publishing. A generated .sqlite is not authoritative.
         with VectorFlyStore(tmp, cache_dir, check_vectors=True) as test:
             assert test.info()["indexed_documents"] == len(positions)
-        if path.exists():
-            raise FileExistsError("Database path appeared during build")
-        os.replace(tmp, path)
+        # Same-filesystem hard-link creation is an atomic no-replace
+        # publish operation: competing builders cannot overwrite one another.
+        # os.replace() would silently replace a rival's newly published file
+        # after both passed the initial path.exists() precheck.
+        os.link(tmp, path)
         return {
             **{k: meta[k] for k in (
                 "schema", "vector_kind", "l2_encoder", "random_seed",
