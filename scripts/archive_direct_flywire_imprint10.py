@@ -76,10 +76,16 @@ def verify(r: dict) -> None:
         raise ValueError("Expected real synaptic training absent")
 
 
-def archive(original: Path, run_id: str) -> None:
+def archive(original: Path, run_id: str, checkpoint: Path) -> None:
     b = original.read_bytes()
     r = json.loads(b)
     verify(r)
+    learned_bytes = checkpoint.read_bytes()
+    expected_weight_sha = r["split"]["checkpoints"]["multicue_source_sha256"]
+    if sha256(learned_bytes).hexdigest() != expected_weight_sha:
+        raise ValueError("Original numerical synaptic checkpoint SHA-256 differs")
+    if not (0 < len(learned_bytes) < 50 * 1024 * 1024):
+        raise ValueError("Expected a compact, nonempty original learned sparse overlay")
     if not run_id.isdecimal():
         raise ValueError("Actions run id invalid")
     folder = ROOT / "results/imprinting"
@@ -89,6 +95,17 @@ def archive(original: Path, run_id: str) -> None:
     if saved.exists() and saved.read_bytes() != b:
         raise ValueError("Existing archived data conflict")
     saved.write_bytes(b)
+    # Retain actual learned synaptic state permanently, not only its SHA or
+    # expiring GitHub Actions artifact. This binary is original evidence.
+    checkpoint_dir = ROOT / "artifacts/imprinting/checkpoints"
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+    saved_checkpoint = checkpoint_dir / (
+        "pilot10-original-v783-run" + run_id + ".npz"
+    )
+    if (saved_checkpoint.exists()
+        and saved_checkpoint.read_bytes() != learned_bytes):
+        raise ValueError("Conflicting previously archived synaptic weights")
+    saved_checkpoint.write_bytes(learned_bytes)
     url = "https://github.com/Azimn/Pretorius-Connectome/actions/runs/" + run_id
     lines = [
         "# Pilot10: real original FlyWire v783 multiple-cue imprint measured results",
@@ -96,6 +113,7 @@ def archive(original: Path, run_id: str) -> None:
         "Real publisher-verified workflow: [run " + run_id + "](" + url + ").",
         "Original full per-case JSON: [source evidence](runs/" + saved.name + ").",
         "SHA-256 of unmodified original result: " + sha256(b).hexdigest(),
+        "Permanently committed [learned synaptic checkpoint](../../artifacts/imprinting/checkpoints/pilot10-original-v783-run" + run_id + ".npz).",
         "Learned synaptic checkpoint SHA-256: " +
         r["split"]["checkpoints"]["multicue_source_sha256"],
         "",
@@ -162,5 +180,6 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--input", type=Path, required=True)
     p.add_argument("--run-id", required=True)
+    p.add_argument("--checkpoint", type=Path, required=True)
     args = p.parse_args()
-    archive(args.input, args.run_id)
+    archive(args.input, args.run_id, args.checkpoint)
