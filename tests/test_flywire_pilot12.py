@@ -10,7 +10,7 @@ from pretorius_connectome.associative import Topology
 from pretorius_connectome.direct_flywire_imprint import (
     fingerprint, select_features,
 )
-from pretorius_connectome.rewire12 import rewire_effective_edges
+from pretorius_connectome.rewire12 import rewire_effective_edges, synthetic_aggregated_fixture
 from pretorius_connectome.semantic_cue12 import (
     CueOnlyOverlay, project_sentence_vectors, projection_sha256,
 )
@@ -43,7 +43,7 @@ class Pilot12Tests(unittest.TestCase):
             project_sentence_vectors(np.zeros((2, 256)))
 
     def test_rewire_preserves_every_eligible_source_and_target_binary_degree(self):
-        topo = Topology.synthetic(n=4096, degree=32, seed=2)
+        topo = synthetic_aggregated_fixture(n=4096, degree=32, seed=2)
         original_sha = fingerprint(topo)
         model = CueOnlyOverlay(topo, seed=31, cells_per_feature=8)
         changed, report = rewire_effective_edges(
@@ -81,7 +81,7 @@ class Pilot12Tests(unittest.TestCase):
                          report["rewired_csr_indices_sha256"])
 
     def test_swapped_edge_never_creates_duplicate_aggregated_directed_pair(self):
-        topo = Topology.synthetic(n=2048, degree=64, seed=9)
+        topo = synthetic_aggregated_fixture(n=2048, degree=64, seed=9)
         model = CueOnlyOverlay(topo, seed=31, cells_per_feature=4)
         rewired, report = rewire_effective_edges(
             topo, model.pre_cells, model.post_cells)
