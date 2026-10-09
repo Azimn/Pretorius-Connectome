@@ -1,0 +1,72 @@
+{
+  "study": "Vector Fly persistent SQLite lexical vector index v1",
+  "executed_utc": "2026-10-09",
+  "workflow_run": "https://github.com/Azimn/Pretorius-Connectome/actions/runs/37863611161",
+  "workflow_artifact": "https://github.com/Azimn/Pretorius-Connectome/actions/runs/37863611161/artifacts/11587412346",
+  "original_source_events": 450,
+  "encoder": "sklearn-tfidf-word12-rankstable-v2",
+  "vector_dimension": 8192,
+  "source_claim": "reconstructed canonical Pretorius autobiography; lexical similarity, not factual entailment",
+  "database_index": [
+    {
+      "file": "vector-fly-450.sqlite",
+      "scope": "all",
+      "records": 450,
+      "postings": 31159,
+      "bytes": 1986560,
+      "sha256": "87e24687cc74e2fdb241496a5d32a49d01658abcd993bcd762ccc8fa56b462ee"
+    },
+    {
+      "file": "vector-fly-train31.sqlite",
+      "scope": "train",
+      "seed": 31,
+      "records": 317,
+      "postings": 24261,
+      "bytes": 1519616,
+      "sha256": "6afe747c8af0a0c7bdc2dfd4be99f3b224183f43dd7c7649b3af4d5d121403fa"
+    }
+  ],
+  "index_validation": "All stored original record JSON and vector postings verified against pinned L2",
+  "query_example": {
+    "query": "camphor beetle brass key",
+    "scored_source_events": [
+      {
+        "event_id": "E01-001",
+        "score": 0.246430545522,
+        "title": "The Empty Specimen Drawer"
+      },
+      {
+        "event_id": "E12-001",
+        "score": 0.213177639457,
+        "title": "The Brass Key after the Funeral"
+      },
+      {
+        "event_id": "E04-020",
+        "score": 0.188664199392,
+        "title": "A Death with an Address"
+      },
+      {
+        "event_id": "E02-006",
+        "score": 0.114387048772,
+        "title": "The Key Returned"
+      },
+      {
+        "event_id": "E22-013",
+        "score": 0.083056996868,
+        "title": "A Disagreement over the Keys"
+      }
+    ]
+  },
+  "unknown_query": {
+    "query": "zzzzqzxzy unrecoverableword12345",
+    "matches": 0
+  },
+  "tests_at_initial_executed_sha": "829da9b1517c0ebaa013a80f873ab6b158063561",
+  "initial_unit_tests_passed": 6,
+  "concurrency_no_replace_fix": "Tested separately in later workflow; does not change initial run's binary hashes",
+  "limitations": [
+    "All-source browse mode is not heldout experimental retrieval",
+    "Lexical TF-IDF not dense semantic embeddings",
+    "SQLite binaries are downloadable workflow artifacts; source and numerical measurements are tracked permanently"
+  ]
+}
