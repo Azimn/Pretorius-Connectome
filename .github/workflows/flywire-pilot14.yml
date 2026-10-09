@@ -1,0 +1,145 @@
+name: FlyWire Pilot14 usage-protected synaptic stability and linear null
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/metaplastic14.py'
+      - 'scripts/run_flywire_pilot14.py'
+      - 'tests/test_flywire_pilot14.py'
+      - '.github/workflows/flywire-pilot14.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/metaplastic14.py'
+      - 'scripts/run_flywire_pilot14.py'
+      - 'tests/test_flywire_pilot14.py'
+      - '.github/workflows/flywire-pilot14.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: flywire-pilot14-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-metaplasticity-guards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU-only free numerical requirements
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Protect original graph, exposure counts and nonneural parameter parity
+        run: |
+          python -m unittest discover -s tests -p test_flywire_pilot14.py -v
+          python -m unittest discover -s tests -p test_flywire_pilot13_capacity.py -v
+      - name: Rebuild original version-pinned 450 memory BC01 cache
+        run: |
+          mkdir -p data/derived/pilot14-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot14-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot14-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot14-bc01
+      - name: Run all seven arms over seven memory loads with SYNTHETIC graph only
+        run: |
+          python scripts/run_flywire_pilot14.py \
+            --synthetic-test --cells-per-feature 8 \
+            --bc01-dir data/derived/pilot14-bc01 \
+            --weights-dir data/derived/pilot14-SYNTHETIC-weights \
+            --output results/imprinting/pilot14-SYNTHETIC-stability.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot14-SYNTHETIC-stability.json'))
+          assert d['source_type'].startswith('synthetic')
+          assert [s['trained_events'] for s in d['stage_case_evidence']]==[0,16,32,64,128,256,317]
+          assert len(d['stage_case_evidence'][-1]['arms'])==7
+          assert d['source']['canonical_memories']==450
+          assert d['source']['original_train_memories']==317
+          assert d['source']['original_anatomy_unchanged']
+          assert d['rewired_null']['binary_outdegrees_equal']
+          assert d['rewired_null']['binary_indegrees_equal']
+          assert len(d['complete_learned_checkpoints'])==7
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot14-SYNTHETIC-only-seven-arms
+          path: |
+            results/imprinting/pilot14-SYNTHETIC-stability.json
+            data/derived/pilot14-SYNTHETIC-weights/
+          retention-days: 45
+          if-no-files-found: warn
+
+  full-original-v783-metaplasticity:
+    needs: synthetic-metaplasticity-guards
+    runs-on: ubuntu-latest
+    timeout-minutes: 130
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original FlyWire publisher source and free numerical libraries
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Source-verify original complete published FlyWire-v783 biological CSR
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Rebuild original L1 source-locked BC01 cue and content features
+        run: |
+          mkdir -p data/derived/pilot14-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot14-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot14-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot14-bc01
+      - name: Compare baseline, protection, graph null, deranged and parameter-count-matched linear at all loads
+        run: |
+          python scripts/run_flywire_pilot14.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --cells-per-feature 32 \
+            --bc01-dir data/derived/pilot14-bc01 \
+            --source-pilot10-cases results/imprinting/runs/direct-flywire-imprint-pilot10-run37869353939.json \
+            --source-pilot10-checkpoint artifacts/imprinting/checkpoints/pilot10-original-v783-run37869353939.npz \
+            --weights-dir data/derived/pilot14-REAL-weights \
+            --output results/imprinting/pilot14-REAL-v783-stability.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot14-REAL-v783-stability.json'))
+          assert d['source_type']=='verified complete original FlyWire v783'
+          s=d['source']
+          assert (s['root_neurons'],s['directed_pairs'],s['original_integer_contacts'])==(139255,15091983,54492922)
+          assert s['original_anatomy_unchanged']
+          assert s['original_untrained_source_fourth_cues']==31
+          assert d['original_terminal_baseline_replay']['source_case_predictions_same_all_159']
+          assert d['original_terminal_baseline_replay']['absent_case_predictions_same_all_71']
+          assert d['original_terminal_baseline_replay']['original_full_weight_array_max_float_abs_difference']<=5e-7
+          assert len(d['complete_learned_checkpoints'])==7
+          assert d['rewired_null']['originally_eligible_edges']==50920
+          assert d['stage_case_evidence'][-1]['arms']['original_baseline']['summaries']['original159_learned_familiar']['correct_top1']==20
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot14-REAL-original-FlyWire-v783-seven-arm-evidence
+          path: |
+            results/imprinting/pilot14-REAL-v783-stability.json
+            data/derived/pilot14-REAL-weights/
+          retention-days: 90
+          if-no-files-found: warn
