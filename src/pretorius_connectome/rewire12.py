@@ -163,3 +163,43 @@ def rewire_effective_edges(
         ).hexdigest(),
     )
     return control, asdict(report)
+
+
+def synthetic_aggregated_fixture(*, n: int = 8192, degree: int = 16,
+                                 seed: int = 15) -> Topology:
+    """Convert synthetic edge MULTIgraph to unique-pair aggregated CSR.
+
+    Real FlyWire's published CSR contains one aggregated source/destination
+    entry with integer synaptic contact count. This synthetic-only fixture
+    removes synthetic parallel pairs by summing their original integer
+    contact counts; otherwise it would violate real-connectome assumptions.
+    Nothing from this fixture can substantiate a biological result.
+    """
+    source = Topology.synthetic(n=n, degree=degree, seed=seed)
+    indptr = [0]
+    indices = []
+    counts = []
+    for neuron in range(len(source.root_ids)):
+        start, end = map(int, source.indptr[neuron:neuron+2])
+        neighbors = source.indices[start:end]
+        contacts = source.synapse_counts[start:end]
+        if len(neighbors):
+            unique, inverse = np.unique(neighbors, return_inverse=True)
+            sums = np.bincount(
+                inverse, weights=contacts.astype(np.float64),
+                minlength=len(unique)
+            ).astype(source.synapse_counts.dtype)
+            indices.extend(unique.tolist())
+            counts.extend(sums.tolist())
+        indptr.append(len(indices))
+    synthetic = Topology(
+        source.root_ids,
+        np.asarray(indptr, dtype=source.indptr.dtype),
+        np.asarray(indices, dtype=source.indices.dtype),
+        np.asarray(counts, dtype=source.synapse_counts.dtype),
+        "synthetic-only unique directed-pair aggregated neural fixture",
+    )
+    if int(synthetic.synapse_counts.sum(dtype=np.int64)) != int(
+            source.synapse_counts.sum(dtype=np.int64)):
+        raise AssertionError("Synthetic multigraph contact totals not preserved")
+    return synthetic
