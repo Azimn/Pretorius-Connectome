@@ -29,3 +29,15 @@ For future experiments, preserve new full per-case JSON as a tracked file under 
 ## Resumption
 
 Read [repository research handoff](../../docs/RESEARCH_HANDOFF.md), [anatomical follow-up protocol](../../docs/ASSOCIATIVE_MEMORY_ROI_EXPERIMENT.md), and the latest commit / workflow status before additional model development. Continue with precommitted hypotheses and matched controls rather than post-hoc parameter optimization.
+
+## Active next experiment: train-only FlyWire trace plasticity (pending real results)
+
+[Plasticity Pilot 01 protocol](../../docs/FLYWIRE_PLASTICITY_PILOT_01.md) and [PR #14](https://github.com/Azimn/Pretorius-Connectome/pull/14) add a distinct, explicit edge-weight learning experiment after the frozen whole-brain and MB studies. It uses immutable canonical L1 and **cross-process deterministic train-only shared TF-IDF L2 v2** (PR #15) without replacing BioCircuit's separate 256-dimensional lexical features. The new weight overlay is trained on source narratives only and does not modify original FlyWire synapse counts. Its planned real three-seed MB comparisons include original frozen and rewired graphs, both with matched plasticity, plus lexical baseline and hybrid controls. **No new biological result has been established until the real CI workflow succeeds.** When it does, archive full source-linked per-case results under runs/, interpret the negative or positive effect honestly, and update this index with exact measured numbers and archival run IDs.
+
+## Historical plasticity v1 diagnostic (superseded)
+
+[The completed real MB v1 plasticity run](FLYWIRE_MB_PLASTICITY_V1_PROVISIONAL.md) reported 6/67 correct-and-accepted positive prompts using learned original MB connectivity versus 7/67 learned rewired and 7/67 frozen original, with 10/67 contradictions falsely accepted in each. The model used the subsequently superseded cross-process-unstable lexical feature selector. These numbers are archived as **provisional negative diagnostics**, not as independently repeatable v2 evidence. A fresh v2 run is required before a definitive comparison.
+
+## Archived real MB plasticity Pilot 01 result
+
+[Measured result report](FLYWIRE_MB_PLASTICITY_PILOT01_RESULTS.md) and [permanent original case-level JSON](runs/flywire-mb-plasticity-pilot01-run37847801158.json) are archived from [successful verified main-branch run 37847801158](https://github.com/Azimn/Pretorius-Connectome/actions/runs/37847801158). All observed outcomes remain exploratory on previously inspected prompts.
