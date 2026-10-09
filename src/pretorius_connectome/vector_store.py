@@ -43,6 +43,7 @@ CREATE TABLE postings (
     PRIMARY KEY(feature_id, doc_id),
     FOREIGN KEY(doc_id) REFERENCES memories(doc_id)
 ) WITHOUT ROWID;
+CREATE INDEX postings_by_doc ON postings(doc_id, feature_id);
 """
 
 
