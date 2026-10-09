@@ -1,0 +1,100 @@
+name: FlyWire Pilot11 frozen unseen-cue and rejection assay
+
+on:
+  push:
+    paths:
+      - 'scripts/diagnose_flywire_imprint11.py'
+      - 'tests/test_flywire_imprint11.py'
+      - '.github/workflows/flywire-imprint11.yml'
+  pull_request:
+    paths:
+      - 'scripts/diagnose_flywire_imprint11.py'
+      - 'tests/test_flywire_imprint11.py'
+      - '.github/workflows/flywire-imprint11.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-leakage-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned-series numerical dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Test unseen-source cue exclusion, calibration and frozen replay guards
+        run: |
+          python -m unittest discover -s tests -p test_flywire_imprint11.py -v
+          python -m unittest discover -s tests -p test_direct_flywire_imprint10.py -v
+      - name: Rebuild stateless original BC01 representation with canonical L1
+        run: |
+          mkdir -p data/derived/direct11-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/direct11-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/direct11-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/direct11-bc01
+      - name: Source-locked synthetic-only checkpoint and test-gate rehearsal
+        run: |
+          python scripts/diagnose_flywire_imprint11.py \
+            --synthetic-test --bc01-dir data/derived/direct11-bc01 \
+            --output results/imprinting/pilot11-synthetic-unseen-and-rejection.json
+          python -c 'import json; d=json.load(open("results/imprinting/pilot11-synthetic-unseen-and-rejection.json")); assert d["topology_status"]=="synthetic structural-mask smoke only" and d["evidence"]["train_events"]==317 and d["evidence"]["eligible_unseen_source_events"]>0 and d["evidence"]["original_anatomy_unchanged"]'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flywire-pilot11-SYNTHETIC-only
+          path: results/imprinting/pilot11-synthetic-unseen-and-rejection.json
+          retention-days: 45
+
+  real-frozen-v783:
+    runs-on: ubuntu-latest
+    needs: synthetic-leakage-replay
+    timeout-minutes: 115
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source importer and numeric dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Publisher-verify original complete FlyWire v783 anatomical data
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Rebuild original canonical BC01 lexical cache unchanged
+        run: |
+          mkdir -p data/derived/direct11-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/direct11-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/direct11-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/direct11-bc01
+      - name: Evaluate ORIGINAL frozen saved weight state on unseen fourth source cue and open-set rejection
+        run: |
+          python scripts/diagnose_flywire_imprint11.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --bc01-dir data/derived/direct11-bc01 \
+            --checkpoint artifacts/imprinting/checkpoints/pilot10-original-v783-run37869353939.npz \
+            --prior-cases results/imprinting/runs/direct-flywire-imprint-pilot10-run37869353939.json \
+            --output results/imprinting/pilot11-REAL-frozen-unseen-and-rejection.json
+          python -c 'import json; d=json.load(open("results/imprinting/pilot11-REAL-frozen-unseen-and-rejection.json")); assert d["topology_status"]=="source-verified original complete FlyWire v783" and d["evidence"]["original_anatomy_unchanged"] and d["evidence"]["eligible_unseen_source_events"]>0 and d["calibration"]["calibration_false_acceptance_rate"]<=.1'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flywire-pilot11-REAL-v783-unchanged-checkpoint
+          path: results/imprinting/pilot11-REAL-frozen-unseen-and-rejection.json
+          retention-days: 90
+          if-no-files-found: warn
