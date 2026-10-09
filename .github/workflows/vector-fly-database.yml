@@ -1,0 +1,98 @@
+name: Vector Fly persistent memory database
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/vector_store.py'
+      - 'scripts/vector_fly_db.py'
+      - 'tests/test_vector_store.py'
+      - '.github/workflows/vector-fly-database.yml'
+      - 'docs/VECTOR_FLY_DATABASE_V1.md'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/vector_store.py'
+      - 'scripts/vector_fly_db.py'
+      - 'tests/test_vector_store.py'
+      - '.github/workflows/vector-fly-database.yml'
+      - 'docs/VECTOR_FLY_DATABASE_V1.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  database:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install local CPU dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Verify frozen original autobiography
+        run: python scripts/validate_autobiographical_corpus_v12.py
+      - name: Execute complete SQLite vector-index regression suite
+        run: python -m unittest discover -s tests -p 'test_vector_store.py' -v
+      - name: Prepare training-fitted shared L2 v2 source
+        run: |
+          python scripts/build_shared_memory_l2.py \
+            --seed 31 --output-dir data/derived/vector-db-seed31 \
+            --report results/vector_fly/TFIDF_SOURCE_BUILD.json
+      - name: Build persistent 450-memory read-only browsing index
+        run: |
+          python scripts/vector_fly_db.py build \
+            --cache-dir data/derived/vector-db-seed31 \
+            --database data/derived/vector-fly-450.sqlite \
+            --scope all | tee results/vector_fly/DATABASE_BUILD.json
+      - name: Build episode-disjoint training-only research index
+        run: |
+          python scripts/vector_fly_db.py build \
+            --cache-dir data/derived/vector-db-seed31 \
+            --database data/derived/vector-fly-train31.sqlite \
+            --scope train | tee results/vector_fly/TRAIN_ONLY_BUILD.json
+      - name: Verify complete stored source and every sparse vector against L2
+        run: |
+          python scripts/vector_fly_db.py verify \
+            --cache-dir data/derived/vector-db-seed31 \
+            --database data/derived/vector-fly-450.sqlite | tee results/vector_fly/FULL_VERIFY.json
+          python scripts/vector_fly_db.py verify \
+            --cache-dir data/derived/vector-db-seed31 \
+            --database data/derived/vector-fly-train31.sqlite | tee results/vector_fly/TRAIN_VERIFY.json
+      - name: Execute verifiable example query and reject out-of-vocabulary matches
+        run: |
+          python scripts/vector_fly_db.py query \
+            --cache-dir data/derived/vector-db-seed31 \
+            --database data/derived/vector-fly-450.sqlite \
+            --text "camphor beetle brass key" --top-k 5 \
+            | tee results/vector_fly/EXAMPLE_QUERY.json
+          python scripts/vector_fly_db.py query \
+            --cache-dir data/derived/vector-db-seed31 \
+            --database data/derived/vector-fly-450.sqlite \
+            --text "zzzzqzxzy unrecoverableword12345" \
+            | tee results/vector_fly/UNKNOWN_QUERY.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          full = json.loads(Path("results/vector_fly/FULL_VERIFY.json").read_text())
+          train = json.loads(Path("results/vector_fly/TRAIN_VERIFY.json").read_text())
+          empty = json.loads(Path("results/vector_fly/UNKNOWN_QUERY.json").read_text())
+          assert full["verified_documents"] == 450
+          assert 0 < train["verified_documents"] < 450
+          assert not empty["results"]
+          print("PASS: persisted exact sparse search, verified source and no fabricated unknown matches")
+          PY
+      - name: Upload complete SQLite databases and source-linked results
+        uses: actions/upload-artifact@v4
+        with:
+          name: vector-fly-sqlite-persistent-db-v1
+          path: |
+            data/derived/vector-fly-450.sqlite
+            data/derived/vector-fly-train31.sqlite
+            results/vector_fly/*.json
+          if-no-files-found: error
+          retention-days: 90
