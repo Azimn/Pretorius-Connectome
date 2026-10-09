@@ -1,0 +1,63 @@
+name: Archive source-verified real FlyWire Pilot12 semantic versus rewired evidence
+
+on:
+  workflow_run:
+    workflows: ['FlyWire Pilot12 semantic cue versus degree-rewired anatomical null']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  archive-only-successful-main-whole-brain-originals:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download full original v783 real six-arm experiment, not synthetic controls
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: pilot12-REAL-original-FlyWire-v783-semantic-rewired-evidence
+          path: captured
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Fail closed on original source and every learned semantic checkpoint
+        run: |
+          set -euo pipefail
+          FILE="$(find captured -name pilot12-REAL-original-v783-six-conditions.json -type f | head -n 1)"
+          test -n "$FILE" && test -f "$FILE"
+          WEIGHTS="$(find captured -name real_minilm.npz -type f | head -n 1)"
+          test -n "$WEIGHTS" && test -f "$WEIGHTS"
+          WEIGHT_DIR="$(dirname "$WEIGHTS")"
+          test -f "$WEIGHT_DIR/degree_rewired_minilm.npz"
+          python scripts/archive_flywire_pilot12.py \
+            --input "$FILE" --weights "$WEIGHT_DIR" --run-id "$SOURCE_RUN_ID"
+      - name: Commit original real cases, frozen semantics metadata and learned weights
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/imprinting/checkpoints/ results/imprinting/runs/ \
+            results/imprinting/PILOT12_REAL_SEMANTIC_REWIRED_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "Byte-identical original case and weights already preserved"
+            exit 0
+          fi
+          git commit -m "Archive original whole-FlyWire Pilot12 six-condition run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
