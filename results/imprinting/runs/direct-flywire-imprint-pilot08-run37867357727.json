@@ -1,0 +1,6315 @@
+{
+  "calibration_threshold": 0.0082783,
+  "claim_boundary": "Real directed-edge-constrained signed numerical learning; model infer uses cue-only lexical hashing and an isolated learned synaptic overlay. Content readout is 256D lexical coordinates, not native-language memory. Candidate-event identification is an EXTERNAL oracle-assisted diagnostic. No STDP, autonomous autobiographical recall, semantic reasoning, independently reviewed prompts, or fly cognition is claimed.",
+  "evidence_status": "Measured real FlyWire v783 original whole-brain topology",
+  "experiment": "Direct synaptic imprinting Pilot 08 (heteroassociative)",
+  "external_evaluator_case_results": {
+    "learned_real_or_synthetic_graph": {
+      "absent": [
+        {
+          "best_cosine": 0.7627815,
+          "correct": null,
+          "event_id": "E19-001",
+          "known": false,
+          "predicted": "E11-015",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6418301,
+          "correct": null,
+          "event_id": "E19-002",
+          "known": false,
+          "predicted": "E12-014",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4984495,
+          "correct": null,
+          "event_id": "E19-003",
+          "known": false,
+          "predicted": "E07-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6896499,
+          "correct": null,
+          "event_id": "E19-004",
+          "known": false,
+          "predicted": "E15-008",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5895194,
+          "correct": null,
+          "event_id": "E19-005",
+          "known": false,
+          "predicted": "E23-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7144083,
+          "correct": null,
+          "event_id": "E19-006",
+          "known": false,
+          "predicted": "E12-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5499309,
+          "correct": null,
+          "event_id": "E19-007",
+          "known": false,
+          "predicted": "E25-029",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6720779,
+          "correct": null,
+          "event_id": "E19-008",
+          "known": false,
+          "predicted": "E18-005",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1965861,
+          "correct": null,
+          "event_id": "E19-009",
+          "known": false,
+          "predicted": "E01-006",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2616385,
+          "correct": null,
+          "event_id": "E19-010",
+          "known": false,
+          "predicted": "E01-016",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1307875,
+          "correct": null,
+          "event_id": "E19-011",
+          "known": false,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5286395,
+          "correct": null,
+          "event_id": "E19-012",
+          "known": false,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2740778,
+          "correct": null,
+          "event_id": "E19-013",
+          "known": false,
+          "predicted": "E05-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.111571,
+          "correct": null,
+          "event_id": "E19-014",
+          "known": false,
+          "predicted": "E09-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7510309,
+          "correct": null,
+          "event_id": "E19-015",
+          "known": false,
+          "predicted": "E01-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6958461,
+          "correct": null,
+          "event_id": "E03-001",
+          "known": false,
+          "predicted": "E23-006",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7999026,
+          "correct": null,
+          "event_id": "E03-002",
+          "known": false,
+          "predicted": "E25-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7616903,
+          "correct": null,
+          "event_id": "E03-003",
+          "known": false,
+          "predicted": "E12-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.062673,
+          "correct": null,
+          "event_id": "E03-004",
+          "known": false,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.8125306,
+          "correct": null,
+          "event_id": "E03-005",
+          "known": false,
+          "predicted": "E25-006",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2141245,
+          "correct": null,
+          "event_id": "E03-006",
+          "known": false,
+          "predicted": "E08-005",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5449445,
+          "correct": null,
+          "event_id": "E03-007",
+          "known": false,
+          "predicted": "E08-008",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4373541,
+          "correct": null,
+          "event_id": "E03-008",
+          "known": false,
+          "predicted": "E09-002",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6511035,
+          "correct": null,
+          "event_id": "E03-009",
+          "known": false,
+          "predicted": "E15-015",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2982756,
+          "correct": null,
+          "event_id": "E03-010",
+          "known": false,
+          "predicted": "E05-008",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2326823,
+          "correct": null,
+          "event_id": "E03-011",
+          "known": false,
+          "predicted": "E08-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3522032,
+          "correct": null,
+          "event_id": "E06-001",
+          "known": false,
+          "predicted": "E20-002",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2473855,
+          "correct": null,
+          "event_id": "E06-002",
+          "known": false,
+          "predicted": "E20-002",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5558402,
+          "correct": null,
+          "event_id": "E06-003",
+          "known": false,
+          "predicted": "E25-022",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2011315,
+          "correct": null,
+          "event_id": "E03-012",
+          "known": false,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2091666,
+          "correct": null,
+          "event_id": "E06-004",
+          "known": false,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5176291,
+          "correct": null,
+          "event_id": "E03-013",
+          "known": false,
+          "predicted": "E24-016",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1700827,
+          "correct": null,
+          "event_id": "E06-005",
+          "known": false,
+          "predicted": "E26-015",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7314708,
+          "correct": null,
+          "event_id": "E03-014",
+          "known": false,
+          "predicted": "E26-005",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.8070021,
+          "correct": null,
+          "event_id": "E06-006",
+          "known": false,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7332854,
+          "correct": null,
+          "event_id": "E06-007",
+          "known": false,
+          "predicted": "E21-010",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.8327106,
+          "correct": null,
+          "event_id": "E03-015",
+          "known": false,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3092931,
+          "correct": null,
+          "event_id": "E06-008",
+          "known": false,
+          "predicted": "E01-016",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2264176,
+          "correct": null,
+          "event_id": "E03-016",
+          "known": false,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5590385,
+          "correct": null,
+          "event_id": "E06-009",
+          "known": false,
+          "predicted": "E25-019",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.8160385,
+          "correct": null,
+          "event_id": "E03-017",
+          "known": false,
+          "predicted": "E24-003",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5425901,
+          "correct": null,
+          "event_id": "E06-010",
+          "known": false,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6641531,
+          "correct": null,
+          "event_id": "E06-011",
+          "known": false,
+          "predicted": "E25-008",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.0738961,
+          "correct": null,
+          "event_id": "E03-018",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.8029547,
+          "correct": null,
+          "event_id": "E06-012",
+          "known": false,
+          "predicted": "E12-013",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0409409,
+          "correct": null,
+          "event_id": "E06-013",
+          "known": false,
+          "predicted": "E22-016",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2978974,
+          "correct": null,
+          "event_id": "E03-019",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7552984,
+          "correct": null,
+          "event_id": "E06-014",
+          "known": false,
+          "predicted": "E14-011",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4125732,
+          "correct": null,
+          "event_id": "E06-015",
+          "known": false,
+          "predicted": "E18-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.3086472,
+          "correct": null,
+          "event_id": "E06-016",
+          "known": false,
+          "predicted": "E01-011",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2307299,
+          "correct": null,
+          "event_id": "E03-020",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5486518,
+          "correct": null,
+          "event_id": "E04-001",
+          "known": false,
+          "predicted": "E05-006",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7285003,
+          "correct": null,
+          "event_id": "E04-002",
+          "known": false,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5669209,
+          "correct": null,
+          "event_id": "E04-003",
+          "known": false,
+          "predicted": "E14-003",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2329861,
+          "correct": null,
+          "event_id": "E04-004",
+          "known": false,
+          "predicted": "E27-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4573728,
+          "correct": null,
+          "event_id": "E04-005",
+          "known": false,
+          "predicted": "E20-012",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7991615,
+          "correct": null,
+          "event_id": "E04-006",
+          "known": false,
+          "predicted": "E12-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5529306,
+          "correct": null,
+          "event_id": "E04-007",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7282847,
+          "correct": null,
+          "event_id": "E04-008",
+          "known": false,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2252779,
+          "correct": null,
+          "event_id": "E04-009",
+          "known": false,
+          "predicted": "E05-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1169351,
+          "correct": null,
+          "event_id": "E04-010",
+          "known": false,
+          "predicted": "E05-016",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.235328,
+          "correct": null,
+          "event_id": "E04-011",
+          "known": false,
+          "predicted": "E21-012",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6955331,
+          "correct": null,
+          "event_id": "E04-012",
+          "known": false,
+          "predicted": "E25-013",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2998607,
+          "correct": null,
+          "event_id": "E04-013",
+          "known": false,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3965972,
+          "correct": null,
+          "event_id": "E04-014",
+          "known": false,
+          "predicted": "E18-005",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2223749,
+          "correct": null,
+          "event_id": "E04-015",
+          "known": false,
+          "predicted": "E27-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3283974,
+          "correct": null,
+          "event_id": "E04-016",
+          "known": false,
+          "predicted": "E25-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1371506,
+          "correct": null,
+          "event_id": "E04-017",
+          "known": false,
+          "predicted": "E26-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0904856,
+          "correct": null,
+          "event_id": "E04-018",
+          "known": false,
+          "predicted": "E07-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.010804,
+          "correct": null,
+          "event_id": "E04-019",
+          "known": false,
+          "predicted": "E27-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.8309119,
+          "correct": null,
+          "event_id": "E04-020",
+          "known": false,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        }
+      ],
+      "known": [
+        {
+          "best_cosine": 0.6525292,
+          "correct": false,
+          "event_id": "E01-012",
+          "known": true,
+          "predicted": "E23-012",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.360909
+        },
+        {
+          "best_cosine": -0.1629706,
+          "correct": false,
+          "event_id": "E24-014",
+          "known": true,
+          "predicted": "E22-004",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3074809
+        },
+        {
+          "best_cosine": -0.1003665,
+          "correct": false,
+          "event_id": "E21-011",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2231478
+        },
+        {
+          "best_cosine": -0.018826,
+          "correct": false,
+          "event_id": "E20-011",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1611496
+        },
+        {
+          "best_cosine": 0.1345859,
+          "correct": false,
+          "event_id": "E18-008",
+          "known": true,
+          "predicted": "E21-003",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0566674
+        },
+        {
+          "best_cosine": 0.2634428,
+          "correct": false,
+          "event_id": "E26-013",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0519803
+        },
+        {
+          "best_cosine": 0.7554452,
+          "correct": false,
+          "event_id": "E24-016",
+          "known": true,
+          "predicted": "E20-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5976716
+        },
+        {
+          "best_cosine": 0.3882725,
+          "correct": false,
+          "event_id": "E12-009",
+          "known": true,
+          "predicted": "E23-005",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.1567781
+        },
+        {
+          "best_cosine": 0.2412044,
+          "correct": false,
+          "event_id": "E25-015",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2786354
+        },
+        {
+          "best_cosine": 0.8060747,
+          "correct": false,
+          "event_id": "E17-005",
+          "known": true,
+          "predicted": "E24-003",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.4805755
+        },
+        {
+          "best_cosine": 0.7073085,
+          "correct": false,
+          "event_id": "E23-016",
+          "known": true,
+          "predicted": "E14-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4727364
+        },
+        {
+          "best_cosine": 0.1944177,
+          "correct": false,
+          "event_id": "E25-009",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0096108
+        },
+        {
+          "best_cosine": 0.7149787,
+          "correct": false,
+          "event_id": "E11-009",
+          "known": true,
+          "predicted": "E21-010",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.3464722
+        },
+        {
+          "best_cosine": 0.0252427,
+          "correct": false,
+          "event_id": "E09-011",
+          "known": true,
+          "predicted": "E27-006",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1912289
+        },
+        {
+          "best_cosine": 0.2322241,
+          "correct": false,
+          "event_id": "E01-005",
+          "known": true,
+          "predicted": "E22-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2198984
+        },
+        {
+          "best_cosine": 0.3902103,
+          "correct": false,
+          "event_id": "E20-005",
+          "known": true,
+          "predicted": "E09-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2126414
+        },
+        {
+          "best_cosine": 0.1222799,
+          "correct": false,
+          "event_id": "E18-004",
+          "known": true,
+          "predicted": "E12-010",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.0021514
+        },
+        {
+          "best_cosine": 0.138491,
+          "correct": false,
+          "event_id": "E14-001",
+          "known": true,
+          "predicted": "E17-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0360345
+        },
+        {
+          "best_cosine": 0.5856584,
+          "correct": false,
+          "event_id": "E01-004",
+          "known": true,
+          "predicted": "E20-004",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.3749733
+        },
+        {
+          "best_cosine": -0.1103672,
+          "correct": false,
+          "event_id": "E25-024",
+          "known": true,
+          "predicted": "E27-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3116542
+        },
+        {
+          "best_cosine": 0.153588,
+          "correct": false,
+          "event_id": "E15-013",
+          "known": true,
+          "predicted": "E21-003",
+          "readout_norm": 1.0,
+          "target_cosine": -0.318758
+        },
+        {
+          "best_cosine": 0.4042618,
+          "correct": false,
+          "event_id": "E25-013",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0573581
+        },
+        {
+          "best_cosine": -0.167198,
+          "correct": false,
+          "event_id": "E12-003",
+          "known": true,
+          "predicted": "E21-012",
+          "readout_norm": 1.0,
+          "target_cosine": -0.4808311
+        },
+        {
+          "best_cosine": 0.6464448,
+          "correct": false,
+          "event_id": "E26-012",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.366881
+        },
+        {
+          "best_cosine": 0.580693,
+          "correct": false,
+          "event_id": "E18-003",
+          "known": true,
+          "predicted": "E15-010",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3846015
+        },
+        {
+          "best_cosine": 0.2819491,
+          "correct": false,
+          "event_id": "E15-009",
+          "known": true,
+          "predicted": "E27-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0809026
+        },
+        {
+          "best_cosine": 0.6373055,
+          "correct": false,
+          "event_id": "E05-015",
+          "known": true,
+          "predicted": "E18-009",
+          "readout_norm": 1.0,
+          "target_cosine": 0.360812
+        },
+        {
+          "best_cosine": -0.1138319,
+          "correct": false,
+          "event_id": "E25-002",
+          "known": true,
+          "predicted": "E26-005",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2354816
+        },
+        {
+          "best_cosine": 0.7020284,
+          "correct": false,
+          "event_id": "E21-016",
+          "known": true,
+          "predicted": "E15-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5134962
+        },
+        {
+          "best_cosine": 0.5425901,
+          "correct": false,
+          "event_id": "E25-020",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3046246
+        },
+        {
+          "best_cosine": 0.4954568,
+          "correct": false,
+          "event_id": "E12-005",
+          "known": true,
+          "predicted": "E25-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2729051
+        },
+        {
+          "best_cosine": 0.7352025,
+          "correct": false,
+          "event_id": "E05-013",
+          "known": true,
+          "predicted": "E25-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4898991
+        },
+        {
+          "best_cosine": 0.8005623,
+          "correct": false,
+          "event_id": "E05-001",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": 0.451522
+        },
+        {
+          "best_cosine": -0.1100376,
+          "correct": false,
+          "event_id": "E21-008",
+          "known": true,
+          "predicted": "E09-013",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.3446538
+        },
+        {
+          "best_cosine": 0.3073484,
+          "correct": false,
+          "event_id": "E08-015",
+          "known": true,
+          "predicted": "E05-018",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2517923
+        },
+        {
+          "best_cosine": 0.1690083,
+          "correct": false,
+          "event_id": "E24-003",
+          "known": true,
+          "predicted": "E25-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1361661
+        },
+        {
+          "best_cosine": -0.2074399,
+          "correct": false,
+          "event_id": "E11-008",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.391324
+        },
+        {
+          "best_cosine": 0.7607569,
+          "correct": false,
+          "event_id": "E21-010",
+          "known": true,
+          "predicted": "E14-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6702552
+        },
+        {
+          "best_cosine": -0.0052133,
+          "correct": false,
+          "event_id": "E05-011",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3152975
+        },
+        {
+          "best_cosine": 0.7561178,
+          "correct": false,
+          "event_id": "E20-008",
+          "known": true,
+          "predicted": "E27-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6109813
+        },
+        {
+          "best_cosine": 0.6235312,
+          "correct": false,
+          "event_id": "E22-012",
+          "known": true,
+          "predicted": "E05-011",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3911337
+        },
+        {
+          "best_cosine": 0.2890951,
+          "correct": false,
+          "event_id": "E21-009",
+          "known": true,
+          "predicted": "E17-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1693411
+        },
+        {
+          "best_cosine": 0.4561048,
+          "correct": false,
+          "event_id": "E27-020",
+          "known": true,
+          "predicted": "E08-015",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3290569
+        },
+        {
+          "best_cosine": 0.1874678,
+          "correct": false,
+          "event_id": "E05-016",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1145913
+        },
+        {
+          "best_cosine": 0.5498407,
+          "correct": false,
+          "event_id": "E15-007",
+          "known": true,
+          "predicted": "E05-019",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.4356318
+        },
+        {
+          "best_cosine": 0.6550438,
+          "correct": false,
+          "event_id": "E25-012",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3418196
+        },
+        {
+          "best_cosine": 0.5518829,
+          "correct": false,
+          "event_id": "E24-013",
+          "known": true,
+          "predicted": "E27-015",
+          "readout_norm": 1.0,
+          "target_cosine": 0.449237
+        },
+        {
+          "best_cosine": 0.153681,
+          "correct": false,
+          "event_id": "E05-010",
+          "known": true,
+          "predicted": "E17-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0072093
+        },
+        {
+          "best_cosine": 0.7410096,
+          "correct": false,
+          "event_id": "E14-013",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5965321
+        },
+        {
+          "best_cosine": 0.4566264,
+          "correct": false,
+          "event_id": "E15-012",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1620577
+        },
+        {
+          "best_cosine": 0.2519412,
+          "correct": false,
+          "event_id": "E22-001",
+          "known": true,
+          "predicted": "E09-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0244949
+        },
+        {
+          "best_cosine": 0.068338,
+          "correct": false,
+          "event_id": "E11-011",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1962537
+        },
+        {
+          "best_cosine": 0.5350646,
+          "correct": false,
+          "event_id": "E27-011",
+          "known": true,
+          "predicted": "E20-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4210832
+        },
+        {
+          "best_cosine": 0.7177455,
+          "correct": false,
+          "event_id": "E07-013",
+          "known": true,
+          "predicted": "E26-005",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.602067
+        },
+        {
+          "best_cosine": 0.80606,
+          "correct": false,
+          "event_id": "E27-012",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6316071
+        },
+        {
+          "best_cosine": 0.7602388,
+          "correct": false,
+          "event_id": "E08-010",
+          "known": true,
+          "predicted": "E24-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3411901
+        },
+        {
+          "best_cosine": 0.8278408,
+          "correct": false,
+          "event_id": "E11-015",
+          "known": true,
+          "predicted": "E12-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.578603
+        },
+        {
+          "best_cosine": 0.4835422,
+          "correct": false,
+          "event_id": "E01-002",
+          "known": true,
+          "predicted": "E23-010",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2867851
+        },
+        {
+          "best_cosine": 0.6694507,
+          "correct": false,
+          "event_id": "E05-012",
+          "known": true,
+          "predicted": "E23-002",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.4360009
+        },
+        {
+          "best_cosine": 0.6958461,
+          "correct": false,
+          "event_id": "E09-002",
+          "known": true,
+          "predicted": "E23-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.511793
+        },
+        {
+          "best_cosine": 0.7542964,
+          "correct": false,
+          "event_id": "E24-006",
+          "known": true,
+          "predicted": "E26-005",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.4726068
+        },
+        {
+          "best_cosine": -0.0011096,
+          "correct": false,
+          "event_id": "E25-021",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3175753
+        },
+        {
+          "best_cosine": 0.1220819,
+          "correct": false,
+          "event_id": "E17-001",
+          "known": true,
+          "predicted": "E21-014",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.0973551
+        },
+        {
+          "best_cosine": 0.7947339,
+          "correct": false,
+          "event_id": "E12-011",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.7038926
+        },
+        {
+          "best_cosine": -0.2973015,
+          "correct": false,
+          "event_id": "E09-005",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": -0.4529926
+        },
+        {
+          "best_cosine": -0.3314418,
+          "correct": false,
+          "event_id": "E24-008",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.655882
+        },
+        {
+          "best_cosine": -0.1313881,
+          "correct": false,
+          "event_id": "E22-011",
+          "known": true,
+          "predicted": "E27-006",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3501994
+        },
+        {
+          "best_cosine": 0.8200378,
+          "correct": false,
+          "event_id": "E15-008",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6501667
+        },
+        {
+          "best_cosine": 0.7574951,
+          "correct": false,
+          "event_id": "E15-006",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6406
+        },
+        {
+          "best_cosine": -0.1371506,
+          "correct": false,
+          "event_id": "E26-005",
+          "known": true,
+          "predicted": "E26-011",
+          "readout_norm": 1.0,
+          "target_cosine": -0.5480087
+        },
+        {
+          "best_cosine": -0.3555876,
+          "correct": false,
+          "event_id": "E25-016",
+          "known": true,
+          "predicted": "E27-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.647308
+        },
+        {
+          "best_cosine": -0.0997241,
+          "correct": false,
+          "event_id": "E27-004",
+          "known": true,
+          "predicted": "E01-006",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.3520087
+        },
+        {
+          "best_cosine": 0.7660366,
+          "correct": false,
+          "event_id": "E15-001",
+          "known": true,
+          "predicted": "E25-006",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.5150602
+        },
+        {
+          "best_cosine": -0.275342,
+          "correct": false,
+          "event_id": "E07-009",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.450235
+        },
+        {
+          "best_cosine": 0.7135344,
+          "correct": false,
+          "event_id": "E15-002",
+          "known": true,
+          "predicted": "E20-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5557798
+        },
+        {
+          "best_cosine": 0.8225979,
+          "correct": false,
+          "event_id": "E07-012",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5159484
+        },
+        {
+          "best_cosine": 0.1631909,
+          "correct": false,
+          "event_id": "E27-014",
+          "known": true,
+          "predicted": "E22-012",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0449312
+        },
+        {
+          "best_cosine": 0.4956097,
+          "correct": false,
+          "event_id": "E24-015",
+          "known": true,
+          "predicted": "E01-018",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2545964
+        },
+        {
+          "best_cosine": 0.7635502,
+          "correct": false,
+          "event_id": "E18-006",
+          "known": true,
+          "predicted": "E12-011",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6759316
+        },
+        {
+          "best_cosine": 0.6930106,
+          "correct": false,
+          "event_id": "E27-007",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.486602
+        },
+        {
+          "best_cosine": 0.3970766,
+          "correct": false,
+          "event_id": "E23-008",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0102794
+        },
+        {
+          "best_cosine": -0.1845434,
+          "correct": false,
+          "event_id": "E07-003",
+          "known": true,
+          "predicted": "E07-007",
+          "readout_norm": 1.0,
+          "target_cosine": -0.4002205
+        },
+        {
+          "best_cosine": 0.0330317,
+          "correct": false,
+          "event_id": "E21-014",
+          "known": true,
+          "predicted": "E21-012",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.1398971
+        },
+        {
+          "best_cosine": 0.5028654,
+          "correct": false,
+          "event_id": "E27-001",
+          "known": true,
+          "predicted": "E17-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1671181
+        },
+        {
+          "best_cosine": 0.5055729,
+          "correct": false,
+          "event_id": "E11-001",
+          "known": true,
+          "predicted": "E24-005",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.2380221
+        },
+        {
+          "best_cosine": -0.0910501,
+          "correct": false,
+          "event_id": "E08-008",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2743546
+        },
+        {
+          "best_cosine": 0.241497,
+          "correct": false,
+          "event_id": "E23-003",
+          "known": true,
+          "predicted": "E21-012",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0259272
+        },
+        {
+          "best_cosine": 0.5320373,
+          "correct": false,
+          "event_id": "E15-011",
+          "known": true,
+          "predicted": "E22-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.300526
+        },
+        {
+          "best_cosine": 0.6291783,
+          "correct": false,
+          "event_id": "E23-010",
+          "known": true,
+          "predicted": "E23-012",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4592044
+        },
+        {
+          "best_cosine": 0.6697754,
+          "correct": false,
+          "event_id": "E25-014",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3728956
+        },
+        {
+          "best_cosine": 0.6800071,
+          "correct": false,
+          "event_id": "E26-004",
+          "known": true,
+          "predicted": "E25-022",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3606842
+        },
+        {
+          "best_cosine": 0.0065945,
+          "correct": false,
+          "event_id": "E26-002",
+          "known": true,
+          "predicted": "E24-003",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1342643
+        },
+        {
+          "best_cosine": 0.7459017,
+          "correct": false,
+          "event_id": "E01-014",
+          "known": true,
+          "predicted": "E25-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5633928
+        },
+        {
+          "best_cosine": 0.7823677,
+          "correct": false,
+          "event_id": "E08-012",
+          "known": true,
+          "predicted": "E26-007",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.608237
+        },
+        {
+          "best_cosine": 0.6986412,
+          "correct": false,
+          "event_id": "E14-010",
+          "known": true,
+          "predicted": "E26-012",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5365348
+        },
+        {
+          "best_cosine": 0.5833638,
+          "correct": false,
+          "event_id": "E11-012",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3074828
+        },
+        {
+          "best_cosine": 0.7806027,
+          "correct": false,
+          "event_id": "E01-007",
+          "known": true,
+          "predicted": "E23-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5739189
+        },
+        {
+          "best_cosine": 0.4212621,
+          "correct": false,
+          "event_id": "E07-006",
+          "known": true,
+          "predicted": "E24-009",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.1261098
+        },
+        {
+          "best_cosine": 0.1571142,
+          "correct": false,
+          "event_id": "E01-017",
+          "known": true,
+          "predicted": "E23-007",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.0056857
+        },
+        {
+          "best_cosine": 0.421061,
+          "correct": false,
+          "event_id": "E25-007",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.204445
+        },
+        {
+          "best_cosine": 0.3965216,
+          "correct": false,
+          "event_id": "E05-009",
+          "known": true,
+          "predicted": "E22-004",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1640504
+        },
+        {
+          "best_cosine": 0.8113331,
+          "correct": false,
+          "event_id": "E26-015",
+          "known": true,
+          "predicted": "E24-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6291286
+        },
+        {
+          "best_cosine": 0.3822319,
+          "correct": false,
+          "event_id": "E27-017",
+          "known": true,
+          "predicted": "E11-010",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2137734
+        },
+        {
+          "best_cosine": 0.4048411,
+          "correct": false,
+          "event_id": "E01-008",
+          "known": true,
+          "predicted": "E15-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2464915
+        },
+        {
+          "best_cosine": 0.4506616,
+          "correct": false,
+          "event_id": "E25-023",
+          "known": true,
+          "predicted": "E27-011",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1374932
+        },
+        {
+          "best_cosine": 0.0779855,
+          "correct": false,
+          "event_id": "E23-004",
+          "known": true,
+          "predicted": "E07-007",
+          "readout_norm": 1.0,
+          "target_cosine": -0.104355
+        },
+        {
+          "best_cosine": 0.0263578,
+          "correct": false,
+          "event_id": "E11-005",
+          "known": true,
+          "predicted": "E18-004",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.4464682
+        },
+        {
+          "best_cosine": 0.4130004,
+          "correct": false,
+          "event_id": "E27-009",
+          "known": true,
+          "predicted": "E23-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2038747
+        },
+        {
+          "best_cosine": -0.2067583,
+          "correct": false,
+          "event_id": "E09-013",
+          "known": true,
+          "predicted": "E21-003",
+          "readout_norm": 1.0,
+          "target_cosine": -0.331589
+        },
+        {
+          "best_cosine": 0.8078617,
+          "correct": false,
+          "event_id": "E20-013",
+          "known": true,
+          "predicted": "E12-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.7143363
+        },
+        {
+          "best_cosine": -0.1872064,
+          "correct": false,
+          "event_id": "E05-019",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": -0.544021
+        },
+        {
+          "best_cosine": 0.4143867,
+          "correct": false,
+          "event_id": "E23-009",
+          "known": true,
+          "predicted": "E05-020",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0307367
+        },
+        {
+          "best_cosine": 0.5755904,
+          "correct": false,
+          "event_id": "E08-004",
+          "known": true,
+          "predicted": "E20-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4344558
+        },
+        {
+          "best_cosine": 0.7817053,
+          "correct": false,
+          "event_id": "E22-008",
+          "known": true,
+          "predicted": "E25-019",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5736189
+        },
+        {
+          "best_cosine": 0.3537833,
+          "correct": false,
+          "event_id": "E14-009",
+          "known": true,
+          "predicted": "E26-005",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0940829
+        },
+        {
+          "best_cosine": 0.011243,
+          "correct": false,
+          "event_id": "E27-018",
+          "known": true,
+          "predicted": "E22-004",
+          "readout_norm": 1.0,
+          "target_cosine": -0.4097447
+        },
+        {
+          "best_cosine": 0.4719607,
+          "correct": false,
+          "event_id": "E25-004",
+          "known": true,
+          "predicted": "E22-016",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2082805
+        },
+        {
+          "best_cosine": 0.8196964,
+          "correct": false,
+          "event_id": "E08-016",
+          "known": true,
+          "predicted": "E25-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6519342
+        },
+        {
+          "best_cosine": 0.568873,
+          "correct": false,
+          "event_id": "E07-005",
+          "known": true,
+          "predicted": "E12-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4838115
+        },
+        {
+          "best_cosine": 0.1204689,
+          "correct": false,
+          "event_id": "E22-002",
+          "known": true,
+          "predicted": "E26-008",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0751153
+        },
+        {
+          "best_cosine": 0.5425901,
+          "correct": false,
+          "event_id": "E11-006",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3202137
+        },
+        {
+          "best_cosine": 0.1571142,
+          "correct": false,
+          "event_id": "E25-005",
+          "known": true,
+          "predicted": "E23-007",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.0481964
+        },
+        {
+          "best_cosine": -0.2937904,
+          "correct": false,
+          "event_id": "E27-005",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.49381
+        },
+        {
+          "best_cosine": 0.5537124,
+          "correct": false,
+          "event_id": "E12-008",
+          "known": true,
+          "predicted": "E25-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3800248
+        },
+        {
+          "best_cosine": 0.6237013,
+          "correct": false,
+          "event_id": "E18-010",
+          "known": true,
+          "predicted": "E26-007",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3588002
+        },
+        {
+          "best_cosine": 0.5558402,
+          "correct": false,
+          "event_id": "E01-013",
+          "known": true,
+          "predicted": "E25-022",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.1550136
+        },
+        {
+          "best_cosine": 0.4856472,
+          "correct": false,
+          "event_id": "E23-013",
+          "known": true,
+          "predicted": "E26-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1890139
+        },
+        {
+          "best_cosine": -0.0788378,
+          "correct": false,
+          "event_id": "E25-022",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.2490743
+        },
+        {
+          "best_cosine": 0.6227742,
+          "correct": false,
+          "event_id": "E12-004",
+          "known": true,
+          "predicted": "E25-022",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3117214
+        },
+        {
+          "best_cosine": 0.6988725,
+          "correct": false,
+          "event_id": "E22-005",
+          "known": true,
+          "predicted": "E24-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4661106
+        },
+        {
+          "best_cosine": 0.7787068,
+          "correct": false,
+          "event_id": "E09-010",
+          "known": true,
+          "predicted": "E26-007",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5579908
+        },
+        {
+          "best_cosine": -0.1251021,
+          "correct": false,
+          "event_id": "E20-001",
+          "known": true,
+          "predicted": "E05-008",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2488213
+        },
+        {
+          "best_cosine": 0.7528645,
+          "correct": false,
+          "event_id": "E24-012",
+          "known": true,
+          "predicted": "E25-024",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6007679
+        },
+        {
+          "best_cosine": 0.3163094,
+          "correct": false,
+          "event_id": "E12-010",
+          "known": true,
+          "predicted": "E20-012",
+          "readout_norm": 1.0,
+          "target_cosine": 0.012092
+        },
+        {
+          "best_cosine": 0.0358968,
+          "correct": false,
+          "event_id": "E07-010",
+          "known": true,
+          "predicted": "E27-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1131204
+        },
+        {
+          "best_cosine": -0.0228335,
+          "correct": false,
+          "event_id": "E22-004",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.5611451
+        },
+        {
+          "best_cosine": 0.3364477,
+          "correct": false,
+          "event_id": "E05-002",
+          "known": true,
+          "predicted": "E05-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1341025
+        },
+        {
+          "best_cosine": -0.2539696,
+          "correct": false,
+          "event_id": "E12-007",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.5218214
+        },
+        {
+          "best_cosine": 0.5557436,
+          "correct": false,
+          "event_id": "E21-003",
+          "known": true,
+          "predicted": "E22-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3225536
+        },
+        {
+          "best_cosine": 0.7429046,
+          "correct": false,
+          "event_id": "E23-015",
+          "known": true,
+          "predicted": "E11-007",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.6549914
+        },
+        {
+          "best_cosine": 0.3061604,
+          "correct": false,
+          "event_id": "E25-019",
+          "known": true,
+          "predicted": "E18-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1696534
+        },
+        {
+          "best_cosine": 0.1341816,
+          "correct": false,
+          "event_id": "E24-004",
+          "known": true,
+          "predicted": "E05-008",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1084711
+        },
+        {
+          "best_cosine": 0.5844853,
+          "correct": false,
+          "event_id": "E14-005",
+          "known": true,
+          "predicted": "E15-009",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2822032
+        },
+        {
+          "best_cosine": 0.5466916,
+          "correct": false,
+          "event_id": "E09-008",
+          "known": true,
+          "predicted": "E01-018",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2779773
+        },
+        {
+          "best_cosine": 0.736525,
+          "correct": false,
+          "event_id": "E20-004",
+          "known": true,
+          "predicted": "E14-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5011646
+        },
+        {
+          "best_cosine": 0.7161617,
+          "correct": false,
+          "event_id": "E25-018",
+          "known": true,
+          "predicted": "E25-021",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6426384
+        },
+        {
+          "best_cosine": 0.2527871,
+          "correct": false,
+          "event_id": "E14-017",
+          "known": true,
+          "predicted": "E15-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2025155
+        },
+        {
+          "best_cosine": 0.7365801,
+          "correct": false,
+          "event_id": "E01-009",
+          "known": true,
+          "predicted": "E20-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6258358
+        },
+        {
+          "best_cosine": 0.3902572,
+          "correct": false,
+          "event_id": "E22-009",
+          "known": true,
+          "predicted": "E18-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1231943
+        },
+        {
+          "best_cosine": 0.6655634,
+          "correct": false,
+          "event_id": "E18-009",
+          "known": true,
+          "predicted": "E23-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5351058
+        },
+        {
+          "best_cosine": 0.3712276,
+          "correct": false,
+          "event_id": "E23-012",
+          "known": true,
+          "predicted": "E24-012",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0242233
+        },
+        {
+          "best_cosine": 0.6971905,
+          "correct": false,
+          "event_id": "E01-018",
+          "known": true,
+          "predicted": "E21-010",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5154377
+        },
+        {
+          "best_cosine": 0.8030562,
+          "correct": false,
+          "event_id": "E23-002",
+          "known": true,
+          "predicted": "E25-028",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5626619
+        },
+        {
+          "best_cosine": 0.3217452,
+          "correct": false,
+          "event_id": "E01-011",
+          "known": true,
+          "predicted": "E01-018",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2429922
+        },
+        {
+          "best_cosine": 0.5997857,
+          "correct": false,
+          "event_id": "E25-028",
+          "known": true,
+          "predicted": "E08-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5239027
+        },
+        {
+          "best_cosine": 0.8478222,
+          "correct": false,
+          "event_id": "E08-013",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6661599
+        },
+        {
+          "best_cosine": 0.546508,
+          "correct": false,
+          "event_id": "E27-016",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.0357205
+        },
+        {
+          "best_cosine": 0.6922195,
+          "correct": false,
+          "event_id": "E18-007",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.3769438
+        },
+        {
+          "best_cosine": 0.1034097,
+          "correct": false,
+          "event_id": "E25-010",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2013994
+        }
+      ]
+    },
+    "shuffled_content_same_graph": {
+      "absent": [
+        {
+          "best_cosine": 0.7607364,
+          "correct": null,
+          "event_id": "E19-001",
+          "known": false,
+          "predicted": "E25-016",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6405194,
+          "correct": null,
+          "event_id": "E19-002",
+          "known": false,
+          "predicted": "E12-014",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5554397,
+          "correct": null,
+          "event_id": "E19-003",
+          "known": false,
+          "predicted": "E20-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.664443,
+          "correct": null,
+          "event_id": "E19-004",
+          "known": false,
+          "predicted": "E14-003",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5386895,
+          "correct": null,
+          "event_id": "E19-005",
+          "known": false,
+          "predicted": "E01-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7351594,
+          "correct": null,
+          "event_id": "E19-006",
+          "known": false,
+          "predicted": "E26-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5175043,
+          "correct": null,
+          "event_id": "E19-007",
+          "known": false,
+          "predicted": "E17-005",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6323265,
+          "correct": null,
+          "event_id": "E19-008",
+          "known": false,
+          "predicted": "E18-005",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1667267,
+          "correct": null,
+          "event_id": "E19-009",
+          "known": false,
+          "predicted": "E21-003",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1763461,
+          "correct": null,
+          "event_id": "E19-010",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.0638029,
+          "correct": null,
+          "event_id": "E19-011",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5073802,
+          "correct": null,
+          "event_id": "E19-012",
+          "known": false,
+          "predicted": "E25-008",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3798965,
+          "correct": null,
+          "event_id": "E19-013",
+          "known": false,
+          "predicted": "E22-013",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0247961,
+          "correct": null,
+          "event_id": "E19-014",
+          "known": false,
+          "predicted": "E20-017",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.791036,
+          "correct": null,
+          "event_id": "E19-015",
+          "known": false,
+          "predicted": "E25-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7112903,
+          "correct": null,
+          "event_id": "E03-001",
+          "known": false,
+          "predicted": "E25-019",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7909541,
+          "correct": null,
+          "event_id": "E03-002",
+          "known": false,
+          "predicted": "E25-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7159887,
+          "correct": null,
+          "event_id": "E03-003",
+          "known": false,
+          "predicted": "E12-013",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1578859,
+          "correct": null,
+          "event_id": "E03-004",
+          "known": false,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7792063,
+          "correct": null,
+          "event_id": "E03-005",
+          "known": false,
+          "predicted": "E14-003",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.241198,
+          "correct": null,
+          "event_id": "E03-006",
+          "known": false,
+          "predicted": "E12-005",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6387091,
+          "correct": null,
+          "event_id": "E03-007",
+          "known": false,
+          "predicted": "E18-005",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4846613,
+          "correct": null,
+          "event_id": "E03-008",
+          "known": false,
+          "predicted": "E22-016",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4515364,
+          "correct": null,
+          "event_id": "E03-009",
+          "known": false,
+          "predicted": "E22-002",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.3141198,
+          "correct": null,
+          "event_id": "E03-010",
+          "known": false,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4557423,
+          "correct": null,
+          "event_id": "E03-011",
+          "known": false,
+          "predicted": "E15-002",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3817974,
+          "correct": null,
+          "event_id": "E06-001",
+          "known": false,
+          "predicted": "E18-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1605522,
+          "correct": null,
+          "event_id": "E06-002",
+          "known": false,
+          "predicted": "E18-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4945553,
+          "correct": null,
+          "event_id": "E06-003",
+          "known": false,
+          "predicted": "E24-008",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2074072,
+          "correct": null,
+          "event_id": "E03-012",
+          "known": false,
+          "predicted": "E01-011",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2740257,
+          "correct": null,
+          "event_id": "E06-004",
+          "known": false,
+          "predicted": "E27-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5543487,
+          "correct": null,
+          "event_id": "E03-013",
+          "known": false,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.0229322,
+          "correct": null,
+          "event_id": "E06-005",
+          "known": false,
+          "predicted": "E22-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7105868,
+          "correct": null,
+          "event_id": "E03-014",
+          "known": false,
+          "predicted": "E23-002",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7726983,
+          "correct": null,
+          "event_id": "E06-006",
+          "known": false,
+          "predicted": "E25-021",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6973545,
+          "correct": null,
+          "event_id": "E06-007",
+          "known": false,
+          "predicted": "E25-013",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7978812,
+          "correct": null,
+          "event_id": "E03-015",
+          "known": false,
+          "predicted": "E25-030",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3695209,
+          "correct": null,
+          "event_id": "E06-008",
+          "known": false,
+          "predicted": "E11-014",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1709641,
+          "correct": null,
+          "event_id": "E03-016",
+          "known": false,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5796081,
+          "correct": null,
+          "event_id": "E06-009",
+          "known": false,
+          "predicted": "E25-019",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.8080997,
+          "correct": null,
+          "event_id": "E03-017",
+          "known": false,
+          "predicted": "E26-007",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3841715,
+          "correct": null,
+          "event_id": "E06-010",
+          "known": false,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.6519937,
+          "correct": null,
+          "event_id": "E06-011",
+          "known": false,
+          "predicted": "E20-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1089798,
+          "correct": null,
+          "event_id": "E03-018",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7588005,
+          "correct": null,
+          "event_id": "E06-012",
+          "known": false,
+          "predicted": "E23-016",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0872286,
+          "correct": null,
+          "event_id": "E06-013",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.2093837,
+          "correct": null,
+          "event_id": "E03-019",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.782389,
+          "correct": null,
+          "event_id": "E06-014",
+          "known": false,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3618247,
+          "correct": null,
+          "event_id": "E06-015",
+          "known": false,
+          "predicted": "E08-015",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.3671709,
+          "correct": null,
+          "event_id": "E06-016",
+          "known": false,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.268342,
+          "correct": null,
+          "event_id": "E03-020",
+          "known": false,
+          "predicted": "E21-008",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.672322,
+          "correct": null,
+          "event_id": "E04-001",
+          "known": false,
+          "predicted": "E26-011",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7366335,
+          "correct": null,
+          "event_id": "E04-002",
+          "known": false,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.5928819,
+          "correct": null,
+          "event_id": "E04-003",
+          "known": false,
+          "predicted": "E21-003",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.05924,
+          "correct": null,
+          "event_id": "E04-004",
+          "known": false,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4941834,
+          "correct": null,
+          "event_id": "E04-005",
+          "known": false,
+          "predicted": "E23-002",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7671936,
+          "correct": null,
+          "event_id": "E04-006",
+          "known": false,
+          "predicted": "E25-030",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4701222,
+          "correct": null,
+          "event_id": "E04-007",
+          "known": false,
+          "predicted": "E22-004",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.7589496,
+          "correct": null,
+          "event_id": "E04-008",
+          "known": false,
+          "predicted": "E25-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.3116674,
+          "correct": null,
+          "event_id": "E04-009",
+          "known": false,
+          "predicted": "E14-014",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.066676,
+          "correct": null,
+          "event_id": "E04-010",
+          "known": false,
+          "predicted": "E20-002",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.1096546,
+          "correct": null,
+          "event_id": "E04-011",
+          "known": false,
+          "predicted": "E21-012",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.722352,
+          "correct": null,
+          "event_id": "E04-012",
+          "known": false,
+          "predicted": "E25-013",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.1789895,
+          "correct": null,
+          "event_id": "E04-013",
+          "known": false,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.4393305,
+          "correct": null,
+          "event_id": "E04-014",
+          "known": false,
+          "predicted": "E18-005",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.2830325,
+          "correct": null,
+          "event_id": "E04-015",
+          "known": false,
+          "predicted": "E07-001",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.364495,
+          "correct": null,
+          "event_id": "E04-016",
+          "known": false,
+          "predicted": "E25-013",
+          "readout_norm": 0.9999999,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": -0.1118337,
+          "correct": null,
+          "event_id": "E04-017",
+          "known": false,
+          "predicted": "E20-017",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0171636,
+          "correct": null,
+          "event_id": "E04-018",
+          "known": false,
+          "predicted": "E09-007",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0500965,
+          "correct": null,
+          "event_id": "E04-019",
+          "known": false,
+          "predicted": "E07-015",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.841253,
+          "correct": null,
+          "event_id": "E04-020",
+          "known": false,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": null
+        }
+      ],
+      "known": [
+        {
+          "best_cosine": 0.6927554,
+          "correct": false,
+          "event_id": "E01-012",
+          "known": true,
+          "predicted": "E23-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4375591
+        },
+        {
+          "best_cosine": -0.1121407,
+          "correct": false,
+          "event_id": "E24-014",
+          "known": true,
+          "predicted": "E22-005",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2621843
+        },
+        {
+          "best_cosine": -0.0620921,
+          "correct": false,
+          "event_id": "E21-011",
+          "known": true,
+          "predicted": "E21-012",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.1890767
+        },
+        {
+          "best_cosine": 0.0701441,
+          "correct": false,
+          "event_id": "E20-011",
+          "known": true,
+          "predicted": "E20-017",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2328446
+        },
+        {
+          "best_cosine": 0.119492,
+          "correct": false,
+          "event_id": "E18-008",
+          "known": true,
+          "predicted": "E07-015",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0030278
+        },
+        {
+          "best_cosine": 0.2571444,
+          "correct": false,
+          "event_id": "E26-013",
+          "known": true,
+          "predicted": "E26-008",
+          "readout_norm": 1.0,
+          "target_cosine": -0.217105
+        },
+        {
+          "best_cosine": 0.7145674,
+          "correct": false,
+          "event_id": "E24-016",
+          "known": true,
+          "predicted": "E14-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4568982
+        },
+        {
+          "best_cosine": 0.6179436,
+          "correct": false,
+          "event_id": "E12-009",
+          "known": true,
+          "predicted": "E07-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1933489
+        },
+        {
+          "best_cosine": 0.1642456,
+          "correct": false,
+          "event_id": "E25-015",
+          "known": true,
+          "predicted": "E05-016",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.133494
+        },
+        {
+          "best_cosine": 0.7857245,
+          "correct": false,
+          "event_id": "E17-005",
+          "known": true,
+          "predicted": "E26-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4741288
+        },
+        {
+          "best_cosine": 0.7267308,
+          "correct": false,
+          "event_id": "E23-016",
+          "known": true,
+          "predicted": "E24-005",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.572004
+        },
+        {
+          "best_cosine": 0.188602,
+          "correct": false,
+          "event_id": "E25-009",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0640916
+        },
+        {
+          "best_cosine": 0.6475508,
+          "correct": false,
+          "event_id": "E11-009",
+          "known": true,
+          "predicted": "E25-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2345873
+        },
+        {
+          "best_cosine": 0.0567292,
+          "correct": false,
+          "event_id": "E09-011",
+          "known": true,
+          "predicted": "E01-013",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1831089
+        },
+        {
+          "best_cosine": 0.335311,
+          "correct": false,
+          "event_id": "E01-005",
+          "known": true,
+          "predicted": "E20-012",
+          "readout_norm": 1.0,
+          "target_cosine": 0.038578
+        },
+        {
+          "best_cosine": 0.3879049,
+          "correct": false,
+          "event_id": "E20-005",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3181488
+        },
+        {
+          "best_cosine": 0.4549924,
+          "correct": false,
+          "event_id": "E18-004",
+          "known": true,
+          "predicted": "E22-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1464613
+        },
+        {
+          "best_cosine": 0.2454365,
+          "correct": false,
+          "event_id": "E14-001",
+          "known": true,
+          "predicted": "E22-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1996385
+        },
+        {
+          "best_cosine": 0.6428703,
+          "correct": false,
+          "event_id": "E01-004",
+          "known": true,
+          "predicted": "E26-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4715082
+        },
+        {
+          "best_cosine": 0.1280241,
+          "correct": false,
+          "event_id": "E25-024",
+          "known": true,
+          "predicted": "E27-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0674932
+        },
+        {
+          "best_cosine": 0.1537186,
+          "correct": false,
+          "event_id": "E15-013",
+          "known": true,
+          "predicted": "E21-003",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2952933
+        },
+        {
+          "best_cosine": 0.3096752,
+          "correct": false,
+          "event_id": "E25-013",
+          "known": true,
+          "predicted": "E20-006",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.1839162
+        },
+        {
+          "best_cosine": -0.1818124,
+          "correct": false,
+          "event_id": "E12-003",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3320643
+        },
+        {
+          "best_cosine": 0.6384414,
+          "correct": false,
+          "event_id": "E26-012",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4303577
+        },
+        {
+          "best_cosine": 0.720514,
+          "correct": false,
+          "event_id": "E18-003",
+          "known": true,
+          "predicted": "E24-016",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5757431
+        },
+        {
+          "best_cosine": 0.276212,
+          "correct": false,
+          "event_id": "E15-009",
+          "known": true,
+          "predicted": "E08-015",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1702677
+        },
+        {
+          "best_cosine": 0.648664,
+          "correct": false,
+          "event_id": "E05-015",
+          "known": true,
+          "predicted": "E15-009",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4673323
+        },
+        {
+          "best_cosine": -0.1582498,
+          "correct": false,
+          "event_id": "E25-002",
+          "known": true,
+          "predicted": "E01-006",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2765641
+        },
+        {
+          "best_cosine": 0.6908036,
+          "correct": false,
+          "event_id": "E21-016",
+          "known": true,
+          "predicted": "E25-018",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5304221
+        },
+        {
+          "best_cosine": 0.3841715,
+          "correct": false,
+          "event_id": "E25-020",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1013454
+        },
+        {
+          "best_cosine": 0.5460627,
+          "correct": false,
+          "event_id": "E12-005",
+          "known": true,
+          "predicted": "E09-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4347384
+        },
+        {
+          "best_cosine": 0.7189761,
+          "correct": false,
+          "event_id": "E05-013",
+          "known": true,
+          "predicted": "E25-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4038534
+        },
+        {
+          "best_cosine": 0.7376922,
+          "correct": false,
+          "event_id": "E05-001",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.4287896
+        },
+        {
+          "best_cosine": -0.0826386,
+          "correct": false,
+          "event_id": "E21-008",
+          "known": true,
+          "predicted": "E01-005",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2792252
+        },
+        {
+          "best_cosine": 0.3355367,
+          "correct": false,
+          "event_id": "E08-015",
+          "known": true,
+          "predicted": "E20-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1505473
+        },
+        {
+          "best_cosine": 0.3700824,
+          "correct": false,
+          "event_id": "E24-003",
+          "known": true,
+          "predicted": "E01-020",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0631601
+        },
+        {
+          "best_cosine": -0.1696818,
+          "correct": false,
+          "event_id": "E11-008",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.4729137
+        },
+        {
+          "best_cosine": 0.7435853,
+          "correct": false,
+          "event_id": "E21-010",
+          "known": true,
+          "predicted": "E12-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5915406
+        },
+        {
+          "best_cosine": 0.141021,
+          "correct": false,
+          "event_id": "E05-011",
+          "known": true,
+          "predicted": "E05-016",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1265348
+        },
+        {
+          "best_cosine": 0.667936,
+          "correct": false,
+          "event_id": "E20-008",
+          "known": true,
+          "predicted": "E25-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4557441
+        },
+        {
+          "best_cosine": 0.6429179,
+          "correct": false,
+          "event_id": "E22-012",
+          "known": true,
+          "predicted": "E21-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.3667547
+        },
+        {
+          "best_cosine": 0.2230609,
+          "correct": false,
+          "event_id": "E21-009",
+          "known": true,
+          "predicted": "E20-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1740587
+        },
+        {
+          "best_cosine": 0.5846573,
+          "correct": false,
+          "event_id": "E27-020",
+          "known": true,
+          "predicted": "E09-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2751832
+        },
+        {
+          "best_cosine": 0.3312092,
+          "correct": false,
+          "event_id": "E05-016",
+          "known": true,
+          "predicted": "E25-011",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0774663
+        },
+        {
+          "best_cosine": 0.6069918,
+          "correct": false,
+          "event_id": "E15-007",
+          "known": true,
+          "predicted": "E27-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4490171
+        },
+        {
+          "best_cosine": 0.514987,
+          "correct": false,
+          "event_id": "E25-012",
+          "known": true,
+          "predicted": "E26-011",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1540759
+        },
+        {
+          "best_cosine": 0.5939471,
+          "correct": false,
+          "event_id": "E24-013",
+          "known": true,
+          "predicted": "E11-009",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3694457
+        },
+        {
+          "best_cosine": 0.1789051,
+          "correct": false,
+          "event_id": "E05-010",
+          "known": true,
+          "predicted": "E27-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0736777
+        },
+        {
+          "best_cosine": 0.7847438,
+          "correct": false,
+          "event_id": "E14-013",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.594684
+        },
+        {
+          "best_cosine": 0.436722,
+          "correct": false,
+          "event_id": "E15-012",
+          "known": true,
+          "predicted": "E22-016",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.1376739
+        },
+        {
+          "best_cosine": 0.3104775,
+          "correct": false,
+          "event_id": "E22-001",
+          "known": true,
+          "predicted": "E25-013",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.0915078
+        },
+        {
+          "best_cosine": 0.0805793,
+          "correct": false,
+          "event_id": "E11-011",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1441385
+        },
+        {
+          "best_cosine": 0.5536165,
+          "correct": false,
+          "event_id": "E27-011",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2515423
+        },
+        {
+          "best_cosine": 0.7501251,
+          "correct": false,
+          "event_id": "E07-013",
+          "known": true,
+          "predicted": "E14-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6312594
+        },
+        {
+          "best_cosine": 0.815641,
+          "correct": false,
+          "event_id": "E27-012",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.6290519
+        },
+        {
+          "best_cosine": 0.717168,
+          "correct": false,
+          "event_id": "E08-010",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3686706
+        },
+        {
+          "best_cosine": 0.7976762,
+          "correct": false,
+          "event_id": "E11-015",
+          "known": true,
+          "predicted": "E25-030",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6096604
+        },
+        {
+          "best_cosine": 0.5677745,
+          "correct": false,
+          "event_id": "E01-002",
+          "known": true,
+          "predicted": "E24-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2515925
+        },
+        {
+          "best_cosine": 0.6596822,
+          "correct": false,
+          "event_id": "E05-012",
+          "known": true,
+          "predicted": "E14-003",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.3248183
+        },
+        {
+          "best_cosine": 0.7112903,
+          "correct": false,
+          "event_id": "E09-002",
+          "known": true,
+          "predicted": "E25-019",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.5141001
+        },
+        {
+          "best_cosine": 0.6867455,
+          "correct": false,
+          "event_id": "E24-006",
+          "known": true,
+          "predicted": "E18-005",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.5099923
+        },
+        {
+          "best_cosine": 0.0383899,
+          "correct": false,
+          "event_id": "E25-021",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2620769
+        },
+        {
+          "best_cosine": 0.1172233,
+          "correct": false,
+          "event_id": "E17-001",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1536584
+        },
+        {
+          "best_cosine": 0.8116739,
+          "correct": false,
+          "event_id": "E12-011",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.7035806
+        },
+        {
+          "best_cosine": -0.302478,
+          "correct": false,
+          "event_id": "E09-005",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": -0.490972
+        },
+        {
+          "best_cosine": -0.4015769,
+          "correct": false,
+          "event_id": "E24-008",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.6421109
+        },
+        {
+          "best_cosine": -0.1173817,
+          "correct": false,
+          "event_id": "E22-011",
+          "known": true,
+          "predicted": "E27-006",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.3931089
+        },
+        {
+          "best_cosine": 0.7965112,
+          "correct": false,
+          "event_id": "E15-008",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.6371621
+        },
+        {
+          "best_cosine": 0.7389252,
+          "correct": false,
+          "event_id": "E15-006",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.7095306
+        },
+        {
+          "best_cosine": -0.1118337,
+          "correct": false,
+          "event_id": "E26-005",
+          "known": true,
+          "predicted": "E20-017",
+          "readout_norm": 1.0,
+          "target_cosine": -0.4695139
+        },
+        {
+          "best_cosine": -0.3841151,
+          "correct": false,
+          "event_id": "E25-016",
+          "known": true,
+          "predicted": "E27-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.6716102
+        },
+        {
+          "best_cosine": -0.1452258,
+          "correct": false,
+          "event_id": "E27-004",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": -0.4677994
+        },
+        {
+          "best_cosine": 0.6956531,
+          "correct": false,
+          "event_id": "E15-001",
+          "known": true,
+          "predicted": "E25-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5607365
+        },
+        {
+          "best_cosine": -0.173305,
+          "correct": false,
+          "event_id": "E07-009",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.4694385
+        },
+        {
+          "best_cosine": 0.7743733,
+          "correct": false,
+          "event_id": "E15-002",
+          "known": true,
+          "predicted": "E23-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.534807
+        },
+        {
+          "best_cosine": 0.7490625,
+          "correct": false,
+          "event_id": "E07-012",
+          "known": true,
+          "predicted": "E26-009",
+          "readout_norm": 1.0,
+          "target_cosine": 0.514366
+        },
+        {
+          "best_cosine": 0.136627,
+          "correct": false,
+          "event_id": "E27-014",
+          "known": true,
+          "predicted": "E08-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0023307
+        },
+        {
+          "best_cosine": 0.5269243,
+          "correct": false,
+          "event_id": "E24-015",
+          "known": true,
+          "predicted": "E21-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2313139
+        },
+        {
+          "best_cosine": 0.748953,
+          "correct": false,
+          "event_id": "E18-006",
+          "known": true,
+          "predicted": "E25-018",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6624106
+        },
+        {
+          "best_cosine": 0.6062022,
+          "correct": false,
+          "event_id": "E27-007",
+          "known": true,
+          "predicted": "E20-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3768971
+        },
+        {
+          "best_cosine": 0.4049248,
+          "correct": false,
+          "event_id": "E23-008",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.059944
+        },
+        {
+          "best_cosine": -0.1023511,
+          "correct": false,
+          "event_id": "E07-003",
+          "known": true,
+          "predicted": "E07-007",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3614139
+        },
+        {
+          "best_cosine": 0.1296467,
+          "correct": false,
+          "event_id": "E21-014",
+          "known": true,
+          "predicted": "E12-014",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0854023
+        },
+        {
+          "best_cosine": 0.4511001,
+          "correct": false,
+          "event_id": "E27-001",
+          "known": true,
+          "predicted": "E25-022",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0794201
+        },
+        {
+          "best_cosine": 0.5424823,
+          "correct": false,
+          "event_id": "E11-001",
+          "known": true,
+          "predicted": "E24-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3586509
+        },
+        {
+          "best_cosine": -0.0693706,
+          "correct": false,
+          "event_id": "E08-008",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3309692
+        },
+        {
+          "best_cosine": 0.3212954,
+          "correct": false,
+          "event_id": "E23-003",
+          "known": true,
+          "predicted": "E21-012",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1623184
+        },
+        {
+          "best_cosine": 0.3005356,
+          "correct": false,
+          "event_id": "E15-011",
+          "known": true,
+          "predicted": "E26-008",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0039782
+        },
+        {
+          "best_cosine": 0.6030597,
+          "correct": false,
+          "event_id": "E23-010",
+          "known": true,
+          "predicted": "E14-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3684902
+        },
+        {
+          "best_cosine": 0.3017049,
+          "correct": false,
+          "event_id": "E25-014",
+          "known": true,
+          "predicted": "E01-010",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1247591
+        },
+        {
+          "best_cosine": 0.6592003,
+          "correct": false,
+          "event_id": "E26-004",
+          "known": true,
+          "predicted": "E25-022",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3332087
+        },
+        {
+          "best_cosine": 0.0046082,
+          "correct": false,
+          "event_id": "E26-002",
+          "known": true,
+          "predicted": "E27-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0967225
+        },
+        {
+          "best_cosine": 0.7452385,
+          "correct": false,
+          "event_id": "E01-014",
+          "known": true,
+          "predicted": "E20-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5156743
+        },
+        {
+          "best_cosine": 0.8080559,
+          "correct": false,
+          "event_id": "E08-012",
+          "known": true,
+          "predicted": "E07-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6097878
+        },
+        {
+          "best_cosine": 0.7452331,
+          "correct": false,
+          "event_id": "E14-010",
+          "known": true,
+          "predicted": "E25-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6044002
+        },
+        {
+          "best_cosine": 0.5322359,
+          "correct": false,
+          "event_id": "E11-012",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3405941
+        },
+        {
+          "best_cosine": 0.7750223,
+          "correct": false,
+          "event_id": "E01-007",
+          "known": true,
+          "predicted": "E25-010",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.5781096
+        },
+        {
+          "best_cosine": 0.3288353,
+          "correct": false,
+          "event_id": "E07-006",
+          "known": true,
+          "predicted": "E24-011",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0725722
+        },
+        {
+          "best_cosine": 0.3578787,
+          "correct": false,
+          "event_id": "E01-017",
+          "known": true,
+          "predicted": "E22-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1334029
+        },
+        {
+          "best_cosine": 0.4660091,
+          "correct": false,
+          "event_id": "E25-007",
+          "known": true,
+          "predicted": "E25-021",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2334133
+        },
+        {
+          "best_cosine": 0.5505981,
+          "correct": false,
+          "event_id": "E05-009",
+          "known": true,
+          "predicted": "E22-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0049831
+        },
+        {
+          "best_cosine": 0.7298173,
+          "correct": false,
+          "event_id": "E26-015",
+          "known": true,
+          "predicted": "E23-006",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5929114
+        },
+        {
+          "best_cosine": 0.3806849,
+          "correct": false,
+          "event_id": "E27-017",
+          "known": true,
+          "predicted": "E21-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2360521
+        },
+        {
+          "best_cosine": 0.5415021,
+          "correct": false,
+          "event_id": "E01-008",
+          "known": true,
+          "predicted": "E07-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1924746
+        },
+        {
+          "best_cosine": 0.4382106,
+          "correct": false,
+          "event_id": "E25-023",
+          "known": true,
+          "predicted": "E20-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.050149
+        },
+        {
+          "best_cosine": 0.1247244,
+          "correct": false,
+          "event_id": "E23-004",
+          "known": true,
+          "predicted": "E09-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1518288
+        },
+        {
+          "best_cosine": -0.0766532,
+          "correct": false,
+          "event_id": "E11-005",
+          "known": true,
+          "predicted": "E08-015",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3553097
+        },
+        {
+          "best_cosine": 0.3948499,
+          "correct": false,
+          "event_id": "E27-009",
+          "known": true,
+          "predicted": "E11-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1689748
+        },
+        {
+          "best_cosine": -0.1460605,
+          "correct": false,
+          "event_id": "E09-013",
+          "known": true,
+          "predicted": "E21-003",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3874677
+        },
+        {
+          "best_cosine": 0.7967921,
+          "correct": false,
+          "event_id": "E20-013",
+          "known": true,
+          "predicted": "E12-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.7472087
+        },
+        {
+          "best_cosine": -0.2139127,
+          "correct": false,
+          "event_id": "E05-019",
+          "known": true,
+          "predicted": "E21-003",
+          "readout_norm": 1.0,
+          "target_cosine": -0.5261126
+        },
+        {
+          "best_cosine": 0.3259876,
+          "correct": false,
+          "event_id": "E23-009",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1749666
+        },
+        {
+          "best_cosine": 0.5518962,
+          "correct": false,
+          "event_id": "E08-004",
+          "known": true,
+          "predicted": "E23-016",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.349137
+        },
+        {
+          "best_cosine": 0.8296116,
+          "correct": false,
+          "event_id": "E22-008",
+          "known": true,
+          "predicted": "E12-013",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5789799
+        },
+        {
+          "best_cosine": 0.3771441,
+          "correct": false,
+          "event_id": "E14-009",
+          "known": true,
+          "predicted": "E20-012",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.0139761
+        },
+        {
+          "best_cosine": 0.0013299,
+          "correct": false,
+          "event_id": "E27-018",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3515845
+        },
+        {
+          "best_cosine": 0.4500897,
+          "correct": false,
+          "event_id": "E25-004",
+          "known": true,
+          "predicted": "E21-010",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2675774
+        },
+        {
+          "best_cosine": 0.8018657,
+          "correct": false,
+          "event_id": "E08-016",
+          "known": true,
+          "predicted": "E20-014",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.6895547
+        },
+        {
+          "best_cosine": 0.488481,
+          "correct": false,
+          "event_id": "E07-005",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4730882
+        },
+        {
+          "best_cosine": 0.0441715,
+          "correct": false,
+          "event_id": "E22-002",
+          "known": true,
+          "predicted": "E08-016",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1369251
+        },
+        {
+          "best_cosine": 0.3841715,
+          "correct": false,
+          "event_id": "E11-006",
+          "known": true,
+          "predicted": "E23-004",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1534539
+        },
+        {
+          "best_cosine": 0.3578787,
+          "correct": false,
+          "event_id": "E25-005",
+          "known": true,
+          "predicted": "E22-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.242364
+        },
+        {
+          "best_cosine": -0.2094416,
+          "correct": false,
+          "event_id": "E27-005",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.5110441
+        },
+        {
+          "best_cosine": 0.4348182,
+          "correct": false,
+          "event_id": "E12-008",
+          "known": true,
+          "predicted": "E07-007",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1313949
+        },
+        {
+          "best_cosine": 0.5806352,
+          "correct": false,
+          "event_id": "E18-010",
+          "known": true,
+          "predicted": "E09-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3549278
+        },
+        {
+          "best_cosine": 0.4945553,
+          "correct": false,
+          "event_id": "E01-013",
+          "known": true,
+          "predicted": "E24-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0833831
+        },
+        {
+          "best_cosine": 0.5748126,
+          "correct": false,
+          "event_id": "E23-013",
+          "known": true,
+          "predicted": "E14-015",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3957019
+        },
+        {
+          "best_cosine": -0.0712977,
+          "correct": false,
+          "event_id": "E25-022",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2839423
+        },
+        {
+          "best_cosine": 0.5646459,
+          "correct": false,
+          "event_id": "E12-004",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.2868408
+        },
+        {
+          "best_cosine": 0.722446,
+          "correct": false,
+          "event_id": "E22-005",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5375727
+        },
+        {
+          "best_cosine": 0.7339823,
+          "correct": false,
+          "event_id": "E09-010",
+          "known": true,
+          "predicted": "E26-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5262945
+        },
+        {
+          "best_cosine": -0.1083611,
+          "correct": false,
+          "event_id": "E20-001",
+          "known": true,
+          "predicted": "E07-007",
+          "readout_norm": 1.0,
+          "target_cosine": -0.2557843
+        },
+        {
+          "best_cosine": 0.7820646,
+          "correct": false,
+          "event_id": "E24-012",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5981532
+        },
+        {
+          "best_cosine": 0.2196642,
+          "correct": false,
+          "event_id": "E12-010",
+          "known": true,
+          "predicted": "E09-013",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1146183
+        },
+        {
+          "best_cosine": -0.0378736,
+          "correct": false,
+          "event_id": "E07-010",
+          "known": true,
+          "predicted": "E22-004",
+          "readout_norm": 1.0,
+          "target_cosine": -0.0591424
+        },
+        {
+          "best_cosine": 0.0440396,
+          "correct": false,
+          "event_id": "E22-004",
+          "known": true,
+          "predicted": "E05-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.5899966
+        },
+        {
+          "best_cosine": 0.2481334,
+          "correct": false,
+          "event_id": "E05-002",
+          "known": true,
+          "predicted": "E20-004",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.0116778
+        },
+        {
+          "best_cosine": -0.2939137,
+          "correct": false,
+          "event_id": "E12-007",
+          "known": true,
+          "predicted": "E01-011",
+          "readout_norm": 1.0,
+          "target_cosine": -0.5309274
+        },
+        {
+          "best_cosine": 0.6446532,
+          "correct": false,
+          "event_id": "E21-003",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1804169
+        },
+        {
+          "best_cosine": 0.6407343,
+          "correct": false,
+          "event_id": "E23-015",
+          "known": true,
+          "predicted": "E24-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.4893481
+        },
+        {
+          "best_cosine": 0.136614,
+          "correct": false,
+          "event_id": "E25-019",
+          "known": true,
+          "predicted": "E05-002",
+          "readout_norm": 0.9999999,
+          "target_cosine": -0.0160725
+        },
+        {
+          "best_cosine": 0.1832741,
+          "correct": false,
+          "event_id": "E24-004",
+          "known": true,
+          "predicted": "E20-009",
+          "readout_norm": 1.0,
+          "target_cosine": -0.1025049
+        },
+        {
+          "best_cosine": 0.6022736,
+          "correct": false,
+          "event_id": "E14-005",
+          "known": true,
+          "predicted": "E20-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3076343
+        },
+        {
+          "best_cosine": 0.4501737,
+          "correct": false,
+          "event_id": "E09-008",
+          "known": true,
+          "predicted": "E08-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.1813072
+        },
+        {
+          "best_cosine": 0.7290037,
+          "correct": false,
+          "event_id": "E20-004",
+          "known": true,
+          "predicted": "E14-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5276696
+        },
+        {
+          "best_cosine": 0.7379956,
+          "correct": false,
+          "event_id": "E25-018",
+          "known": true,
+          "predicted": "E25-021",
+          "readout_norm": 1.0,
+          "target_cosine": 0.66282
+        },
+        {
+          "best_cosine": 0.3043893,
+          "correct": false,
+          "event_id": "E14-017",
+          "known": true,
+          "predicted": "E21-012",
+          "readout_norm": 1.0,
+          "target_cosine": 0.158698
+        },
+        {
+          "best_cosine": 0.6890579,
+          "correct": false,
+          "event_id": "E01-009",
+          "known": true,
+          "predicted": "E12-008",
+          "readout_norm": 1.0,
+          "target_cosine": 0.5407362
+        },
+        {
+          "best_cosine": 0.4470909,
+          "correct": false,
+          "event_id": "E22-009",
+          "known": true,
+          "predicted": "E01-005",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0646909
+        },
+        {
+          "best_cosine": 0.6182221,
+          "correct": false,
+          "event_id": "E18-009",
+          "known": true,
+          "predicted": "E12-001",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.3879052
+        },
+        {
+          "best_cosine": 0.4938195,
+          "correct": false,
+          "event_id": "E23-012",
+          "known": true,
+          "predicted": "E12-014",
+          "readout_norm": 1.0,
+          "target_cosine": 0.0768448
+        },
+        {
+          "best_cosine": 0.7352679,
+          "correct": false,
+          "event_id": "E01-018",
+          "known": true,
+          "predicted": "E24-016",
+          "readout_norm": 1.0,
+          "target_cosine": 0.588527
+        },
+        {
+          "best_cosine": 0.8102816,
+          "correct": false,
+          "event_id": "E23-002",
+          "known": true,
+          "predicted": "E25-018",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6158023
+        },
+        {
+          "best_cosine": 0.37513,
+          "correct": false,
+          "event_id": "E01-011",
+          "known": true,
+          "predicted": "E09-012",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3145185
+        },
+        {
+          "best_cosine": 0.6519783,
+          "correct": false,
+          "event_id": "E25-028",
+          "known": true,
+          "predicted": "E09-002",
+          "readout_norm": 1.0,
+          "target_cosine": 0.6049802
+        },
+        {
+          "best_cosine": 0.8057966,
+          "correct": false,
+          "event_id": "E08-013",
+          "known": true,
+          "predicted": "E25-017",
+          "readout_norm": 0.9999999,
+          "target_cosine": 0.6222985
+        },
+        {
+          "best_cosine": 0.4462095,
+          "correct": false,
+          "event_id": "E27-016",
+          "known": true,
+          "predicted": "E05-003",
+          "readout_norm": 1.0,
+          "target_cosine": 0.2155416
+        },
+        {
+          "best_cosine": 0.6372167,
+          "correct": false,
+          "event_id": "E18-007",
+          "known": true,
+          "predicted": "E07-001",
+          "readout_norm": 1.0,
+          "target_cosine": 0.3463581
+        },
+        {
+          "best_cosine": 0.0025698,
+          "correct": false,
+          "event_id": "E25-010",
+          "known": true,
+          "predicted": "E09-013",
+          "readout_norm": 1.0,
+          "target_cosine": -0.3051195
+        }
+      ]
+    },
+    "zero_overlay_same_graph": {
+      "absent": [
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-001",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-002",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-003",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-004",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-005",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-006",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-007",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-008",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-009",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-010",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-011",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-012",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-013",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-014",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E19-015",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-001",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-002",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-003",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-004",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-005",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-006",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-007",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-008",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-009",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-010",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-011",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-001",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-002",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-003",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-012",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-004",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-013",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-005",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-014",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-006",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-007",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-015",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-008",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-016",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-009",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-017",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-010",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-011",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-018",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-012",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-013",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-019",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-014",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-015",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E06-016",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E03-020",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-001",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-002",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-003",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-004",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-005",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-006",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-007",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-008",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-009",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-010",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-011",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-012",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-013",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-014",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-015",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-016",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-017",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-018",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-019",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": null,
+          "event_id": "E04-020",
+          "known": false,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": null
+        }
+      ],
+      "known": [
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-014",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E21-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E20-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E18-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E26-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-016",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E12-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-015",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E17-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-016",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E11-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E09-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E20-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E18-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E14-001",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-024",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E12-003",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E26-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E18-003",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-015",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-002",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E21-016",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-020",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E12-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-001",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E21-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E08-015",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-003",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E11-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E21-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E20-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E22-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E21-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-020",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-016",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-007",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E14-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E22-001",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E11-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E07-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E08-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E11-015",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-002",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E09-002",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-006",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-021",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E17-001",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E12-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E09-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E22-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-006",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E26-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-016",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-001",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E07-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-002",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E07-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-014",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-015",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E18-006",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-007",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E07-003",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E21-014",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-001",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E11-001",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E08-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-003",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E15-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-014",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E26-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E26-002",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-014",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E08-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E14-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E11-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-007",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E07-006",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-017",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-007",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E26-015",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-017",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-023",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E11-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E09-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E20-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-019",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E08-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E22-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E14-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-018",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E08-016",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E07-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E22-002",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E11-006",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E12-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E18-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-022",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E12-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E22-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E09-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E20-001",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E12-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E07-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E22-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E05-002",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E12-007",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E21-003",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-015",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-019",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E24-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E14-005",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E09-008",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E20-004",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-018",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E14-017",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E22-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E18-009",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-012",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-018",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E23-002",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E01-011",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-028",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E08-013",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E27-016",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E18-007",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        },
+        {
+          "best_cosine": 0.0,
+          "correct": false,
+          "event_id": "E25-010",
+          "known": true,
+          "predicted": null,
+          "readout_norm": 0.0,
+          "target_cosine": 0.0
+        }
+      ]
+    }
+  },
+  "graph": {
+    "array_sha256": {
+      "indices": "3180cc427eb92389f22afde12d99b19d6676443aa3b9ffd25589c97013cd404b",
+      "indptr": "bb91b075324c5971600d3c1bc296dabdfc95a18d695c0293a7d09647cff61595",
+      "root_ids": "84bc9ec32c4f797e3f6e6557b30b5fc7f447b5852aeb9553f7dd18ed6bd3321d",
+      "synapse_counts": "ef00868a5a54e3c9bdf1c4d64966bdec6fe5946a6f6909937801afcbdc44385e"
+    },
+    "neurons": 139255,
+    "original_anatomy_unchanged": true,
+    "original_integer_synaptic_contacts": 54492922,
+    "raw_aggregated_directed_edges": 15091983
+  },
+  "input": {
+    "cache_artifact_sha256": "65ae81401a17ec68adc3900395f226734618be4ffb2bae24745d989bd2a17625",
+    "canonical_source_events": 450,
+    "cue": "leave-one-literal-recall-cue-out; unsigned textual lookup forbidden",
+    "episodes_disjoint": true,
+    "readout": "signed sparse top-32 of original BC01 256D lexical content",
+    "representation": "persona-net-ExperienceEncoder-sensory256-v1",
+    "source_archive": "artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz",
+    "source_episodes": 27
+  },
+  "methods": {
+    "learned_real_or_synthetic_graph": {
+      "edge_update_events": 57135,
+      "metrics_at_learned_calibrated_threshold": {
+        "absent_false_acceptance": 0.774648,
+        "absent_n": 71,
+        "positive_correct_and_accepted": 0.0,
+        "positive_correct_top1": 0.0,
+        "positive_mean_target_cosine": 0.16862,
+        "positive_n": 159,
+        "readout_nonzero_positive": 159
+      },
+      "nonzero_overlay_edges": 25780,
+      "training_updates": 317
+    },
+    "shuffled_content_same_graph": {
+      "edge_update_events": 56903,
+      "metrics_at_learned_calibrated_threshold": {
+        "absent_false_acceptance": 0.788732,
+        "absent_n": 71,
+        "positive_correct_and_accepted": 0.0,
+        "positive_correct_top1": 0.0,
+        "positive_mean_target_cosine": 0.160361,
+        "positive_n": 159,
+        "readout_nonzero_positive": 159
+      },
+      "nonzero_overlay_edges": 25836,
+      "training_updates": 317
+    },
+    "zero_overlay_same_graph": {
+      "edge_update_events": 0,
+      "metrics_at_learned_calibrated_threshold": {
+        "absent_false_acceptance": 0.0,
+        "absent_n": 71,
+        "positive_correct_and_accepted": 0.0,
+        "positive_correct_top1": 0.0,
+        "positive_mean_target_cosine": 0.0,
+        "positive_n": 159,
+        "readout_nonzero_positive": 0
+      },
+      "nonzero_overlay_edges": 0,
+      "training_updates": 0
+    }
+  },
+  "training": {
+    "checkpoint_sha256": "e6edf8dd68e84540140612dbcbc42f827e00ce707d9f2947adf3342e215fcb6d",
+    "content_features_per_memory": 32,
+    "full_corpus_development_mode": false,
+    "heldout_calibration_episode_count": 4,
+    "heldout_test_episode_count": 4,
+    "imprinted_events": 317,
+    "input_features_per_cue": 8,
+    "learning_rate": 0.7,
+    "neuron_cells_per_feature": 32,
+    "seed": 31,
+    "weight_cap": 4.0
+  }
+}
