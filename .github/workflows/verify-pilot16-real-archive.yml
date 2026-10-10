@@ -1,0 +1,56 @@
+name: Verify Pilot16 original whole-FlyWire source archive before merge
+
+on:
+  push:
+    paths:
+      - 'scripts/archive_flywire_pilot16_mnemosyne.py'
+      - '.github/workflows/verify-pilot16-real-archive.yml'
+  pull_request:
+    paths:
+      - 'scripts/archive_flywire_pilot16_mnemosyne.py'
+      - '.github/workflows/verify-pilot16-real-archive.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  verify-original-publisher-run-and-every-learned-state:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Retrieve only independently successful source-verified original whole-v783 artifact
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 38025454741
+          name: pilot16-REAL-original-v783-Mnemosyne-numerical-evidence
+          path: source-original
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Validate all original publisher hashes, source partitions, ten weights and source-only novelty
+        run: |
+          set -euo pipefail
+          FILE="$(find source-original -name pilot16-REAL-original-v783-mnemosyne.json -type f | head -n 1)"
+          BASE="$(find source-original -name original_BC01_direct_hebb.npz -type f | head -n 1)"
+          test -f "$FILE"
+          test -f "$BASE"
+          WEIGHTS="$(dirname "$BASE")"
+          python scripts/archive_flywire_pilot16_mnemosyne.py \
+            --input "$FILE" --weights "$WEIGHTS" --run-id 38025454741
+          test -f "results/imprinting/runs/flywire-pilot16-mnemosyne-run38025454741.json"
+          test -f "results/imprinting/PILOT16_REAL_MNEMOSYNE_RESULTS.md"
+          test "$(find artifacts/imprinting/checkpoints -name 'pilot16-*-run38025454741.npz' | wc -l)" -eq 10
+          python - <<'PY'
+          import hashlib,json
+          path="results/imprinting/runs/flywire-pilot16-mnemosyne-run38025454741.json"
+          raw=open(path,"rb").read()
+          assert hashlib.sha256(raw).hexdigest()=="266b7653efa5b03d6adf09ba84b46c4364c322f985b176819927b6e32cc8bac4"
+          data=json.loads(raw)
+          assert data["original_fly_feature_pair_mask"]["effective_learned_feature_pairs"]==34310
+          assert data["rewired_fly_feature_pair_mask"]["effective_learned_feature_pairs"]==34403
+          assert data["full_original_source_case_stages"][-1]["arms"]["mnemosyne_BC01_dense_rls_original"]["groups"]["original159_learned_familiar"]["correct_top1"]==28
+          PY
