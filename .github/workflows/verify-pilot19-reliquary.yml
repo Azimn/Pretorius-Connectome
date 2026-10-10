@@ -1,0 +1,57 @@
+name: Verify Pilot19 source provenance archive and experimental evidence
+
+on:
+  push:
+    paths:
+      - 'scripts/archive_pilot19_reliquary.py'
+      - '.github/workflows/verify-pilot19-reliquary.yml'
+  pull_request:
+    paths:
+      - 'scripts/archive_pilot19_reliquary.py'
+      - '.github/workflows/verify-pilot19-reliquary.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  check-original-source-six-arm-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONPATH: 'src:.'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download the real original full source run data, not synthetic graph output
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 38060784575
+          name: pilot19-ORIGINAL-Pretorius-source-event-provenance-and-baselines
+          path: original-source
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Fail closed on source hashes and exact 316 third source controls
+        run: |
+          set -euo pipefail
+          FILE="$(find original-source -name pilot19-original-source-reliquary.json -type f | head -n 1)"
+          test -f "$FILE"
+          python - "$FILE" <<'PY'
+          import sys,hashlib,json
+          raw=open(sys.argv[1],"rb").read()
+          assert len(raw)==4670137
+          assert hashlib.sha256(raw).hexdigest()=="5f54f78625785ed3094694f40d8455cbb6cc3ff2ef24ad20f4848e385b827bc8"
+          d=json.loads(raw)
+          assert d["original_source"]["original_train_distinct_third_queries"]==316
+          a=d["arm_results"]
+          assert a["reliquary_event_graph"]["metrics"]["source_third316"]["source_correct_top1"]==287
+          assert a["all_anchors_exact_index"]["metrics"]["source_third316"]["source_correct_top1"]==287
+          assert a["train_two_anchors_only"]["metrics"]["source_third316"]["source_correct_top1"]==0
+          assert a["wrong_owner_graph"]["metrics"]["source_third316"]["source_correct_top1"]==0
+          PY
+          python scripts/archive_pilot19_reliquary.py \
+            --input "$FILE" --run-id 38060784575
+          test -f results/imprinting/PILOT19_REAL_RELIQUARY_RESULTS.md
+          test -f results/imprinting/runs/pilot19-reliquary-original-source-run38060784575.json
