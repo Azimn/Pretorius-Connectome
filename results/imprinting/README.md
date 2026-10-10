@@ -11,3 +11,5 @@
 [Pilot12 actual FlyWire semantic cue × degree-rewired null](PILOT12_REAL_SEMANTIC_REWIRED_RESULTS.md)
 
 [Pilot14 real FlyWire synaptic stability](PILOT14_REAL_SYNAPTIC_STABILITY_RESULTS.md)
+
+[Pilot13 original real-v783 staged memory capacity](PILOT13_REAL_CAPACITY_RESULTS.md)

@@ -177,3 +177,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Whole-FlyWire Pilot14 synaptic stability source run 37883362633
 
 [Original measured Pilot14 cases and all seven source-bound synaptic states](../results/imprinting/PILOT14_REAL_SYNAPTIC_STABILITY_RESULTS.md) now compare original Hebbian numerical learning, local exposure-count protected writing, original-derived rewired controls, wrong-content negative control and a 50,920-scalar slot-count-matched non-neural linear comparator across the fixed 0–317 source-event memory loads. The original Pilot10 source baseline reproduces exact original 159-known and 71-absent classifications with separately reported numerical roundoff. There is no candidate event-ID codebook inside neural inference, only in the EXTERNAL scorer.
+
+## Pilot13 source-cue interference, real full FlyWire run 38024218512
+
+[Complete case-level real biological-connectivity capacity results](../results/imprinting/PILOT13_REAL_CAPACITY_RESULTS.md) contain seven predeclared memory loads, paired original-vs-rewired correct/deranged associations, anchor stability, source-target cosine margins, unchanged original v783 anatomy and all learned numerical weights. The terminal original source branch reproduced the *entire* original Pilot10 synaptic delta array and historical source event decisions, preventing source drift. This is external-oracle-assisted lexical numerical memory measurement, not autonomous source recollection.
