@@ -133,7 +133,8 @@ class DualTraceSynapses:
         pos=self.eligible_positions
         counts=self.slow.edge_exposures[pos]
         if (self.completed_memories * 3 != self.imprints
-            or self.slow.imprints != self.fast.imprints != self.imprints):
+            or self.slow.imprints != self.imprints
+            or self.fast.imprints != self.imprints):
             raise AssertionError("Incomplete independent channel exposure contract")
         np.savez_compressed(
             path, format_version=np.asarray([1],dtype=np.int64),
