@@ -71,11 +71,25 @@ class Reliquary:
                 raise ValueError("Candidate source annotation provenance altered")
             if not isinstance(r.get("memory_text"),str) or not r["memory_text"]:
                 raise ValueError("Original source event narrative missing")
-            self.events[id]={"memory_text":r["memory_text"],
-                             "participants":list(r.get("participants",[])),
-                             "locations":list(r.get("locations",[])),
-                             "episode_id":r["episode_id"]}
-            self.annotations[id]={"cue_surface_forms":list(a["cue_surface_forms"]),
+            cues=list(a["cue_surface_forms"])
+            if not cues or any(not normalize(c) for c in cues):
+                raise ValueError("Original source candidate empty")
+            # HARD information boundary. No withheld LAST cue or full prose
+            # may remain inside train-two-key or narrative-free retrieval
+            # models, even as unused metadata. The OFFLINE evaluator holds
+            # original full annotations and narrative for source exposure.
+            if arm=="train_two_anchors_only":
+                accessible=[cues[0],cues[len(cues)//2]]
+            elif arm=="narrative_bm25":
+                accessible=[]
+            else:
+                accessible=cues
+            self.events[id]={
+                "memory_text":r["memory_text"] if arm=="narrative_bm25" else None,
+                "participants":list(r.get("participants",[])),
+                "locations":list(r.get("locations",[])),
+                "episode_id":r["episode_id"]}
+            self.annotations[id]={"cue_surface_forms":accessible,
                                   "annotation_status":a["annotation_status"]}
             self.graph[id]={"node_type":"source_episode",
                             "participants":list(r.get("participants",[])),
@@ -84,11 +98,8 @@ class Reliquary:
                             "provenance_field":"source_event"}
         for index,id in enumerate(ids):
             cues=self.annotations[id]["cue_surface_forms"]
-            if not cues or any(not normalize(c) for c in cues):
-                raise ValueError("Original source candidates empty")
             if arm=="train_two_anchors_only":
-                chosen=(cues[0],cues[len(cues)//2])
-                self._add_exact(id,chosen,source_owner=id)
+                self._add_exact(id,cues,source_owner=id)
             elif arm=="narrative_bm25":
                 self.documents[id]=self.events[id]["memory_text"]
             elif arm=="all_anchors_flat_bm25":
@@ -96,8 +107,7 @@ class Reliquary:
             elif arm in ("all_anchors_exact_index","reliquary_event_graph"):
                 self._add_exact(id,cues,source_owner=id)
             else:
-                # Same 317 SOURCE DETAIL candidates but assigned to WRONG
-                # source event. Does not alter original input annotations.
+                # Same 317 original detail cues but deliberately WRONG owner.
                 assigned=ids[(index+WRONG_OWNER_SHIFT)%len(ids)]
                 self._add_exact(assigned,cues,source_owner=id)
         if arm in ("narrative_bm25","all_anchors_flat_bm25"):
@@ -182,11 +192,16 @@ class Reliquary:
             candidates.append((id,1.,evidence))
         return _best_score(candidates)
 
-    def indexed_exposure(self,query,truth_event_id):
-        """Per-case truth provenance; never score success as unobserved cue."""
+    def indexed_exposure(self,query,truth_event_id,*,
+                         original_sidecar_cues,original_narrative):
+        """OFFLINE truth audit: full source fields are evaluator-owned only.
+
+        Caller must explicitly provide true source text/sidecars, so query
+        models with limited evidence never store unseen test-cue annotations.
+        """
         key=normalize(query)
-        sidecar=self.annotations[truth_event_id]["cue_surface_forms"]
-        narrative=self.events[truth_event_id]["memory_text"]
+        sidecar=original_sidecar_cues
+        narrative=original_narrative
         return {
             "cue_available_in_own_source_original_sidecar":
                 key in [normalize(s) for s in sidecar],
