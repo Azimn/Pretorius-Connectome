@@ -79,14 +79,18 @@ def load_original_source():
     }
 
 
-def evaluate(model,queries,train_ids,*,threshold):
+def evaluate(model,queries,train_ids,*,threshold,truth_by_id,annotations_by_id):
     original_ids=set(train_ids)
     out=[]
     for expected,query in queries:
         result=model.infer(query)
         is_known=expected in original_ids
         accepted=result["event_id"] is not None and result["confidence"]>threshold
-        truth_exposure=(model.indexed_exposure(query,expected) if is_known else None)
+        truth_exposure=(model.indexed_exposure(
+            query,expected,
+            original_sidecar_cues=annotations_by_id[expected]["cue_surface_forms"],
+            original_narrative=truth_by_id[expected]["memory_text"]
+        ) if is_known else None)
         evidence=result["evidence"]
         # A contaminated/deranged graph's evidence original owner is explicit.
         if evidence and evidence.get("source_event_id")!=result["event_id"]:
@@ -167,6 +171,10 @@ def run():
     train_ids=d["train_ids"]
     indices={arm:Reliquary(d["train"],d["train_annotations"],arm=arm)
              for arm in ARMS}
+    # Full original source data are OFFLINE scorer-only truth; not passed
+    # into arm-specific cue retrieval after each index has been built.
+    truth_by_id={r["event_id"]:r for r in d["train"]}
+    annotations_by_id={r["event_id"]:r for r in d["train_annotations"]}
     data={}
     for arm,model in indices.items():
         rejection=threshold_from_validation_only(
@@ -175,7 +183,9 @@ def run():
         metrics={}
         for kind,queries in d["queries"].items():
             rows=evaluate(model,queries,train_ids,
-                          threshold=rejection["threshold"])
+                          threshold=rejection["threshold"],
+                          truth_by_id=truth_by_id,
+                          annotations_by_id=annotations_by_id)
             cohorts[kind]=rows
             metrics[kind]=summarize(rows)
         if metrics["validation_absent62"]["source_false_accepted_absent"]>6:
