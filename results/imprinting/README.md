@@ -15,3 +15,5 @@
 [Pilot13 original real-v783 staged memory capacity](PILOT13_REAL_CAPACITY_RESULTS.md)
 
 [Pilot16 original real-v783 Mnemosyne source feature memory](PILOT16_REAL_MNEMOSYNE_RESULTS.md)
+
+[Pilot17 source-owned EXTERNAL episodic retrieval](PILOT17_REAL_SOURCE_EPISODIC_RESULTS.md)

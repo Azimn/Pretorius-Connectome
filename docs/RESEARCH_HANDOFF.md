@@ -185,3 +185,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Pilot16 original whole-FlyWire source feature-mask Mnemosyne 38025454741
 
 [Original source verified Pilot16 Mnemosyne results](../results/imprinting/PILOT16_REAL_MNEMOSYNE_RESULTS.md) preserve actual ten learned model W/P/cue original evidence and the full source case JSON. This is frozen MiniLM dense cue representation plus supervised error-corrective source content learning subject to binary pairwise support derived from the actual original FlyWire graph, NOT a neuron-level memory model. Comparisons include rewired and random equal-pair controls, unmasked nonneural exact ridge, sparse semantic projection, wrong source content, lexical dense and original additive. Source event identity remains EXTERNAL oracle-only.
+
+## Pilot17 Chamber of Echoes source episode run 38029031790
+
+[Original source episodic trace study and all five original trained numeric checkpoint files](../results/imprinting/PILOT17_REAL_SOURCE_EPISODIC_RESULTS.md) compare competitive semantic, centroid equal-budget, soft top3, lexical and wrong target retrieval on the previous fixed Pretorius corpus. This is **EXTERNAL 633,600-byte key-value episode memory**, not original neural FlyWire synaptic imprinting. A native semantic key-similarity rejection gate used only the 62 original source validation episode absences; test counts include correct AND accepted, and heldout source absences.
