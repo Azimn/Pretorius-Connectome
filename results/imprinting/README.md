@@ -19,3 +19,5 @@
 [Pilot17 source-owned EXTERNAL episodic retrieval](PILOT17_REAL_SOURCE_EPISODIC_RESULTS.md)
 
 [Pilot18 original two-view semantic metric and withheld source cues](PILOT18_SOURCE_MIRROR_KEYS_RESULTS.md)
+
+[Pilot19 original provenance-bound episode cue index](PILOT19_REAL_RELIQUARY_RESULTS.md)

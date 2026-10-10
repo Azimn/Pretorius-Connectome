@@ -197,3 +197,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Pilot18 train-only Mirror Keys source run 38058815535
 
 [Original source measured Mirror Keys outcomes](../results/imprinting/PILOT18_SOURCE_MIRROR_KEYS_RESULTS.md) record exact original BC01 source, 317 train events, only first/middle metric fitting and learned numeric keys with third original literal source cue heldout, six equal array-size 633600-byte external memory arms, same 62-validation-absent native threshold, complete original case evidence and six actually learned numeric projection/episode checkpoints. No full FlyWire v783 synaptic simulation or new human-authored paraphrase proof is asserted.
+
+## Pilot19 Reliquary original event-evidence run 38061365695
+
+[Complete original full source data and provenance-labeled six-arm result](../results/imprinting/PILOT19_REAL_RELIQUARY_RESULTS.md): 317 source TRAIN events with 159 familiar/316 distinct third candidate cues/31 prior fourth/62 absent validation/71 absent test. Original event-ID and narrative/annotation indexing is EXTERNAL retrieval, not a learned fly model. All-sidecar success is indexed third-cue knowledge, with same-evidence exact index, narrative/flat BM25 and wrong owner controls. No learned neural numeric checkpoint is claimed; original source index state is deterministic from pinned JSONL and versioned implementation; exact six index SHA digests are in case JSON.
