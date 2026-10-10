@@ -46,7 +46,7 @@ def verify(d):
             s.get("historical_exploratory_fourth"),
             s.get("episode_validation_absent"),
             s.get("episode_test_absent"))!=(450,27,317,159,31,62,71)
-        or not 290<=s.get("true_third_distinct_source_heldout",0)<=315
+        or s.get("true_third_distinct_source_heldout")!=316
         or s.get("BC01_source_original_SHA")!=BC01
         or s.get("frozen_MiniLM_ONNX_SHA")!=ONNX
         or s.get("frozen_MiniLM_revision")!=
