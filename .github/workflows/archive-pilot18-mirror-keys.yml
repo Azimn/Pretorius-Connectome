@@ -1,0 +1,66 @@
+name: Archive original Pretorius Pilot18 heldout metric results
+
+on:
+  workflow_run:
+    workflows: ['Pilot18 Mirror Keys train-only two-view episodic metric']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  source-original-train-only-metric-six-state-archive:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source checkpoint reader
+        run: python -m pip install 'numpy>=1.26,<3'
+      - name: Download original exact source-only two-view numeric memory case evidence
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: pilot18-PRETORIUS-original-source-two-view-metric-six-arm-evidence
+          path: original-source
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Check all source hashes, six actual learned numeric projections, and absent gate
+        run: |
+          set -euo pipefail
+          FILE="$(find original-source -name pilot18-source-two-cue-holdout.json -type f | head -n1)"
+          FIRST="$(find original-source -name semantic_random_two_views.npz -type f | head -n1)"
+          test -f "$FILE"
+          test -f "$FIRST"
+          python scripts/archive_pilot18_mirror_keys.py \
+            --input "$FILE" --weights "$(dirname "$FIRST")" \
+            --run-id "$SOURCE_RUN_ID"
+          COUNT="$(find artifacts/imprinting/checkpoints -name 'pilot18-*-source-run*.npz' | wc -l)"
+          test "$COUNT" -ge 6
+      - name: Commit original case-level source evidence and all six numeric memory models
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/imprinting/checkpoints/ \
+            results/imprinting/runs/ results/imprinting/PILOT18_SOURCE_MIRROR_KEYS_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo 'Original source data and six learned episodic states already preserved'
+            exit 0
+          fi
+          git commit -m "Archive train-only original Pretorius Pilot18 source run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
