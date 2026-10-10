@@ -1,8 +1,8 @@
 # Pilot16 Mnemosyne original full-FlyWire feature-mask associative memory
 
-Complete source-verified [actual publisher original FlyWire v783 run 38025454741](https://github.com/Azimn/Pretorius-Connectome/actions/runs/38025454741).
-[Complete raw seven-stage ten-arm 450-source-event case JSON](runs/flywire-pilot16-mnemosyne-run38025454741.json).
-Original case JSON SHA-256: 266b7653efa5b03d6adf09ba84b46c4364c322f985b176819927b6e32cc8bac4
+Complete source-verified [actual publisher original FlyWire v783 run 38028315635](https://github.com/Azimn/Pretorius-Connectome/actions/runs/38028315635).
+[Complete raw seven-stage ten-arm 450-source-event case JSON](runs/flywire-pilot16-mnemosyne-run38028315635.json).
+Original case JSON SHA-256: 059b186408e56143c51b42e735c92ab416ccbb6ee37dde5e14d640a1066df10b
 All TEN original source trained weight/covariance NPZ states are preserved under artifacts/imprinting/checkpoints with exact original digests in JSON.
 
 CRITICAL: Except legacy direct Hebbian conditions, Mnemosyne learns on a **BINARY 256×256 SOURCE-FEATURE connectivity MASK extracted from the genuine full-FlyWire original 15M-edge anatomical CSR**, not on all original synapse weights. This is a feature-level biological support prior, not direct original-neuron memory modeling.
