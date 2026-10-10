@@ -1,0 +1,84 @@
+name: Pilot17 Chamber of Echoes original source episodic routing
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/echo_chamber17.py'
+      - 'scripts/run_pilot17_echo_chamber.py'
+      - 'tests/test_pilot17_echo_chamber.py'
+      - '.github/workflows/pilot17-echo-chamber.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/echo_chamber17.py'
+      - 'scripts/run_pilot17_echo_chamber.py'
+      - 'tests/test_pilot17_echo_chamber.py'
+      - '.github/workflows/pilot17-echo-chamber.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-locked-episodic-memory-and-original-frozen-local-minilm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free CPU-only frozen pretrained semantic and source checks
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'onnxruntime>=1.18,<2' \
+            'transformers>=4.44,<5' 'huggingface_hub>=0.26,<1'
+      - name: Test numeric episodic allocation, matching byte budgets and checkpoint identity
+        run: |
+          python -m unittest discover -s tests -p test_pilot17_echo_chamber.py -v
+          python -m unittest discover -s tests -p test_flywire_pilot12.py -v
+      - name: Reconstruct exact source-owned L1 and original BC01 content vectors
+        run: |
+          mkdir -p data/derived/pilot17-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot17-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot17-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot17-bc01
+      - name: Compare five equal-size explicitly external episode stores on same original sources
+        run: |
+          python scripts/run_pilot17_echo_chamber.py \
+            --bc01-dir data/derived/pilot17-bc01 \
+            --weights-dir data/derived/pilot17-learned-episode-traces \
+            --output results/imprinting/pilot17-original-source-five-arms.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot17-original-source-five-arms.json'))
+          assert d['memory_architecture'].startswith('EXTERNAL')
+          assert d['source']['original_canonical_events']==450
+          assert d['source']['training_episodes_source_memories']==317
+          assert d['source']['original_familiar_evaluation']==159
+          assert d['source']['original_never_presented_fourth_cues']==31
+          assert d['source']['original_validation_absent']==62
+          assert d['source']['original_test_absent']==71
+          assert d['source']['frozen_source_pretrained_encoder_ONNX_sha256']=='6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452'
+          assert d['preregistered']['total_array_bytes_including_fixed_projection']==633600
+          assert [s['trained_events'] for s in d['source_cases_all_stages']]==[0,16,32,64,128,256,317]
+          assert len(d['complete_numeric_episode_state_SHA256'])==5
+          assert len(d['validation_only_native_key_match_gates'])==5
+          for name,g in d['validation_only_native_key_match_gates'].items():
+              assert g['validation_n']==62
+              assert g['validation_false_accepted']<=6
+              assert g['source_ID_or_CONTENT_oracle_used_to_set_threshold'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot17-ORIGINAL-Pretorius-source-explicit-episodic-five-arm-evidence
+          path: |
+            results/imprinting/pilot17-original-source-five-arms.json
+            data/derived/pilot17-learned-episode-traces/
+          retention-days: 90
+          if-no-files-found: warn
