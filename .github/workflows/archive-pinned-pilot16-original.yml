@@ -1,0 +1,74 @@
+name: Permanently archive independently verified Pilot16 original run
+
+# Recovery archival route: exact original whole-v783 biological computation
+# previously passed on experimental branch SHA 64d7b4ed2. Re-downloading
+# the publisher's 852MB source can intermittently fail. This archives the
+# exact source-verified and separately verified artifact, not a fabricated
+# new MAIN original biological computation. The regular post-main source
+# rerun and automatic main archiver remain independently required to claim
+# main rerun source parity.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/archive-pinned-pilot16-original.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  promote-verified-source-evidence-exact:
+    if: "${{ github.repository == 'Azimn/Pretorius-Connectome' && github.ref == 'refs/heads/main' }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch exact original biological source previously successful branch run
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 38025454741
+          name: pilot16-REAL-original-v783-Mnemosyne-numerical-evidence
+          path: source-original
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Fail closed on exact source SHA and complete original ten model checkpoint hashes
+        run: |
+          set -euo pipefail
+          FILE="$(find source-original -name pilot16-REAL-original-v783-mnemosyne.json -type f | head -n1)"
+          BASE="$(find source-original -name original_BC01_direct_hebb.npz -type f | head -n1)"
+          test -f "$FILE"
+          test -f "$BASE"
+          python - "$FILE" <<'PY'
+          import hashlib,sys
+          b=open(sys.argv[1],"rb").read()
+          assert len(b)==7647593
+          assert hashlib.sha256(b).hexdigest()=="266b7653efa5b03d6adf09ba84b46c4364c322f985b176819927b6e32cc8bac4"
+          PY
+          python scripts/archive_flywire_pilot16_mnemosyne.py \
+            --input "$FILE" --weights "$(dirname "$BASE")" --run-id 38025454741
+          test "$(find artifacts/imprinting/checkpoints -name 'pilot16-*-run38025454741.npz' | wc -l)" -eq 10
+          test -f results/imprinting/runs/flywire-pilot16-mnemosyne-run38025454741.json
+      - name: Permanently record original run source provenance and checkpoint bytes
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/imprinting/checkpoints \
+            results/imprinting/runs/flywire-pilot16-mnemosyne-run38025454741.json \
+            results/imprinting/PILOT16_REAL_MNEMOSYNE_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo 'Exact original real-v783 source already archived'
+            exit 0
+          fi
+          git commit -m 'Archive original-v783 Pilot16 source run 38025454741 after independent SHA verification'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
