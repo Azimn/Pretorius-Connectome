@@ -1,0 +1,73 @@
+name: Memory-to-cognition port v0.1
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/cognition_port.py'
+      - 'src/pretorius_connectome/vector_cognition_adapter.py'
+      - 'tests/test_cognition_port.py'
+      - 'tests/test_vector_cognition_adapter.py'
+      - 'scripts/demo_cognition_port.py'
+      - 'docs/MEMORY_COGNITION_PORT_V0_1.md'
+      - '.github/workflows/memory-cognition-port.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/cognition_port.py'
+      - 'src/pretorius_connectome/vector_cognition_adapter.py'
+      - 'tests/test_cognition_port.py'
+      - 'tests/test_vector_cognition_adapter.py'
+      - 'scripts/demo_cognition_port.py'
+      - 'docs/MEMORY_COGNITION_PORT_V0_1.md'
+      - '.github/workflows/memory-cognition-port.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  memory-cognition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Two-subject isolation without third-party packages
+        run: python -m unittest discover -s tests -p test_cognition_port.py -v
+      - name: Install existing offline CPU vector stack
+        run: python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Validate unchanged canonical source
+        run: python scripts/validate_autobiographical_corpus_v12.py
+      - name: Real 450-memory integration and train-scope leakage controls
+        run: python -m unittest discover -s tests -p test_vector_cognition_adapter.py -v
+      - name: Build the same existing Vector Fly database for demonstrable CLI output
+        run: |
+          python scripts/build_shared_memory_l2.py --seed 31 --output-dir data/derived/mci-l2
+          python scripts/vector_fly_db.py build --cache-dir data/derived/mci-l2 --database data/derived/mci-450.sqlite --scope all
+          mkdir -p results/cognition_port
+          python scripts/demo_cognition_port.py --cache-dir data/derived/mci-l2 --database data/derived/mci-450.sqlite --query 'camphor beetle brass key' --top-k 3 > results/cognition_port/CANDIDATES.json
+      - name: Validate output contract without trusting neural conclusions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = json.loads(Path('results/cognition_port/CANDIDATES.json').read_text())
+          assert payload['interface'] == 'memory-cognition-port/0.1'
+          assert payload['read_only'] is True
+          assert payload['admission_to_lived_memory'] is False
+          assert payload['candidates']
+          assert all(not x['eligible_for_lived_write'] and x['epistemic_status'] == 'candidate_not_entailment' for x in payload['candidates'])
+          assert payload['candidates'][0]['record_id'] == 'E01-001'
+          print('Canonical source candidate is read-only, attributable, and unadmitted.')
+          PY
+      - name: Preserve actual reproducible demonstration
+        uses: actions/upload-artifact@v4
+        with:
+          name: memory-cognition-port-v01-real-source
+          path: results/cognition_port/CANDIDATES.json
+          if-no-files-found: error
+          retention-days: 90
