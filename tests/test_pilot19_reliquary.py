@@ -42,12 +42,20 @@ class EventProvenanceTests(unittest.TestCase):
         train=Reliquary(self.records,self.cues,arm="train_two_anchors_only")
         self.assertIsNone(train.infer("green tape")["event_id"])
         self.assertIsNone(train.infer("cracked lens")["event_id"])
-        self.assertFalse(train.indexed_exposure("green tape","one")[
-            "cue_in_own_RETRIEVAL_INDEX"])
-        self.assertTrue(train.indexed_exposure("green tape","one")[
-            "cue_available_in_own_source_original_sidecar"])
-        self.assertFalse(train.indexed_exposure("green tape","one")[
-            "cue_verbatim_in_own_original_narrative"])
+        exposure=train.indexed_exposure(
+            "green tape","one",
+            original_sidecar_cues=self.cues[0]["cue_surface_forms"],
+            original_narrative=self.records[0]["memory_text"])
+        self.assertFalse(exposure["cue_in_own_RETRIEVAL_INDEX"])
+        self.assertTrue(exposure["cue_available_in_own_source_original_sidecar"])
+        self.assertFalse(exposure["cue_verbatim_in_own_original_narrative"])
+        # Strict memory boundary: no heldout original third literal or full
+        # prose, even as unused/private metadata within the model.
+        self.assertNotIn("green tape",train.annotations["one"]["cue_surface_forms"])
+        self.assertIsNone(train.events["one"]["memory_text"])
+        narrative=Reliquary(self.records,self.cues,arm="narrative_bm25")
+        self.assertEqual(narrative.annotations["one"]["cue_surface_forms"],[])
+        self.assertIn("millstream map",narrative.events["one"]["memory_text"])
     def test_original_memory_narrative_exposure_is_separate_from_sidecar(self):
         narrative=Reliquary(self.records,self.cues,arm="narrative_bm25")
         self.assertEqual(narrative.infer("millstream map")["event_id"],"one")
