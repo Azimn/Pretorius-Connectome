@@ -59,7 +59,7 @@ def verify(d):
         or (s.get("canonical_events"),s.get("canonical_episodes"),
             s.get("trained_source_events"),s.get("heldout_known_test"),
             s.get("validation_absent"),s.get("test_absent"),
-            s.get("eligible_never_trained_fourth_literal"))==(450,27,317,159,62,71,31) is False
+            s.get("eligible_never_trained_fourth_literal"))!=(450,27,317,159,62,71,31)
         or s.get("BC01_cache_sha256")!=BC01
         or p.get("frozen_ONNX_sha256")!=ONNX
         or p.get("frozen_ONNX_revision")!="1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
@@ -104,7 +104,8 @@ def verify(d):
                 raise ValueError("Early original source events not paired across conditions")
     final=steps[-1]["arms"]
     if (final["original_BC01_direct_hebb"]["groups"]["original159_learned_familiar"]["correct_top1"]!=20
-        or final["original31_fourth_never_trained"]["groups"]["original31_fourth_never_trained"] if False else False):
+        or final["original_BC01_direct_hebb"]["groups"]["original31_fourth_never_trained"]["n"]!=31):
+
         raise ValueError("Original historical source Pilot10 changed")
     for arm,g in gates.items():
         if arm in ("original_BC01_direct_hebb","original_MiniLM_top8_hebb"):
