@@ -1,0 +1,63 @@
+name: Archive original Pretorius Pilot17 numeric external episodic memory
+
+on:
+  workflow_run:
+    workflows: ['Pilot17 Chamber of Echoes original source episodic routing']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  original-source-numerical-five-trace-archive:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download only source-verified complete original 450-event external-memory evidence
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: pilot17-ORIGINAL-Pretorius-source-explicit-episodic-five-arm-evidence
+          path: source-evidence
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Source digest, all five byte-identical episode checkpoints and original test-split guard
+        run: |
+          set -euo pipefail
+          FILE="$(find source-evidence -name pilot17-original-source-five-arms.json -type f | head -n 1)"
+          CHECKPOINT="$(find source-evidence -name semantic_competitive_three_keys.npz -type f | head -n 1)"
+          test -f "$FILE"
+          test -f "$CHECKPOINT"
+          python scripts/archive_pilot17_echo_chamber.py \
+            --input "$FILE" --weights "$(dirname "$CHECKPOINT")" \
+            --run-id "$SOURCE_RUN_ID"
+          test "$(find artifacts/imprinting/checkpoints -name "pilot17-*-source-run$SOURCE_RUN_ID.npz" | wc -l)" -eq 5
+      - name: Permanently commit original numeric source cases, all episode keys/values and measured report
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/imprinting/checkpoints/ \
+            results/imprinting/runs/ results/imprinting/PILOT17_REAL_SOURCE_EPISODIC_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo 'Original source numeric episode memory already archived'
+            exit 0
+          fi
+          git commit -m "Archive original Pretorius external episodic Pilot17 source run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
