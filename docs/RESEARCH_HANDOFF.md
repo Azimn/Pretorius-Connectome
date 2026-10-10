@@ -193,3 +193,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Pilot16 original whole-FlyWire source feature-mask Mnemosyne 38028315635
 
 [Original source verified Pilot16 Mnemosyne results](../results/imprinting/PILOT16_REAL_MNEMOSYNE_RESULTS.md) preserve actual ten learned model W/P/cue original evidence and the full source case JSON. This is frozen MiniLM dense cue representation plus supervised error-corrective source content learning subject to binary pairwise support derived from the actual original FlyWire graph, NOT a neuron-level memory model. Comparisons include rewired and random equal-pair controls, unmasked nonneural exact ridge, sparse semantic projection, wrong source content, lexical dense and original additive. Source event identity remains EXTERNAL oracle-only.
+
+## Pilot18 train-only Mirror Keys source run 38058815535
+
+[Original source measured Mirror Keys outcomes](../results/imprinting/PILOT18_SOURCE_MIRROR_KEYS_RESULTS.md) record exact original BC01 source, 317 train events, only first/middle metric fitting and learned numeric keys with third original literal source cue heldout, six equal array-size 633600-byte external memory arms, same 62-validation-absent native threshold, complete original case evidence and six actually learned numeric projection/episode checkpoints. No full FlyWire v783 synaptic simulation or new human-authored paraphrase proof is asserted.

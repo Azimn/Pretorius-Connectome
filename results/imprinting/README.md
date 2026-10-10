@@ -17,3 +17,5 @@
 [Pilot16 original real-v783 Mnemosyne source feature memory](PILOT16_REAL_MNEMOSYNE_RESULTS.md)
 
 [Pilot17 source-owned EXTERNAL episodic retrieval](PILOT17_REAL_SOURCE_EPISODIC_RESULTS.md)
+
+[Pilot18 original two-view semantic metric and withheld source cues](PILOT18_SOURCE_MIRROR_KEYS_RESULTS.md)
