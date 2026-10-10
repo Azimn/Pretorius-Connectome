@@ -1,0 +1,67 @@
+name: Archive original full FlyWire Pilot15 dual trace evidence
+
+on:
+  workflow_run:
+    workflows: ['FlyWire Pilot15 fast-slow dual trace memory tradeoff']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  archive-only-source-verified-complete-main-branch-run:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Read ONLY original successful publisher-v783 eight-model source evidence
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: pilot15-REAL-FlyWire-v783-eight-arm-dual-trace-evidence
+          path: source-captured
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Require source-pinned original event/corpus/anatomy and all eight model weights
+        run: |
+          set -euo pipefail
+          FILE="$(find source-captured -name pilot15-REAL-original-v783-dualtrace.json -type f | head -n 1)"
+          test -n "$FILE" && test -f "$FILE"
+          REFERENCE="$(find source-captured -name original_additive.npz -type f | head -n 1)"
+          test -n "$REFERENCE" && test -f "$REFERENCE"
+          DIR="$(dirname "$REFERENCE")"
+          for NAME in original_beta4 original_dual_beta1 original_dual_beta4 \
+            rewired_dual_beta1 original_dual_beta1_deranged matched_slot_linear \
+            matched_slot_dual_linear; do
+            test -f "$DIR/$NAME.npz"
+          done
+          python scripts/archive_flywire_pilot15.py \
+            --input "$FILE" --weights "$DIR" --run-id "$SOURCE_RUN_ID"
+      - name: Permanently commit original case JSON, all actual learned states and research handoff
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/imprinting/checkpoints/ results/imprinting/runs/ \
+            results/imprinting/PILOT15_REAL_DUAL_TRACE_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "Exact source cases and eight actual learned states already archived"
+            exit 0
+          fi
+          git commit -m "Archive publisher original whole-v783 FlyWire Pilot15 eight-arm run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
