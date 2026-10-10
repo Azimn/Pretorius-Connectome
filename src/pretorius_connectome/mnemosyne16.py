@@ -155,7 +155,7 @@ class ResidualAssociativeMemory:
                   seed=int(settings[3]))
             if (z["W"].shape!=(DIM,DIM) or z["P"].shape!=(DIM,DIM)
                 or not np.isfinite(z["W"]).all() or not np.isfinite(z["P"]).all()
-                or not np.array_equal(z["Q"],m.Q)):
+                or not np.array_equal(z["Q"],m.Q if m.Q is not None else np.empty((0,0)))):
                 raise ValueError("Malformed learned source memory")
             m.W=z["W"].astype(np.float64);m.P=z["P"].copy()
             m.n_presentations=int(settings[0]);m.n_updates=int(settings[1])
