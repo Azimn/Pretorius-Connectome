@@ -37,7 +37,7 @@ class EventProvenanceTests(unittest.TestCase):
         self.assertEqual(proof["source_annotation_status"],"unreviewed_candidate")
         self.assertEqual(proof["associated_other_detail"],"turned glove")
         self.assertEqual(proof["original_event_locations"],["Laboratory"])
-        self.assertIn("source_episode",proof["graph_path_types"][1])
+        self.assertEqual(proof["graph_path_types"][1],"retrieval_source_event")
     def test_third_cue_not_available_when_only_first_and_middle_indexed(self):
         train=Reliquary(self.records,self.cues,arm="train_two_anchors_only")
         self.assertIsNone(train.infer("green tape")["event_id"])
