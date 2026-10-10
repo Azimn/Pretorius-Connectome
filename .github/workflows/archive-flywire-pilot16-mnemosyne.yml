@@ -1,0 +1,69 @@
+name: Archive original whole FlyWire Pilot16 Mnemosyne evidence
+
+on:
+  workflow_run:
+    workflows: ['FlyWire Pilot16 Mnemosyne dense semantic and residual memory']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  archive-only-full-publisher-v783-main-success:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download only original real source/ten-model verified evidence artifact
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: pilot16-REAL-original-v783-Mnemosyne-numerical-evidence
+          path: source-original
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Recheck exact real publisher source, 450 events, pinned ONNX and all ten states
+        run: |
+          set -euo pipefail
+          FILE="$(find source-original -name pilot16-REAL-original-v783-mnemosyne.json -type f | head -n 1)"
+          test -n "$FILE" && test -f "$FILE"
+          BASE="$(find source-original -name original_BC01_direct_hebb.npz -type f | head -n 1)"
+          test -n "$BASE" && test -f "$BASE"
+          DIR="$(dirname "$BASE")"
+          for ARM in original_MiniLM_top8_hebb \
+            mnemosyne_dense_rls_original mnemosyne_dense_rls_rewired \
+            mnemosyne_dense_rls_random_pair_mask mnemosyne_dense_rls_unmasked_linear \
+            mnemosyne_sparse64_rls_original mnemosyne_dense_delta_original \
+            mnemosyne_dense_rls_wrong_content mnemosyne_BC01_dense_rls_original; do
+            test -f "$DIR/$ARM.npz"
+          done
+          python scripts/archive_flywire_pilot16_mnemosyne.py \
+            --input "$FILE" --weights "$DIR" --run-id "$SOURCE_RUN_ID"
+      - name: Commit original raw source cases, ten actual trained W/P and full result/handoff
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/imprinting/checkpoints/ results/imprinting/runs/ \
+            results/imprinting/PILOT16_REAL_MNEMOSYNE_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo "Complete original real source memory already archived"
+            exit 0
+          fi
+          git commit -m "Archive original FlyWire-v783 feature-masked Mnemosyne run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main

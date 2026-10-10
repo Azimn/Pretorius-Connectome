@@ -1,0 +1,150 @@
+name: FlyWire Pilot16 Mnemosyne dense semantic and residual memory
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/mnemosyne16.py'
+      - 'scripts/run_flywire_pilot16_mnemosyne.py'
+      - 'tests/test_flywire_pilot16_mnemosyne.py'
+      - '.github/workflows/flywire-pilot16-mnemosyne.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/mnemosyne16.py'
+      - 'scripts/run_flywire_pilot16_mnemosyne.py'
+      - 'tests/test_flywire_pilot16_mnemosyne.py'
+      - '.github/workflows/flywire-pilot16-mnemosyne.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: flywire-pilot16-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  source-integrity-synthetic-and-frozen-semantic-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offline/free CPU-only residual association and ONNX inference
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' \
+            'rank-bm25>=0.2,<1' 'onnxruntime>=1.18,<2' 'transformers>=4.44,<5' \
+            'huggingface_hub>=0.26,<1'
+      - name: Model-only cue tests, mask and ONNX encoder source input controls
+        run: |
+          python -m unittest discover -s tests -p test_flywire_pilot16_mnemosyne.py -v
+          python -m unittest discover -s tests -p test_flywire_pilot12.py -v
+      - name: Rebuild immutable 450-event original source BC01 and L1
+        run: |
+          mkdir -p data/derived/pilot16-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot16-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot16-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot16-bc01
+      - name: Ten pretrained MiniLM dense source-memory arms on synthetic graph ONLY
+        run: |
+          python scripts/run_flywire_pilot16_mnemosyne.py \
+            --synthetic-test --cells-per-feature 8 \
+            --bc01-dir data/derived/pilot16-bc01 \
+            --weights-dir data/derived/pilot16-SYNTHETIC-weights \
+            --output results/imprinting/pilot16-SYNTHETIC-mnemosyne.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot16-SYNTHETIC-mnemosyne.json'))
+          assert d['evidence'].startswith('synthetic')
+          assert len(d['full_original_source_case_stages'])==7
+          assert len(d['full_original_source_case_stages'][-1]['arms'])==10
+          assert d['original_source']['canonical_events']==450
+          assert d['original_source']['trained_source_events']==317
+          assert d['original_source']['original_anatomy_unchanged']
+          assert d['original_source']['eligible_never_trained_fourth_literal']==31
+          assert d['rewired_binary_degree_preserving_null']['binary_indegrees_equal']
+          assert d['rewired_binary_degree_preserving_null']['binary_outdegrees_equal']
+          assert d['preregistered']['note_extra_P_inverse_covariance_state_65536_scalars']
+          assert len(d['learned_numerical_state_checkpoint_SHA256'])==10
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot16-SYNTHETIC-only-Mnemosyne-original-source
+          path: |
+            results/imprinting/pilot16-SYNTHETIC-mnemosyne.json
+            data/derived/pilot16-SYNTHETIC-weights/
+          retention-days: 45
+          if-no-files-found: warn
+
+  original-publisher-v783-dense-semantic-association:
+    needs: source-integrity-synthetic-and-frozen-semantic-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install publisher Feather reader and pinned free local MiniLM ONNX dependencies
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' 'scikit-learn>=1.5,<2' \
+            'rank-bm25>=0.2,<1' 'onnxruntime>=1.18,<2' 'transformers>=4.44,<5' \
+            'huggingface_hub>=0.26,<1' 'pyarrow>=17,<24'
+      - name: Download/checksum original complete FlyWire-v783 from publisher
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Build exact original canonical source L1 and source-linked BC01 content targets
+        run: |
+          mkdir -p data/derived/pilot16-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot16-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot16-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot16-bc01
+      - name: Run complete original FlyWire feature-supported semantic readout controls
+        run: |
+          python scripts/run_flywire_pilot16_mnemosyne.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --cells-per-feature 32 \
+            --bc01-dir data/derived/pilot16-bc01 \
+            --weights-dir data/derived/pilot16-REAL-weights \
+            --output results/imprinting/pilot16-REAL-original-v783-mnemosyne.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot16-REAL-original-v783-mnemosyne.json'))
+          assert d['evidence']=='original verified complete publisher FlyWire v783'
+          x=d['original_source']
+          assert (x['root_neurons'],x['aggregate_directed_pairs'],x['integer_anatomical_synapses'])==(139255,15091983,54492922)
+          assert x['original_anatomy_unchanged']
+          assert x['canonical_events']==450 and x['trained_source_events']==317
+          assert x['eligible_never_trained_fourth_literal']==31
+          assert d['original_fly_feature_pair_mask']['eligible_original_directed_synapse_slots']==50920
+          assert d['rewired_fly_feature_pair_mask']['eligible_original_directed_synapse_slots']==50920
+          assert len(d['validation_only_model_native_novelty_gates'])==10
+          assert len(d['learned_numerical_state_checkpoint_SHA256'])==10
+          assert len(d['full_original_source_case_stages'])==7
+          assert d['full_original_source_case_stages'][-1]['arms']['original_BC01_direct_hebb']['groups']['original159_learned_familiar']['correct_top1']==20
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot16-REAL-original-v783-Mnemosyne-numerical-evidence
+          path: |
+            results/imprinting/pilot16-REAL-original-v783-mnemosyne.json
+            data/derived/pilot16-REAL-weights/
+          retention-days: 90
+          if-no-files-found: warn
