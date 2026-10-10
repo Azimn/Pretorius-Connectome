@@ -1,0 +1,61 @@
+name: Archive original Pretorius Pilot19 source cue associations
+
+on:
+  workflow_run:
+    workflows: ['Pilot19 Reliquary evidence-bound source event association']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  verified-original-source-cases:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.repository == 'Azimn/Pretorius-Connectome' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_RUN_ID: "${{ github.event.workflow_run.id }}"
+      PYTHONPATH: 'src:.'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch original source event provenance and control index evidence
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: pilot19-ORIGINAL-Pretorius-source-event-provenance-and-baselines
+          path: original-source
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Verify original 450 source/sidecar sha and all six provenance cohorts
+        run: |
+          set -euo pipefail
+          FILE="$(find original-source -name pilot19-original-source-reliquary.json -type f | head -n 1)"
+          test -f "$FILE"
+          python scripts/archive_pilot19_reliquary.py --input "$FILE" --run-id "$SOURCE_RUN_ID"
+          test -f results/imprinting/PILOT19_REAL_RELIQUARY_RESULTS.md
+          test -f "results/imprinting/runs/pilot19-reliquary-original-source-run$SOURCE_RUN_ID.json"
+      - name: Permanently commit raw source cases, deterministic index SHA and research handoff
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/imprinting/runs/ \
+            results/imprinting/PILOT19_REAL_RELIQUARY_RESULTS.md \
+            results/imprinting/README.md docs/RESEARCH_HANDOFF.md
+          if git diff --cached --quiet; then
+            echo 'Original source external episode index already archived'
+            exit 0
+          fi
+          git commit -m "Archive original source Pilot19 event evidence from run $SOURCE_RUN_ID"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
