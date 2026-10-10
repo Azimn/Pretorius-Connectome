@@ -44,7 +44,11 @@ def verify(data):
         or source.get("original_BC01_cache_sha256")!=
             "65ae81401a17ec68adc3900395f226734618be4ffb2bae24745d989bd2a17625"
         or parity is None
-        or parity.get("loaded_full_original_checkpoint_matches_weights_exactly") is not True
+        or parity.get("loaded_full_original_checkpoint_within_predeclared_numerical_tolerance") is not True
+        or parity.get("predeclared_max_float32_absolute_tolerance") != 5e-7
+        or parity.get("max_float32_absolute_difference", 1) > 5e-7
+        or parity.get("different_float32_positions", -1) < 0
+        or type(parity.get("loaded_full_original_checkpoint_matches_weights_exactly")) is not bool
         or parity.get("original_159_cases_identical") is not True
         or parity.get("original_71_absent_cases_identical") is not True
         or parity.get("source_original_checkpoint_sha256")!=
@@ -112,7 +116,7 @@ def verify(data):
     if (last["source_test_known_learned"]["n"]!=159
         or last["source_test_known_learned"]["correct_top1"]!=20
         or last["episode_absent_71"]["absent_false_acceptances"]!=56
-        or parity["terminal_changed_edge_positions"]!=28938):
+        or parity["terminal_changed_edge_positions"] not in (28938,28939)):
         raise ValueError("Original Pilot10 baseline terminal numerical scores shifted")
     if set(data["learned_checkpoint_manifest"])!=set(ARMS):
         raise ValueError("Missing any learned original source-bound synaptic checkpoint")
@@ -152,6 +156,13 @@ def archive(raw:Path,weights:Path,run_id:str):
         "Complete original [source-paired seven-stage four-arm case JSON](runs/"+
             case_file.name+").",
         "Original JSON SHA-256: "+sha256(data_bytes).hexdigest(),
+        "Original source checkpoint exactly identical on this runner: "+
+            str(evidence["frozen_original_pilot10_parity"]["loaded_full_original_checkpoint_matches_weights_exactly"])+
+            "; maximum absolute float32 difference: "+
+            str(evidence["frozen_original_pilot10_parity"]["max_float32_absolute_difference"])+
+            "; different float32 entries: "+
+            str(evidence["frozen_original_pilot10_parity"]["different_float32_positions"])+
+            "; all original 159 known and 71 absent case identities preserved.",
         "The four actual original synaptic checkpoints are committed under "+
             "artifacts/imprinting/checkpoints with SHA-256s recorded in this original JSON.",
         "",

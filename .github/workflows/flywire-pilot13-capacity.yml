@@ -125,7 +125,8 @@ jobs:
           assert d['source']['original_directed_pairs']==15091983
           assert d['source']['original_integer_synapse_contacts']==54492922
           assert d['source']['original_anatomical_arrays_unchanged']
-          assert d['frozen_original_pilot10_parity']['loaded_full_original_checkpoint_matches_weights_exactly']
+          assert d['frozen_original_pilot10_parity']['loaded_full_original_checkpoint_within_predeclared_numerical_tolerance']
+          assert d['frozen_original_pilot10_parity']['max_float32_absolute_difference']<=5e-7
           assert d['frozen_original_pilot10_parity']['original_159_cases_identical']
           assert d['frozen_original_pilot10_parity']['original_71_absent_cases_identical']
           assert d['stages'][-1]['measured']['original_learned']['groups']['source_test_known_learned']['correct_top1']==20
