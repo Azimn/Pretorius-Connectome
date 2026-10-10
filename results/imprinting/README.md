@@ -13,3 +13,5 @@
 [Pilot14 real FlyWire synaptic stability](PILOT14_REAL_SYNAPTIC_STABILITY_RESULTS.md)
 
 [Pilot13 original real-v783 staged memory capacity](PILOT13_REAL_CAPACITY_RESULTS.md)
+
+[Pilot16 original real-v783 Mnemosyne source feature memory](PILOT16_REAL_MNEMOSYNE_RESULTS.md)

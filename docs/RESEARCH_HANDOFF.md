@@ -181,3 +181,7 @@ The next research test is a controlled **lexical-candidate → real-versus-rewir
 ## Pilot13 source-cue interference, real full FlyWire run 38024218512
 
 [Complete case-level real biological-connectivity capacity results](../results/imprinting/PILOT13_REAL_CAPACITY_RESULTS.md) contain seven predeclared memory loads, paired original-vs-rewired correct/deranged associations, anchor stability, source-target cosine margins, unchanged original v783 anatomy and all learned numerical weights. The terminal original source branch reproduced the *entire* original Pilot10 synaptic delta array and historical source event decisions, preventing source drift. This is external-oracle-assisted lexical numerical memory measurement, not autonomous source recollection.
+
+## Pilot16 original whole-FlyWire source feature-mask Mnemosyne 38025454741
+
+[Original source verified Pilot16 Mnemosyne results](../results/imprinting/PILOT16_REAL_MNEMOSYNE_RESULTS.md) preserve actual ten learned model W/P/cue original evidence and the full source case JSON. This is frozen MiniLM dense cue representation plus supervised error-corrective source content learning subject to binary pairwise support derived from the actual original FlyWire graph, NOT a neuron-level memory model. Comparisons include rewired and random equal-pair controls, unmasked nonneural exact ridge, sparse semantic projection, wrong source content, lexical dense and original additive. Source event identity remains EXTERNAL oracle-only.
