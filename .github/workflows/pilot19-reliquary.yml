@@ -1,0 +1,77 @@
+name: Pilot19 Reliquary evidence-bound source event association
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/reliquary19.py'
+      - 'scripts/run_pilot19_reliquary.py'
+      - 'tests/test_pilot19_reliquary.py'
+      - '.github/workflows/pilot19-reliquary.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/reliquary19.py'
+      - 'scripts/run_pilot19_reliquary.py'
+      - 'tests/test_pilot19_reliquary.py'
+      - '.github/workflows/pilot19-reliquary.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-450-source-event-index-and-negatives:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deterministic existing source splitter, no paid LLM or FlyWire download
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Test evidence source containment, graph versus exact and wrong-owner controls
+        run: |
+          python -m unittest discover -s tests -p test_pilot19_reliquary.py -v
+      - name: Run pinned original Pretorius source provenance-only retrieval cases
+        run: |
+          python scripts/run_pilot19_reliquary.py \
+            --output results/imprinting/pilot19-original-source-reliquary.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot19-original-source-reliquary.json'))
+          s=d['original_source']
+          assert d['architecture'].startswith('EXTERNAL')
+          assert (s['canonical_events'],s['canonical_episodes'],
+                  s['original_train_events'],s['original_validation_episode_absent'],
+                  s['original_test_episode_absent'],
+                  s['original_train_distinct_third_queries'])==(450,27,317,62,71,316)
+          assert d['registered_arms']==[
+              'train_two_anchors_only','narrative_bm25',
+              'all_anchors_flat_bm25','all_anchors_exact_index',
+              'reliquary_event_graph','wrong_owner_graph']
+          assert set(d['arm_results'])==set(d['registered_arms'])
+          for arm,val in d['arm_results'].items():
+              m=val['metrics']
+              assert [m[c]['n'] for c in d['registered_groups']]==[159,316,31,62,71]
+              assert val['provenance']['source_event_count']==317
+              assert m['validation_absent62']['source_false_accepted_absent']<=6
+              assert val['rejection_validation_only']['all_decisions_source_oracle_event_ID_FREE']
+          graph=d['arm_results']['reliquary_event_graph']['metrics']['source_third316']
+          exact=d['arm_results']['all_anchors_exact_index']['metrics']['source_third316']
+          assert graph['source_correct_top1']==exact['source_correct_top1']
+          assert graph['truth_cue_present_in_own_retrieval_index']==316
+          assert d['arm_results']['train_two_anchors_only']['metrics']['source_third316']['truth_cue_present_in_own_retrieval_index']==0
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot19-ORIGINAL-Pretorius-source-event-provenance-and-baselines
+          path: results/imprinting/pilot19-original-source-reliquary.json
+          retention-days: 90
+          if-no-files-found: warn
