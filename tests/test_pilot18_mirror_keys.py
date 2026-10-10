@@ -51,6 +51,9 @@ class TrainOnlyMetricTests(unittest.TestCase):
 
     def test_third_source_cue_unavailable_to_numeric_train_slots(self):
         for mode in ("random","pair_discriminant"):
+            # Previous iteration's *inference* intentionally encoded the
+            # heldout query; clear instrumentation before next training.
+            self.encoder.calls.clear()
             model=TwoViewEpisodicMemory(
                 encoder=self.encoder,
                 projection=fit_train_only_projection(self.X,algorithm=mode),
