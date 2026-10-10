@@ -1,0 +1,60 @@
+name: Verify Pilot17 exact original source numeric memory archive
+
+on:
+  push:
+    paths:
+      - 'scripts/archive_pilot17_echo_chamber.py'
+      - '.github/workflows/verify-pilot17-source-archive.yml'
+  pull_request:
+    paths:
+      - 'scripts/archive_pilot17_echo_chamber.py'
+      - '.github/workflows/verify-pilot17-source-archive.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  verify-all-five-source-learned-external-episode-states:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download successful real original 450-event Pretorius source numerical memory data
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 38028711203
+          name: pilot17-ORIGINAL-Pretorius-source-explicit-episodic-five-arm-evidence
+          path: original-source
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Check exact original source and independent five-model learned checkpoint archive
+        run: |
+          set -euo pipefail
+          FILE="$(find original-source -name pilot17-original-source-five-arms.json -type f | head -n 1)"
+          BASE="$(find original-source -name semantic_competitive_three_keys.npz -type f | head -n 1)"
+          test -f "$FILE"
+          test -f "$BASE"
+          python - "$FILE" <<'PY'
+          import hashlib,sys
+          b=open(sys.argv[1],"rb").read()
+          assert len(b)==3764681
+          assert hashlib.sha256(b).hexdigest()=="f60e7d21e3101e6da679bf13a36cc0682b6c897f39db1bd606305e977e433e57"
+          PY
+          python scripts/archive_pilot17_echo_chamber.py \
+            --input "$FILE" --weights "$(dirname "$BASE")" --run-id 38028711203
+          test -f results/imprinting/runs/pilot17-episodic-source-run38028711203.json
+          test -f results/imprinting/PILOT17_REAL_SOURCE_EPISODIC_RESULTS.md
+          test "$(find artifacts/imprinting/checkpoints -name 'pilot17-*-source-run38028711203.npz' | wc -l)" -eq 5
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/runs/pilot17-episodic-source-run38028711203.json'))
+          x=d['source_cases_all_stages'][-1]['arms']
+          assert x['semantic_competitive_three_keys']['groups']['original159_trained_familiar']['correct_top1']==149
+          assert x['semantic_competitive_three_keys']['groups']['original31_untrained_fourth']['correct_top1']==1
+          assert x['lexical_competitive_three_keys']['groups']['original31_untrained_fourth']['correct_top1']==0
+          assert x['semantic_competitive_wrong_content']['groups']['original159_trained_familiar']['correct_top1']==0
+          PY
