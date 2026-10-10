@@ -31,6 +31,23 @@ All estimates concern the SAME original first 16 source event IDs with the same 
 | Parameter-count-matched nonneural 1× linear | 0/16 | 0/16 | 6/159 | 0/31 | 60/71 |
 | Double-slot matched nonneural 2× linear | 0/16 | **2/16** | **11/159** | 0/31 | 60/71 |
 
+
+## Paired synthetic source-ID attrition and readout margins
+
+The same first-16 source record IDs were checked at load16 and load317; no changing evaluation candidate universe or sample composition explains the decline.
+
+| Condition | Correct early IDs at load16 | Still correct at 317 | Previously correct now incorrect | Newly correct at 317 | Mean final early signed content margin | Mean final newest signed content margin |
+|---|---:|---:|---:|---:|---:|---:|
+| Original additive | 5 | 1 | 4 | 0 | −0.146269 | −0.184152 |
+| Original single β4 | 4 | 3 | 1 | 1 | −0.057069 | −0.138032 |
+| Original dual β1 | 5 | 2 | 3 | 0 | −0.090177 | −0.085483 |
+| Original dual β4 | 4 | 2 | 2 | 1 | −0.086519 | −0.075740 |
+| Source rewired dual β1 | 9 | 2 | 7 | 1 | −0.112556 | −0.101179 |
+| Nonneural single masked linear | 10 | 0 | 10 | 0 | −0.172639 | −0.191513 |
+| Nonneural two-trace masked linear | 10 | 0 | 10 | 0 | −0.163723 | −0.121575 |
+
+The dual β4 model produced **3/16 newly taught source event IDs** correctly at load317 versus single protected β4 **0/16**; nevertheless the mean actual correct-source minus strongest competitor margin for those newest records remained **negative (−0.075740)**. This is not a usable semantic memory solution. The dual-trace model performed approximately twice as many *per-source-edge numeric update operations* (**24,274** versus **12,137** original single-trace) by construction, even though the union of nonzero directed synapse positions remained about 4,743 in both protected conditions; it has two independent sets of learned numeric weights **on those same anatomical positions**, not twice as many anatomical fly connections.
+
 **Interpretation (synthetic, hypothesis-generating):** Under artificial connectivity, the dual trace improves the *newly taught* cohort compared with stable single β4 (**3/16 versus 0/16**) at the cost of a slight loss of the first 16 records (**3/16 versus 4/16**). Both old and new correct identifiers remain low, familiar source correct accuracy is lower for dual β4 than stable single β4 (**12/159 vs 14/159**), and none of the eight source models identifies any genuinely untrained fourth literal cue. Even at the least falsely accepting fixed historical acceptance threshold, **60–62/71** episode-absent queries are incorrectly accepted. The 2× parameter nonneural comparator also improves newest cohort (2/16) over its 1× version (0/16), so some benefit may derive simply from increasing capacity rather than synaptic timescale semantics.
 
 No general conclusion about true fly topology, pretrained semantic cue recovery, native narrative recall, human-like episodic recollection, or Pretorius identity is warranted. **The real original publisher-verified whole v783 experiment is a distinct separate CI job and must be reported separately.**
