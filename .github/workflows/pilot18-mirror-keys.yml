@@ -1,0 +1,114 @@
+name: Pilot18 Mirror Keys train-only two-view episodic metric
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/mirror_keys18.py'
+      - 'scripts/run_pilot18_mirror_keys.py'
+      - 'tests/test_pilot18_mirror_keys.py'
+      - 'scripts/audit_original_source_cue_candidates18.py'
+      - '.github/workflows/pilot18-mirror-keys.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/mirror_keys18.py'
+      - 'scripts/run_pilot18_mirror_keys.py'
+      - 'tests/test_pilot18_mirror_keys.py'
+      - '.github/workflows/pilot18-mirror-keys.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pilot18-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frozen-original-source-true-two-view-experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Local CPU-only original frozen MiniLM and numerical dependencies
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'onnxruntime>=1.18,<2' \
+            'transformers>=4.44,<5' 'huggingface_hub>=0.26,<1'
+      - name: Test train-only source cue metric projection and no heldout slot leak
+        run: |
+          python -m unittest discover -s tests -p test_pilot18_mirror_keys.py -v
+          python -m unittest discover -s tests -p test_pilot17_echo_chamber.py -v
+      - name: Rebuild unchanged source-original Pretorius L1 and BC01 targets
+        run: |
+          mkdir -p data/derived/pilot18-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot18-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot18-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot18-bc01
+      - name: Audit actual source cue candidate structure without training on test cases
+        run: |
+          python scripts/audit_original_source_cue_candidates18.py \
+            --output results/imprinting/pilot18-ORIGINAL-source-cue-structure-audit.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot18-ORIGINAL-source-cue-structure-audit.json'))
+          assert d['fictional_original_source_records']==450
+          assert d['candidate_annotation_records']==450
+          assert d['annotation_status_counts']=={'unreviewed_candidate':450}
+          assert d['cue_candidate_surface_total']==1463
+          assert d['three_distinct_selected_cues_original_records']==448
+          assert d['original_last_literal_appears_verbatim_in_same_original_memory_text']==107
+          PY
+      - name: Train six fixed same-byte metric baselines ONLY on first/middle cue pairs
+        run: |
+          python scripts/run_pilot18_mirror_keys.py \
+            --bc01-dir data/derived/pilot18-bc01 \
+            --weights-dir data/derived/pilot18-SOURCE-projections-and-episodes \
+            --output results/imprinting/pilot18-source-two-cue-holdout.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot18-source-two-cue-holdout.json'))
+          s=d['original_source'];p=d['preregistered']
+          assert d['category'].startswith('EXTERNAL')
+          assert (s['canonical_records'],s['episodes'],s['original_train'])==(450,27,317)
+          assert s['two_original_source_train_cues_per_record'] is True
+          assert s['true_third_distinct_source_heldout']>=290
+          assert s['historical_train_literal_positive']==159
+          assert s['historical_exploratory_fourth']==31
+          assert s['episode_validation_absent']==62
+          assert s['episode_test_absent']==71
+          assert s['BC01_source_original_SHA']=='65ae81401a17ec68adc3900395f226734618be4ffb2bae24745d989bd2a17625'
+          assert s['frozen_MiniLM_ONNX_SHA']=='6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452'
+          assert p['stored_cue_views_per_record']==2
+          assert p['never_fit_or_store_last_third_literal'] is True
+          assert p['numeric_array_bytes_identical_all_arms']==633600
+          assert len(d['arm_numeric_resources_and_metrics'])==6
+          assert len(d['source_model_checkpoints_sha256'])==6
+          assert len(d['validation_only_native_novelty_gates'])==6
+          for name,x in d['arm_numeric_resources_and_metrics'].items():
+              assert x['third_source_cue_was_NOT_stored'] is True
+              assert x['numeric_total_array_bytes']==633600
+              assert x['stored_source_episodes']==317
+              assert x['groups']['heldout_third_source_view_all']['n']==s['true_third_distinct_source_heldout']
+          for g in d['validation_only_native_novelty_gates'].values():
+              assert g['validation_negative_n']==62 and g['validation_false_accepted']<=6
+              assert g['absent_test_n']==71
+              assert g['oracle_candidate_event_ids_used_to_set_threshold'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot18-PRETORIUS-original-source-two-view-metric-six-arm-evidence
+          path: |
+            results/imprinting/pilot18-source-two-cue-holdout.json
+            results/imprinting/pilot18-ORIGINAL-source-cue-structure-audit.json
+            data/derived/pilot18-SOURCE-projections-and-episodes/
+          retention-days: 90
+          if-no-files-found: warn

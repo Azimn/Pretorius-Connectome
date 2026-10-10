@@ -1,0 +1,62 @@
+name: Verify Pilot18 original source six learned metric checkpoints
+
+on:
+  push:
+    paths:
+      - 'scripts/archive_pilot18_mirror_keys.py'
+      - '.github/workflows/verify-pilot18-source-archive.yml'
+  pull_request:
+    paths:
+      - 'scripts/archive_pilot18_mirror_keys.py'
+      - '.github/workflows/verify-pilot18-source-archive.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  verify-full-original-source-six-state-byte-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'numpy>=1.26,<3'
+      - name: Fetch prior independently successful actual original source run
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 38058153904
+          name: pilot18-PRETORIUS-original-source-two-view-metric-six-arm-evidence
+          path: original-source
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Check pinned original source file SHA and all six numeric metric NPZ
+        run: |
+          set -euo pipefail
+          FILE="$(find original-source -name pilot18-source-two-cue-holdout.json -type f | head -n 1)"
+          FIRST="$(find original-source -name semantic_random_two_views.npz -type f | head -n 1)"
+          test -f "$FILE"
+          test -f "$FIRST"
+          python - "$FILE" <<'PY'
+          import hashlib,sys
+          raw=open(sys.argv[1],"rb").read()
+          assert len(raw)==1211379
+          assert hashlib.sha256(raw).hexdigest()=="9ac8dc764718ae09d1d3ec1b7d2d8298a3ca0cf62163e4213db6e9579de8fe75"
+          PY
+          python scripts/archive_pilot18_mirror_keys.py \
+            --input "$FILE" --weights "$(dirname "$FIRST")" \
+            --run-id 38058153904
+          test "$(find artifacts/imprinting/checkpoints -name 'pilot18-*-source-run38058153904.npz' | wc -l)" -eq 6
+          test -f results/imprinting/PILOT18_SOURCE_MIRROR_KEYS_RESULTS.md
+          test -f results/imprinting/runs/pilot18-two-view-source-run38058153904.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/runs/pilot18-two-view-source-run38058153904.json'))
+          x=d['arm_numeric_resources_and_metrics']
+          assert x['semantic_pair_discriminant_two_views']['groups']['heldout_third_source_view_all']['correct_top1']==0
+          assert x['semantic_random_two_views']['groups']['heldout_third_source_view_all']['correct_top1']==0
+          assert x['lexical_random_two_views']['groups']['heldout_third_source_view_all']['correct_top1']==2
+          assert x['semantic_pair_discriminant_wrong_content']['groups']['heldout_third_source_view_all']['correct_top1']==3
+          PY
