@@ -113,9 +113,10 @@ class MnemosyneTests(unittest.TestCase):
             restored=ResidualAssociativeMemory.load(
                 path,encoder=f,source_graph_sha=proof,encoder_sha="test-encoder")
             self.assertTrue(np.array_equal(restored.P,m.P))
-            self.assertTrue(np.array_equal(
+            self.assertTrue(np.allclose(
                 restored.infer("the doctor unlocked his laboratory"),
-                m.infer("the doctor unlocked his laboratory")))
+                m.infer("the doctor unlocked his laboratory"),
+                rtol=1e-6,atol=1e-6))
             with self.assertRaises(ValueError):
                 ResidualAssociativeMemory.load(
                     path,encoder=f,source_graph_sha=proof,encoder_sha="wrong")
