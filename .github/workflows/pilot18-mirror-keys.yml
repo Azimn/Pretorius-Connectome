@@ -6,6 +6,7 @@ on:
       - 'src/pretorius_connectome/mirror_keys18.py'
       - 'scripts/run_pilot18_mirror_keys.py'
       - 'tests/test_pilot18_mirror_keys.py'
+      - 'scripts/audit_original_source_cue_candidates18.py'
       - '.github/workflows/pilot18-mirror-keys.yml'
   pull_request:
     paths:
@@ -51,6 +52,20 @@ jobs:
           cp artifacts/shared_memory/v1/manifest.json data/derived/pilot18-bc01/manifest.json
           cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot18-bc01/pretorius_l1_v1.jsonl.gz
           python scripts/export_shared_memory.py --output data/derived/pilot18-bc01
+      - name: Audit actual source cue candidate structure without training on test cases
+        run: |
+          python scripts/audit_original_source_cue_candidates18.py \
+            --output results/imprinting/pilot18-ORIGINAL-source-cue-structure-audit.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot18-ORIGINAL-source-cue-structure-audit.json'))
+          assert d['fictional_original_source_records']==450
+          assert d['candidate_annotation_records']==450
+          assert d['annotation_status_counts']=={'unreviewed_candidate':450}
+          assert d['cue_candidate_surface_total']==1463
+          assert d['three_distinct_selected_cues_original_records']==448
+          assert d['original_last_literal_appears_verbatim_in_same_original_memory_text']==107
+          PY
       - name: Train six fixed same-byte metric baselines ONLY on first/middle cue pairs
         run: |
           python scripts/run_pilot18_mirror_keys.py \
@@ -93,6 +108,7 @@ jobs:
           name: pilot18-PRETORIUS-original-source-two-view-metric-six-arm-evidence
           path: |
             results/imprinting/pilot18-source-two-cue-holdout.json
+            results/imprinting/pilot18-ORIGINAL-source-cue-structure-audit.json
             data/derived/pilot18-SOURCE-projections-and-episodes/
           retention-days: 90
           if-no-files-found: warn
