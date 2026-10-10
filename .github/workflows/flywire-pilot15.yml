@@ -1,0 +1,149 @@
+name: FlyWire Pilot15 fast-slow dual trace memory tradeoff
+
+on:
+  push:
+    paths:
+      - 'src/pretorius_connectome/dual_trace15.py'
+      - 'scripts/run_flywire_pilot15.py'
+      - 'tests/test_flywire_pilot15.py'
+      - '.github/workflows/flywire-pilot15.yml'
+  pull_request:
+    paths:
+      - 'src/pretorius_connectome/dual_trace15.py'
+      - 'scripts/run_flywire_pilot15.py'
+      - 'tests/test_flywire_pilot15.py'
+      - '.github/workflows/flywire-pilot15.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: flywire-pilot15-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-source-integrity-and-dual-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install only free local numerical dependencies
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1'
+      - name: Test source anatomy invariance, dual trained state, and oracle isolation
+        run: |
+          python -m unittest discover -s tests -p test_flywire_pilot15.py -v
+          python -m unittest discover -s tests -p test_flywire_pilot14.py -v
+      - name: Build original source-pinned BC01 and immutable reconstructed L1
+        run: |
+          mkdir -p data/derived/pilot15-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot15-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot15-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot15-bc01
+      - name: Run eight matched source-neural/nonneural arms at seven stages on SYNTHETIC graph
+        run: |
+          python scripts/run_flywire_pilot15.py \
+            --synthetic-test --cells-per-feature 8 \
+            --bc01-dir data/derived/pilot15-bc01 \
+            --weights-dir data/derived/pilot15-SYNTHETIC-weights \
+            --output results/imprinting/pilot15-SYNTHETIC-dualtrace.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot15-SYNTHETIC-dualtrace.json'))
+          assert d['status'].startswith('SYNTHETIC')
+          assert [x['trained_events'] for x in d['cases_at_all_stages_EXTERNAL_only']]==[0,16,32,64,128,256,317]
+          assert len(d['cases_at_all_stages_EXTERNAL_only'][-1]['all_arms'])==8
+          assert d['source']['canonical_memories']==450
+          assert d['source']['original_graph_unchanged'] is True
+          assert d['source']['original_train']==317
+          assert len(d['all_model_checkpoint_sha256'])==8
+          assert d['degree_preserved_rewired_null']['binary_indegrees_equal']
+          assert d['degree_preserved_rewired_null']['binary_outdegrees_equal']
+          assert d['predeclared']['dual_trace_slots']==2*d['predeclared']['original_graph_single_slots']
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot15-SYNTHETIC-only-dual-trace-source-evidence
+          path: |
+            results/imprinting/pilot15-SYNTHETIC-dualtrace.json
+            data/derived/pilot15-SYNTHETIC-weights/
+          if-no-files-found: warn
+          retention-days: 45
+
+  real-original-v783-two-timescale-traces:
+    needs: synthetic-source-integrity-and-dual-memory
+    runs-on: ubuntu-latest
+    timeout-minutes: 160
+    env:
+      PYTHONPATH: 'src:.'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Original biological FlyWire Feather importer and pure CPU numerical dependencies
+        run: |
+          python -m pip install 'numpy>=1.26,<3' 'scipy>=1.11,<2' \
+            'scikit-learn>=1.5,<2' 'rank-bm25>=0.2,<1' 'pyarrow>=17,<24'
+      - name: Download original complete publisher-source FlyWire v783 and verify
+        run: |
+          python scripts/download_flywire_v783.py --destination data/flywire_v783
+          python scripts/convert_flywire_feather.py \
+            data/flywire_v783/proofread_connections_783.feather \
+            data/flywire_v783/proofread_root_ids_783.npy \
+            data/derived/flywire_v783_csr.npz
+      - name: Rebuild original source L1 and BC01 fixed input/target features
+        run: |
+          mkdir -p data/derived/pilot15-bc01
+          cp artifacts/shared_memory/v1/manifest.json data/derived/pilot15-bc01/manifest.json
+          cp artifacts/shared_memory/v1/pretorius_l1_v1.jsonl.gz data/derived/pilot15-bc01/pretorius_l1_v1.jsonl.gz
+          python scripts/export_shared_memory.py --output data/derived/pilot15-bc01
+      - name: Test both source traces, fixed two-trace parameter baseline, and exact historical source predictions
+        run: |
+          python scripts/run_flywire_pilot15.py \
+            --topology data/derived/flywire_v783_csr.npz \
+            --cells-per-feature 32 \
+            --bc01-dir data/derived/pilot15-bc01 \
+            --source-pilot10-cases results/imprinting/runs/direct-flywire-imprint-pilot10-run37869353939.json \
+            --source-pilot10-checkpoint artifacts/imprinting/checkpoints/pilot10-original-v783-run37869353939.npz \
+            --weights-dir data/derived/pilot15-REAL-weights \
+            --output results/imprinting/pilot15-REAL-original-v783-dualtrace.json
+          python - <<'PY'
+          import json
+          d=json.load(open('results/imprinting/pilot15-REAL-original-v783-dualtrace.json'))
+          assert d['status']=='original real publisher-verified full FlyWire-v783'
+          s=d['source']
+          assert s['original_graph_unchanged']
+          assert (s['original_neurons'],s['original_directed_edges'],s['original_integer_synapses'])==(139255,15091983,54492922)
+          assert s['fourth_source_unseen_eligible']==31
+          assert len(d['cases_at_all_stages_EXTERNAL_only'])==7
+          assert len(d['all_model_checkpoint_sha256'])==8
+          assert d['predeclared']['original_graph_single_slots']==50920
+          assert d['predeclared']['dual_trace_slots']==101840
+          p=d['original_pilot10_source_baseline_replay']
+          assert p['source_case_predictions_same_all_159']
+          assert p['absent_case_predictions_same_all_71']
+          assert p['original_full_weight_array_max_float_abs_difference']<=5e-7
+          assert d['cases_at_all_stages_EXTERNAL_only'][-1]['all_arms']['original_additive']['summaries']['original159_learned_familiar']['correct_top1']==20
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilot15-REAL-FlyWire-v783-eight-arm-dual-trace-evidence
+          path: |
+            results/imprinting/pilot15-REAL-original-v783-dualtrace.json
+            data/derived/pilot15-REAL-weights/
+          if-no-files-found: warn
+          retention-days: 90
